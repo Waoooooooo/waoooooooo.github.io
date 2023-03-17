@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "development"
-  ],
-  "hints": {
-    "compat-api/html": "off",
-    "no-protocol-relative-urls": "off"
-  }
-}
