@@ -1,5 +1,5 @@
-# Woooooooo.github.io
+# Waoooooooo.github.io
 personal page
 
-<https://Woooooooo.github.io/
+<https://Waoooooooo.github.io/
 >
