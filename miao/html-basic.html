@@ -24,8 +24,8 @@
   <hr>
   <div>
     <marquee>
-      <img src="20211017122310_3d114.jpeg" width="100" alt="图片加载失败" title="这是一张网图">
-      <br><img src="20230101.jpg"  width="100" alt="图片加载失败" title="这是一张网图">
+      <img src="20211017122310_3d114.jpeg" width="100" alt="图片加载失败" title="这是一张本地图">
+      <br><img src="20230101.jpg"  width="100" alt="图片加载失败" title="这是一张本地图">
       </marquee> 
   </div>
 <div> 强调的区别&nbsp; <i>嗯？</i> &nbsp; <b>嗯？</b> &nbsp;<u>嗯？</u> </div>
@@ -35,20 +35,64 @@
 }
 <hr>
 <ul>
-<li>小学</li>
-  <ol>
-     <li>一年级</li>
-    <ol>
-      <li>上学期</li>
-      <li>下学期</li>
+  <li>小学</li>
+     <ol>
+       <li>一年级</li>
+       <ol>
+          <li>上学期</li>
+          <li>下学期</li>
+      </ol>
+      <li>二年级</li>
+      <li>三年级</li>
     </ol>
-    <li>二年级</li>
-    <li>三年级</li>
-  </ol>
-<li>中学</li>
-<li>大学</li>  
+  <li>中学</li>
+  <li>大学</li>  
 </ul>
-  <hr>
-  
+<hr>
+<dl>
+ <dt>班级</dt>
+  <dd>三年级二班</dd>
+ <dt>老师</dt>
+  <dd>张老师</dd>
+  <dd>王老师</dd>
+ <dt>学生</dt>
+  <dd>小张</dd>
+  <dd>小王</dd>
+</dl>
+<hr>
+  <form target="_blank" action="www.baidu.com/">
+    
+<div>
+   <h1>BaiDu搜索</h1> 
+</div>
+ <input type="text" name="search">&nbsp;<button type="submit">在新窗口打开搜索结果</button>
+    
+  </form>
+<hr>
+<dl>
+ <dt>个人信息调查表</dt>
+ <dt>性别</dt>
+<!-- name表示最终提交时的属性名 radio表单在提交时同name 只提交 checked属性为checked的（被选中的） -->
+  <dd>
+ <input type="radio" checked="checked" name ="sex" value="1">男
+ <input type="radio" id="" name="sex" value="0">女
+
+  </dd>
+ <dt>年龄</dt>
+  <dd><select name="cars">请选择
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+</select></dd>
+ <dt>生日</dt>
+  <dd> <input type="date" name="user_date" /></dd>
+ <dt>生辰</dt>
+    <dd> <input type="time" name="user_time" /></dd>
+  <dt>照片</dt>
+    <dd> <input type="file" accept="image/*" name="user_photo" title="仅支持照片格式文件"/></dd>
+    <dt>自我介绍</dt>
+    <dd> <textarea name="" id="" style="width:200px; height:300px;"  placeholder="占位符">快来介绍下自己吧！</textarea></dd>
+</dl>
 </body>
 </html>
