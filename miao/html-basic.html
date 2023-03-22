@@ -5,35 +5,113 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2023.3.20作业</title>
+  <style type="text/css">
+    .animadiv{
+    font-family: "Humnst777 Blk BT";
+    font-size: 40px;
+    -webkit-text-stroke: 1px rgb(255,255,255);
+      /* text-shadow:  2px 2px 0 white, 
+                   -2px 2px 0 white, 
+                   2px -2px 0 white, 
+                  -2px -2px 0 white; */
+      padding: 2cm;
+     
+    } 
+
+    /* 鼠标悬浮在段落上时的动画 */
+    .animadiv:hover{
+      animation-name: example;
+      animation-iteration-count: 1;
+      animation-duration: 5s;
+
+    }
+      /* 片段的背景渐变动画 */
+        @keyframes example{
+         0%   {background-color: white;     -webkit-text-stroke: 1px rgb(0, 0, 0);}
+         25%  {background-color: rgb(245, 101, 101);    -webkit-text-stroke: 2px rgb(255,255, 255);}
+         50%  {background-color: rgb(130, 241, 128);    -webkit-text-stroke: 3px rgb(255, 255, 255);}
+         100% {background-color: white;    -webkit-text-stroke: 1px rgb(0, 0, 0);}
+
+        }
+
+    /* 猫猫图片的样式 */
+
+    
+   
+    .maomao{
+      width: 200px;
+      height: 200px;
+      padding: 0.1cm;
+    }
+    .maomao:hover{
+      position :relative;
+      animation-name: catanima;
+      animation-duration: 3s;
+    }
+    @keyframes catanima{
+      0%   {width:200px; left: 0px;top: 0px; background-color: rgb(255, 255,255); }
+      50%  {width:300px;  height:300px;left: 50px;top: 0px; background-color: rgb(8, 73, 254); }
+      100% {width:200px;left: 0px;top: 0px; background-color: rgb(255, 255,255); }
+    }
+
+    .blueP{
+      color: #05deff;
+      /* background: yellow; */
+    }
+    .redP{
+      color: rgb(241, 60, 60);
+      /* background-color: blue; */
+    }
+    .yellowP{
+      color: rgb(245, 8, 178);
+      /* background: red; */
+    }
+    .hid{
+      display:none
+    }
+  </style>
 </head>
 <body>
   <h1>lorem</h1>
   <h2>Lorem, ipsum.</h2>
   <h3>Lorem, ipsum dolor.</h3>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore alias atque voluptate eius pariatur assumenda placeat, repellendus, ratione, unde similique repudiandae. Voluptatum, excepturi! Nam eius consequuntur laborum minima. Iste, dicta.</p>
-  <p>Ipsum repellendus voluptates cumque repudiandae ad non illum perspiciatis optio labore et delectus omnis dolor, voluptatum aperiam expedita? Qui aspernatur adipisci ullam, illum natus fugiat quos molestiae voluptates dolore aliquam?</p>
-  <p>Velit eveniet possimus tenetur ad blanditiis quaerat libero maiores expedita ab! Atque veniam eaque voluptate assumenda eum ducimus sapiente magnam provident ipsum odit, inventore quos, quidem amet distinctio facere laudantium.</p>
+  <div class="animadiv">
+    <p class="blueP">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore alias atque voluptate eius pariatur assumenda placeat, repellendus, ratione, unde similique repudiandae. Voluptatum, excepturi! Nam eius consequuntur laborum minima. Iste, dicta.</p>
+    <p class="yellowP">Ipsum repellendus voluptates cumque repudiandae ad non illum perspiciatis optio labore et delectus omnis dolor, voluptatum aperiam expedita? Qui aspernatur adipisci ullam, illum natus fugiat quos molestiae voluptates dolore aliquam?</p>
+    <p class="redP">Velit eveniet possimus tenetur ad blanditiis quaerat libero maiores expedita ab! Atque veniam eaque voluptate assumenda eum ducimus sapiente magnam provident ipsum odit, inventore quos, quidem amet distinctio facere laudantium.</p>
+  </div>
 
   <a href="http://www.jd.com" target="_blank" > 点此打开新窗口跳转至京东</a>
   <a href="mailto:1185202122@qq.com">点我发邮件</a>
-  <a href="">点我下载文件</a>
+  <a href="20230101.jpg" download>点我下载文件</a>
   <a href="#introduce">点我跳转至表单</a>
+
   <div>
-    <img src="20211017122310_3d114.jpeg" alt="图片加载失败" title="这是一张网图">
+    <img src="20211017122310_3d114.jpeg" alt="图片加载失败" title="这是一张网图" >
   </div>
   <hr>
   <hr>
-  <div>
-    <marquee>
-      <img src="20211017122310_3d114.jpeg" width="100" alt="图片加载失败" title="这是一张本地图">
-      <br><img src="20230101.jpg"  width="100" alt="图片加载失败" title="这是一张本地图">
-      </marquee> 
+  <div class="catAnima1">
+      <img src="20211017122310_3d114.jpeg" alt="图片加载失败" title="这是一张本地图" class="maomao">
+      <span class="hid" > 这是一只猫猫<br>·cat·</span>
   </div>
-  <div> 强调的区别&nbsp; <i>嗯？</i> &nbsp; <b>嗯？</b> &nbsp;<u>嗯？</u> </div>
+  <div class="catAnima1">
+    <span class="hid"></span>
+      <img src="20230101.jpg"  class="maomao" alt="图片加载失败" title="这是一张本地图">
+  </div>
+    <div> 强调的区别&nbsp; <i>嗯？</i> &nbsp; <b>嗯？</b> &nbsp;<u>嗯？</u> </div>
   &lt;!--&nbsp; 直接显示再网页中&nbsp; --&gt;
-  <br>function&nbsp;a(){<br>
-    &nbsp;&nbsp;return 8<br>
-  }
+ <pre>
+  <code>
+    function a() {
+      return 8
+    }
+  
+
+  </code>
+ </pre>
+
+
   <hr>
   <ul>
     <li>小学</li>
@@ -149,12 +227,8 @@
   <table border="1">
     <tr>
       <td>
-   
-      
-          
-       
-      
-           <a href="http://10.3.3.3:33312/statics/task/" target="iframe1">打开课堂作业系统</a> 
+        <button>打开课堂作业系统</button>
+        <a href="http://10.3.3.3:33312/statics/task/" target="iframe1">打开课堂作业系统</a> 
       </td>
       <td rowspan="5"><iframe src="https://www.w3school.com.cn/" frameborder="0" name="iframe1" width="1720" height="960" >浏览器版本过旧，请更新您的浏览器</iframe>
       </td>
