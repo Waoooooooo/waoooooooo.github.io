@@ -8,13 +8,22 @@
   <style type="text/css">
     .animadiv{
     font-family: "Humnst777 Blk BT";
-    font-size: 40px;
-    -webkit-text-stroke: 1px rgb(255,255,255);
+    font-size: 30px;
+    /* 给区域内的文字加描边 */
+    -webkit-text-stroke: 1px rgb(171, 52, 230);
+    background-image: url('51111.jpg');
+    /*可以理解为剪切蒙版，将图片剪切为文字形状*/
+    background-clip:text;
+    -webkit-background-clip:text;
       /* text-shadow:  2px 2px 0 white, 
                    -2px 2px 0 white, 
                    2px -2px 0 white, 
                   -2px -2px 0 white; */
       padding: 2cm;
+
+      /* 字体颜色透明，不然字体颜色在背景上层 */
+      color:transparent;
+      background-size:1920px 300px;
      
     } 
 
@@ -27,10 +36,10 @@
     }
       /* 片段的背景渐变动画 */
         @keyframes example{
-         0%   {background-color: white;     -webkit-text-stroke: 1px rgb(0, 0, 0);}
+         /* 0%   {background-color: white;     -webkit-text-stroke: 1px rgb(0, 0, 0);}
          25%  {background-color: rgb(245, 101, 101);    -webkit-text-stroke: 2px rgb(255,255, 255);}
          50%  {background-color: rgb(130, 241, 128);    -webkit-text-stroke: 3px rgb(255, 255, 255);}
-         100% {background-color: white;    -webkit-text-stroke: 1px rgb(0, 0, 0);}
+         100% {background-color: white;    -webkit-text-stroke: 1px rgb(0, 0, 0);} */
 
         }
 
@@ -54,18 +63,16 @@
       100% {width:200px;left: 0px;top: 0px; background-color: rgb(255, 255,255); }
     }
 
-    .blueP{
-      color: #05deff;
-      /* background: yellow; */
+    
+    /* .blueP{
+      color: #05deff; 
     }
     .redP{
       color: rgb(241, 60, 60);
-      /* background-color: blue; */
     }
     .yellowP{
       color: rgb(245, 8, 178);
-      /* background: red; */
-    }
+    } */
     .hid{
       display:none
     }
@@ -75,7 +82,7 @@
   <h1>lorem</h1>
   <h2>Lorem, ipsum.</h2>
   <h3>Lorem, ipsum dolor.</h3>
-  <div class="animadiv">
+  <div class="animadiv" >
     <p class="blueP">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore alias atque voluptate eius pariatur assumenda placeat, repellendus, ratione, unde similique repudiandae. Voluptatum, excepturi! Nam eius consequuntur laborum minima. Iste, dicta.</p>
     <p class="yellowP">Ipsum repellendus voluptates cumque repudiandae ad non illum perspiciatis optio labore et delectus omnis dolor, voluptatum aperiam expedita? Qui aspernatur adipisci ullam, illum natus fugiat quos molestiae voluptates dolore aliquam?</p>
     <p class="redP">Velit eveniet possimus tenetur ad blanditiis quaerat libero maiores expedita ab! Atque veniam eaque voluptate assumenda eum ducimus sapiente magnam provident ipsum odit, inventore quos, quidem amet distinctio facere laudantium.</p>
