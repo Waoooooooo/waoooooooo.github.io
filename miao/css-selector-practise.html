@@ -64,7 +64,7 @@
       } 
       
       /* 让下面的4567元素为红色 */
-     .a>ul>:nth-child(n+4):not(  div.a>ul>:nth-child(n+8)){
+     .a>ul>:nth-child(n+4):nth-child(-n+8){
         color: red;
       }
    
@@ -78,10 +78,16 @@
         color: green;
       }
       
-      /* 让35-50的元素为蓝色 */
-      .b li:nth-child(n+35):not(.b li:nth-child(n+50)) {
+      /* 让35-50的元素为蓝色 */ 
+       /* .b li:nth-child(n+35):not(.b li:nth-child(n+50)) {
        color: blue;
-      }
+      } */
+      
+      
+      .b li:nth-child(n+35):nth-child(-n+50){
+        color: blue;
+      } 
+
       
       /*让所有的质/素数(prime)（2，3，5，7，11，13……）
       跟合数（4，6，8，9，10……）为不同的颜色*/
