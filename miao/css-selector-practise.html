@@ -91,13 +91,21 @@
       
       /*让所有的质/素数(prime)（2，3，5，7，11，13……）
       跟合数（4，6，8，9，10……）为不同的颜色*/
-      .prime li:nth-child(5n),.prime li:nth-child(2n),.prime li:nth-child(3n),.prime li:first-child
-        {
+      /*1.让所有2,3,5的倍数(除了2，3，5)变黄*/
+      .prime li:nth-child(5n+10),.prime li:nth-child(2n+4),.prime li:nth-child(3n+6),.prime li:first-child
+      {
         color: yellow;
       }
-      .prime li:nth-child(2),.prime li:nth-child(3),.prime li:nth-child(5)
-        {
+
+      /* .prime li:nth-child(2),.prime li:nth-child(3),.prime li:nth-child(5)
+      {
         color: black;
+      } */
+
+      /*给多余的1 上个红色*/
+      .prime li:nth-child(1)
+      {
+        color: red;
       }
       
     </style>
