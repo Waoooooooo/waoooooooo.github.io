@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-block-layout</title>
+  <style>
+    div.d1{
+      background-color: black;
+      color: white;
+    }
+    div>div{
+      width: 600px;
+      margin: auto;
+    }
+    div.d2>div{
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    div.d3>div>div{
+      width: 180px;
+      height: 40px;
+      /*设置宽高为边框盒子的宽高*/
+      box-sizing: border-box;
+      border: 3px solid;
+      margin: 15px 30px 15px 0px;
+      background-color: orange;
+    }
+    div.d3>div>div:nth-child(n+5){
+      margin: 15px 0px 15px 210px;
+    }
+    div.d3>div>div:nth-child(n+9){
+      margin: 15px 0px 15px 420px;
+    }
+    div.d3>div>div:nth-child(n+13){
+      margin: 15px 0px 15px 640px;
+    }
+    div.d3>div>div:nth-child(4n+5){
+      margin-top: -220px
+    }
+
+    div.d3>div>div:hover{
+      background: orangered;
+    }
+
+    ul>li{
+      border-bottom: dotted 1px black;
+
+    }
+    li.last{
+      border-bottom: dotted 1px transparent;
+    }
+
+    .d5{
+      background-color:darkorchid;
+    }
+    .d5>p{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="d1">
+  <div>
+    hello world 请调整浏览器窗口大小查看效果hello
+    world 请调整浏览器窗口大小查看效果hello world
+    请调整浏览器窗口大小查看效果hello world 请调整
+    浏览器窗口大小查看效果hello world 请调整浏览器
+    窗口大小查看效果hello world 请调整浏览器窗口大小查看效果
+  </div>
+</div>
+<div class="d2">
+  <div>
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+    页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+  </div>
+</div>
+
+<div class="d3">
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<div class="d4">
+  <div>
+    <ul>
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+      <li class="last">link</li>
+    </ul>
+  </div>
+</div>
+<div class="d5">
+  <p>©版权所有<br>
+本页所有布局均使用块元素</p>
+</div>
+</div>
+</body>
+</html>
