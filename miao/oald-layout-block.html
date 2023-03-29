@@ -6,25 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>oald-layout</title>
   <style>
-
+    html,body{
+      min-width: 1000px;
+    }
     div{
+      display:flow-root;
+      box-sizing: border-box;
+    }
+    div.d1{
       background-color: pink;
       width: 200px;
       height: 100vh;
-
       display:flow-root;
+      box-sizing: border-box;
+    }
+    div.d1>:first-child{
+      height: 117px;
+      box-sizing: border-box;
     }
     div.d2{
       background-color: rgb(0, 187, 255);
-      width: calc(100% - (200px) * 3);
+      width: calc(100% - (600px));
       height: 100vh;
       margin-right: 40px;
       margin-left: 200px;
       margin-top: -100vh;
-      min-width: 300px;
+    }
+    .d5{
+      overflow-y:scroll;
+      height: calc(100vh - (117px));
+      padding-left: 20px;
+      padding-right: 20px;
+      overflow-y:scroll;
+
     }
      div.d2>h1{
-      margin-left: 30px;
+      margin-left: 0px;
+      box-sizing: border-box;
+      height: 117px;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 23px;
+      border-bottom: 1px solid black;
+      text-indent: 2em;
+
+     }
+     div.d2>div{
+      overflow-y:scroll;
+      height: calc(100vh - (117px));
+      padding-left: 20px;
+      padding-right: 20px;
+      overflow-y:scroll;
      }
 
     div.d3{
@@ -34,7 +66,6 @@
       margin-right: 0px;
       margin-left: auto;
       margin-top: -100vh;
-
     }
     div.d4{
       background-color: burlywood;
@@ -45,16 +76,47 @@
       margin-top: -100vh;
 
     }
-  </style>
+    input{
+      width: 120px;
+      height: 20px ;
+      box-sizing: border-box;
+      margin-bottom: auto;
+    }
+    button{
+      width: 50px;
+      height: 20px;
+      box-sizing: border-box;
+    }
+    a{
+      display:block;
+      margin-left: 20px;
+    }
+</style>
 </head>
 <body>
 <div class="d1">
-  <h1>OALD se7en</h1>
-  <input type="text"><button></button>
+  <div>
+    <h1>OALD se7en</h1>
+    <input type="text"><button>搜索</button>
+  </div>
+
+  <div class="d5"><a href="">word1</a><a href="">word2</a><a href="">word3</a><a href="">word4</a><a href="">word5</a><a href="">word6</a><a href="">word7</a><a href="">word8</a><a href="">word9</a><a href="">word10</a><a href="">word11</a><a href="">word12</a><a href="">word13</a><a href="">word14</a><a href="">word15</a><a href="">word16</a><a href="">word17</a><a href="">word18</a><a href="">word19</a><a href="">word20</a><a href="">word21</a><a href="">word22</a><a href="">word23</a><a href="">word24</a><a href="">word25</a><a href="">word26</a><a href="">word27</a><a href="">word28</a><a href="">word29</a><a href="">word30</a><a href="">word31</a><a href="">word32</a><a href="">word33</a><a href="">word34</a><a href="">word35</a><a href="">word36</a><a href="">word37</a><a href="">word38</a><a href="">word39</a><a href="">word40</a><a href="">word41</a><a href="">word42</a><a href="">word43</a><a href="">word44</a><a href="">word45</a><a href="">word46</a><a href="">word47</a><a href="">word48</a><a href="">word49</a><a href="">word50</a></div>
 </div>
 
 <div class="d2">
 <h1>fantasy</h1>
+<div>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium consequatur dolore a natus eos magni quisquam, ipsa non qui? Facere, eius deserunt? Impedit rem dolorum reiciendis nostrum! Quis, necessitatibus deleniti fugit natus deserunt minus reprehenderit asperiores expedita omnis consequuntur quae numquam enim voluptate non? Ipsa sunt numquam reiciendis eum aperiam minima aspernatur? Tempore quod soluta enim error eveniet consequatur earum alias, exercitationem incidunt illum recusandae temporibus delectus, nemo dolore tenetur id nesciunt. Deleniti, consequatur, non aliquam quod distinctio in pariatur, esse voluptates cum commodi iste. Iure error recusandae, nesciunt consequuntur excepturi exercitationem expedita impedit eum dolore earum. Sequi, molestias sint!
+</div>
 </div>
 
 <div class="d3">
