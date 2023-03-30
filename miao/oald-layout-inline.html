@@ -11,6 +11,7 @@
       height: 100%;
       width: 100%;
       min-width: 1000px;
+
     }
     span{
       display: inline-block;
@@ -23,7 +24,7 @@
     }
 
    div{
-      height: 170px;
+      height: 190px;
       border-bottom: black 1px solid ;
       box-sizing: border-box;
       /*如果不设置会导致h1的默认外边距把div元素向下顶*/
@@ -33,8 +34,8 @@
     span.s1>span{
       overflow-y: scroll;
       display: inline-block;
-      height: calc(100% - 170px);
-      border-top: black 1px solid ;
+      height: calc(100% - 190px);
+
     }
     span.s2{
       background-color: rgb(231, 158, 68);
@@ -59,25 +60,28 @@
       letter-spacing: 10px;
     }
     span.s2 div{
-      line-height: 170px;
+      line-height: 190px;
       font-size: 80px;
       text-align: center;
     }
     span.s2 div.d1{
-      height: calc(100% - 170px);
+      height: calc(100% - 190px);
       /*如果不设置会导致h1的默认外边距把div元素向下顶*/
       font-size: 18px;
       line-height:normal;
       overflow-y: scroll;
-      display: inline-block;
+      /*这里不能是行内块  内嵌文字的行高会造成留白*/
+      /* display: inline-block; */
+      border: none;
     }
   </style>
 </head>
 <body>
-  <span class="s1"> <div>
+  <span class="s1"><div>
     <h1>精准翻译</h1>
     <h1>英汉词典</h1>
-   <input type="text"><button>搜索</button></div>
+   <input type="text"><button>搜索</button>
+  </div>
    <span>
     <a href="">1之</a><a href="">2之</a><a href="">3之</a><a href="">4之</a><a href="">5之</a><a href="">6之</a><a href="">7之</a><a href="">8之</a><a href="">9之</a><a href="">10之</a><a href="">11之</a><a href="">12之</a><a href="">13之</a><a href="">14之</a><a href="">15之</a><a href="">16之</a><a href="">17之</a><a href="">18之</a><a href="">19之</a><a href="">20之</a><a href="">21之</a><a href="">22之</a><a href="">23之</a><a href="">24之</a><a href="">25之</a><a href="">26之</a><a href="">27之</a><a href="">28之</a><a href="">29之</a><a href="">30之</a><a href="">31之</a><a href="">32之</a><a href="">33之</a><a href="">34之</a><a href="">35之</a><a href="">36之</a><a href="">37之</a><a href="">38之</a><a href="">39之</a><a href="">40之</a><a href="">41之</a><a href="">42之</a><a href="">43之</a><a href="">44之</a><a href="">45之</a><a href="">46之</a><a href="">47之</a><a href="">48之</a><a href="">49之</a><a href="">50之</a>
     </span>
