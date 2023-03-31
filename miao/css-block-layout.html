@@ -83,8 +83,35 @@
 
 
 
+    .newBlocks{
+      width: 600px;
+      margin:auto;
+      overflow: hidden;
+    }
+    .newBlocks>ul{
+      background-color: #1232;
+      list-style: none;
+      padding:0px;
+      font-size: 0;
+      margin:-15px -15px 0px -15px;
+      box-sizing: border-box;
 
 
+    }
+
+    .newBlocks>ul>*{
+      box-sizing: border-box;
+      font-size: 15px;
+      width:180px;
+      height:40px;
+      border: 3px solid ;
+      background-color: orange;
+      margin:15px 15px;
+      display: inline-block;
+      /*顶对齐，否则加入文字时未加入文字的元素的底部会和同级元素的文字基线对齐*/
+      vertical-align: top;
+
+    }
 
 
 
@@ -98,6 +125,7 @@
 
     ul>li{
       border-bottom: dotted 1px black;
+
 
     }
     li.last{
@@ -150,6 +178,34 @@
     <div></div>
     <div></div>
   </div>
+</div>
+<div class="newBlocks">
+    <ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li></li>
+  <li>8</li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 </div>
 
 <div class="d6">
