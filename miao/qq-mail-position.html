@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冰冰邮箱</title>
+  <style>
+    /* * {
+      background-color: rgb(red, green, blue,0.3);
+      border: 1px red solid;
+    } */
+
+    html,body{
+
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+      min-width: 1122px;
+      background-color: #eeeded;
+    }
+
+    div.wrapper{
+
+      width: calc(100% - 20px);
+      margin-right: 0px;
+      margin-left: auto;
+      font-size: 0;
+
+    }
+    span{
+      display: inline-block;
+
+    }
+
+    /* 未访问的链接 */
+    a:link {
+      color: #e78888;
+    }
+
+    /* 已访问的链接 */
+    a:visited {
+      color: #0d7aff;
+    }
+
+    /* 鼠标悬停链接 */
+    a:hover {
+      background: #1ddbf040;
+      color: white;
+    }
+
+    /* 已选择的链接 */
+    a:active {
+      color: #f7c846;
+    }
+
+    div.top{
+      height: 65px;
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+
+    }
+    /*左上角logo样式*/
+    span.logo{
+      font-size: 50px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color: #2c2929;
+      /*拉伸文字*/
+      letter-spacing: 9px;
+      width: 300px;
+      height: 100%;
+      text-shadow:#ff2c2c -2px -2px ,
+                  #ff2c2c -3px -3px ,
+                  #0e6df2 2px 2px ,
+                  #0e6df2 3px 3px ,
+                  #ff2c2c -4px -4px ,
+                  #ff2c2c -4px -4px ,
+                  #0e6df2 4px 4px 2px,
+                  #0e6df2 4px 4px 2px;
+    }
+    /* 冰冰邮箱 */
+    span.logo>:first-child{
+      position: absolute;
+      font-weight: 600;
+      text-shadow:none;
+      font-size: 30px;
+      top: 0px;
+    }
+    span.logo>:last-child{
+      letter-spacing: 7px;;
+      font-size: 15px;
+      text-shadow:none;
+    }
+
+    /*身份卡样式*/
+    span.idcard{
+      vertical-align: top;
+      width: 340px;
+      height: 100%;
+      font-size: 20px;
+    }
+
+    /* 右上搜索框样式 */
+    span.search{
+      position: absolute;
+      right: 8px;
+      bottom: 0px;
+    }
+
+    span.search>input{
+      font-size: 20px;
+      width: 350px;
+
+    }
+
+    /*右上链接导航样式*/
+    span.topNav{
+      position: absolute;
+      right: 8px;
+      font-size: 18px;
+    }
+
+    /* 页面主体 */
+    .main{
+      background-image: url(qqmailimg/bci.png);
+      width: calc(100% - 20px);
+      height: calc(100% - 90px);
+      position: absolute;
+      bottom: 0;
+      border-radius: 20px 0px 0px 0px;
+      min-width: 1149px;
+
+
+    }
+    /* 主体左侧  */
+    div.main>span.mainLeft{
+
+      margin: 15px;
+      height: calc(100% - 30px);
+      width: 200px;
+      letter-spacing: 3px;
+
+    }
+     /* 左侧按钮ui */
+    div.main>span.mainLeft img{
+      height: 30px;
+      vertical-align: -5PX;
+
+
+    }
+    div.main>span.mainLeft a{
+      line-height: 55px;
+      font-size: 20px;
+      display: block;
+      text-decoration: none;
+      font-family: 微软雅黑;
+      font-weight: 800;
+      color: rgb(12, 210, 237);
+      text-indent: 30px;
+      border-bottom: #0d7aff50 solid 1px;
+    }
+    /* 左侧上方菜单 */
+    div.main>span.mainLeft>:first-child{
+      height: 170px;
+      width: 100%;
+      background-color: rgba(255,255,255,.2);
+      border-radius: 10px;
+      /* border-color: #0d7aff; */
+      /* border-style: solid; */
+      box-sizing: border-box;
+      margin-bottom: 15px;
+
+    }
+
+    /* 左侧下方菜单 */
+    div.main>span.mainLeft>:last-child{
+      overflow-y: auto;
+      padding-top: 20px;
+      height: calc(100% - 185px);
+      width: 100%;
+      background-color: rgba(255,255,255,.2);
+      border-radius: 10px;
+      /* border-color: #0d7aff;
+      border-style: solid; */
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      font-weight: 100;
+    }
+    div.main>span.mainLeft>:last-child>a{
+      font-size: 18px;
+      line-height: 35px;
+    }
+       /* 主体右侧 */
+    div.main>span.mainRight{
+      position: relative;
+      background-color: white;
+      border-radius: 10px 0px 0px 0px;
+      height: calc(100% - 15px);
+      width: calc(100% - 230px);
+      vertical-align: top;
+      position: absolute;
+      top: 15px;
+      right: 0px;
+      font-size: 18px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      overflow-y: scroll;
+    }
+
+
+    /* bing */
+    img.bing{
+      position: fixed;
+      top: 40%;
+      right: -2px;
+      width: 80px;
+    }
+    img.bing:hover{
+      content: url("qqmailimg/bing.png");
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- 顶部 -->
+    <div class="top">
+
+      <!-- 左上角logo -->
+      <span class="logo">
+        Mail
+        <span>
+          冰冰邮箱
+        </span>
+        <span>
+          mail.bb.com
+        </span>
+      </span>
+
+      <!-- 身份卡(邮箱号等) -->
+      <span class="idcard">
+        <span>Waoooooo&lt;1185202122@bb.com></span>
+        <span><a href="">邮箱首页</a>  |  <a href="">设置</a>  |  <a href="">换肤</a></span>
+      </span>
+
+      <!-- 搜索框 -->
+      <span class="search">
+        <input type="text" placeholder ="搜索邮件">
+      </span>
+
+      <!-- 右上方链接 -->
+      <span class="topNav">
+        <a href="">反馈建议</a> | <a href="">帮助中心</a> | <a href="">切换帐号</a> | <a href="">退出</a>
+      </span>
+    </div>
+
+    <!-- 页面主体 -->
+    <div class="main">
+      <!-- 主体左侧 -->
+      <span class="mainLeft">
+        <span>
+
+          <a href=""><img src="qqmailimg/i1.png" alt="">
+            发邮件
+          </a>
+          <a href=""> <img src="qqmailimg/i2.png" alt="">
+            收  信
+          </a>
+          <a href=""> <img src="qqmailimg/i3.png" alt="">
+            通讯录
+          </a>
+
+        </span>
+        <span>
+          <a href="">
+            写  信
+          </a>
+          <a href="">
+            收  信
+          </a>
+          <a href="">
+            通讯录
+          </a>
+          <a href="">
+            写  信
+          </a>
+          <a href="">
+            收  信
+          </a>
+          <a href="">
+            通讯录
+          </a>  <a href="">
+            写  信
+          </a>
+          <a href="">
+            收  信
+          </a>
+          <a href="">
+            通讯录
+          </a>  <a href="">
+            写  信
+          </a>
+          <a href="">
+            收  信
+          </a>  <a href="">
+            通讯录
+          </a>  <a href="">
+            写  信
+          </a>
+
+
+        </span>
+      </span>
+      <!-- 主体右边 -->
+      <span class="mainRight">
+        <h2>发件人:</h2>
+        <p>1185202122@bb.com</p>
+        <hr>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <hr>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eaque illo perferendis nisi. Sapiente, exercitationem!</p>
+      </span>
+    </div>
+
+    <!-- 小冰 -->
+    <img class="bing" src="qqmailimg/bing2.png" alt="">
+  </div>
+</body>
+</html>
