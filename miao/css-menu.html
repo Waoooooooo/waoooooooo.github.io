@@ -15,12 +15,13 @@
       height: 100%;
       width: 100%;
       position: relative;
+      background-color: #282727;
     }
     span:is(.file,.edit,.select){
       width: 100px;
       text-align: center;
       display: inline-block;
-      border-radius: 8px;
+      border-radius: 8px 8px 0 0;
       border: 1px solid;
       line-height: 30px;
       background-color: rgb(63, 62, 62);
@@ -61,10 +62,22 @@
       position: relative;
       margin: 0;
     }
-    .outer{
+    li.outer{
       width: 100%;
       height: 20px;
       display: block;
+      position: relative;
+    }
+    .mt{
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-right:3px white solid;
+      border-top:3px white solid;
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      transform:rotate(45deg);
     }
     li:hover:hover{
      color: rgb(0, 0, 0);
@@ -94,7 +107,7 @@
     <span class="file"> <h3>文件</h3>
       <section>
         <ul>
-          <li class="outer first">
+          <li class="outer ">
             <span>1</span>
            <ul>
             <li class="inner">11</li>
@@ -102,6 +115,7 @@
             <li class="inner">13</li>
             <li class="inner">14</li>
            </ul>
+           <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -110,6 +124,7 @@
               <li class="inner">23</li>
               <li class="inner">24</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -118,6 +133,7 @@
               <li class="inner">33</li>
               <li class="inner">34</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -126,6 +142,7 @@
               <li class="inner">43</li>
               <li class="inner">44</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -134,6 +151,7 @@
               <li class="inner">53</li>
               <li class="inner">54</li>
              </ul>
+             <span class="mt"></span>
           </li>
         </ul>
       </section>
@@ -141,7 +159,7 @@
     <span class="edit"><h3>编辑</h3>
       <section>
         <ul>
-          <li class="outer first">
+          <li class="outer ">
             <span>1</span>
            <ul>
             <li class="inner">11</li>
@@ -149,6 +167,7 @@
             <li class="inner">13</li>
             <li class="inner">14</li>
            </ul>
+           <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -157,6 +176,7 @@
               <li class="inner">23</li>
               <li class="inner">24</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -165,6 +185,7 @@
               <li class="inner">33</li>
               <li class="inner">34</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -173,6 +194,7 @@
               <li class="inner">43</li>
               <li class="inner">44</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -181,6 +203,7 @@
               <li class="inner">53</li>
               <li class="inner">54</li>
              </ul>
+             <span class="mt"></span>
           </li>
         </ul>
       </section>
@@ -188,7 +211,7 @@
     <span class="select"><h3>选择</h3>
       <section>
         <ul>
-          <li class="outer first">
+          <li class="outer ">
             <span>1</span>
            <ul>
             <li class="inner">11</li>
@@ -196,6 +219,7 @@
             <li class="inner">13</li>
             <li class="inner">14</li>
            </ul>
+           <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -204,6 +228,7 @@
               <li class="inner">23</li>
               <li class="inner">24</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -212,6 +237,7 @@
               <li class="inner">33</li>
               <li class="inner">34</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -220,6 +246,7 @@
               <li class="inner">43</li>
               <li class="inner">44</li>
              </ul>
+             <span class="mt"></span>
           </li>
           <li class="outer"><span>1</span>
             <ul>
@@ -228,6 +255,7 @@
               <li class="inner">53</li>
               <li class="inner">54</li>
              </ul>
+             <span class="mt"></span>
           </li>
         </ul>
       </section>
