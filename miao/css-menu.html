@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <style>
+    html,body{
+      border: 1px black solid;
+      height: 100%;
+      width: 100%;
+    }
+    .wrapper{
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+    span:is(.file,.edit,.select){
+      width: 100px;
+      text-align: center;
+      display: inline-block;
+      border-radius: 8px;
+      border: 1px solid;
+      line-height: 30px;
+      background-color: rgb(63, 62, 62);
+      color: aliceblue;
+      vertical-align: top;
+      box-sizing: border-box;
+      margin: 0;
+    }
+    section{
+      background-color: rgb(43, 42, 42);
+      color: aliceblue;
+      font-size: 15px;
+      text-align: left;
+      line-height: 25px;
+    }
+
+    span:hover{
+
+      /* color:rgb(64, 64, 64) */
+    }
+    span:hover section{
+      display: block;
+      /* color:rgb(64, 64, 64) */
+    }
+    section{
+      display: none;
+    }
+    h3{
+      line-height: 20px;
+      margin: 10px;
+    }
+
+    ul{
+      box-sizing: border-box;
+      list-style: none;
+      padding: 0;
+      width: 100px;
+      position: relative;
+      margin: 0;
+    }
+    .outer{
+      width: 100%;
+      height: 20px;
+      display: block;
+    }
+    li:hover:hover{
+     color: rgb(0, 0, 0);
+     background: rgba(180, 180, 248, 0.5);
+     position: relative;
+    }
+   .outer ul{
+      display: none;
+      position: absolute;
+      left: 98px;
+      top: 0px;
+      background: black;
+      color: aliceblue;
+    }
+   li:hover ul{
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <span><img src="" alt="">logo
+
+
+    </span>
+    <span class="file"> <h3>文件</h3>
+      <section>
+        <ul>
+          <li class="outer first">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+          </li>
+        </ul>
+      </section>
+    </span>
+    <span class="edit"><h3>编辑</h3>
+      <section>
+        <ul>
+          <li class="outer first">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+          </li>
+        </ul>
+      </section>
+    </span>
+    <span class="select"><h3>选择</h3>
+      <section>
+        <ul>
+          <li class="outer first">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+          </li>
+        </ul>
+      </section>
+    </span>
+
+
+  </div>
+  <div class="hidden">
+
+  </div>
+</body>
+</html>
