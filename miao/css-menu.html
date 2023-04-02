@@ -7,41 +7,50 @@
   <title>Menu</title>
   <style>
     html,body{
-      border: 1px black solid;
+
       height: 100%;
       width: 100%;
+      min-width: 780px;
+      margin: 0;
+    }
+    body{
+
     }
     .wrapper{
-      height: 100%;
+      height: 40px;
       width: 100%;
       position: relative;
-      background-color: #282727;
+      background-color: rgb(63, 62, 62);
     }
+
     span:is(.file,.edit,.select){
-      width: 100px;
+      width: 7%;
       text-align: center;
       display: inline-block;
       border-radius: 8px 8px 0 0;
-      border: 1px solid;
+      font-size: 0.8em;
+
       line-height: 30px;
       background-color: rgb(63, 62, 62);
+      letter-spacing: 3px;
       color: aliceblue;
       vertical-align: top;
       box-sizing: border-box;
       margin: 0;
     }
     section{
-      background-color: rgb(43, 42, 42);
+      background-color: rgb(21, 21, 21);
       color: aliceblue;
-      font-size: 15px;
+      font-size: 1;
       text-align: left;
       line-height: 25px;
     }
 
     span:hover{
-
+      background-color: rgb(21, 21, 21);
       /* color:rgb(64, 64, 64) */
     }
+
     span:hover section{
       display: block;
       /* color:rgb(64, 64, 64) */
@@ -58,13 +67,14 @@
       box-sizing: border-box;
       list-style: none;
       padding: 0;
-      width: 100px;
+      width: 100%;
       position: relative;
       margin: 0;
     }
+
     li.outer{
       width: 100%;
-      height: 20px;
+      height: 50px;
       display: block;
       position: relative;
     }
@@ -75,19 +85,19 @@
       border-right:3px white solid;
       border-top:3px white solid;
       position: absolute;
-      right: 10px;
-      top: 7px;
+      right: 20%;
+      top: 30%;
       transform:rotate(45deg);
     }
     li:hover:hover{
-     color: rgb(0, 0, 0);
-     background: rgba(180, 180, 248, 0.5);
+
+     background: rgba(105, 105, 239, 0.5);
      position: relative;
     }
    .outer ul{
       display: none;
       position: absolute;
-      left: 98px;
+      left: 100%;
       top: 0px;
       background: black;
       color: aliceblue;
@@ -95,14 +105,207 @@
    li:hover ul{
       display: block;
     }
+    .main{
+      height: calc(100% - 45px);
+      width: 100%;
+      background-color:  #f1f1f1;
+      overflow-y: scroll;
+      padding: 30px;
+      padding-right: 60px;
+      box-sizing: border-box;
+      text-align: justify;
+    }
+    .wrapper>:nth-last-child(-n+3){
 
+      border-radius: 0px;
+      width: 3%;
+
+      position:absolute;
+    }
+    .wrapper>:nth-last-child(1){
+
+    right:0%;
+    }
+    .wrapper>:nth-last-child(2){
+
+     right:3%;
+    }
+     .wrapper>:nth-last-child(3){
+
+     right:6%;
+     }
+         /* bing */
+    img.bing{
+      position: absolute;
+      top: 40%;
+      right: 0px;
+      width: 80px;
+    }
+    img.bing:hover{
+      content: url("qqmailimg/bing.png");
+      width: 78px;
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <span><img src="" alt="">logo
 
+    <span class="file"> <h3>文件</h3>
+      <section>
+        <ul>
+          <li class="outer ">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+           <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+        </ul>
+      </section>
+    </span>
+    <span class="edit"><h3>编辑</h3>
+      <section>
+        <ul>
+          <li class="outer ">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+           <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+        </ul>
+      </section>
+    </span>
+    <span class="select"><h3>选择</h3>
+      <section>
+        <ul>
+          <li class="outer ">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+           <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+        </ul>
 
+      </section>
     </span>
     <span class="file"> <h3>文件</h3>
       <section>
@@ -258,13 +461,125 @@
              <span class="mt"></span>
           </li>
         </ul>
+
+      </section>
+    </span>
+    <span class="file"> <h3>文件</h3>
+      <section>
+        <ul>
+          <li class="outer ">
+            <span>1</span>
+           <ul>
+            <li class="inner">11</li>
+            <li class="inner">12</li>
+            <li class="inner">13</li>
+            <li class="inner">14</li>
+           </ul>
+           <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">21</li>
+              <li class="inner">22</li>
+              <li class="inner">23</li>
+              <li class="inner">24</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">31</li>
+              <li class="inner">32</li>
+              <li class="inner">33</li>
+              <li class="inner">34</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">41</li>
+              <li class="inner">42</li>
+              <li class="inner">43</li>
+              <li class="inner">44</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+          <li class="outer"><span>1</span>
+            <ul>
+              <li class="inner">51</li>
+              <li class="inner">52</li>
+              <li class="inner">53</li>
+              <li class="inner">54</li>
+             </ul>
+             <span class="mt"></span>
+          </li>
+        </ul>
       </section>
     </span>
 
-
+    <span class="file"> <h3>一</h3>
+    </span>
+    <span class="edit"><h3>□</h3>
+    </span>
+    <span class="edit"><h3>X</h3>
+    </span>
   </div>
-  <div class="hidden">
 
-  </div>
+  <div class="main">
+    <h1>Lorem Banana</h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse consectetur eos nobis, sunt labore saepe fugit quam distinctio magnam debitis sed libero laudantium atque ab velit praesentium culpa, excepturi ipsam?
+      Reiciendis expedita quibusdam eaque fuga quos? Quasi delectus maiores voluptatum aliquam id aspernatur rerum, ea, labore distinctio corrupti eum deserunt culpa natus unde dolorum obcaecati quaerat impedit ullam quod earum.
+      Quod officia quia sed harum ab et beatae delectus, ut, numquam quae hic pariatur natus quos voluptates facere ex earum placeat? Illum, quaerat minima? Ex sed quod et provident vero?
+      Ratione, temporibus maxime quam accusamus minima magni praesentium totam rem possimus dignissimos eaque inventore expedita veniam debitis atque amet ad recusandae? Dolorum quod ipsum et, maxime aperiam distinctio nemo repudiandae.
+      Vitae nam amet nulla assumenda hic saepe debitis voluptas odit exercitationem asperiores veritatis necessitatibus minus fuga, rerum consequuntur laborum mollitia neque et soluta ducimus sit modi? Sunt repellat consequuntur quas.
+      Impedit veritatis perspiciatis facilis odio possimus itaque pariatur doloribus dolorem provident! Suscipit, nihil, obcaecati sit molestias debitis maiores sed, placeat reprehenderit cumque eveniet magni et quos est error repellat ea.
+      Veritatis sit a voluptatum dolor vitae corporis, laudantium maxime accusantium at ullam nostrum laborum dolore tempore consequatur autem, dolores sed, odit enim ratione saepe consequuntur ad ipsam quam! Nostrum, quaerat!
+      Aliquam quis omnis fugit deleniti repudiandae dicta enim quam vitae aperiam, dolores perferendis incidunt, ut voluptatibus? Atque, nesciunt. Quod, repellendus? Aut voluptatem cum, consequatur voluptate doloribus pariatur ipsa provident adipisci!
+      Nam molestiae animi fugit veniam, assumenda aliquam blanditiis aliquid quisquam rerum quae laboriosam vero enim voluptatem, consectetur quo unde pariatur. Quibusdam vel dolor rerum dicta deserunt at laboriosam! Fuga, unde!
+      Consequuntur eaque neque, vero dolor error incidunt optio perferendis velit dolorum in possimus ut earum voluptatum nulla officia ex aperiam necessitatibus ipsum ipsa voluptate, eveniet, dolore numquam! Exercitationem, recusandae maiores!
+      Maxime error obcaecati quia nobis reprehenderit a similique molestias necessitatibus dolor cum repellat enim aperiam quo ab doloremque voluptas, eaque voluptatibus dicta sint fugiat et odit ullam quas! Aliquam, excepturi!
+      Temporibus dicta, beatae in debitis quasi cupiditate saepe impedit adipisci quisquam. Sapiente distinctio maxime aperiam veritatis! Perferendis exercitationem veniam, praesentium consequuntur rem, recusandae odit modi nisi dolorem delectus iure et!
+      Et tempore numquam, vel reiciendis, voluptate dolorem nobis nisi, odio magnam voluptatem repellendus ab. Ipsa possimus, assumenda reiciendis excepturi itaque enim vel nam, laudantium eligendi architecto, molestias explicabo? Fuga, quidem!
+      Sit atque, sequi nesciunt nobis voluptatum architecto cum. Voluptates excepturi, dignissimos quaerat sed tempora quos pariatur et harum in corrupti, aspernatur nobis eveniet molestias enim? Deserunt nemo aliquam reiciendis qui?
+      Saepe voluptas, voluptatem quos sapiente, molestias culpa quibusdam fuga minima obcaecati dolorem, iusto eaque tempore perferendis est architecto. Nisi ea at vero tempore magni eos, atque alias architecto! Reiciendis, atque?
+      Optio culpa odio cupiditate vel tenetur, architecto suscipit labore aperiam distinctio quaerat natus ratione corrupti dolor deserunt veritatis voluptas repudiandae! Sit deserunt esse minus illum mollitia suscipit libero consequatur fuga.
+      Laudantium fuga velit delectus quas iusto error repudiandae esse inventore corporis voluptatem. Officia totam, dolore alias sed, magnam, et aliquid rerum voluptatum corporis sapiente ducimus reiciendis ex quaerat quo sequi?
+      Sapiente quod similique consequuntur ex ratione aspernatur nam minima exercitationem doloremque! Minima qui sunt quaerat, facere quae ad libero architecto suscipit odio voluptatum ab dolorum repellat labore eius natus recusandae.
+      Placeat, amet sed blanditiis adipisci consectetur rem alias quae tempora non. Delectus reiciendis neque nihil harum doloribus animi, quia iure ipsum, alias labore nostrum distinctio aperiam doloremque molestias nulla esse.
+      Fuga adipisci est itaque blanditiis quibusdam nulla assumenda consequuntur et beatae praesentium perspiciatis dolorem natus minus iusto at impedit animi dolore sequi minima corrupti, mollitia nemo? Corrupti rerum illo culpa?
+      Adipisci provident aspernatur tempora assumenda quo laudantium rem cum qui, debitis et non culpa architecto possimus nostrum repellendus aliquam veritatis magnam similique exercitationem aut delectus nulla minima reprehenderit. Nesciunt, optio.
+      Aliquid omnis nesciunt iste quod eaque doloremque tenetur repellat ipsum possimus unde exercitationem, officia, libero laborum fugiat iure soluta velit expedita amet! Soluta, dolor maxime! Explicabo natus quam corporis quasi.
+      Omnis nostrum laboriosam distinctio voluptatibus, est nesciunt aspernatur, minus ab vitae harum ducimus non autem aut laudantium iusto ipsa tempora necessitatibus tempore facilis nam praesentium! Ad assumenda totam similique. Necessitatibus.
+      Asperiores corporis, hic tenetur nihil pariatur repudiandae ipsa quos, repellendus obcaecati laborum vitae. Velit architecto adipisci, odio error modi quos optio quis fugiat repellendus. Fugit facilis asperiores itaque eos architecto!
+      Doloremque ab tempora culpa dolorem ducimus repellendus quod debitis repudiandae quidem ipsam recusandae animi dicta vel, modi iste nemo unde quas blanditiis voluptatum. Repellat iste dolorem sit facilis dolor earum?
+      Quo facere odio nesciunt sit id impedit similique ratione laudantium distinctio voluptatum maiores possimus, sequi repudiandae? Impedit odit quaerat cum debitis quod. Ab, vitae nesciunt eaque veritatis culpa ullam aut!
+      Nobis explicabo ipsam sunt, fugiat provident ex minus! Unde quaerat cumque rerum reprehenderit, est accusantium quos perspiciatis assumenda possimus obcaecati, aliquam repudiandae sint, ullam cupiditate voluptatibus neque harum voluptates tempore!
+      Ipsam accusantium exercitationem, accusamus et, vero, labore soluta veniam tempora consequatur quos dicta neque. Dolore, quas reiciendis? Odit, quia ab. Sint labore asperiores ratione totam repellat eligendi maiores cum optio!
+      Voluptatem corrupti maxime magnam. Quisquam maxime minus accusamus suscipit! Quasi maxime recusandae culpa corporis assumenda, deleniti sed suscipit, dolore saepe, ducimus magni quae fugit pariatur eveniet reprehenderit autem non vel.
+      Sapiente quam molestias perspiciatis expedita enim reprehenderit delectus voluptatum nesciunt quia dolor odio velit laudantium dignissimos sed eius, vel iste saepe dolorum ab libero excepturi sint exercitationem qui. Consequatur, veritatis.
+      Quibusdam consequuntur vel dolor animi ad cumque quasi neque pariatur aut delectus. Veritatis vero eum vitae. Excepturi consequatur doloremque ducimus reprehenderit esse id dolor porro? Nemo iusto quos repellat eum?
+      In dicta eum asperiores, impedit doloribus hic sint nobis facere quo sapiente sunt dolore cum nulla optio mollitia, earum cumque esse velit voluptates nihil corrupti. Sapiente beatae itaque saepe optio?
+      Iusto commodi ducimus optio dolorem sed magni id labore quibusdam! Expedita perferendis modi nesciunt, mollitia sit soluta eligendi iure, ducimus autem assumenda voluptatem veritatis maxime culpa hic iste delectus accusantium.
+      Illum ad, ut nesciunt iure culpa commodi, veniam at atque fuga fugiat enim molestias quidem voluptas magnam ipsam earum dignissimos ab, exercitationem blanditiis aperiam consequatur consectetur sint dicta facilis? Ullam!
+      Nemo impedit maxime suscipit ut! Quasi enim distinctio reprehenderit voluptatum nostrum pariatur neque nulla est, quibusdam eaque earum, facere eligendi eos similique, error voluptate impedit eveniet a. Similique, odit. Facilis!
+      Ut eveniet, maxime ipsam nemo, neque dolores commodi laudantium minus error dolorem odio consequatur animi porro. Ipsa magnam debitis explicabo vitae, voluptatibus dolores possimus. Corrupti omnis qui accusantium dolore consequatur.
+      Minus maiores nostrum vero adipisci eum, dolore sed accusantium, culpa suscipit praesentium quisquam neque tenetur quo aliquid, tempore unde atque reiciendis quis esse voluptatibus earum natus eligendi distinctio? Illo, nobis?
+      Deserunt fuga quis itaque repellendus amet voluptatum quod atque! Voluptatibus et perspiciatis officia sed culpa corporis dolores! Facilis, qui labore maiores totam id tempora. Iure hic tenetur rerum eligendi ut.
+      At odio nobis, labore suscipit dolores ab debitis error velit impedit eius, recusandae ea aliquam quo tenetur numquam mollitia animi hic molestiae deleniti. Possimus unde cum eum sequi itaque placeat.
+      Unde quaerat accusantium doloribus molestias pariatur est voluptatibus iusto voluptas sequi omnis culpa veritatis eligendi, repudiandae eaque deleniti atque modi non. Aut pariatur error temporibus eum. Ipsam blanditiis natus velit.
+      Ad distinctio quia tempore, ratione, fugiat quis placeat dolor sapiente totam architecto minima dignissimos molestias. Quam aspernatur dolorum reiciendis ipsa nisi sint, iusto, amet dolores qui sed, rem ipsam praesentium.
+      Aut commodi voluptatem dolores adipisci dolor iure ipsum modi mollitia alias dolore repellendus ad inventore autem animi exercitationem natus excepturi, vel ratione quasi. Repellat deserunt amet ea, quaerat impedit aperiam.
+      Molestiae sint ullam officia, recusandae reiciendis ut. Consequatur assumenda ipsa quod impedit nemo, voluptates, accusamus saepe velit enim, blanditiis esse. Nisi, perferendis sed repudiandae quos voluptates omnis laudantium modi. Alias.
+      Provident praesentium, debitis, magni quas corrupti velit reprehenderit odio explicabo mollitia eos earum fugiat nulla animi enim iusto consectetur qui? Commodi sint ipsa odit officiis cumque illo consectetur voluptatum accusantium!
+      Expedita sint tempore delectus eveniet mollitia vitae illum aut aspernatur dicta fugit provident culpa reprehenderit earum minima, quam officia laborum. Sunt voluptates laudantium sequi. Eos distinctio mollitia perspiciatis tenetur impedit.
+      Omnis enim ducimus itaque neque repudiandae iusto beatae autem eum nesciunt temporibus distinctio, sunt voluptatum velit totam quia quis consectetur eos perferendis harum voluptate sed quae. Autem beatae eius ad.
+      Minima ex vitae error praesentium cumque aspernatur accusamus expedita iure assumenda facilis nulla, adipisci fugiat, eos repellat voluptas porro autem totam quaerat? Quam voluptatem illum ut consequatur libero vitae unde.
+      Mollitia ex esse unde nostrum beatae quas ratione autem dignissimos voluptates impedit. Dolorum pariatur dolore at quaerat deleniti enim, fugit ratione ut hic ab eos inventore laboriosam corporis eaque modi?
+      Aliquid corporis nesciunt deserunt nam quis sint tempora explicabo! Pariatur numquam, laudantium non delectus quasi cum voluptas corporis sapiente esse quibusdam alias reiciendis accusantium voluptate sint, ullam nemo quae rerum.
+      Minus beatae commodi quaerat illum eveniet quos qui dolore quam accusamus voluptatem itaque veritatis culpa officiis nesciunt quasi minima suscipit, officia autem nulla! Eos, sunt nesciunt sint odio suscipit inventore?
+    </p>
+    </div>
+    <!-- 小冰 -->
+    <img class="bing" src="qqmailimg/bing2.png" alt="">
 </body>
 </html>
