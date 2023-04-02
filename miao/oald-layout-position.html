@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>词典</title>
+  <style>
+    html,body{
+      width: 100%;
+      height: 100%;
+      min-width: 1000px;
+      margin: 0;
+    }
+    div.wrapper{
+      height: 100%;
+    }
+    div.wrapper>div{
+      height: 100%;
+      width: 200px;
+      border: 1px solid;
+      box-sizing: border-box;
+    }
+
+    /*四大块 */
+    div.wrapper>div:nth-child(1){
+      background-color: #d5c7ff;
+      height: 100%;
+      position: relative;
+    }
+    div.wrapper>div:nth-child(2){
+      height: 100%;
+      position: absolute;
+      left: 200px;
+      top: 0px;
+      width: calc(100% - 600px);
+      background-color: #fdd4d4;
+
+    }
+    div.wrapper>div:nth-child(3){
+      position: absolute;
+      right: 200px;
+      top: 0px;
+      background-color: #c9ffd1;
+    }
+    div.wrapper>div:nth-child(4){
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background-color: #b7c791;
+    }
+
+    /*第一小块*/
+    div.wrapper>div:nth-child(1)>div:nth-child(1){
+      font-size: 30px;
+      text-align: center;
+      line-height: 50px;
+      height: 50px;
+    }
+    div.wrapper>div:nth-child(1)>div:nth-child(2){
+      font-size: 20px;
+      height: 30px;
+      border-bottom: 1px solid;
+      position: relative;
+      box-sizing: border-box;
+    }
+    div.wrapper>div:nth-child(1)>div:nth-child(3){
+
+      font-size: 20px;
+      height:calc(100% - 80px);
+
+      overflow-y: scroll;
+      text-align: center;
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+
+    }
+    button{
+      position: absolute;
+      width: 40px;
+      height: 20px;
+      top: 7px;
+    }
+    input{
+      width: 150px;
+    }
+    a{
+      display: block;
+    }
+
+
+    /*第二部分*/
+    div.wrapper>div:nth-child(2)>div:nth-child(1){
+      font-size: 30px;
+      text-align: center;
+      line-height: 80px;
+      height: 80px;
+      border-bottom: 1px solid;
+      box-sizing: border-box;
+    }
+    div.wrapper>div:nth-child(2)>div:nth-child(2){
+      font-size: 20px;
+      text-align: justify;
+      height: calc(100% - 80px);
+      /*只加内边距不声明盒模型就会导致高度不会将内边距计算在内最终div大于页面高度*/
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+    }
+    div.wrapper>div:nth-child(3)>div,div.wrapper>div:nth-child(4) div{
+      font-size: 30px;
+      text-align: center;
+      line-height: 80px;
+      height: 80px;
+      border-bottom: 1px solid;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div>
+    <div>Oald</div>
+    <div><input type="text"><button></button></div>
+    <div><a href="">word 1</a><a href="">word 2</a><a href="">word 3</a><a href="">word 4</a><a href="">word 5</a><a href="">word 6</a><a href="">word 7</a><a href="">word 8</a><a href="">word 9</a><a href="">word 10</a><a href="">word 11</a><a href="">word 12</a><a href="">word 13</a><a href="">word 14</a><a href="">word 15</a><a href="">word 16</a><a href="">word 17</a><a href="">word 18</a><a href="">word 19</a><a href="">word 20</a><a href="">word 21</a><a href="">word 22</a><a href="">word 23</a><a href="">word 24</a><a href="">word 25</a><a href="">word 26</a><a href="">word 27</a><a href="">word 28</a><a href="">word 29</a><a href="">word 30</a>
+      <a href="">word 6</a><a href="">word 7</a><a href="">word 8</a><a href="">word 9</a><a href="">word 10</a><a href="">word 11</a><a href="">word 12</a><a href="">word 13</a><a href="">word 14</a><a href="">word 15</a><a href="">word 16</a><a href="">word 17</a><a href="">word 18</a><a href="">word 19</a><a href="">word 20</a><a href="">word 21</a><a href="">word 22</a><a href="">word 23</a><a href="">word 24</a><a href="">word 25</a><a href="">word 26</a><a href="">word 27</a><a href="">word 28</a><a href="">word 29</a><a href="">word 30</a>
+    </div>
+  </div>
+  <div>
+    <div>WWWWWW</div>
+    <div>
+      <ol>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum libero adipisci exercitationem ipsam modi ea assumenda, temporibus commodi debitis tempora recusandae quia. Suscipit molestiae vel pariatur perspiciatis quos corrupti omnis eos laborum, quibusdam adipisci. Eum unde quaerat ratione maiores in. Numquam, ex dolore quisquam eligendi suscipit eaque non explicabo?</li>
+      </ol>
+    </div>
+  </div>
+  <div><div>History</div></div>
+  <div><div>Fanta</div></div>
+</div>
+</body>
+</html>
