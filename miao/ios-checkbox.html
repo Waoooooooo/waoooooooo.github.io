@@ -16,6 +16,8 @@
       width: 400px;
       display: block;
       height: 214px;
+      box-shadow: inset 0px 0 0 0px #30f349;
+      transition:linear 0.5s;
     }
     .box::after{
       content:'';
@@ -28,15 +30,14 @@
       box-sizing: border-box;
       border: #000 1px solid;
       box-shadow: rgb(68, 69, 68) 1px 3px 5px;
-      transition: 1s;
+      transition: 0.5s linear;
     }
     input:checked +label>div::after{
       margin-left: 188px;
 
     }
     input:checked + label>div{
-      box-shadow: inset 0px 0 0 110px #30f349;
-
+      box-shadow: inset 30px 0 0 110px #30f349;
       /* box-shadow:inset green   75px 75px  ; */
     }
 
