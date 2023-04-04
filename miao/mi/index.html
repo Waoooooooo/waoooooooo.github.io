@@ -5,9 +5,120 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>小米商城</title>
-  <style text=""></style>
+  <style type="text/less">
+    html,body {
+      margin: 0;
+      --headerHeight:40px;
+      --mainwidth:1226px;
+      background-repeat: none;
+      letter-spacing: 0.02em;
+
+
+    }
+    a {
+          text-decoration: none;
+          line-height:var(--headerHeight);
+          color:inherit;
+          &:link {
+            color: #B0B0B0;
+          }
+          &:visited {
+            color: #B0B0B0;
+          }
+          &:hover {
+            color: #fff;
+          }
+          &:active {
+            color: #fff;
+          }
+    }
+    div.header {
+      background-color:#333333;
+      color: #585656;
+      height: var(--headerHeight);
+      font-size: 10px;
+      /* //顶部菜单宽度 */
+      div.top-menu {
+        width: var(--mainwidth);
+        margin: auto;
+        position: relative;
+        span.space::after {
+          content: " | "
+        }
+        /*右上方菜单*/
+        span.right-top-menu {
+         position: absolute;
+         right:0;
+         display: inline-block;
+          /*用户菜单*/
+
+
+
+         /* //购物车 */
+         span.shoppingCar{
+          text-align: right;
+          padding-right:10px;
+          margin-left:20px;
+          display: inline-block;
+          height: var(--headerHeight);
+          width: 120px;
+          box-sizing: border-box;
+          overflow: hidden;
+          ::after{
+            content: "(0) ";
+          }
+
+          /*交互*/
+          &:hover{
+            color:#FF673E;
+            background-color: #fff;
+            a{
+              color:#FF673E;
+            background-color: #fff;
+            }
+          }
+
+         }
+        }
+
+      }
+
+
+    }
+
+  </style>
 </head>
 <body>
+  <div class="warper">
+    <div class="header">
+      <div class="top-menu">
+        <a href="">小米官网</a><span class="space"></span>
+        <a href="">小米商城</a><span class="space"></span>
+        <a href="">MIUI</a><span class="space"></span>
+        <a href="">IoT</a><span class="space"></span>
+        <a href="">云服务</a><span class="space"></span>
+        <a href="">天星数科</a><span class="space"></span>
+        <a href="">有品</a><span class="space"></span>
+        <a href="">小爱开放平台</a><span class="space"></span>
+        <a href="">企业团购</a><span class="space"></span>
+        <a href="">资质证照</a><span class="space"></span>
+        <a href="">协议规则</a><span class="space"></span>
+        <a href="">下载app</a><span class="space"></span>
+        <a href="">Select Location</a>
 
+        <span class="right-top-menu">
+
+          <a href="">登录</a><span class="space"></span>
+          <a href="">注册</a><span class="space"></span>
+          <a href="">消息通知</a>
+          <span class="shoppingCar"><a href="">购物车</a></span>
+        </span>
+      </div>
+    </div>
+    <div class="main">
+
+    </div>
+  </div>
 </body>
+<script src="../less.js" ></script>
 </html>
