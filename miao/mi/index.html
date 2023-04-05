@@ -4,16 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小米商城</title>
+  <title>小HI商城</title>
   <style type="text/less">
     html,body {
       margin: 0;
+      width: 100%;
       --headerHeight:40px;
       --mainwidth:1226px;
       background-repeat: none;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
 
+    }
 
+    .left{
+      width: 200px;
+      height: 620px;
     }
     a {
           text-decoration: none;
@@ -39,6 +44,7 @@
       font-size: 10px;
       /* //顶部菜单宽度 */
       div.top-menu {
+        background-color:#333333;
         width: var(--mainwidth);
         margin: auto;
         position: relative;
@@ -52,10 +58,13 @@
          display: inline-block;
           /*用户菜单*/
 
-
+          .user-menu{
+            position:static;
+            vertical-align:top;
+          }
 
          /* //购物车 */
-         span.shoppingCar{
+          span.shoppingCar{
           text-align: right;
           padding-right:10px;
           margin-left:20px;
@@ -63,11 +72,41 @@
           height: var(--headerHeight);
           width: 120px;
           box-sizing: border-box;
-          overflow: hidden;
-          ::after{
+
+          &::after{
             content: "(0) ";
           }
+          /*购物车ui*/
+          span.shoppingCarImg {
+            display: inline-block;
+            height: 20px;
+            width: 30px;
+            background-image: url(img/hiui.png);
+            background-position:2px 0px;
+            background-repeat: no-repeat;
+            vertical-align: middle
 
+          }
+
+          /*购物车框*/
+          span.carBox {
+            display: none;
+            position: absolute;
+            right:100%-100px;
+            /* display:block; */
+            width: 320px;
+
+            box-shadow: #33333355 0px 0px 6px;
+            z-index: 1;
+            font-size: 20px;
+            transition: 0.5s;
+            top:40px;
+            bottom:-1px;
+            display: block;
+            text-align: center;
+            line-height: 100px;
+            background-color: #fff;
+          }
           /*交互*/
           &:hover{
             color:#FF673E;
@@ -75,6 +114,13 @@
             a{
               color:#FF673E;
             background-color: #fff;
+            }
+            span.shoppingCarImg{
+              background-position:2px -21px;
+            }
+            span.carBox {
+              top:40px;
+              bottom:-100px;
             }
           }
 
@@ -85,21 +131,138 @@
 
 
     }
+    div.main{
+      font-size: 16px;
+      width: var(--mainwidth);
+      height: 5000px;
+      margin-left: auto;
+      margin-right: auto;
 
+
+      span.container {
+        display: block;
+        height:100px;
+        position: relative;
+
+        /*左侧hi logo*/
+        a.logo{
+          background-repeat: no-repeat;
+          background-position:left -34px top 0px ;
+          width: 55px;
+          height: 55px;
+          display: inline-block;
+          background-image: url(img/hiui.png);
+          margin-top: 20px;
+          &:hover{
+            background-size:300% ;
+            background-position:left -23px top 5px;
+          }
+        }
+        .container-inner{
+          position: absolute;
+          right : 0;
+          top: 22.5px;;
+          display: block;
+          width: 990px;
+          height: 55px;
+          text-align: justify;
+
+        /*右侧菜單欄*/
+        .shopping-menu{
+          line-height: 55px;
+          display: block;
+          position: absolute;
+          left:0;
+          a{
+            margin:10px;
+            &:link {
+              color: #B0B0B0;
+            }
+            &:visited {
+              color: #000;
+            }
+            &:hover {
+              color: #FF6A00;
+            }
+            &:active {
+              color: #FF6A00;
+            }
+
+          }
+        }
+         /*右侧搜索框*/
+         /*input的初始:focus改变的是outline而不是border*/
+        .search{
+            position: absolute;
+            right: 0;
+            &:hover .search1{
+
+              outline-color: #333;
+
+            }
+          input {
+            height: 55px;
+            display: inline-block;
+            &:hover .search1{
+            outline-color: #333;
+            }
+
+             &[type="text"],input.inp{
+              letter-spacing: 0.1em;
+              border-radius: 0px;
+              width: 255px;
+              outline: 1px solid #999;
+              box-sizing: border-box;
+              border: none;
+              &:focus{
+                outline: 1px solid #FF6A00;
+                border: none;
+                + input{
+                  outline: 1px solid #FF6A00;
+                }
+               }
+
+             }
+             &[type="submit"]{
+              border-radius: 0px;
+              width: 70px;
+              box-sizing: border-box;
+              outline: 1px solid #999;
+              border: none;
+              box-sizing: border-box;
+              /* background-image: url(img/hiui.png); */
+              background-repeat: no-repeat;
+              background-color: #fff;
+              background-position:left -34px top 0px ;
+              &:hover{
+                outline:  1px solid #FF6A00;
+                background-color: #FF6A00;
+                background-image: url(img/hiui.png);
+                background-position:left -28px top 0px ;
+              }
+             }
+          }
+        }
+
+        }
+
+
+      }
+    }
   </style>
 </head>
 <body>
   <div class="warper">
     <div class="header">
       <div class="top-menu">
-        <a href="">小米官网</a><span class="space"></span>
-        <a href="">小米商城</a><span class="space"></span>
-        <a href="">MIUI</a><span class="space"></span>
+        <a href="">小嗨官网</a><span class="space"></span>
+        <a href="">小嗨商城</a><span class="space"></span>
+        <a href="">HIUI</a><span class="space"></span>
         <a href="">IoT</a><span class="space"></span>
         <a href="">云服务</a><span class="space"></span>
-        <a href="">天星数科</a><span class="space"></span>
-        <a href="">有品</a><span class="space"></span>
-        <a href="">小爱开放平台</a><span class="space"></span>
+        <a href="">地星数科</a><span class="space"></span>
+        <a href="">没品</a><span class="space"></span>
+        <a href="">小HI开放平台</a><span class="space"></span>
         <a href="">企业团购</a><span class="space"></span>
         <a href="">资质证照</a><span class="space"></span>
         <a href="">协议规则</a><span class="space"></span>
@@ -107,16 +270,45 @@
         <a href="">Select Location</a>
 
         <span class="right-top-menu">
+          <span class="user-menu">
+            <a href="">登录</a><span class="space"></span>
+            <a href="">注册</a><span class="space"></span>
+            <a href="">消息通知</a>
+          </span>
 
-          <a href="">登录</a><span class="space"></span>
-          <a href="">注册</a><span class="space"></span>
-          <a href="">消息通知</a>
-          <span class="shoppingCar"><a href="">购物车</a></span>
+          <span class="shoppingCar">
+
+            <span class="shoppingCarImg"></span>
+            <a href="">购物车</a>
+            <span class="carBox">
+
+            </span>
+          </span>
+
         </span>
       </div>
     </div>
     <div class="main">
+      <span class="container">
+        <span>
+          <a href="" class="logo"></a>
+        </span>
+        <span class="container-inner">
+          <span class="shopping-menu">
+            <a href="">Hi手机</a>
+            <a href="">Hi电脑</a>
+            <a href="">Hi你好</a>
+            <a href="">Hi同学</a>
+            <a href="">Hi家电</a>
+            <a href="">Hi家具</a>
+            <a href="">Hi社区</a>
 
+          </span>
+          <span class="search">
+           <input type="text" class="search1 inp" placeholder="大House"><input type="submit" value=" " class="search1">
+          </span>
+        </span>
+      </span>
     </div>
   </div>
 </body>
