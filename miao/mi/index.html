@@ -265,7 +265,6 @@
         display: block;
         height:460px;
         position: relative;
-        border: 1px solid;
         span.left {
           background-color: rgba(105,101,101,.6);
           ul.menu {
@@ -290,6 +289,8 @@
                   list-style: none;
                   margin:0;
                   padding:0;
+                  box-shadow: 3px 3px 5px 2px #99999970;
+
                 }
               }
               &::after{
@@ -313,6 +314,7 @@
                 top: 0;/*不加top默认高度是元素在正常流时的起点*/
                 vertical-align:top;
                 z-index: 2;
+
                 li{
                   font-size: 18px;
                   color: black;
@@ -347,7 +349,7 @@
 
           }
           .b1{
-              left: 0px;
+              left: -3px;
 
             }
           .b2{
