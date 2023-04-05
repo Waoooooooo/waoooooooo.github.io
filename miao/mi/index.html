@@ -18,7 +18,17 @@
 
     .left{
       width: 200px;
-      height: 620px;
+      height: 100%;
+      display: block;
+      position: absolute;
+      left: 0;
+    }
+    .right{
+      width: 983px;
+      height: 100%;
+      display: block;
+      position: absolute;
+      right: 0;
     }
     a {
           text-decoration: none;
@@ -137,12 +147,10 @@
       height: 5000px;
       margin-left: auto;
       margin-right: auto;
-
-
-      span.container {
-        display: block;
-        height:100px;
-        position: relative;
+      span.container1 {
+      display: block;
+      height:100px;
+      position: relative;
 
         /*左侧hi logo*/
         a.logo{
@@ -243,10 +251,32 @@
              }
           }
         }
+        }
+      }
+      span.container2 {
+        display: block;
+        height:460px;
+        position: relative;
+        border: 1px solid;
+        span.left {
+          background-color: rgba(105,101,101,.6);
+          span {
+            display: block;
+            padding-top: 10px;
+           }
+          span a {
+          color: white;
+          display: block;
+          padding: 2px 20px 2px 20px;
+          &:hover {
+            color: #fff;
+            background: #FF673E;
+          }
+         }
+        }
+        span.right {
 
         }
-
-
       }
     }
   </style>
@@ -289,7 +319,7 @@
       </div>
     </div>
     <div class="main">
-      <span class="container">
+      <span class="container1">
         <span>
           <a href="" class="logo"></a>
         </span>
@@ -308,6 +338,25 @@
            <input type="text" class="search1 inp" placeholder="大House"><input type="submit" value=" " class="search1">
           </span>
         </span>
+      </span>
+      <span class="container2">
+        <span class="left">
+          <span class="menu">
+            <a href="">手機
+              <span></span>
+            </a>
+            <a href="">电视</a>
+            <a href="">家电</a>
+            <a href="">笔记本 平板</a>
+            <a href="">出行 穿戴</a>
+            <a href="">耳机 音箱</a>
+            <a href="">健康 儿童</a>
+            <a href="">生活 箱包</a>
+            <a href="">智能 路由器</a>
+            <a href="">电源 配件</a>
+          </span>
+        </span>
+        <span class="right"></span>
       </span>
     </div>
   </div>
