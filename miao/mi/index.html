@@ -259,7 +259,7 @@
         }
       }
       span.container2 {
-        background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0d03df40a5e8ef760731a8f4f3f61172.jpg?w=2452&h=920);
+        background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/217ee00a9d7e592f40eae2ef34fb97d0.jpg?thumb=1&w=1226&h=460&f=webp&q=90);
         background-repeat:no-repeat ;
         background-size:contain;
         display: block;
@@ -281,7 +281,7 @@
               height:44px;
               line-height:44px;
               text-indent:2em;
-              position: static;
+
               &:hover {
                 color: #fff;
                 background: #FF673E;
@@ -307,12 +307,12 @@
                 display: none;
                 position: absolute;
                 height: 100%;
-                width: 1025px;
+                width: 1026px;
                 background-color:white ;
-                left: 100%;
+                left: 100% ;
                 top: 0;/*不加top默认高度是元素在正常流时的起点*/
                 vertical-align:top;
-
+                z-index: 2;
                 li{
                   font-size: 18px;
                   color: black;
@@ -340,10 +340,11 @@
         span.right {
 
           width: 1023px;
-          font-size: 18px;
-          color:#000;
+
+
           input[type="checkbox"]{
             display: none;
+
           }
           .b1{
               left: 0px;
@@ -353,6 +354,9 @@
               right: 0px;
             }
           button{
+
+            color:#666;
+            font-size: 28px;
             top: 190px;
             width: 40px;
             height: 80px;
@@ -362,6 +366,7 @@
 
             &:hover{
               background-color: #7F7F7F70;
+              color:white;
             }
 
           }
@@ -737,13 +742,11 @@
         </span>
         <span class="right">
           <input type="checkbox" name="" id="c1" >
-          <label for="c1">
+
             <button class="b1">&lt;</button>
-          </label>
+
           <input type="checkbox" name="" id="c2">
-          <label for="c2">
             <button class="b2">></button>
-          </label>
       </span>
     </div>
   </div>
