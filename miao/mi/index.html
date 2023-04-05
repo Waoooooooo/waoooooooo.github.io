@@ -15,7 +15,11 @@
       letter-spacing: 0.05em;
 
     }
-
+    ul{
+      list-style: none;
+      padding:0;
+      margin: 0;
+    }
     .left{
       width: 200px;
       height: 100%;
@@ -269,7 +273,6 @@
             padding-top: 10px;
             position: static;
             >li{
-
               color: white;
               display: block;
               height:44px;
@@ -279,21 +282,56 @@
               &:hover {
                 color: #fff;
                 background: #FF673E;
+                ul.inner{
+                  display: block;
+                  list-style: none;
+                  margin:0;
+                  padding:0;
+                }
               }
               &::after{
-                position: absolute;/*包含块的paddingbox*/
+                position: absolute;
                 right: 0;
                 content: ">  ";
                 white-space: pre;
               }
+
               /*隐藏菜单*/
               ul.inner{
+                text-indent:0;
+                list-style: none;
+                font-size: 0;
+                display: none;
                 position: absolute;
-                height: 1000px;
-                width: 1000px;
-                background-color: #bbb;
+                height: 100%;
+                width: 1025px;
+                background-color:white ;
                 left: 100%;
-                border:1px solid;
+                top: 0;/*不加top默认高度是元素在正常流时的起点*/
+                vertical-align:top;
+
+                li{
+                  font-size: 18px;
+                  color: black;
+                  line-height: 0;
+                  display: inline-block;
+                  width:200px;
+                  height: 75px;;
+                  border:1px solid;
+                  box-sizing:border-box;
+                  background-color:white ;
+                  line-height:75px;
+
+                  text-indent:3em;
+                  a{
+                    color:#333;
+
+                    &:hover{
+                      color:#FF673E;
+                    }
+                  }
+
+                }
               }
             }
            }
@@ -302,6 +340,7 @@
 
         }
       }
+
     }
   </style>
 </head>
@@ -366,16 +405,27 @@
       <span class="container2">
         <span class="left">
           <ul class="menu">
-            <li>手機<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>电视<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>家电<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>笔记本 平板<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>出行 穿戴<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>耳机 音箱<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>健康 儿童<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>生活 箱包<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>智能 路由器<!--<ul class="inner"><li>1</li></ul>--></li>
-            <li>电源 配件<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>手機
+              <ul class="inner">
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+              </ul>
+            </li>
+            <li>电视<ul class="inner"><li></li></ul></li>
+            <li>家电<ul class="inner"><li></li></ul></li>
+            <li>笔记本 平板<ul class="inner"><li></li></ul></li>
+            <li>出行 穿戴<ul class="inner"><li></li></ul></li>
+            <li>耳机 音箱<ul class="inner"><li></li></ul></li>
+            <li>健康 儿童<ul class="inner"><li></li></ul></li>
+            <li>生活 箱包<ul class="inner"><li></li></ul></li>
+            <li>智能 路由器<ul class="inner"><li></li></ul></li>
+            <li>电源 配件<ul class="inner"><li></li></ul></li>
            </span>
         </span>
         <span class="right"></span>
