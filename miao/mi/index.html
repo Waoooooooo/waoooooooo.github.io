@@ -216,6 +216,7 @@
             }
 
              &[type="text"],input.inp{
+              text-indent: 1em;
               letter-spacing: 0.1em;
               border-radius: 0px;
               width: 255px;
@@ -260,19 +261,42 @@
         border: 1px solid;
         span.left {
           background-color: rgba(105,101,101,.6);
-          span {
+          ul.menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: block;
             padding-top: 10px;
+            position: static;
+            >li{
+
+              color: white;
+              display: block;
+              height:44px;
+              line-height:44px;
+              text-indent:2em;
+              position: static;
+              &:hover {
+                color: #fff;
+                background: #FF673E;
+              }
+              &::after{
+                position: absolute;/*包含块的paddingbox*/
+                right: 0;
+                content: ">  ";
+                white-space: pre;
+              }
+              /*隐藏菜单*/
+              ul.inner{
+                position: absolute;
+                height: 1000px;
+                width: 1000px;
+                background-color: #bbb;
+                left: 100%;
+                border:1px solid;
+              }
+            }
            }
-          span a {
-          color: white;
-          display: block;
-          padding: 2px 20px 2px 20px;
-          &:hover {
-            color: #fff;
-            background: #FF673E;
-          }
-         }
         }
         span.right {
 
@@ -341,20 +365,18 @@
       </span>
       <span class="container2">
         <span class="left">
-          <span class="menu">
-            <a href="">手機
-              <span></span>
-            </a>
-            <a href="">电视</a>
-            <a href="">家电</a>
-            <a href="">笔记本 平板</a>
-            <a href="">出行 穿戴</a>
-            <a href="">耳机 音箱</a>
-            <a href="">健康 儿童</a>
-            <a href="">生活 箱包</a>
-            <a href="">智能 路由器</a>
-            <a href="">电源 配件</a>
-          </span>
+          <ul class="menu">
+            <li>手機<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>电视<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>家电<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>笔记本 平板<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>出行 穿戴<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>耳机 音箱<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>健康 儿童<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>生活 箱包<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>智能 路由器<!--<ul class="inner"><li>1</li></ul>--></li>
+            <li>电源 配件<!--<ul class="inner"><li>1</li></ul>--></li>
+           </span>
         </span>
         <span class="right"></span>
       </span>
