@@ -10,14 +10,43 @@
       height: 100%;
       margin: 0;
     }
+
     div.contaniner{
+      width: 1229px;
+      height: 460px;
       margin: auto;
       position: relative;
       /*设置图片样式*/
       overflow: hidden;
+
+      button{
+
+      color:#666;
+      font-size: 28px;
+      border:none;
+      float:left;
+      margin-top:210px;
+      height:80px;
+      width: 50px;
+      display:inline-block;
+      background-color: #7F7F7F40;
+      z-index: 10000;
+      &:hover{
+        background-color: #7F7F7F70;
+        color:white;
+       }
+      }
+      button.b2{
+       float:right;
+
+      }
+
+
+
+
       span.img-contaniner{
-      width: 1229;
-      height: 460px;
+      width: 100%;
+      height: 100%;
       display: block;
       position: absolute;
       z-index: -1;
@@ -41,9 +70,8 @@
       display:block;
       margin: auto;
       margin-top: 420px;
-      width: 50%;
+      text-align: center;
       overflow: hidden;
-
       /*圆球样式*/
       span.round{
       cursor: pointer;
@@ -66,6 +94,17 @@
 </head>
 <body>
   <div class="contaniner">
+
+
+
+        <button class="b1">
+          &lt;
+        </button>
+        <button class="b2">
+          >
+        </button>
+
+
     <input type="radio" name="img" id="r1" checked>
     <input type="radio" name="img" id="r2">
     <input type="radio" name="img" id="r3">
@@ -90,7 +129,9 @@
       <label for="r3">
       <span class="round">
       </span>
+
     </span>
+
   </div>
 
 
