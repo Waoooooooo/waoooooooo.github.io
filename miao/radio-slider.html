@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css轮播图</title>
+  <style type="text/less">
+    html,body{
+      height: 100%;
+      margin: 0;
+    }
+    div.contaniner{
+      margin: auto;
+      position: relative;
+      /*设置图片样式*/
+      overflow: hidden;
+      span.img-contaniner{
+      width: 1229;
+      height: 460px;
+      display: block;
+      position: absolute;
+      z-index: -1;
+      img{
+
+        display: block;
+        opacity:0;
+        }
+      }
+      /*设置input样式*/
+      input{
+      display: none;
+      &:checked +*+*+*>img{
+        transition: opacity 1s ;
+        opacity: 1;
+      }
+     }
+     /*下方选择器样式*/
+
+     span.selector {
+      display:block;
+      margin: auto;
+      margin-top: 420px;
+      width: 50%;
+      overflow: hidden;
+
+      /*圆球样式*/
+      span.round{
+      cursor: pointer;
+      border-radius: 500px;
+      border: 3px solid;
+      width: 20px;
+      height: 20px;
+      display:inline-block;
+      margin: 5px;
+      &:hover{
+        background-color: #999;
+      }
+     }
+     }
+
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="contaniner">
+    <input type="radio" name="img" id="r1" checked>
+    <input type="radio" name="img" id="r2">
+    <input type="radio" name="img" id="r3">
+    <span class="img-contaniner">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+    </span>
+    <span class="img-contaniner">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7c21d01bbe93eafc7d07d3796a3c59c.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+    </span>
+    <span class="img-contaniner">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6494adc68900269b551de5ba96bd10a9.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+    </span>
+    <span class="selector">
+      <label for="r1">
+      <span class="round">
+      </span>
+    </label>
+    <label for="r2">
+      <span class="round">
+      </span>
+    </label>
+      <label for="r3">
+      <span class="round">
+      </span>
+    </span>
+  </div>
+
+
+
+</body>
+<script src="less.js"></script>
+</html>
