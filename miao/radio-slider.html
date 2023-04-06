@@ -18,30 +18,28 @@
       position: relative;
       /*设置图片样式*/
       overflow: hidden;
-
-      button{
-
-      color:#666;
-      font-size: 28px;
-      border:none;
-      float:left;
-      margin-top:210px;
-      height:80px;
-      width: 50px;
-      display:inline-block;
-      background-color: #7F7F7F40;
-      z-index: 10000;
-      &:hover{
-        background-color: #7F7F7F70;
-        color:white;
+      span.b1,span.b2{
+       color:#666;
+       font-size: 28px;
+       border:none;
+      position:absolute;
+       margin-top:200px;
+       height:80px;
+       width: 50px;
+       display:inline-block;
+       background-color: #7F7F7F40;
+       z-index: 10000;
+       line-height:80px;
+       /*按钮鼠标悬停效果*/
+        &:hover{
+         background-color: #7F7F7F70;
+         color:white;
+         }
        }
-      }
-      button.b2{
-       float:right;
-
-      }
-
-
+       span.b2{
+        right:0;
+        text-align: right;
+       }
 
 
       span.img-contaniner{
@@ -51,11 +49,59 @@
       position: absolute;
       z-index: -1;
       img{
-
         display: block;
         opacity:0;
         }
       }
+
+
+      /* 初始状态,也就是显示第一张图时,只显示左边关联第三张图的按钮和右边关联第二张图的按钮 */
+      #r1:checked ~ .l3 span.b1,
+      #r1:checked ~ .l2 span.b2{
+        display: block;
+      }
+      #r1:checked ~ .l1 span.b1,
+      #r1:checked ~ .l1 span.b2,
+      #r1:checked ~ .l2 span.b1,
+      #r1:checked ~ .l3 span.b2{
+        display: none;
+      }
+
+     /* 显示第二张图时,只显示左边关联第一张图的按钮和右边关联第三张图的按钮 */
+     #r2:checked ~ .l1 span.b1,
+      #r2:checked ~ .l3 span.b2{
+        display: block;
+      }
+      #r2:checked ~ .l2 span.b2,
+      #r2:checked ~ .l1 span.b2,
+      #r2:checked ~ .l2 span.b1,
+      #r2:checked ~ .l3 span.b1 {
+        display: none;
+      }
+      /* 显示第三张图时,只显示左边关联第二张图的按钮和右边关联第一张图的按钮 */
+      #r3:checked ~ .l2 span.b1,
+      #r3:checked ~ .l1 span.b2{
+        display: block;
+      }
+      #r3:checked ~ .l1 span.b1,
+      #r3:checked ~ .l2 span.b2,
+      #r3:checked ~ .l3 span.b1,
+      #r3:checked ~ .l3 span.b2{
+        display: none;
+      }
+
+
+
+
+ /*圈圈checked后变灰*/
+      #r1:checked ~ .selector .round1,
+      #r2:checked ~ .selector .round2,
+      #r3:checked ~ .selector .round3{
+        background-color: #33333350;
+      }
+
+
+
       /*设置input样式*/
       input{
       display: none;
@@ -63,7 +109,8 @@
         transition: opacity 1s ;
         opacity: 1;
       }
-     }
+
+      }
      /*下方选择器样式*/
 
      span.selector {
@@ -73,7 +120,7 @@
       text-align: center;
       overflow: hidden;
       /*圆球样式*/
-      span.round{
+      span.round1,span.round2,span.round3{
       cursor: pointer;
       border-radius: 500px;
       border: 3px solid;
@@ -84,7 +131,7 @@
       &:hover{
         background-color: #999;
       }
-     }
+      }
      }
 
     }
@@ -97,17 +144,10 @@
 
 
 
-        <button class="b1">
-          &lt;
-        </button>
-        <button class="b2">
-          >
-        </button>
-
-
     <input type="radio" name="img" id="r1" checked>
     <input type="radio" name="img" id="r2">
     <input type="radio" name="img" id="r3">
+
     <span class="img-contaniner">
       <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
     </span>
@@ -117,19 +157,33 @@
     <span class="img-contaniner">
       <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6494adc68900269b551de5ba96bd10a9.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
     </span>
+
+    <label for="r1" class="l1">
+      <span class="b1">&lt;</span>
+      <span class="b2">></span>
+    </label>
+    <label for="r2" class="l2">
+      <span class="b1">&lt;</span>
+      <span class="b2">></span>
+    </label>
+    <label for="r3" class="l3">
+      <span class="b1">&lt;</span>
+      <span class="b2">></span>
+    </label>
     <span class="selector">
       <label for="r1">
-      <span class="round">
-      </span>
+        <span class="round1">
+        </span>
     </label>
     <label for="r2">
-      <span class="round">
+      <span class="round2">
       </span>
     </label>
-      <label for="r3">
-      <span class="round">
-      </span>
+    <label for="r3">
+      <span class="round3">
 
+      </span>
+    </label>
     </span>
 
   </div>
