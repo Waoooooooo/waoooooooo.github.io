@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>词典</title>
+  <style type="text/less">
+    html,body{
+      height: 100%;
+      margin: 0;
+    }
+    *{
+      box-sizing: border-box;
+
+    }
+    div.container{
+      height: 100%;
+      a{
+        &:link {
+            color: #B0B0B0;
+          }
+          &:visited {
+            color: #B0B0B0;
+          }
+          &:hover {
+            color: #fff;
+            background-color: orangered;
+          }
+          &:active {
+            color: #fff;
+          }
+          display:block;
+          line-height:50px;
+          text-indent:2em;
+          text-decoration: none;
+      }
+      div.header{
+        height: 100px;
+        border:1px white solid;
+        text-align:center;
+        line-height:100px;
+      }
+      div.sidebar{
+        /*排列时将浮动元素放在bfc未设置宽度的块级前面 块级元素才会自动调整宽度 */
+        float: left;
+        background-color: #333;
+        width: 200px;
+        height: 100%;
+        border-right:1px solid white;
+        color:white;
+      }
+      div.s-right{
+        float: right;
+        border-left:1px solid white;
+        color:white;
+      }
+      div.content{
+        height: 100%;
+        background-color: #666;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        color:white;
+      }
+      div.inner-content{
+        height: calc(100% - 100px);
+        overflow-y: scroll;
+        padding: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="header ">123</div>
+      <div class="inner-content">
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+        <a href="">Lorem, ipsum.</a>
+      </div>
+    </div>
+    <div class="sidebar s-right">
+      <div class="header">123</div>
+      <div class="inner-content">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+      </div>
+    </div>
+    <div class="sidebar s-right">
+      <div class="header">123</div>
+      <div class="inner-content"></div>
+    </div>
+    <div class="content">
+      <div class="header">213</div>
+      <div class="inner-content">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quaerat illo itaque quasi placeat dolorum!</p>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="less.js" ></script>
+</html>
