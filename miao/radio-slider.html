@@ -6,137 +6,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>css轮播图</title>
   <style type="text/less">
-    html,body{
-      height: 100%;
-      margin: 0;
-    }
-
-    div.contaniner{
-      width: 1229px;
-      height: 460px;
-      margin: auto;
-      position: relative;
-      /*设置图片样式*/
-      overflow: hidden;
-      span.b1,span.b2{
-       color:#666;
-       font-size: 28px;
-       border:none;
-      position:absolute;
-       margin-top:200px;
-       height:80px;
-       width: 50px;
-       display:inline-block;
-       background-color: #7F7F7F15;
-       z-index: 10000;
-       line-height:80px;
-       padding: 10px;
-       /*按钮鼠标悬停效果*/
-        &:hover{
-         background-color: #7F7F7F70;
-         color:white;
-         }
-       }
-       span.b2{
-        right:0;
-        text-align: right;
-       }
-
-
-      span.img-contaniner{
-      width: 100%;
-      height: 100%;
-      display: block;
-      position: absolute;
-      z-index: -1;
-      img{
-        display: block;
-        opacity:0;
-        }
-      }
-
-
-      /* 初始状态,也就是显示第一张图时,只显示左边关联第三张图的按钮和右边关联第二张图的按钮 */
-      #r1:checked ~ .l3 span.b1,
-      #r1:checked ~ .l2 span.b2{
-        display: block;
-      }
-      #r1:checked ~ .l1 span.b1,
-      #r1:checked ~ .l1 span.b2,
-      #r1:checked ~ .l2 span.b1,
-      #r1:checked ~ .l3 span.b2{
-        display: none;
-      }
-
-     /* 显示第二张图时,只显示左边关联第一张图的按钮和右边关联第三张图的按钮 */
-     #r2:checked ~ .l1 span.b1,
-      #r2:checked ~ .l3 span.b2{
-        display: block;
-      }
-      #r2:checked ~ .l2 span.b2,
-      #r2:checked ~ .l1 span.b2,
-      #r2:checked ~ .l2 span.b1,
-      #r2:checked ~ .l3 span.b1 {
-        display: none;
-      }
-      /* 显示第三张图时,只显示左边关联第二张图的按钮和右边关联第一张图的按钮 */
-      #r3:checked ~ .l2 span.b1,
-      #r3:checked ~ .l1 span.b2{
-        display: block;
-      }
-      #r3:checked ~ .l1 span.b1,
-      #r3:checked ~ .l2 span.b2,
-      #r3:checked ~ .l3 span.b1,
-      #r3:checked ~ .l3 span.b2{
-        display: none;
-      }
-
-
-
-
- /*圈圈checked后变灰*/
-      #r1:checked ~ .selector .round1,
-      #r2:checked ~ .selector .round2,
-      #r3:checked ~ .selector .round3{
-        background-color: #33333350;
-      }
-
-
-
-      /*设置input样式*/
-      input{
-      display: none;
-      &:checked +*+*+*>img{
-        transition: opacity 1s ;
-        opacity: 1;
-      }
-
-      }
-     /*下方选择器样式*/
-
-     span.selector {
-      display:block;
-      margin: auto;
-      margin-top: 420px;
-      text-align: center;
-      overflow: hidden;
-      /*圆球样式*/
-      span.round1,span.round2,span.round3{
-      cursor: pointer;
-      border-radius: 500px;
-      border: 3px solid;
-      width: 20px;
-      height: 20px;
-      display:inline-block;
-      margin: 5px;
-      &:hover{
-        background-color: #999;
-      }
-      }
-     }
-
-    }
-
+  html,
+body {
+  height: 100%;
+  margin: 0;
+  min-width: 1000px;
+}
+div.contaniner {
+  width: 1229px;
+  height: 460px;
+  margin: auto;
+  position: relative;
+  /*设置图片样式*/
+  overflow: hidden;
+  /* 初始状态,也就是显示第一张图时,只显示左边关联第三张图的按钮和右边关联第二张图的按钮 */
+  /* 显示第二张图时,只显示左边关联第一张图的按钮和右边关联第三张图的按钮 */
+  /* 显示第三张图时,只显示左边关联第二张图的按钮和右边关联第一张图的按钮 */
+  /*圈圈checked后变灰*/
+  /*设置input样式*/
+  /*下方选择器样式*/
+}
+div.contaniner span.b1,
+div.contaniner span.b2 {
+  color: #666;
+  font-size: 28px;
+  border: none;
+  position: absolute;
+  margin-top: 200px;
+  height: 80px;
+  width: 50px;
+  display: inline-block;
+  background-color: #7F7F7F15;
+  z-index: 10000;
+  line-height: 80px;
+  padding: 10px;
+  /*按钮鼠标悬停效果*/
+}
+div.contaniner span.b1:hover,
+div.contaniner span.b2:hover {
+  background-color: #7F7F7F70;
+  color: white;
+}
+div.contaniner span.b2 {
+  right: 0;
+  text-align: right;
+}
+div.contaniner span.img-contaniner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+div.contaniner span.img-contaniner img {
+  display: block;
+  opacity: 0;
+}
+div.contaniner #r1:checked ~ .l3 span.b1,
+div.contaniner #r1:checked ~ .l2 span.b2 {
+  display: block;
+}
+div.contaniner #r1:checked ~ .l1 span.b1,
+div.contaniner #r1:checked ~ .l1 span.b2,
+div.contaniner #r1:checked ~ .l2 span.b1,
+div.contaniner #r1:checked ~ .l3 span.b2 {
+  display: none;
+}
+div.contaniner #r2:checked ~ .l1 span.b1,
+div.contaniner #r2:checked ~ .l3 span.b2 {
+  display: block;
+}
+div.contaniner #r2:checked ~ .l2 span.b2,
+div.contaniner #r2:checked ~ .l1 span.b2,
+div.contaniner #r2:checked ~ .l2 span.b1,
+div.contaniner #r2:checked ~ .l3 span.b1 {
+  display: none;
+}
+div.contaniner #r3:checked ~ .l2 span.b1,
+div.contaniner #r3:checked ~ .l1 span.b2 {
+  display: block;
+}
+div.contaniner #r3:checked ~ .l1 span.b1,
+div.contaniner #r3:checked ~ .l2 span.b2,
+div.contaniner #r3:checked ~ .l3 span.b1,
+div.contaniner #r3:checked ~ .l3 span.b2 {
+  display: none;
+}
+div.contaniner #r1:checked ~ .selector .round1,
+div.contaniner #r2:checked ~ .selector .round2,
+div.contaniner #r3:checked ~ .selector .round3 {
+  background-color: #33333350;
+}
+div.contaniner input {
+  display: none;
+}
+div.contaniner input:checked + * + * + * > img {
+  transition: opacity 1s ;
+  opacity: 1;
+}
+div.contaniner span.selector {
+  display: block;
+  margin: auto;
+  margin-top: 420px;
+  text-align: center;
+  overflow: hidden;
+  /*圆球样式*/
+}
+div.contaniner span.selector span.round1,
+div.contaniner span.selector span.round2,
+div.contaniner span.selector span.round3 {
+  cursor: pointer;
+  border-radius: 500px;
+  border: 3px solid;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 5px;
+}
+div.contaniner span.selector span.round1:hover,
+div.contaniner span.selector span.round2:hover,
+div.contaniner span.selector span.round3:hover {
+  background-color: #999;
+}
 
   </style>
 </head>
