@@ -21,7 +21,7 @@
       margin: 0;
     }
     .left{
-      width: 200px;
+      width: 235px;
       height: 100%;
       display: block;
       position: absolute;
@@ -388,12 +388,14 @@
         }
         span.right {
 
-          width: 1023px;
-          .bt-left{
-              left: -3px;
+          width: calc(100% - 235px );
+            .bt-left{
+              left: 0px;
+              text-indent:5px
             }
             .bt-right{
               right: 0px;
+              text-indent:15px;
             }
           .bt-left,.bt-right{
             color:#666;
