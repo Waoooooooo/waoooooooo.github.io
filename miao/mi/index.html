@@ -279,15 +279,30 @@
           transition:1s;
           }
         }
+        input[type="radio"]{
+          display: none;
+        }
         input#r1:checked~.img-contaniner img:nth-child(1),
         input#r2:checked~.img-contaniner img:nth-child(2),
-        input#r3:checked~.img-contaniner img:nth-child(3),
-        input#r4:checked~.img-contaniner img:nth-child(5),
-        input#r5:checked~.img-contaniner img:nth-child(6),
-        input#r6:checked~.img-contaniner img:nth-child(7)
+        input#r3:checked~.img-contaniner img:nth-child(3)
         {
           opacity: 1;
         }
+        /**/
+        input#r1:checked~.right>span.check>span:last-child>.bt-left,
+        input#r1:checked~.right>span.check>span:nth-child(2)>.bt-right,
+        input#r2:checked~.right>span.check>span:nth-child(1)>.bt-left,
+        input#r2:checked~.right>span.check>span:nth-child(3)>.bt-right,
+        input#r3:checked~.right>span.check>span:nth-child(2)>.bt-left,
+        input#r3:checked~.right>span.check>span:nth-child(1)>.bt-right
+        {
+          display:block;
+        }
+
+
+
+
+
 
         span.left {
           background-color: rgba(105,101,101,.6);
@@ -374,12 +389,8 @@
         span.right {
 
           width: 1023px;
-          input[type="checkbox"]{
-          display: none;
-          }
           .bt-left{
               left: -3px;
-
             }
             .bt-right{
               right: 0px;
@@ -394,6 +405,7 @@
             position: absolute;
             line-height: 80px;
             background-color: transparent;
+            display: none;
             &:hover{
               background-color: #7F7F7F70;
               color:white;
@@ -465,9 +477,11 @@
         </span>
       </span>
       <span class="container2">
-        <input type="radio" name="img" id="r1" checked>
+        <input type="radio" name="img"  id="r1" checked>
         <input type="radio" name="img" id="r2">
         <input type="radio" name="img" id="r3">
+
+
         <span class="img-contaniner">
           <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
           <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7c21d01bbe93eafc7d07d3796a3c59c.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
@@ -490,7 +504,6 @@
               </ul>
             </li>
             <li>电视<ul class="inner">
-              <li><a href="">123</a></li>
               <li><a href="">123</a></li>
               <li><a href="">123</a></li>
               <li><a href="">123</a></li>
@@ -617,8 +630,7 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
+
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -759,8 +771,21 @@
           </ul>
         </span>
         <span class="right">
-            <span class="bt-left">&lt;</span>
-            <span class="bt-right">></span>
+          <span class="check">
+            <span>
+              <label for="r1" class="bt-left">&lt;</label>
+              <label for="r1" class="bt-right">></label>
+            </span>
+           <span>
+            <label for="r2" class="bt-left">&lt;</label>
+            <label for="r2" class="bt-right">></label>
+           </span>
+           <span>
+            <label for="r3" class="bt-left">&lt;</label>
+            <label for="r3" class="bt-right">></label>
+           </span>
+
+          </span>
       </span>
     </div>
   </div>
