@@ -2,7 +2,6 @@
 .table {
   /*初始状态*/
   border-collapse: collapse;
-  border-spacing: 10px;
   width: 80%;
   margin: auto;
 }
