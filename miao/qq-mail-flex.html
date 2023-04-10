@@ -28,6 +28,7 @@
     div.container{
       display: flex;
       /* flex-wrap: wrap; */
+
       height: 100%;
       flex-direction:column;
     }
@@ -35,20 +36,20 @@
     div.header{
       height: 80px;
       overflow: auto;
+      flex:none;
 
-      flex-shrink: 0;
     }
     div.outer{
       flex: 1;
       display: flex;
       height:0px;
       /* flex-grow: 1; */
-
        /*父元素不设置高度(height=auto;),也不加 overflow: auto; ,子元素overflow:auto;属性不生效?*/
       /*随便设置个高度,或者设置overflow auto */
     }
     div.sidebar{
-      min-width:200px;
+      width:200px;
+      flex:none;
       overflow: auto;
     }
     div.main{
