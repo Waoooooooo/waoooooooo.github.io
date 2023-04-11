@@ -514,31 +514,25 @@
         }
         .caption-right {
           float: right;
-          /*初始状态*/
-          a:first-child{
-           color: orangered;
-           border-bottom: 5px solid orangered;
-          }
 
-          a.underline{
+
+          span.underline{
            text-decoration: none;
            margin-left: 40px;
            line-height:var(--headerHeight);
            color:black;
-           &:link {
-             color: #B0B0B0;
-           }
-           &:visited {
-             color: black;
-           }
            &:hover {
              color: orangered;
              border-bottom: 5px solid orangered;
            }
-           &:active {
-             color: #fff;
-           }
+
          }
+
+         /*初始状态*/
+         span:first-child{
+           color: orangered;
+           border-bottom: 5px solid orangered;
+          }
         }
       }
       span.container {
@@ -997,7 +991,7 @@
             只能穿戴
           </span>
           <span class="caption-right">
-            <a class="underline" href="">耳机</a> <a class="underline" href="">穿戴</a>
+            <span class="underline" >耳机</span> <span class="underline" >穿戴</span>
           </span>
         </span>
         <!-- 图片展示 -->
