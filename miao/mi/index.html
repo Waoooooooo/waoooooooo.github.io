@@ -13,7 +13,6 @@
       --mainwidth:1226px;
       background-repeat: none;
       letter-spacing: 0.05em;
-
     }
     ul{
       list-style: none;
@@ -51,6 +50,25 @@
             color: #fff;
           }
     }
+    a.orange{
+          text-decoration: none;
+          line-height:var(--headerHeight);
+          color:black;
+          &:link {
+            color: #B0B0B0;
+          }
+          &:visited {
+            color: black;
+          }
+          &:hover {
+            color: orangered;
+            transition: 0.5s;
+          }
+          &:active {
+            color: #fff;
+          }
+    }
+
     div.header {
       background-color:#333333;
       color: #585656;
@@ -148,9 +166,10 @@
     div.main{
       font-size: 16px;
       width: var(--mainwidth);
-      height: 5000px;
+      height: 770px;
       margin-left: auto;
       margin-right: auto;
+
       span.container1 {
       display: block;
       height:100px;
@@ -208,9 +227,7 @@
             position: absolute;
             right: 0;
             &:hover .search1{
-
               outline-color: #333;
-
             }
           input {
             height: 55px;
@@ -243,10 +260,10 @@
               outline: 1px solid #999;
               border: none;
               box-sizing: border-box;
-              /* background-image: url(img/hiui.png); */
+              background-image: url(img/search.png);
+              background-position:left -5px top -7px ;
               background-repeat: no-repeat;
               background-color: #fff;
-              background-position:left -34px top 0px ;
               &:hover{
                 outline:  1px solid #FF6A00;
                 background-color: #FF6A00;
@@ -258,7 +275,6 @@
         }
         }
       }
-
       span.container2 {
 
         display: block;
@@ -288,6 +304,14 @@
         {
           opacity: 1;
         }
+
+        input#r1:checked~.right .check-buttons label:nth-child(1),
+        input#r2:checked~.right .check-buttons label:nth-child(2),
+        input#r3:checked~.right .check-buttons label:nth-child(3)
+        {
+          background-color: grey;
+        }
+
         /**/
         input#r1:checked~.right>span.check>span:last-child>.bt-left,
         input#r1:checked~.right>span.check>span:nth-child(2)>.bt-right,
@@ -326,10 +350,8 @@
                 ul.inner{
                   display: flex;
                   list-style: none;
-                  margin:0;
-                  padding:0;
-                  box-shadow: 3px 3px 5px 2px #99999970;
-
+                  /* background-color: black ; */
+                  /* box-shadow: 3px 3px 5px 2px #99999970; */
                 }
               }
               &::after{
@@ -341,40 +363,41 @@
 
               /*隐藏菜单*/
               ul.inner{
-
                 text-indent:0;
                 list-style: none;
-                font-size: 0;
                 display: none;
                 position: absolute;
                 height: 100%;
                 left: 100% ;
-                top: 0;/*不加top默认高度是元素在正常流时的起点*/
-                vertical-align:top;
+                top: 0;
                 flex-direction: column;
                 flex-wrap: wrap;
-                background-color:white ;
                 z-index: 2;
+                /* background-color:black ; */
                 &::after{
                     content: "";
                     height: 0;
                     flex:1;
-                    background-color: white;
-                }
+                    background-color: rgb(249, 246, 246) ;
+                    border-bottom: rgba(155, 156, 156, 0.3) 3px solid ;
+                  display:block;
+                  }
                 li{
+
                   font-size: 18px;
                   color: black;
                   line-height: 0;
-                  display: inline-block;
+                  display: flex;
                   width:200px;
-                  height: 75px;;
-
+                  height: 76.66px;
                   box-sizing:border-box;
-                  background-color:white ;
-                  line-height:75px;
-
+                  background-color:rgb(249, 246, 246) ;
+                  /* background-color: black ; */
                   text-indent:3em;
-
+                  align-items: center;
+                  &:nth-child(6n){
+                    border-bottom: rgba(155, 156, 156, 0.3) 3px solid ;
+                  }
                   a{
                     color:#333;
                   }
@@ -387,8 +410,29 @@
            }
         }
         span.right {
-
+          display: flex;
           width: calc(100% - 235px );
+          justify-content: end;
+          align-items:end ;
+          /*声明右下角圆圈样式*/
+          .check-buttons{
+              width: 150px;
+              height: 40px;
+              display: flex;
+              margin-right: 30px;
+              align-content:center;
+              label{
+                display: block;
+                height: 20px;
+                width: 20px;
+                background: #fff;
+                border-radius: 100px;
+                margin-left: 10px;
+                cursor:pointer;
+              }
+
+            }
+            /*定义左右按钮样式*/
             .bt-left{
               left: 0px;
               text-indent:5px
@@ -397,7 +441,7 @@
               right: 0px;
               text-indent:15px;
             }
-          .bt-left,.bt-right{
+            .bt-left,.bt-right{
             color:#666;
             font-size: 28px;
             top: 190px;
@@ -413,9 +457,119 @@
               color:white;
             }
 
-          }
+            }
+
         }
       }
+      span.container3 {
+        display: block;
+        position: relative;
+        display: flex;
+
+        margin-top:10px;
+        .left{
+          height: 160px;
+          background-color: #5F5750;
+          display: flex;
+          flex-wrap: wrap;
+          align-content:space-around;
+
+          a{
+            font-size: small;
+            display: block;
+            width: 33%;
+            text-align: center;
+            color:wheat;
+          }
+        }
+        .right{
+          padding: 0;
+          height: 160px;
+          /* background-color: #5F5750; */
+          display: flex;
+          justify-content:space-between;
+          img{
+           width: 32%;
+           cursor: pointer;
+           &:hover{
+            box-shadow: 4px 6px 15px  #5F575050;
+
+           }
+          }
+        }
+
+      }
+    }
+    /*灰色部分*/
+    div.center{
+      width: 100%;
+      /* display: flex; */
+      background-color: #f5f5f5;
+      span.caption{
+        display: block;
+        margin:30px 0 15px 0;
+        width:100%;
+        .caption-left{
+
+          font-size: 25px;
+        }
+        .caption-right{
+          float: right;
+        }
+      }
+      span.container {
+        display: block;
+        width:var(--mainwidth);
+        margin:auto;
+        .imgbox{
+          height:615px;
+          display:flex;
+          .left{
+           width: 235px;
+           height: 100%;
+           display: block;
+           position: relative;
+           &:hover{
+              box-shadow: 6px 6px 15px  #5F575050;
+              transition: 0.5s;
+              top:-10px;
+
+            }
+           }
+         .right{
+           margin-left:10px ;
+           flex: 1;
+           height: 100%;
+           display: flex;
+           position:static;
+           flex-wrap: wrap;
+           justify-content: space-between;
+           align-content: space-between;
+          .card{
+            display: flex;
+            width: 236px;
+            height: 301px;
+            background-color: #fff;
+            position: relative;
+            top:0px;
+            &:hover{
+              box-shadow: 6px 6px 15px  #5F575050;
+              transition: 0.5s;
+              top:-10px;
+            }
+            img{
+              height: 160px;
+              width: 160px;
+              margin: 30px auto 0 auto;
+            }
+          }
+
+
+         }
+        }
+
+      }
+
 
     }
   </style>
@@ -494,49 +648,27 @@
           <ul class="menu">
             <li>手機
               <ul class="inner">
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
+                <li><a href="">RedHi</a></li>
+                <li><a href="">RedHi Pro</a></li>
+                <li><a href="">BigMi</a></li>
+                <li><a href="">interesting</a></li>
+                <li><a href="">newbee pro</a></li>
+                <li><a href="">His3</a></li>
+                <li><a href="">RedHi 3</a></li>
               </ul>
             </li>
             <li>电视<ul class="inner">
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
-              <li><a href="">123</a></li>
+              <li><a href="">长红</a></li>
+              <li><a href="">voc</a></li>
+              <li><a href="">RedHi 32寸</a></li>
+              <li><a href="">中兴 黑白怀旧</a></li>
+              <li><a href="">华为 爱我中华</a></li>
+              <li><a href="">白象 不是不吃</a></li>
+              <li><a href="">RedHi 32寸</a></li>
+              <li><a href="">创维 真彩高清</a></li>
+              <li><a href="">华为 爱我中华</a></li>
             </ul></li>
-            <li>家电<ul class="inner">
+            <li>火箭<ul class="inner">
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -562,23 +694,17 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>笔记本 平板<ul class="inner">
+            <li>坦克 <ul class="inner">
               <li><a href="">123</a></li>
                 <li><a href="">hi按E精灵</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
+                <li><a href="">坦克杀手</a></li>
+                <li><a href="">天启坦克</a></li>
+                <li><a href="">灰熊坦克</a></li>
+                <li><a href="">犀牛坦克</a></li>
+                <li><a href="">天启坦克</a></li>
+                <li><a href="">灰熊坦克</a></li>
+                <li><a href="">灰熊</a></li>
+
 
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -589,33 +715,27 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>出行 穿戴<ul class="inner">
-              <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
+            <li>卫星<ul class="inner">
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+              <li><a href="">嫦娥2号</a></li>
+
               </ul></li>
-            <li>耳机 音箱<ul class="inner">
+            <li>光剑 盔甲<ul class="inner">
               <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -645,8 +765,8 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>健康 儿童<ul class="inner">
-              <li><a href="">123</a></li>
+            <li>奥特曼变身器<ul class="inner">
+              <li><a href="">迪迦变身器</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -674,71 +794,7 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>生活 箱包<ul class="inner">
-              <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-              </ul></li>
-            <li>智能 路由器<ul class="inner">
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
-              </ul></li>
-            <li>电源 配件<ul class="inner">
+            <li>TNT C4<ul class="inner">
               <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -769,6 +825,50 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
+              </ul></li>
+            <li>枪械 军刀<ul class="inner">
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+              </ul></li>
+            <li>赛博义体<ul class="inner">
+              <li><a href="">夜视义眼</a></li>
+                <li><a href="">高精度义眼</a></li>
+                <li><a href="">恶魔之脑</a></li>
+                <li><a href="">笔斗王(手掌)</a></li>
+                <li><a href="">不屈之肾(腰子)</a></li>
+                <li><a href="">天龙脊(脊椎)</a></li>
+                <li><a href="">猛虎下山(腿)</a></li>
+                <li><a href="">123</a></li>
+                <li><a href="">123</a></li>
+
               </ul></li>
           </ul>
         </span>
@@ -786,8 +886,127 @@
             <label for="r3" class="bt-left">&lt;</label>
             <label for="r3" class="bt-right">></label>
            </span>
-
           </span>
+          <span class="check-buttons">
+            <label for="r1" ></label>
+            <label for="r2" ></label>
+            <label for="r3" ></label>
+          </span>
+      </span>
+      </span>
+      <span class="container3">
+        <!--  -->
+        <span class="left">
+          <a href=""> 保障服务</a>
+          <a href=""> 企业团购</a>
+          <a href=""> f码通道</a>
+          <a href=""> 密封卡</a>
+          <a href=""> 以旧换新</a>
+          <a href=""> 话费重置</a>
+        </span>
+        <span class="right">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0cf5e958bc88727b50c5c5fba7a8f47a.jpg?w=632&h=340" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6dd2f3e0de4e6cbba98fd3799cfa5bf7.jpg?w=632&h=340" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7d4be1a9e701e16de498f89b1865867.jpg?w=632&h=340" alt="">
+        </span>
+      </span>
+    </div>
+
+    <!-- 灰色区域 -->
+    <div class="center">
+      <!-- 抽油烟ji图片 -->
+      <span class="container container4">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0e9ef2e2599559a625a07becb510fe31.jpg?thumb=1&w=1226&h=120&f=webp&q=90" alt="">
+      </span>
+
+
+      <!-- 手机 -->
+      <span class="container container5">
+        <!-- 标题栏 -->
+        <span class="caption">
+          <span class="caption-left">
+            手机
+          </span>
+          <span class="caption-right">
+            <a class="orange" href="">查看更多>></a>
+          </span>
+        </span>
+        <!-- 图片展示 -->
+        <span class="imgbox">
+          <span class="left">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
+          </span>
+          <span class="right">
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8b046feca0a7bb3f7b961a9690babb1b.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f37dd30477e7ba040c7fb69c31ad8bf3.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212251443_29b17941a7365948446bd193011d9241.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202211292351_92aba2c69123166a74ba2e2b525b1ae2.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/aa047170a22d9f0852254aa36df5f5f0.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/94c6497b70f2e881460cb232082a0da6.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202210262033_ef39fca0e37395d07682124770fd3ad9.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+          </span>
+        </span>
+      </span>
+      <!-- 手机 -->
+      <span class="container container6">
+        <!-- 标题栏 -->
+        <span class="caption">
+          <span class="caption-left">
+            手机
+          </span>
+          <span class="caption-right">
+            <a class="orange" href="">查看更多>></a>
+          </span>
+        </span>
+        <!-- 图片展示 -->
+        <span class="imgbox">
+          <span class="left">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
+          </span>
+          <span class="right">
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8b046feca0a7bb3f7b961a9690babb1b.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f37dd30477e7ba040c7fb69c31ad8bf3.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212251443_29b17941a7365948446bd193011d9241.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202211292351_92aba2c69123166a74ba2e2b525b1ae2.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/aa047170a22d9f0852254aa36df5f5f0.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/94c6497b70f2e881460cb232082a0da6.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+            <span class="card">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202210262033_ef39fca0e37395d07682124770fd3ad9.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+            </span>
+          </span>
+        </span>
       </span>
     </div>
   </div>

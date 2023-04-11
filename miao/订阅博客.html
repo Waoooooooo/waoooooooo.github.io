@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+   span{
+
+      height: 500px;
+      width: 500px;
+
+
+      border-bottom: red 4px solid;
+      font-size: 10px;
+      background-color: cornflowerblue;
+      transition: 5s;
+        /* 方案1 */
+      /* flex-direction: column;
+      justify-content: end;
+      display: flex; */
+      /* 方案2 */
+      display: table-cell;
+      vertical-align: bottom;
+
+    }
+
+   span:hover{
+      font-size: 100px;
+   }
+
+  </style>
+</head>
+<body>
+  <span>订阅博客</span>
+</body>
+</html>
