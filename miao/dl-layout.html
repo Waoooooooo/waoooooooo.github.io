@@ -20,11 +20,12 @@
       padding-left: 200px;
       display: grid;
       /* border:1px solid black; */
-      grid-template-columns: repeat(5, 200px) ;
+      grid-template-columns: repeat(auto-fit, 200px) ;
       grid-template-rows: repeat(auto-fit,100px);
       grid-auto-rows: 100px;
 
       dd{
+
         counter-increment: ddnumb;
         margin: 0;
         border:1px solid black;
@@ -39,7 +40,8 @@
         border:1px solid black;
       }
       dd,dt{
-
+        text-align: center;
+        line-height: 100px;
       }
     }
   </style>
@@ -47,11 +49,20 @@
 </head>
 <body>
   <ol>
-    <dt>导演</dt>
+    <dt>导演:</dt>
     <dd>张三</dd>
     <dd>李四</dd>
     <dd>王五</dd>
     <dd>张三</dd>
+    <dd>李四</dd>
+    <dd>王五</dd>
+    <dd>张三</dd>
+    <dd>李四</dd>
+    <dd>张三</dd>
+    <dd>李四</dd>
+    <dd>王五</dd>
+    <dd>张三</dd>
+    <dd>李四</dd>    <dd>张三</dd>
     <dd>李四</dd>
     <dd>王五</dd>
     <dd>张三</dd>
@@ -59,7 +70,7 @@
     <dd>王五</dd>
   </ol>
   <ol>
-    <dt>演员</dt>
+    <dt>演员:</dt>
     <dd>王1</dd>
     <dd>王2</dd>
     <dd>王3</dd>
@@ -73,7 +84,7 @@
     <dd>王3</dd>
   </ol>
   <ol>
-    <dt>配乐</dt>
+    <dt>配乐:</dt>
     <dd>王到睿米</dd>
     <dd>王扫拉稀</dd>
 
