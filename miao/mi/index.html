@@ -513,25 +513,30 @@
         }
         .caption-right {
           float: right;
-
-
-          span.underline{
+          span.underline1,span.underline2{
            text-decoration: none;
            margin-left: 40px;
            line-height:var(--headerHeight);
            color:black;
-           &:hover {
+           transition: 0s 999999s;
+           border-bottom: 0px solid;
+         }
+         span:hover {
              color: orangered;
              border-bottom: 5px solid orangered;
+             transition: 0s;
            }
 
-         }
+         &:has(span.underline1:hover)>span.underline2{
+            color: black;
 
-         /*初始状态*/
-         span:first-child{
-           color: orangered;
-           border-bottom: 5px solid orangered;
-          }
+            border-bottom:0px solid;
+           }
+          &:has(span.underline2:hover)>span.underline1{
+            color: black;
+
+            border-bottom:0px solid ;
+           }
         }
       }
       span.container {
@@ -990,7 +995,7 @@
             只能穿戴
           </span>
           <span class="caption-right">
-            <span class="underline" >耳机</span> <span class="underline" >穿戴</span>
+            <span class="underline1" >耳机</span> <span class="underline2" >穿戴</span>
           </span>
         </span>
         <!-- 图片展示 -->
