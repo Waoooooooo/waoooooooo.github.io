@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    div.xiaomi1{
+      display: inline-grid;
+      background-color: grey;
+      grid-auto-flow: column;
+      /*每列有5行,每行100px*/
+      grid-template-rows:  repeat(5,100px);
+       /*每行的列数自动适配,每列200px*/
+      grid-template-columns: repeat(auto-fill,200px);
+      /* 由于元素超出原始grid-cell的数量而增加的列 宽度为200px */
+      grid-auto-columns:200px;
+      span{
+        background-color: red;
+        box-sizing:border-box;
+        border:3px solid white;
+        display:grid;
+        place-items:center;
+        font-size:50px;
+      }
+    }
+    div.xiaomi2{
+      margin-top: 100px;
+      display: inline-grid;
+      /*重复4次,每次200px*/
+      grid-template-rows: repeat(4,200px);
+      /*自动重复,每次300px*/
+      grid-template-columns: repeat(auto-fill,300px);
+      /*新增的列的宽度*/
+      grid-auto-columns: 300px;
+      /*流向*/
+      grid-auto-flow: column;
+
+
+      background-color: grey;
+      span{
+        font-size:50px;
+        background-color: red;
+        box-sizing:border-box;
+        border:3px solid white;
+        display:grid;
+        place-items:center;
+        /*第一个span占4行*/
+        grid-row-end: span 2;
+        &:first-child{
+          grid-row-end: span 4;
+        }
+        &:last-child {
+          grid-row-end:auto;
+        }
+        &:nth-last-child(2){
+           grid-row-end:auto;
+
+        }
+
+      }
+    }
+    div.boxes{
+      margin-top: 100px;
+      display: inline-grid;
+      grid-template-columns: repeat(3,200px);/*重复三次,每次200px*/
+      grid-template-rows: repeat(auto-fill,200px);
+      grid-auto-rows: 200px;
+      span{
+        font-size: 80px;
+        background-color: red;
+        border:3px white solid;
+        &:nth-child(4){
+          grid-column-end: span 2;
+          grid-row-end: span 2;
+        }
+        &:nth-child(11){
+          grid-column-end: span 2;
+          grid-row-end: span 2;
+        }
+      }
+    }
+  </style>
+  <script src="less.js"></script>
+</head>
+<body>
+<div class="xiaomi1">
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+  <span>5</span>
+  <span>6</span>
+  <span>7</span>
+  <span>8</span>
+  <span>9</span>
+  <span>10</span>
+  <span>11</span>
+  <span>12</span>
+</div>
+<br>
+<div class="xiaomi2">
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+  <span>5</span>
+  <span>6</span>
+  <span>7</span>
+  <span>8</span>
+  <span>9</span>
+  <span>10</span>
+</div>
+<br>
+<div class="boxes">
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+  <span>5</span>
+  <span>6</span>
+  <span>7</span>
+  <span>8</span>
+  <span>9</span>
+  <span>10</span>
+  <span>11</span>
+  <span>12</span>
+  <span>13</span>
+  <span>14</span>
+  <span>15</span>
+</div>
+</body>
+</html>
