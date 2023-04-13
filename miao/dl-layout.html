@@ -14,28 +14,34 @@
       box-sizing: border-box;
     }
     dl{
+
       list-style: none;
-      margin: 0;
-      position: relative;
+      /*给dt预留位置*/
       padding-left: 100px;
+
       dd,dt{
         width: 100px;
         height: 100px;
-      }
-      dt{
-        display: block;
 
-        position: relative;
-        left:-100px;
-        margin-bottom: -100px;
-        &:hover{
-            border: 2px solid;
-        }
-      }
-      dd{
         &:hover{
           border: 2px solid;
         }
+      }
+      /*1.设置dt为块元素 实现换行,
+        2.并使margin-bottom为-100px实现下面的dd元素上移
+        3.给相对定位让dt元素移动到父元素padding的范围内
+       */
+      dt{
+        display: block;
+        position: relative;
+        left:-100px;
+        margin-bottom: -100px;
+      }
+      /*
+      设置dd元素为行内块元素
+      */
+      dd{
+
         display: inline-block;
         margin: 0;
         padding: 0;
