@@ -1,0 +1,650 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  --headerHeight: 40px;
+  --mainwidth: 1226px;
+  background-repeat: none;
+  letter-spacing: 0.05em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left {
+  width: 235px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+}
+
+.right {
+  width: 983px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+  line-height: var(--headerHeight);
+  color: inherit;
+}
+
+a:link {
+  color: #B0B0B0;
+}
+
+a:visited {
+  color: #B0B0B0;
+}
+
+a:hover {
+  color: #fff;
+}
+
+a:active {
+  color: #fff;
+}
+
+a.orange {
+  text-decoration: none;
+  line-height: var(--headerHeight);
+  color: black;
+}
+
+a.orange:link {
+  color: #B0B0B0;
+}
+
+a.orange:visited {
+  color: black;
+}
+
+a.orange:hover {
+  color: orangered;
+  transition: 0.5s;
+}
+
+a.orange:active {
+  color: #fff;
+}
+
+div.header {
+  background-color: #333333;
+  color: #585656;
+  height: var(--headerHeight);
+  font-size: 10px;
+  /* //顶部菜单宽度 */
+}
+
+div.header div.top-menu {
+  background-color: #333333;
+  width: var(--mainwidth);
+  margin: auto;
+  position: relative;
+  /*右上方菜单*/
+}
+
+div.header div.top-menu span.space::after {
+  content: " | ";
+}
+
+div.header div.top-menu span.right-top-menu {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  /*用户菜单*/
+  /* //购物车 */
+}
+
+div.header div.top-menu span.right-top-menu .user-menu {
+  position: static;
+  vertical-align: top;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar {
+  text-align: right;
+  padding-right: 10px;
+  margin-left: 20px;
+  display: inline-block;
+  height: var(--headerHeight);
+  width: 120px;
+  box-sizing: border-box;
+  /*购物车ui*/
+  /*购物车框*/
+  /*交互*/
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar::after {
+  content: "(0) ";
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar span.shoppingCarImg {
+  display: inline-block;
+  height: 20px;
+  width: 30px;
+  background-image: url(img/hiui.png);
+  background-position: 2px 0px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar span.carBox {
+  display: none;
+  position: absolute;
+  right: 0%;
+  /* display:block; */
+  width: 320px;
+  box-shadow: #33333355 0px 0px 6px;
+  z-index: 1;
+  font-size: 20px;
+  transition: 0.5s;
+  top: 40px;
+  bottom: -1px;
+  display: block;
+  text-align: center;
+  line-height: 100px;
+  background-color: #fff;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar:hover {
+  color: #FF673E;
+  background-color: #fff;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar:hover a {
+  color: #FF673E;
+  background-color: #fff;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar:hover span.shoppingCarImg {
+  background-position: 2px -21px;
+}
+
+div.header div.top-menu span.right-top-menu span.shoppingCar:hover span.carBox {
+  top: 40px;
+  bottom: -100px;
+}
+
+div.main {
+  font-size: 16px;
+  width: var(--mainwidth);
+  height: 770px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.main span.container1 {
+  display: block;
+  height: 100px;
+  position: relative;
+  /*左侧hi logo*/
+}
+
+div.main span.container1 a.logo {
+  background-repeat: no-repeat;
+  background-position: left -34px top 0px;
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  background-image: url(img/hiui.png);
+  margin-top: 20px;
+}
+
+div.main span.container1 a.logo:hover {
+  background-size: 300%;
+  background-position: left -23px top 5px;
+}
+
+div.main span.container1 .container-inner {
+  position: absolute;
+  right: 0;
+  top: 22.5px;
+  display: block;
+  width: 990px;
+  height: 55px;
+  text-align: justify;
+  /*右侧菜單欄*/
+  /*右侧搜索框*/
+  /*input的初始:focus改变的是outline而不是border*/
+}
+
+div.main span.container1 .container-inner .shopping-menu {
+  line-height: 55px;
+  display: block;
+  position: absolute;
+  left: 0;
+}
+
+div.main span.container1 .container-inner .shopping-menu a {
+  margin: 10px;
+}
+
+div.main span.container1 .container-inner .shopping-menu a:link {
+  color: #B0B0B0;
+}
+
+div.main span.container1 .container-inner .shopping-menu a:visited {
+  color: #000;
+}
+
+div.main span.container1 .container-inner .shopping-menu a:hover {
+  color: #FF6A00;
+}
+
+div.main span.container1 .container-inner .shopping-menu a:active {
+  color: #FF6A00;
+}
+
+div.main span.container1 .container-inner .search {
+  position: absolute;
+  display: flex;
+  right: 0;
+}
+
+div.main span.container1 .container-inner .search:hover .search1 {
+  outline-color: #333;
+}
+
+div.main span.container1 .container-inner .search span.search1 {
+  display: inline-grid;
+  border-radius: 0px;
+  width: 70px;
+  height: 55px;
+  box-sizing: border-box;
+  outline: 1px solid #999;
+  place-items: center;
+  color: #666;
+}
+
+div.main span.container1 .container-inner .search span.search1:hover {
+  outline: 1px solid #FF6A00;
+  background-color: #FF6A00;
+  color: white;
+}
+
+div.main span.container1 .container-inner .search input {
+  height: 55px;
+  display: inline-block;
+  vertical-align: 10px;
+}
+
+div.main span.container1 .container-inner .search input:hover .search1 {
+  outline-color: #333;
+}
+
+div.main span.container1 .container-inner .search input[type="text"],
+div.main span.container1 .container-inner .search input input.inp {
+  text-indent: 1em;
+  letter-spacing: 0.1em;
+  border-radius: 0px;
+  width: 255px;
+  outline: 1px solid #999;
+  box-sizing: border-box;
+  border: none;
+}
+
+div.main span.container1 .container-inner .search input[type="text"]:focus,
+div.main span.container1 .container-inner .search input input.inp:focus {
+  outline: 1px solid #FF6A00;
+  border: none;
+}
+
+div.main span.container1 .container-inner .search input[type="text"]:focus+span,
+div.main span.container1 .container-inner .search input input.inp:focus+span {
+  outline: 1px solid #FF6A00;
+}
+
+div.main span.container2 {
+  display: block;
+  height: 460px;
+  position: relative;
+  /*图片容器*/
+  /**/
+}
+
+div.main span.container2 .img-contaniner {
+  position: absolute;
+  height: 460px;
+  display: block;
+  width: 100%;
+}
+
+div.main span.container2 .img-contaniner img {
+  position: absolute;
+  width: 100% height:460px;
+  display: block;
+  opacity: 0;
+  transition: 1s;
+}
+
+div.main span.container2 input[type="radio"] {
+  display: none;
+}
+
+div.main span.container2 input#r1:checked~.img-contaniner img:nth-child(1),
+div.main span.container2 input#r2:checked~.img-contaniner img:nth-child(2),
+div.main span.container2 input#r3:checked~.img-contaniner img:nth-child(3) {
+  opacity: 1;
+}
+
+div.main span.container2 input#r1:checked~.right .check-buttons label:nth-child(1),
+div.main span.container2 input#r2:checked~.right .check-buttons label:nth-child(2),
+div.main span.container2 input#r3:checked~.right .check-buttons label:nth-child(3) {
+  background-color: grey;
+}
+
+div.main span.container2 input#r1:checked~.right>span.check>span:last-child>.bt-left,
+div.main span.container2 input#r1:checked~.right>span.check>span:nth-child(2)>.bt-right,
+div.main span.container2 input#r2:checked~.right>span.check>span:nth-child(1)>.bt-left,
+div.main span.container2 input#r2:checked~.right>span.check>span:nth-child(3)>.bt-right,
+div.main span.container2 input#r3:checked~.right>span.check>span:nth-child(2)>.bt-left,
+div.main span.container2 input#r3:checked~.right>span.check>span:nth-child(1)>.bt-right {
+  display: block;
+}
+
+div.main span.container2 span.left {
+  background-color: rgba(105, 101, 101, 0.6);
+}
+
+div.main span.container2 span.left ul.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  padding-top: 10px;
+  position: static;
+}
+
+div.main span.container2 span.left ul.menu>li {
+  color: white;
+  display: block;
+  height: 44px;
+  line-height: 44px;
+  text-indent: 2em;
+  /*隐藏菜单*/
+}
+
+div.main span.container2 span.left ul.menu>li:hover {
+  color: #fff;
+  background: #FF673E;
+}
+
+div.main span.container2 span.left ul.menu>li:hover ul.inner {
+  display: grid;
+  list-style: none;
+  /* background-color: black ; */
+  /* box-shadow: 3px 3px 5px 2px #99999970; */
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-rows: repeat(6, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 200px;
+  box-shadow: 4px 6px 15px #5F575050;
+}
+
+div.main span.container2 span.left ul.menu>li::after {
+  position: absolute;
+  right: 0;
+  content: ">  ";
+  white-space: pre;
+}
+
+div.main span.container2 span.left ul.menu>li ul.inner {
+  text-indent: 0;
+  list-style: none;
+  display: none;
+  position: absolute;
+  height: 100%;
+  left: 100%;
+  top: 0;
+  z-index: 2;
+  background-color: #ffffff;
+  /* background-color:black ; */
+  /* &::after{
+                    content: "";
+                    height: 0;
+                    flex:1;
+                    background-color: rgb(249, 246, 246) ;
+                    border-bottom: rgba(155, 156, 156, 0.3) 3px solid ;
+                    display:block;
+                  } */
+}
+
+div.main span.container2 span.left ul.menu>li ul.inner li {
+  font-size: 18px;
+  color: black;
+  line-height: 0;
+  display: flex;
+  box-sizing: border-box;
+  /* background-color: black ; */
+  text-indent: 3em;
+  align-items: center;
+}
+
+div.main span.container2 span.left ul.menu>li ul.inner li a {
+  color: #333;
+}
+
+div.main span.container2 span.left ul.menu>li ul.inner li:hover a {
+  color: #FF673E;
+}
+
+div.main span.container2 span.right {
+  display: flex;
+  width: calc(100% - 235px);
+  justify-content: end;
+  align-items: end;
+  /*声明右下角圆圈样式*/
+  /*定义左右按钮样式*/
+}
+
+div.main span.container2 span.right .check-buttons {
+  width: 150px;
+  height: 40px;
+  display: flex;
+  margin-right: 30px;
+  align-content: center;
+}
+
+div.main span.container2 span.right .check-buttons label {
+  display: block;
+  height: 20px;
+  width: 20px;
+  background: #fff;
+  border-radius: 100px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+div.main span.container2 span.right .bt-left {
+  left: 0px;
+  text-indent: 5px;
+}
+
+div.main span.container2 span.right .bt-right {
+  right: 0px;
+  text-indent: 15px;
+}
+
+div.main span.container2 span.right .bt-left,
+div.main span.container2 span.right .bt-right {
+  color: #666;
+  font-size: 28px;
+  top: 190px;
+  width: 40px;
+  height: 80px;
+  border: none;
+  position: absolute;
+  line-height: 80px;
+  background-color: transparent;
+  display: none;
+}
+
+div.main span.container2 span.right .bt-left:hover,
+div.main span.container2 span.right .bt-right:hover {
+  background-color: #7F7F7F70;
+  color: white;
+}
+
+div.main span.container3 {
+  display: block;
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+}
+
+div.main span.container3 .left {
+  height: 160px;
+  background-color: #5F5750;
+  display: grid;
+  padding: 10px;
+  box-sizing: border-box;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+div.main span.container3 .left span {
+  display: block;
+}
+
+div.main span.container3 .left i.icon {
+  font-size: 35px;
+}
+
+div.main span.container3 .left a {
+  display: flex;
+  font-size: small;
+  flex-direction: column;
+  text-align: center;
+  color: #CFCDCB;
+  margin: auto;
+}
+
+div.main span.container3 .left a:hover {
+  color: wheat;
+}
+
+div.main span.container3 .right {
+  padding: 0;
+  height: 160px;
+  /* background-color: #5F5750; */
+  display: flex;
+  justify-content: space-between;
+}
+
+div.main span.container3 .right img {
+  width: 32%;
+  cursor: pointer;
+}
+
+div.main span.container3 .right img:hover {
+  box-shadow: 4px 6px 15px #5F575050;
+}
+
+/*灰色部分*/
+div.center {
+  width: 100%;
+  /* display: flex; */
+  background-color: #f5f5f5;
+}
+
+div.center span.caption {
+  display: block;
+  margin: 30px 0 15px 0;
+  width: 100%;
+}
+
+div.center span.caption .caption-left {
+  font-size: 25px;
+}
+
+div.center span.caption .caption-right {
+  float: right;
+  display: flex;
+  width: 200px;
+}
+
+.caption-right:hover span.s1 {
+  transition: 0s;
+  color: black;
+}
+
+span.s1 {
+  text-align: right;
+  flex: 1;
+  line-height: var(--headerHeight);
+  transition: 0s 99999999s;
+  color: black;
+}
+
+span.s1:hover {
+  color: orangered;
+  transition: 0s;
+}
+
+div.center span.container {
+  display: block;
+  width: var(--mainwidth);
+  margin: auto;
+}
+
+div.center span.container .imgbox {
+  height: 615px;
+  display: flex;
+}
+
+div.center span.container .imgbox .left {
+  width: 235px;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+div.center span.container .imgbox .left:hover {
+  box-shadow: 6px 6px 15px #5F575050;
+  transition: 0.5s;
+  top: -10px;
+}
+
+div.center span.container .imgbox .right {
+  margin-left: 10px;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  position: static;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+div.center span.container .imgbox .right .card {
+  display: flex;
+  width: 236px;
+  height: 301px;
+  background-color: #fff;
+  position: relative;
+  top: 0px;
+}
+
+div.center span.container .imgbox .right .card:hover {
+  box-shadow: 6px 6px 15px #5F575050;
+  transition: 0.5s;
+  top: -10px;
+}
+
+div.center span.container .imgbox .right .card img {
+  height: 160px;
+  width: 160px;
+  margin: 30px auto 0 auto;
+}
+
+span.container5 span.caption span.caption-right{
+  display: inline-block;
+  text-align: right;
+}
