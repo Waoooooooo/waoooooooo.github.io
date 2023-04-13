@@ -30,8 +30,8 @@
       display: inline-grid;
       /*重复4次,每次200px*/
       grid-template-rows: repeat(4,200px);
-      /*自动重复,每次300px*/
-      grid-template-columns: repeat(auto-fill,300px);
+      /*设一列300px*/
+      grid-template-columns: 300px;
       /*新增的列的宽度*/
       grid-auto-columns: 300px;
       /*流向*/
@@ -64,18 +64,20 @@
     div.boxes{
       margin-top: 100px;
       display: inline-grid;
-      grid-template-columns: repeat(3,200px);/*重复三次,每次200px*/
-      grid-template-rows: repeat(auto-fill,200px);
+      grid-template-columns: repeat(3,200px);
+
+      /* grid-template-columns: 1fr; */
+      grid-template-rows: 200px;
       grid-auto-rows: 200px;
       span{
         font-size: 80px;
         background-color: red;
         border:3px white solid;
-        &:nth-child(4){
+        &:nth-child(12n+4){
           grid-column-end: span 2;
           grid-row-end: span 2;
         }
-        &:nth-child(11){
+        &:nth-child(12n+11){
           grid-column-end: span 2;
           grid-row-end: span 2;
         }
