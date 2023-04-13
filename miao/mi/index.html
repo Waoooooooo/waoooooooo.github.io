@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>小HI商城</title>
+
   <style type="text/less">
     html,body {
       margin: 0;
@@ -14,6 +15,7 @@
       background-repeat: none;
       letter-spacing: 0.05em;
     }
+
     ul{
       list-style: none;
       padding:0;
@@ -183,6 +185,7 @@
           display: inline-block;
           background-image: url(img/hiui.png);
           margin-top: 20px;
+
           &:hover{
             background-size:300% ;
             background-position:left -23px top 5px;
@@ -224,13 +227,32 @@
          /*input的初始:focus改变的是outline而不是border*/
         .search{
             position: absolute;
+            display: flex;
             right: 0;
             &:hover .search1{
               outline-color: #333;
             }
+
+
+           span.search1{
+              display: inline-grid;
+              border-radius: 0px;
+              width: 70px;
+              height: 55px;
+              box-sizing: border-box;
+              outline: 1px solid #999;
+              place-items:center;
+            color:  #666;
+              &:hover{
+                outline:  1px solid #FF6A00;
+                background-color: #FF6A00;
+                color:white;
+              }
+             }
           input {
             height: 55px;
             display: inline-block;
+            vertical-align: 10px;
             &:hover .search1{
             outline-color: #333;
             }
@@ -246,30 +268,13 @@
               &:focus{
                 outline: 1px solid #FF6A00;
                 border: none;
-                + input{
+                + span{
                   outline: 1px solid #FF6A00;
                 }
                }
 
              }
-             &[type="submit"]{
-              border-radius: 0px;
-              width: 70px;
-              box-sizing: border-box;
-              outline: 1px solid #999;
-              border: none;
-              box-sizing: border-box;
-              background-image: url(img/search.png);
-              background-position:left -5px top -7px ;
-              background-repeat: no-repeat;
-              background-color: #fff;
-              &:hover{
-                outline:  1px solid #FF6A00;
-                background-color: #FF6A00;
-                background-image: url(img/hiui.png);
-                background-position:left -28px top 0px ;
-              }
-             }
+
           }
         }
         }
@@ -468,16 +473,28 @@
         .left{
           height: 160px;
           background-color: #5F5750;
-          display: flex;
-          flex-wrap: wrap;
-          align-content:space-around;
+          display: grid;
+          padding:10px;
+          box-sizing:border-box;
+          grid-template-columns: repeat(3,1fr);
+          grid-template-rows: repeat(2,1fr);
+          span{
+            display: block;
+          }
+          i.icon{
+            font-size: 35px;
+          }
 
           a{
+            display: flex;
             font-size: small;
-            display: block;
-            width: 33%;
+            flex-direction: column;
             text-align: center;
-            color:wheat;
+            color:#CFCDCB;
+            margin: auto;
+            &:hover{
+              color:wheat;
+            }
           }
         }
         .right{
@@ -508,7 +525,6 @@
         margin:30px 0 15px 0;
         width:100%;
         .caption-left {
-
           font-size: 25px;
         }
         .caption-right {
@@ -555,7 +571,6 @@
               box-shadow: 6px 6px 15px  #5F575050;
               transition: 0.5s;
               top:-10px;
-
             }
            }
          .right{
@@ -595,6 +610,7 @@
 
     }
   </style>
+   <link rel="stylesheet" href="./css/iconfont/fonteditor/icon.css">
 </head>
 <body>
   <div class="warper">
@@ -650,7 +666,7 @@
 
           </span>
           <span class="search">
-           <input type="text" class="search1 inp" placeholder="大House"><input type="submit" value=" " class="search1">
+           <input type="text" class="search1 inp" placeholder="小米代步车"><span class="search1"><i class="icon icon-search"></i></span>
           </span>
         </span>
       </span>
@@ -683,12 +699,12 @@
               <li><a href="">长红</a></li>
               <li><a href="">voc</a></li>
               <li><a href="">RedHi 32寸</a></li>
-              <li><a href="">中兴 黑白怀旧</a></li>
-              <li><a href="">华为 爱我中华</a></li>
-              <li><a href="">白象 不是不吃</a></li>
+              <li><a href="">黑白怀旧</a></li>
+              <li><a href="">111</a></li>
+              <li><a href="">222</a></li>
               <li><a href="">RedHi 32寸</a></li>
-              <li><a href="">创维 真彩高清</a></li>
-              <li><a href="">华为 爱我中华</a></li>
+              <li><a href="">333</a></li>
+              <li><a href="">444</a></li>
             </ul></li>
             <li>火箭<ul class="inner">
                 <li><a href="">123</a></li>
@@ -737,7 +753,7 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>卫星<ul class="inner">
+            <li>123<ul class="inner">
               <li><a href="">嫦娥2号</a></li>
               <li><a href="">嫦娥2号</a></li>
               <li><a href="">嫦娥2号</a></li>
@@ -757,7 +773,7 @@
               <li><a href="">嫦娥2号</a></li>
 
               </ul></li>
-            <li>光剑 盔甲<ul class="inner">
+            <li>123<ul class="inner">
               <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -787,8 +803,8 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>奥特曼变身器<ul class="inner">
-              <li><a href="">迪迦变身器</a></li>
+            <li>12312<ul class="inner">
+              <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -816,7 +832,7 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>TNT C4<ul class="inner">
+            <li>213123<ul class="inner">
               <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -848,7 +864,7 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>枪械 军刀<ul class="inner">
+            <li>123123<ul class="inner">
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
@@ -880,16 +896,14 @@
                 <li><a href="">123</a></li>
                 <li><a href="">123</a></li>
               </ul></li>
-            <li>赛博义体<ul class="inner">
-              <li><a href="">夜视义眼</a></li>
-                <li><a href="">高精度义眼</a></li>
-                <li><a href="">恶魔之脑</a></li>
-                <li><a href="">笔斗王(手掌)</a></li>
-                <li><a href="">不屈之肾(腰子)</a></li>
-                <li><a href="">天龙脊(脊椎)</a></li>
-                <li><a href="">猛虎下山(腿)</a></li>
-                <li><a href="">123</a></li>
-                <li><a href="">123</a></li>
+            <li>111<ul class="inner">
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
+              <li><a href="">123</a></li>
 
               </ul></li>
           </ul>
@@ -919,12 +933,13 @@
       <span class="container3">
         <!--  -->
         <span class="left">
-          <a href=""> 保障服务</a>
-          <a href=""> 企业团购</a>
-          <a href=""> f码通道</a>
-          <a href=""> 密封卡</a>
-          <a href=""> 以旧换新</a>
-          <a href=""> 话费重置</a>
+          <a href=""> <i class="icon icon-colock"></i> <span>话费重置</span></a>
+          <a href=""> <i class="icon icon-phoneLoop"></i> <span>以旧换新</span></a>
+          <a href=""> <i class="icon icon-reset"></i> <span>密封卡</span></a>
+          <a href=""> <i class="icon icon-f"></i> <span>会员f码</span></a>
+          <a href=""> <i class="icon icon-shopping"></i> <span>企业团购</span></a>
+          <a href=""> <i class="icon icon-reset"></i> <span>话费重置</span></a>
+
         </span>
         <span class="right">
           <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0cf5e958bc88727b50c5c5fba7a8f47a.jpg?w=632&h=340" alt="">
