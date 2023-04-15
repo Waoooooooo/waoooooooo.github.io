@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>居中</title>
+  <style>
+    html,body{
+      height: 100%;
+
+    }
+    body{
+
+
+      place-items:center;
+    }
+    div{
+      width: 500px;
+      height: 500px;
+      background-color: red;
+
+      border: 10px solid white;
+    }
+    span{
+      background-color: #666;
+      color: aliceblue;
+      font-size: 50px;
+    }
+
+    /*1.定位*/
+    .d1{
+      position: relative;
+
+    }
+    .s1{
+      display: block;
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+    }
+
+    /*2.行内居中:行高与元素高度一致实现垂直居中    <!-- 适用于单行 -->*/
+    .d2{
+      height: 300px;
+      line-height: 300px;
+      text-align: center;
+
+    }
+
+
+    /*3.flex*/
+    .d3{
+      display: flex;
+      /* align-content: center; *//*设置每个元素在y轴方向的对齐方式 ,当只有1行flex行时 ,属性不生效*/
+      justify-content:center;/*在x轴的对齐方式*/
+      align-items: center;/*元素在flex行内的对齐方式*/
+    }
+    .s3{
+      flex:0;
+    }
+
+    /*4.表格居中*/
+    .d4{
+      display:table-cell;
+      text-align:center;
+      width: 500px;
+      height: 500px;
+      vertical-align: middle;
+    }
+
+
+    /*5.grid居中*/
+    .d5{
+      display: grid;
+    }
+    .s5{
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="d1"> <span class="s1">定位居中</span></div>
+
+    <div class="d2"> <span class="s2">行内居中</span></div>
+    <div class="d3"> <span class="s3">flex居中</span></div>
+    <div class="d4"> <span class="s4">table cell居中</span></div>
+    <div class="d5"> <span class="s5">grid居中</span></div>
+
+</body>
+</html>
