@@ -93,8 +93,8 @@
 .icon-:before {
   content: "\e60b";
 }
-
-.icon-:before {
+/*购物车图标*/
+.icon-shopping-car:before {
   content: "\e60c";
 }
 
@@ -134,7 +134,7 @@
   content: "\e615";
 }
 
-.icon-:before {
+.icon-search:before {
   content: "\e616";
 }
 
