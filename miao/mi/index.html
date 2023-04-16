@@ -122,6 +122,7 @@
       position: relative;
 
     }
+
     /*导航栏文字内容样式表*/
     header.h-white div.content{
       justify-content: space-between;
@@ -151,6 +152,7 @@
         align-items:center;
         /*左侧带下拉框的a标签*/
         span.a-tag{
+          font-size:0;
           &:has(a:nth-child(1):hover)~span.commoditys>span.commodity-list-box:nth-child(1),
           &:has(a:nth-child(2):hover)~span.commoditys>span.commodity-list-box:nth-child(2),
           &:has(a:nth-child(3):hover)~span.commoditys>span.commodity-list-box:nth-child(3),
@@ -159,17 +161,48 @@
           &:has(a:nth-child(6):hover)~span.commoditys>span.commodity-list-box:nth-child(6)
           {
               height:230px;
+              /* box-shadow: 0 2px 4px 0 #999999; */
+              transition: 0.5s;
+              z-index: 10;
+
+          }
+          &:hover~span.commoditys{
+              height:230px;
+              width: 100%;
               box-shadow: 0 2px 4px 0 #999999;
-              transition:0.3s 0.5s;
+              transition: 0.7s;
+              z-index: 9;
+
           }
 
 
           a{
             color: #333333;
-            margin-right: 20px;
+            display:inline-block;
+            padding-right:20px;
+            font-size:16px;
             &:hover{
               color: var(--mi-color);
             }
+          }
+        }
+        span.commoditys{
+          position: absolute;
+          top:100%;
+          left: 0;
+          z-index: 0;
+          background-color: #fff;
+          display: block;
+          height: 0;
+          box-shadow: 0 0px 0px 0 #999999;
+          transition:0.5s 0.7s;
+          overflow: hidden;
+          &:hover{
+            height:230px;
+              width: 100%;
+              box-shadow: 0 2px 4px 0 #999999;
+              transition: 0.7s;
+              z-index: 9;
 
           }
         }
@@ -179,17 +212,17 @@
           overflow: hidden;
           height: 0px;
           position: absolute;
-          top:100%;
+          top:0;
           left: 0;
           width: 100%;
           display: block;
-          transition:0s 0.5s;
-          /* background-color: #333; */
-          box-shadow: 0 0 0 0 #333333;
-          &:hover{
-            height:230px;
-            box-shadow: 0 2px 4px 0 #999999;
-            transition:0.5s 0s;
+          transition:0.5s 0.7s;
+          background-color: #fff;
+          z-index: 1;
+          li{
+            display: inline-block;
+            height: 226px;
+            z-index: 6;
           }
         }
         ul.commodity-list{
@@ -293,6 +326,7 @@
             display: none;
             line-height:30px;
             position: absolute;
+            background-color: #fff;
             top: 50PX;
             left: 0;
             border: 1px solid var(--mi-color);
@@ -311,7 +345,176 @@
         }
       }
     }
-    /**/
+
+    /*轮播图*/
+    div.loop-img{
+      width: var(--mi-widht);
+      height:460px;
+      margin: auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      /*radios*/
+      span.radios{
+        display: none;
+
+        &:has(input:nth-child(1):checked) ~span.imgs img:nth-child(1),
+        &:has(input:nth-child(2):checked) ~span.imgs img:nth-child(2),
+        &:has(input:nth-child(3):checked) ~span.imgs img:nth-child(3),
+        &:has(input:nth-child(4):checked) ~span.imgs img:nth-child(4),
+        &:has(input:nth-child(5):checked) ~span.imgs img:nth-child(5),
+        &:has(input:nth-child(6):checked) ~span.imgs img:nth-child(6),
+        {
+         opacity:1;
+        }
+
+        /*左右按钮*/
+        &:has(input:nth-child(1):checked) ~span.button>span:nth-child(1),
+        &:has(input:nth-child(2):checked) ~span.button>span:nth-child(2),
+        &:has(input:nth-child(3):checked) ~span.button>span:nth-child(3),
+        &:has(input:nth-child(4):checked) ~span.button>span:nth-child(4),
+        &:has(input:nth-child(5):checked) ~span.button>span:nth-child(5){
+          display: inline;
+        }
+
+        /*右下按钮*/
+        &:has(input:nth-child(1):checked) ~span.rounds-for-radio>label:nth-child(1),
+        &:has(input:nth-child(2):checked) ~span.rounds-for-radio>label:nth-child(2),
+        &:has(input:nth-child(3):checked) ~span.rounds-for-radio>label:nth-child(3),
+        &:has(input:nth-child(4):checked) ~span.rounds-for-radio>label:nth-child(4),
+        &:has(input:nth-child(5):checked) ~span.rounds-for-radio>label:nth-child(5){
+          background-color: #fff;
+        }
+
+
+
+      }
+
+
+      /*图片组*/
+      span.imgs{
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          opacity:0;
+          transition:1s;
+          height:460px;
+        }
+      }
+
+      /*左侧列表*/
+      ul.outer{
+
+        width: calc(var(--mi-widht) - 990px);
+        margin: 0;
+        padding: 20px 0 20px 0;
+        height: 100%;
+        background-color: #33333380;
+        list-style: none;
+        display: inline-flex;
+        flex-direction: column;
+        position: relative;
+        >li{
+          justify-content:space-between;
+          flex: 1;
+          color:white;
+          padding:0 1.5em ;
+          display: flex;
+          align-items:center;
+          &:hover{
+            background-color: var(--mi-color);
+            ul.inner {
+              display: grid;
+            }
+          }
+          &::after{
+            float: right;
+            content: "\e623";
+          }
+          /*隐藏菜单*/
+          ul.inner{
+            background-color: #fff;
+            color:#333333;
+            list-style: none;
+            padding: 0;
+            position: absolute;
+            left: 100%;
+            top:0px;
+            z-index: 15;
+            display: none;
+            height:460px;
+            grid-template-rows: repeat(6,1fr);
+            grid-template-columns: 248px;
+            grid-auto-flow: column;
+            grid-auto-columns: 248px;
+            box-shadow: 2px 5px 10px #66666650;
+            li{
+              display: flex;
+              width: 248px;
+              height: 75px;
+              align-items:center;
+              padding-left:2em;
+              gap:10px;
+              &:hover{
+              color: var(--mi-color);
+             }
+            }
+          }
+        }
+      }
+
+      /*右侧按钮*/
+      span.button{
+        display: block;
+        flex: 1;
+        span{
+          display:none;
+        }
+        label{
+          &:hover{
+            background-color: #66666650;
+            color:white;
+          }
+          font-size:45px;
+          display: inline-block;
+          text-align: center;
+          line-height:70px;
+          height: 70px;
+          width: 45px;
+          color: #999;
+        }
+        label.icon-lt{
+          float:left;
+        }
+
+        label.icon-gt{
+          float:right;
+        }
+      }
+
+      /*右下角radio*/
+      span.rounds-for-radio{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        /* flex: 0; */
+        margin:20px;
+        margin-right: 40px;
+        text-justify: 1em;
+        label{
+          border-radius: 999px;
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-color: #666;
+          border:2px solid #999;
+          margin:2px;
+        }
+      }
+      /**/
+    }
   </style>
 </head>
 <body>
@@ -677,7 +880,511 @@
           </span>
         </div>
       </header>
+
+      <!-- 轮播图 -->
+      <div class="loop-img">
+        <!-- 轮播图radios(隐藏) -->
+        <span class="radios">
+          <input type="radio" name="rs" id="r1" checked>
+          <input type="radio" name="rs" id="r2">
+          <input type="radio" name="rs" id="r3">
+          <input type="radio" name="rs" id="r4">
+          <input type="radio" name="rs" id="r5">
+        </span>
+
+        <!-- 图片组 -->
+        <span class="imgs">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ff81b5f29bd1681c0a2c6df883d14d38.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/46d41dd62cff2259e56e678205616e0f.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d859460cb0ef6bd5919675840a8bf5f4.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6b996f91f354815eb138d63f2e7e9391.jpg?w=2452&h=920" alt="">
+        </span>
+
+        <!-- 左侧列表 -->
+        <ul class="outer">
+          <li class="icon">
+            <span>手機       </span>
+            <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>电视       </span>
+            <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b91c9ef670fa1c12eddf23b209f9ff33.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>家电       </span>
+            <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>笔记本平板 </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>出行 穿戴  </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/943995e8d1b1a884e123aec25cc1f8b8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>耳机 音响  </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>健康 儿童  </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1a51257fb6eb34872a53eef92cc045a.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>生活 箱包  </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>只能 路由器</span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+          <li  class="icon">
+            <span>电源 配件  </span>
+             <ul class="inner">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90" alt="">
+                <span>文字描述</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!--右侧按钮 -->
+        <span class="button">
+          <span class="btg1">
+            <label for="r5" class="icon icon-lt"></label>
+            <label for="r2" class="icon icon-gt"></label>
+          </span>
+          <span class="btg2">
+            <label for="r1" class="icon icon-lt"></label>
+            <label for="r3" class="icon icon-gt"></label>
+          </span>
+          <span class="btg3">
+            <label for="r2" class="icon icon-lt"></label>
+            <label for="r4" class="icon icon-gt"></label>
+          </span>
+          <span class="btg4">
+            <label for="r3" class="icon icon-lt"></label>
+            <label for="r5" class="icon icon-gt"></label>
+          </span>
+          <span class="btg5">
+            <label for="r4" class="icon icon-lt"></label>
+            <label for="r1" class="icon icon-gt"></label>
+          </span>
+
+        </span>
+
+        <!--右下角radio -->
+        <span class="rounds-for-radio">
+         <label for="r1"></label>
+         <label for="r2"></label>
+         <label for="r3"></label>
+         <label for="r4"></label>
+         <label for="r5"></label>
+        </span>
+      </div>
+
     </main>
+
+
 
   </div>
   <!-- less -->
