@@ -97,8 +97,8 @@
 .icon-shopping-car:before {
   content: "\e60c";
 }
-
-.icon-:before {
+/*企业团购*/
+.icon-groupsshop:before {
   content: "\e60d";
 }
 
@@ -225,8 +225,8 @@
 .icon-:before {
   content: "\e62c";
 }
-
-.icon-:before {
+/*保障服务*/
+.icon-heart:before {
   content: "\e62d";
 }
 
@@ -297,8 +297,8 @@
 .icon-:before {
   content: "\e63e";
 }
-
-.icon-:before {
+/*fma*/
+.icon-fma:before {
   content: "\e63f";
 }
 
@@ -325,24 +325,24 @@
 .icon-:before {
   content: "\e903";
 }
-
-.icon-:before {
+/*换新*/
+.icon-oldtonew:before {
   content: "\e904";
 }
 
 .icon-:before {
   content: "\e905";
 }
-
-.icon-:before {
+/*密封卡*/
+.icon-mifans:before {
   content: "\e906";
 }
 
 .icon-:before {
   content: "\e907";
 }
-
-.icon-:before {
+/*充话费*/
+.icon-phonemoney:before {
   content: "\e908";
 }
 
