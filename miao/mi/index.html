@@ -603,13 +603,7 @@
               text-align:center;
               vertical-align:-3px;
             }
-            &:hover{
-              color:var(--mi-color);
-              i:before{
 
-                background-color:var(--mi-color);
-              }
-            }
         }
       }
 
@@ -661,7 +655,7 @@
 
       }
 
-      /*第一个商品列表*/
+      /*第一个商品列表   grid*/
       div.commodity-lists1>ul{
         display: grid;
         gap:9px;
@@ -674,7 +668,101 @@
         width: 100%;
         place-items:center;
       }
+      div.commodity-lists1>div.title>span.right-msg&:hover{
+              color:var(--mi-color);
+              i:before{
 
+                background-color:var(--mi-color);
+              }
+            }
+
+      /*第er个商品列表   float*/
+      div.commodity-lists2{
+        /*热门 电视莹莹*/
+        div.title>span.right-msg{
+            float:right;
+            color:#666;
+            span{
+              transition: 0s 666s;
+            }
+            >span:hover{
+              color:var(--mi-color);
+              border-bottom:var(--mi-color) 2px solid ;
+              transition: 0s ;
+            }
+
+        }
+
+        /*ul列表*/
+        >ul{
+        display: block;
+        margin-left: 0px;
+        height: 618px;
+        width: 100%;
+        li{
+          margin-left:12px;
+          margin-bottom:12px;
+          display: inline-block;
+          float:left;
+        }
+        li:nth-child(1){
+          margin-left: 0;
+          height: 100%;
+          width:235px ;
+        }
+        li:nth-child(n+2){
+          width: 235px;
+          height:305px;
+        }
+        /*最後第二小塊*/
+        li:nth-last-child(2){
+          width: 235px;
+          height: 147px;
+          text-align:left;
+          padding:20px;
+          padding-top: 40px;
+          img{
+            width: 80px;
+            height: 80px;
+            float:right;
+            margin: 0;
+          }
+          span:nth-of-type(1){
+            line-height: 25px;
+            font-size: 16px;
+          }
+          span:nth-of-type(2){
+            line-height: 40px;
+            font-size: 14px;
+            color:var(--mi-color);
+          }
+        }
+
+         /*浏览更多*/
+        li.seemore{
+          text-align:left;
+          padding:20px;
+          padding-top: 40px;
+          width: 235px;
+          height: 146px;
+          i{
+            float: right;
+            font-size:60px;
+            color:var(--mi-color);
+          }
+          span:nth-of-type(1){
+            line-height: 30px;
+            font-size: 20px;
+          }
+          span:nth-of-type(2){
+            line-height: 40px;
+            font-size: 14px;
+            color:var(--mi-color);
+          }
+        }
+
+        }
+      }
 
     }
   </style>
@@ -1650,6 +1738,78 @@
             </li>
           </ul>
         </div>
+
+        <!-- 第二个商品列表 -->
+        <div class="commodity-lists2">
+            <!-- 标题栏 -->
+            <div class="title">
+              <span class="left-msg">手机</span>
+              <span class="right-msg">
+                <span>热门</span>
+                <span>电视影音</span>
+              </span>
+            </div>
+            <!-- 展示列表 -->
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c9550c95ee33a22dc8db677dada00f09.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0b271a074e087848357aa61ae665b214.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0b271a074e087848357aa61ae665b214.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202210191430_3ad0e4809ce06a126dea9755adbb2a1b.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11570d5371f16d2d9b19f504e09d01f0.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202111052007_e8e92e67988ebaff6e075412a54c3c66.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205241527_fb27e27e6587254da27de5ba9c889512.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202209261427_67cd5fddb341f0e0fb0a2295e643b0d8.png?thumb=1&w=100&h=100&f=webp&q=90" alt="">
+                <span>Redmi  高通骁龙 极速版</span><br>
+                <span>1699元起</span>
+              </li>
+              <li class="seemore">
+                <i class="icon icon-right"></i>
+                <span>浏览更多</span><br>
+                <span>热门</span>
+              </li>
+            </ul>
+        </div>
+
+
       </div>
     </div>
 
