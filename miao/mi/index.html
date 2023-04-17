@@ -683,31 +683,69 @@
         div.title>span.right-msg{
             float:right;
             color:#666;
-
-            /*011*/
-            span:hover{
+            span.s1{
               color:var(--mi-color);
-              transition: 0s ;
+              transition: 0s 666s;
+            }
+            /*021*/
+            span.s1:hover{
+              color:var(--mi-color);
+              transition: none ;
+            }
+            /*021*/
+            span.s2:hover{
+              color:var(--mi-color);
+              transition: none ;
             }
             /*001*/
             span{
               transition: 0s 666s;
             }
+            /*022*/
             span.s1:hover~span{
               transition: none;
             }
+            /*032*/
             &:has(span.s2:hover) span.s1{
+              color:#666;
               transition: none;
             }
+
+            /*切换目录*/
+
+
+        }
+        /*切换列表*/
+        &:has(div.title span.s1:hover) {
+              ul.u1{
+                display: block;
+              }
+              ul.u2{
+                display: none;
+              }
+            }
+        &:has(span.s2:hover) {
+          ul.u2{
+                display: block;
+                transition: none;
+              }
+          ul.u1{
+            display: none;
+            transition: none;
+          }
+        }
+        ul.u1{
+          display: block;
 
         }
 
         /*ul列表*/
         >ul{
-        display: block;
+        display: none;
         margin-left: 0px;
         height: 618px;
         width: 100%;
+        transition: 0s 9999s;
         li{
           margin-left:12px;
           margin-bottom:12px;
@@ -1759,7 +1797,7 @@
               </span>
             </div>
             <!-- 展示列表 -->
-            <ul>
+            <ul class="u1">
               <li>
                 <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c9550c95ee33a22dc8db677dada00f09.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
               </li>
@@ -1810,6 +1848,59 @@
                 <span>Redmi  高通骁龙 极速版</span><br>
                 <span>1699元起</span>
               </li>
+              <li class="seemore">
+                <i class="icon icon-right"></i>
+                <span>浏览更多</span><br>
+                <span>热门</span>
+              </li>
+            </ul>
+            <ul class="u2">
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c9550c95ee33a22dc8db677dada00f09.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205240036_9a8fbf274c0d419c5a0a49ef67cdd7c8.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205240036_9a8fbf274c0d419c5a0a49ef67cdd7c8.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202204211417_27356c02de718e88afd3cf36eaba8097.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208102330_fec8af4d5861f2c0a3fea2b8879ae859.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212271410_3e10e7156a846f5a8e101770602dc123.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212270226_d6ccc0602cb832e8fa523af78bf824f5.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
+
               <li class="seemore">
                 <i class="icon icon-right"></i>
                 <span>浏览更多</span><br>
