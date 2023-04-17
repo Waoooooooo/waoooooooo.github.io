@@ -668,27 +668,36 @@
         width: 100%;
         place-items:center;
       }
-      div.commodity-lists1>div.title>span.right-msg&:hover{
-              color:var(--mi-color);
-              i:before{
-
-                background-color:var(--mi-color);
-              }
-            }
+      div.commodity-lists1 span.right-msg{
+        &:hover{
+          color:var(--mi-color);
+          i::before{
+            background-color: var(--mi-color);
+          }
+        }
+      }
 
       /*第er个商品列表   float*/
       div.commodity-lists2{
-        /*热门 电视莹莹*/
+        /*热门 电视*/
         div.title>span.right-msg{
             float:right;
             color:#666;
+
+            /*011*/
+            span:hover{
+              color:var(--mi-color);
+              transition: 0s ;
+            }
+            /*001*/
             span{
               transition: 0s 666s;
             }
-            >span:hover{
-              color:var(--mi-color);
-              border-bottom:var(--mi-color) 2px solid ;
-              transition: 0s ;
+            span.s1:hover~span{
+              transition: none;
+            }
+            &:has(span.s2:hover) span.s1{
+              transition: none;
             }
 
         }
@@ -1745,8 +1754,8 @@
             <div class="title">
               <span class="left-msg">手机</span>
               <span class="right-msg">
-                <span>热门</span>
-                <span>电视影音</span>
+                <span class="s1">热门</span>
+                <span class="s2">电视影音</span>
               </span>
             </div>
             <!-- 展示列表 -->
