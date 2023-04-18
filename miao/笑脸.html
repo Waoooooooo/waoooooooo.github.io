@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    *{
+
+ margin:0;
+
+}
+html,body{
+ height: 100%;
+}
+svg{
+ border-radius: 15161px;
+ border : 1px solid rgba(30,30,30);
+ width: 300px;
+ height: 300px;
+ background-color: #fff;
+}
+
+div{
+ height: 100%;
+ width: 100%;
+ display: flex;
+
+}
+
+svg.round{
+ margin: auto;
+ transform:scale(2.0) rotate(0deg);
+}
+svg.smile{
+ transform:scale(0.5) ;
+}
+span{
+  position: absolute;
+ left:518px;
+ top:320px;
+ transform-origin:437px 157px;
+}
+div:hover svg.round{
+  transition:10s;
+   transform:scale(2.0) rotate(720deg);
+}
+div:hover svg.smile{
+ transition:10s;
+ transform:scale(0.5) rotate(-720deg);
+}
+div:hover span{
+  transition:10s;
+ transform: rotate(720deg);
+}
+h1{
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  color: black;
+  text-align: center;
+  font-size: 70px;
+  line-height:100px ;
+}
+
+
+  </style>
+</head>
+<body>
+  <h1>家人们,无语啦!</h1>
+  <div>
+    <h1>家人们,无语啦!</h1>
+    <svg class="round">
+    <path  stroke="orangered" fill="white" stroke-width="4"
+       d="M150,0A150,150,0,1,1,0,150
+                A150,150,0,0,1,150,0
+           M150,150L20,150 " ></path>
+    </svg>
+    <span>
+            <svg  class="smile">
+    <path  stroke="white" fill="orangered" stroke-width="4"
+       d="M150,0A150,150,0,1,1,0,150
+                A150,150,0,0,1,150,0
+                M45,130A30,30,0,1,1,125,130
+                M175,130A30,30,0,1,1,255,130
+                M80,200A30,30,0,1,0,216,200" ></path>
+    <path d="M266,94Q260 150,280 150
+                M266,94Q290 120,280 150" fill="white" stroke-width="4"></path>
+  </svg>
+</span>
+
+  </div>
+
+
+</body>
+</html>

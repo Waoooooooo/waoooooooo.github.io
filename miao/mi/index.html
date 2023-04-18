@@ -573,6 +573,7 @@
     /*灰色背景部分*/
     div.commodity-lists{
       background-color: #F5F5F5;
+      height:4500px;
       /*灰色部分中间内容盒子*/
       div.box{
         width: var(--mi-widht);
@@ -611,6 +612,8 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        background-color: #F5F5F5;
+
         li{
           height: 100%;
           background-color: #fff;
@@ -718,7 +721,7 @@
         /*切换列表*/
         &:has(div.title span.s1:hover) {
               ul.u1{
-                display: block;
+                z-index: 10;
               }
               ul.u2{
                 display: none;
@@ -726,7 +729,7 @@
             }
         &:has(span.s2:hover) {
           ul.u2{
-                display: block;
+                z-index: 10;
                 transition: none;
               }
           ul.u1{
@@ -736,15 +739,17 @@
         }
         ul.u1{
           display: block;
-
+          z-index: 10;
         }
 
         /*ul列表*/
         >ul{
-        display: none;
+        position: absolute;
+        display: block;
+        z-index: -10;
         margin-left: 0px;
         height: 618px;
-        width: 100%;
+        width: var(--mi-widht);
         transition: 0s 9999s;
         li{
           margin-left:12px;
@@ -1854,6 +1859,7 @@
                 <span>热门</span>
               </li>
             </ul>
+
             <ul class="u2">
               <li>
                 <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c9550c95ee33a22dc8db677dada00f09.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
@@ -1900,7 +1906,12 @@
                 <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
                 <span>1699元起</span>
               </li>
-
+               <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212270226_d6ccc0602cb832e8fa523af78bf824f5.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span><br>
+                <span>高通骁龙778G，OLED柔性直屏+一亿像素</span><br>
+                <span>1699元起</span>
+              </li>
               <li class="seemore">
                 <i class="icon icon-right"></i>
                 <span>浏览更多</span><br>
