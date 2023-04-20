@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Document</title>
+  <style>
+    html,body{
+      margin:0;
+      font-size: calc(100vw / 720 * 100);
+      min-width: 670px;
+    }
+    div.foo{
+      width: 7.2rem;
+      padding-top:0.13rem;
+      line-height: 0.62rem;
+      background-color: #F2F2F2;
+    }
+    span{
+      font-size:0;
+
+    }
+    span>img{
+      margin-top: 0.08rem;
+      margin-right: 0.25rem;
+      margin-left: 0.25rem;
+      width: 0.50rem;
+      height: 0.50rem;
+      vertical-align: top;
+    }
+    span.search>input{
+        width: 5.22rem;
+        height:0.62rem;
+        display: inline-block;
+        vertical-align: top;
+        font-size: .30rem;
+        text-indent: 1em;
+      }
+      span.user>img{
+      margin-right: .15rem;
+      margin-left: .15rem;
+      width: .50rem;
+      height: .50rem;
+      vertical-align: top;
+    }
+    div.menu{
+      font-size: .27rem;
+      color:#757172;
+      display: flex;
+      padding-left: .78rem;
+      justify-content: space-between;
+      height: .66rem;
+    }
+    div.menu>span{
+      box-sizing: border-box;
+      height:100%;
+
+      line-height: .64rem;
+    }
+    label:first-child{
+      color: #FE6800;
+      border-bottom:  0.04rem solid;
+    }
+
+    div.menu:has(label:hover) label{
+      color:#757172;
+      border-bottom:none;
+    }
+    div.menu>label.lb:hover{
+      color: #FE6800;
+      border-bottom:  0.04rem solid;
+
+    }
+    div.loopimg{
+
+    }
+    div.loopimg>img{
+
+      height: 3.60rem;
+      width: 7.20rem;
+      display: none;
+
+    }
+    input[type="radio"]:checked+*+*+*+*+*{
+      display: inline-block;
+    }
+    input[type="radio"]{
+      display: none;
+    }
+    div.container{
+      display: flex;
+      width: 7.20rem;
+      height: 3.10rem;
+      flex-wrap: wrap;
+
+    }
+    div.container>div{
+      width: 20%;
+      height: 1.55rem;
+      box-sizing: border-box;
+      border:0.01rem solid;
+      font-size: 0.15rem;
+      text-align: center;
+
+    }
+    div.container2{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      grid-auto-rows: 2.6rem;
+      font-size: 0.25rem;
+    }
+    div.container2>div{
+      border:0.01rem solid;
+
+    }
+    div.org{
+      position:fixed;
+      bottom: 1.20rem;
+      left: ;
+      border:0.01rem solid;
+      width: 2.70rem;
+      height: 0.73rem;
+      border-radius: 0.2rem;
+      background-color: #FE6800;
+      color: #F2F2F2;
+      font-size: 0.24rem;
+      text-align: center;
+      font-weight: 1000;
+      left: calc(3.6rem - 1.35rem);
+    }
+    div.org+div{
+      position:fixed;
+      bottom: 0;
+      width: 7.2rem;
+      height: 0.9rem;
+      line-height: 0.9rem;
+      background-color: #fff;
+      display: flex;
+    }
+    div.org+div>span{
+      border:0.01rem solid;
+      flex:1;
+      font-size: 0.4rem;
+      color: #757172;
+      text-align: center;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="foo">
+    <span class="logo">
+      <img src="milogo.png" alt="">
+    </span>
+    <span class="search">
+      <input type="text" placeholder="O.o?  搜索商品名称">
+    </span>
+    <span class="user">
+      <img src="ps.png" alt="">
+    </span>
+    <div class="menu">
+      <label class="lb" for="r1">推荐</label>
+      <label class="lb" for="r2">只能</label>
+      <label class="lb" for="r3">电视</label>
+      <label class="lb" for="r4">家电</label>
+      <label class="lb" for="r5">笔记本</label>
+      <span class="last">更多>></span>
+    </div>
+    <div class="loopimg">
+      <input type="radio" name="a" id="r1" checked>
+      <input type="radio" name="a" id="r2">
+      <input type="radio" name="a" id="r3">
+      <input type="radio" name="a" id="r4">
+      <input type="radio" name="a" id="r5">
+      <img src="./lp.png" alt="">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/46d41dd62cff2259e56e678205616e0f.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1e7a87a36883878799ee3238d07c8d4.jpg?w=2452&h=920" alt="">
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d859460cb0ef6bd5919675840a8bf5f4.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+    </div>
+    <div class="container">
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+      <div>米家</div>
+    </div>
+    <div class="container2">
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+    </div>
+    <div class="footer">
+      <div class="org">来APP领礼包</div>
+      <div>
+        <span>首页</span>
+        <span>分类</span>
+        <span>米圈</span>
+        <span>购物车</span>
+        <span>我的</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

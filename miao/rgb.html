@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔方</title>
+  <style>
+    html,body{
+      height: 100%;
+      perspective:1000px;
+      /*视角不能写在会动的元素上*/
+    }
+    div div{
+      display: block;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows: repeat(3,1fr);
+      height: 300px;
+      width: 300px;
+      margin: auto;
+      position: absolute;
+      transform-style:preserve-3d;
+      /* backface-visibility: hidden; */
+      /* transform-style:preserve-3d; */
+      background-blend-mode: exclusion;
+
+    }
+    div span{
+      border: 1px solid;
+    }
+   div.container{
+    position: absolute;
+    inset:0;
+    margin: auto;
+    height: 300px;
+    width: 300px;
+
+    transform-style:preserve-3d;
+    perspective-origin: ;
+
+
+    transition: 5s;
+    transform:rotatey(-45deg) ;
+   }
+   div.container:hover{
+    transform:rotateX(-45deg) rotateY(405DEG)  ;
+   }
+   div.container:active{
+    transform:rotateX(450deg) rotateY(45DEG);
+   }
+   /*上面*/
+   div.sm{
+    transform:translateY(-150px) rotateX(90deg) ;
+    background:
+    linear-gradient(270deg,rgb(0,0,255),rgba(0,0,0)),
+    linear-gradient(180deg,rgba(0,0,0),rgb(255,0,0)),
+     linear-gradient(rgb(0,255,0),rgba(0,255,0));
+   }
+     /*下面*/
+   div.xm{
+    transform:translateY(150px) rotateX(-90deg) ;
+    background:
+    linear-gradient(180deg, rgba(255,0,0) , rgba(0,0,0)),
+     linear-gradient(90deg,rgba(0,0,0),rgb(0,0,255));
+
+   }
+   /*左面*/
+   div.zm{
+    transform:translateX(-150px) rotate3d(0, 1 , 0,-90deg) ;
+    background:
+     linear-gradient(180deg, rgba(0,255,0) , rgba(0,0,0)),
+     linear-gradient(90deg,rgba(0,0,0),rgb(255,0,0));
+   }
+    /*右面*/
+   div.ym{
+    transform:translateX(150px) rotate3d(0, 1 , 0,90deg) ;
+    background:
+    linear-gradient(90deg,rgb(255,0,0),rgba(0,0,0)),
+     linear-gradient(180deg, rgba(0,255,0) , rgba(0,0,0)),
+     linear-gradient(rgb(0,0,255),rgba(0,0,255));
+   }
+   div.bm{
+    transform:translateZ(-150px) rotate3d(0,1,0,180deg);
+    background:
+    linear-gradient(180deg, rgba(0,255,0) , rgba(0,0,0)),
+     linear-gradient(90deg,rgb(0,0,255),rgba(0,0,0));
+   }
+   div.zhenm{
+    transform:translateZ(150px);
+    background:
+    linear-gradient(rgba(255,0,0) ,rgba(255,0,0)),
+     linear-gradient(180deg, rgba(0,255,0) , rgba(0,0,0)),
+     linear-gradient(270deg,rgb(0,0,255),rgba(0,0,0));
+   }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="zhenm">
+     <div>
+      <div></div>
+     </div>
+    </div>
+    <div class="sm">
+      <div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="xm">
+      <div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+    <div class="bm">
+      <div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+    <div class="zm">
+      <div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+    <div class="ym">
+      <div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+</html>
