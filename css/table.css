@@ -1,0 +1,55 @@
+/*.table  让表格变成bs样式的表格*/
+.table {
+  /*初始状态*/
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+.table tr {
+  border-bottom: 1px solid gray;
+}
+.table td,
+.table th {
+  padding: 20px;
+  text-align: left;
+}
+/*黑暗模式*/
+.table-dark tr {
+  background-color: black;
+  color: white;
+}
+/*双色模式*/
+.table-striped {
+  /**/
+  font-color: black;
+}
+.table-striped tr:nth-child(2n+1) :is(td,th) {
+  background-color: #d7d7d780;
+}
+.table-striped tr:nth-child(2n+2) :is(td,th) {
+  background-color: #ffffff80;
+}
+.table-striped thead tr:nth-child(2n+1) th {
+  background-color: #ffffff80;
+}
+.table-striped thead tr:nth-child(2n+2) th {
+  background-color: #d7d7d780;
+}
+/*高亮选中行*/
+.table-hover tr:hover:hover:hover:hover td {
+  background-color: #6a696980;
+}
+.table-hover tr:hover th {
+  background-color: #6a696980;
+}
+/*表格边框*/
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid gray;
+}
+/*small*/
+.table-sm td,
+.table-sm th {
+  padding: 10px;
+  text-align: left;
+}
