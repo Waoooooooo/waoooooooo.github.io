@@ -1,10 +1,24 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4032193 */
+  src: url('../icon/iconfont.ttf') format('truetype');
+}
+.icon {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
 :root {
-  --main-width: 1228px;
+  --main-width: 1128px;
 }
 html,body {
   margin: 0;
   height:100%;
-  background-color: #F1F3F4;
+  background-color: #DEE1E6;
+
 }
 
 * {
@@ -20,19 +34,90 @@ p{
 h2{
   color:#333;
 }
+
+
+
+
+//svg动画
+svg {
+  path.s0{
+    fill: none;stroke: #e06f6f;stroke-width: 40 ;
+    stroke-dasharray:800,800;
+    stroke-dashoffset: 0;
+    animation: flow1;
+    animation-duration:10s;
+    animation-iteration-count:infinite;
+    animation-timing-function:ease-in-out;
+  }
+  path.s1{
+
+    fill: none;stroke: #e06f6f;stroke-width: 122;
+    stroke-dasharray:800,800;
+    stroke-dashoffset: 0;
+    animation: flow2;
+    animation-duration:10s;
+    animation-iteration-count:infinite;
+    animation-timing-function:ease-in-out;
+  }
+}
+@keyframes  flow1{
+  0%{
+    stroke-dasharray:0,100%;
+    stroke-dashoffset: 0;
+    fill: white;
+  }
+  50%{
+    stroke-dasharray:100%,0;
+    stroke-dashoffset: 100%;
+    fill: #e06f6f
+  }
+
+  100%{
+    stroke-dasharray:0,100%;
+    stroke-dashoffset: 200%;
+    fill: white;
+  }
+}
+
+
+@keyframes  flow2{
+  0%{
+    stroke-dasharray:0,100%;
+    stroke-dashoffset: 0;
+  }
+  35%{
+    stroke-dasharray:100%,0;
+    stroke-dashoffset: 100%;
+  }
+
+  65%{
+    stroke-dasharray:100%,0;
+    stroke-dashoffset: 100%;
+  }
+  100%{
+    stroke-dasharray:0,100%;
+    stroke-dashoffset: 200%;
+  }
+}
+
+
 div.container{
   height:100%;
-
+  background: url(/img/123.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
+
+
 
 
 
 div.header {
   position: fixed;
-
+  z-index: 10;
   width: 100%;
   background-color: #FFFFFF;
-  box-shadow: #99999950 0px 2px 5px;
+  box-shadow: #99999950 0px 0px 5px 2px;
   div.header-inner {
     display: flex;
     width: var(--main-width);
@@ -40,7 +125,7 @@ div.header {
     height: 60px;
     color: #000;
 
-    div {
+    div.right {
       display: flex;
       height: 100%;
       >span {
@@ -81,7 +166,6 @@ div.header {
               transition: 0.5s;
               transform: scaleY(12);
             }
-
           }
         }
       }
@@ -97,16 +181,21 @@ div.header {
 }
 
 div.main-container {
+  position: relative;
+  z-index: 1;
   height: 100%;
   overflow-y: scroll;
   padding-top: 60px;
+
 }
 
 div.main {
-  background-color: #fff;
+  // background-color: #fff;
   width: var(--main-width);
 
-
+  background: rgba(255, 255, 255, .3);
+  box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .6);
+  backdrop-filter: blur(30px);
   margin: auto;
 
   padding: 40px;
@@ -125,7 +214,7 @@ div.main {
         border-radius: 10000px;
       }
       h1{
-
+        flex:1;
         font-family: Comic Sans MS;
       }
     }
@@ -133,11 +222,13 @@ div.main {
       font-size: 1.3em;
       margin-left:40px;
       flex: 1;
+
       >div {
+        font-size: 16px;
         color:#444;
         float: left;
-        margin-right: 70px;
         line-height: 40px;
+        margin-right: 40px ;
         b {
           margin-right: 20px;
         }
@@ -148,6 +239,7 @@ div.main {
 
   //作品集
   div.works-list {
+
     padding-top: 60px;
     //作品集左右字样
     >div.works-list-header {
@@ -174,6 +266,7 @@ div.main {
         height: 500px;
         border-radius: 25px;
         background-color: #fff;
+        box-shadow: #99999950 0px 3px 10px;
         &:hover{
           outline: rgb(249, 192, 69) 5px  solid;
         }
@@ -193,7 +286,7 @@ div.main {
           }
           span.tag{
             padding: 5px 20px;
-            background-color:rgb(239, 238, 238);
+            background-color:rgb(250, 220, 155);
             box-shadow: 1px 3px 3px #99999950;
             border-radius: 3px;
             &:hover{
@@ -237,12 +330,21 @@ div.main {
       border-bottom: 1px solid gray;
       height: 140px;
       z-index: 2;
+      i {
+        font-size: 40px;
+      }
       &:hover{
         color: rgb(236, 236, 236);
         transition: 0.3s ;
+        i{
+          color:rgb(236, 236, 236);
+        }
       }
       &:first-child{
         color: rgb(236, 236, 236);
+        i{
+          color:rgb(236, 236, 236);
+        }
       }
     }
     td,th {
@@ -265,6 +367,9 @@ div.main {
       }
       tr:not(:nth-child(2)){
         color:black;
+        i{
+          color:black;
+        }
       }
     }
     table:has(tr:nth-child(3):hover){
@@ -273,6 +378,9 @@ div.main {
       }
       tr:not(:nth-child(3)){
         color:black;
+        i{
+          color:black;
+        }
       }
     }
     table:has(tr:nth-child(4):hover){
@@ -281,6 +389,9 @@ div.main {
       }
       tr:not(:nth-child(4)){
         color:black;
+        i{
+          color:black;
+        }
       }
     }
     table:has(tr:nth-child(5):hover){
@@ -289,6 +400,9 @@ div.main {
       }
       tr:not(:nth-child(5)){
         color:black;
+        i{
+          color:black;
+        }
       }
     }
   }
@@ -310,6 +424,8 @@ div.cxk{
   transform: scale(0.4);
   transform-origin: right;
 }
+
+
 
 
 
