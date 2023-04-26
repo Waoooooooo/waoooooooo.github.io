@@ -211,20 +211,16 @@ console.log(a+b)
 
 <script id="ch0104/09" type="123">
   //9.判断一个数n 能否同时357
-  // 1、能同时被3，5，7整除（直接输出3 5 7，每个数中间一个空格）；
-  // 2、只能被其中两个数整除（输出两个数，小的在前，大的在后。例如：3 5或者 3 7或者5 7,中间用空格分隔）；
-  // 3、只能被其中一个数整除（输出这个除数）；
-  // 4、不能被任何数整除，输出小写字符‘n’,不包括单引号。
   var n = prompt("n")
-  function fn( 因数) {
-    if (n% 因数 == 0) {
+  function fn(n, 因数) {
+    if (n % 因数 == 0) {
       console.log(因数)
     }
   }
   if (n % 3 == 0 || n % 5 == 0 || n % 7 == 0) {
-    fn(3)
-    fn(5)
-    fn(7)
+    fn(n,3)
+    fn(n,5)
+    fn(n,7)
   } else {
     console.log(n)
   }
@@ -276,7 +272,7 @@ console.log(a+b)
   //13.y=-x+2.5;
   //y=2-1.5(x-3)(x-3); 5 <= x < 10
   //y=x/2-1.5; 10 <= x < 20 保留到小数点后三位。
-  var n= prompt("n")
+  var x= prompt("x")
   var y = 0;
   if(0 <= x &&x< 5){
     y=-x+2.5
@@ -355,32 +351,20 @@ var y= prompt("y")*1
 
 console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
 </script>
-
-<script id="ch0104/18" type="123">
-  //18.有一个正方形，四个角的坐标（x,y)分别是
-  //（1，-1），（1，1），（-1，-1），（-1，1），x是横轴，y是纵轴。
-  //   写一个程序，判断一个给定的点是否在这个正方形内（包括正方形边界）
-  //
-  //x<=1,x>=-1 x<=1,x>=-1
-  var x= prompt("x")*1
-  var y= prompt("y")*1
-
-  console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
-  </script>
-  <script id="ch0104/19"  type="123">
+  <script id="ch0104/19"  >
     //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
     //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
 
     var x= prompt("x")*1
     var y= prompt("y")*1
     var o= prompt("o")
-
+    debugger
     switch(o){
       case ("*"):
         console.log(x*y)
         break
       case("/"):
-        console.log(x/y)
+        console.log((x/y).toFixed(0))
         break
       case("+"):
         console.log(x+y)
@@ -395,8 +379,7 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
 
     </script>
     <script id="ch0104/21"  type="132">
-      //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
-      //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
+
 
       var n= prompt("n")*1
       var x= prompt("x")*1
