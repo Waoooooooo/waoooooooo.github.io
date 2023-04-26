@@ -96,7 +96,7 @@ console.log(a+b)
 
   console.log(Math.ceil(20/一桶水多少升))
 </script>
-<script id="ch0103/15" type="123"  >
+<script id="ch0103/15" type="123">
   //15 你买了一箱n个苹果，很不幸的是买完时箱子里混进了一条虫子。
   //虫子每x小时能吃掉一个苹果，假设虫子在吃完一个苹果之前不会吃另一个，
   //那么经过y小时你还有多少个完整的苹果？
@@ -149,3 +149,259 @@ console.log(a+b)
   var n = prompt("n")*1
   console.log(2**n)
 </script>
+
+
+
+<script id="ch0104/01" type="123">
+  //1 给定一个整数N，判断其正负。
+  var n = prompt("n")*1
+  console.log(n > 0 ? "positive"  : (n == 0 ? "zero ": "negative"))
+</script>
+
+<script id="ch0104/02" type="123">
+  //2.输入一个浮点数，输出这个浮点数的绝对值。
+  var n = prompt("n")*1
+  console.log(n >=  0 ? n  : n * -1)
+</script>
+
+<script id="ch0104/03" type="123">
+  //3.给定一个整数，判断该数是奇数还是偶数。
+  var n = prompt("n大于零")*1
+  var IsEven = function(x){
+    return x>2 ? IsEven(x-2): x == 2//x>2则继续-2 x<=2则将x==2的结果返回
+  }
+  console.log(IsEven(n)?"even":"odd")
+</script>
+
+<script id="ch0104/04" type="123">
+  //4.奇偶ASCII值判断
+  var n = prompt("一个字符")
+      n = n.charCodeAt(0)
+  var IsEven = function(x){
+    return x>2 ? IsEven(x-2): x == 2
+  }
+  console.log(IsEven(n)?"NO":"YES")
+</script>
+
+<script id="ch0104/05" type="123">
+  //5.输入两个整数，比较它们的大小
+  var a = prompt("整数a")
+  var b = prompt("整数b")
+  console.log(a>b ? ">" : a<b ? "<": "=")
+</script>
+
+<script id="ch0104/06" type="123">
+  //6.判断一个正整数是否是两位数（即大于等于10且小于等于99）。
+  var a = prompt("正整数")
+  console.log((a < 100 && a >= 10 )? 1:0)
+</script>
+
+<script id="ch0104/07" type="123">
+  //7.判断一个正整数是否是两位数（即大于等于10且小于等于99）。
+  var 幸运 = prompt("幸运")
+  var 鼓励 = prompt("鼓励")
+  console.log((幸运 >= 10 || 鼓励 >= 20 )? 1:0)
+</script>
+
+<script id="ch0104/08" type="123">
+  //8.判断一个数n 能否同时被3和5整除
+  var n = prompt("n")
+  console.log(n%3==0 && n%5 ==0?"YES":"NO")
+</script>
+
+<script id="ch0104/09" type="123">
+  //9.判断一个数n 能否同时357
+  // 1、能同时被3，5，7整除（直接输出3 5 7，每个数中间一个空格）；
+  // 2、只能被其中两个数整除（输出两个数，小的在前，大的在后。例如：3 5或者 3 7或者5 7,中间用空格分隔）；
+  // 3、只能被其中一个数整除（输出这个除数）；
+  // 4、不能被任何数整除，输出小写字符‘n’,不包括单引号。
+  var n = prompt("n")
+  function fn( 因数) {
+    if (n% 因数 == 0) {
+      console.log(因数)
+    }
+  }
+  if (n % 3 == 0 || n % 5 == 0 || n % 7 == 0) {
+    fn(3)
+    fn(5)
+    fn(7)
+  } else {
+    console.log(n)
+  }
+</script>
+
+<script id="ch0104/10" type="123">
+  //10.给出一名学生的语文和数学成绩，
+  //判断他是否 恰 好有一门课不及格（成绩小于60分）。
+  var 语文 = prompt("语文")
+  var 数学 = prompt("数学")
+  var a = 0
+  if (语文<60){
+    a = 1
+  }
+   if (数学<60){
+    a += 1
+  }
+  if(a == 2 || a ==0){
+   console.log(0)
+  }else{
+   console.log(1)
+  }
+</script>
+
+<script id="ch0104/11" type="123">
+  //11.晶晶的朋友贝贝约晶晶下周一起去看展览，但晶晶每周的1、3、5有课必须上课，
+  //   请帮晶晶判断她能否接受贝贝的邀请，如果能输出YES；如果不能则输出NO。
+
+  var date = prompt("date")
+ if(date == 1|| date == 3 || date == 5){
+  console.log("NO")
+ }else{
+  console.log("YES")
+ }
+</script>
+
+<script id="ch0104/12" type="123">
+  //12.输入一行，包含一个整数，表示一次办事要行走的距离,单位为米。
+  //   输出一行,如果骑车快,输出一行"Bike";如果走路快,输出一行"Walk";
+  //   如果一样快,输出一行"All"。
+  var distance = prompt("distance")
+  var 骑车 = 50 + distance / 3
+  var 走路 = distance / 1.2
+  //骑车时间小于走路时间时  骑车块
+  console.log(骑车 < 走路 ?"Bike" : (骑车 == 走路 ? "All" : "Walk"))
+</script>
+
+<script id="ch0104/13" type="123">
+  //13.y=-x+2.5;
+  //y=2-1.5(x-3)(x-3); 5 <= x < 10
+  //y=x/2-1.5; 10 <= x < 20 保留到小数点后三位。
+  var n= prompt("n")
+  var y = 0;
+  if(0 <= x &&x< 5){
+    y=-x+2.5
+  }else if( 5 <= x &&x < 10){
+    y=2-1.5*(x-3)*(x-3)
+  }else if( 10 <= x&&x < 20){
+    y=x/2-1.5
+  }
+  console.log(y.toFixed(3))
+</script>
+
+<script id="ch0104/14" type="123">
+  //14 1.重量在1000克以内(包括1000克), 基本费8元。
+      //2.超过1000克的部分，每500克加收超重费4元
+      //3.不足500克部分按500克计算
+      //4.如果用户选择加急，多收5元。
+  var weigth= prompt("weigth")
+  var isFast= prompt("Fast?")
+  var money=0
+  money+=8
+  if(weigth>1000){
+    money+=Math.ceil((weigth-1000)/500) * 4
+  }
+  //4.如果用户选择加急，多收5元。
+  if (isFast =="y"){
+    money+=5
+  }
+  console.log(money)
+</script>
+
+<script id="ch0104/15" type="123">
+  //15.输入三个整数,输出最大的数。
+  var a= prompt("a")*1
+  var b= prompt("b")*1
+  var c= prompt("c")*1
+  console.log(a>b && a>c ? a : (b>a && b>c ? b: c))
+</script>
+
+<script id="ch0104/16" type="123">
+  //16.给定三个正整数，分别表示三条线段的长度，判断这三条线段能否构成一个三角形。
+  var a= prompt("a")*1
+  var b= prompt("b")*1
+  var c= prompt("c")*1
+  a+b>c && b+c > a && a+c >b ? console.log("yes"):console.log("no")
+</script>
+
+<script id="ch0104/17" type="123">
+  //17.公历纪年法中，能被4整除的大多是闰年，
+  //但能被100整除而不能被400整除的年份不是闰年，
+  //能被3200整除的也不是闰年，如1900年是平年，2000年是闰年，3200年不是闰年。
+  var year= prompt("year")*1
+  var flag =false;
+  if(year % 4 == 0 ){
+    flag = true
+  }
+  if(year % 100 == 0){
+    flag = false
+  }
+  if(year%400==0){
+    flag = true
+  }
+  if(year%3200 == 0){
+    flag= false
+  }
+  console.log(flag?"Y":"N")
+</script>
+
+<script id="ch0104/18" type="123">
+//18.有一个正方形，四个角的坐标（x,y)分别是
+//（1，-1），（1，1），（-1，-1），（-1，1），x是横轴，y是纵轴。
+//   写一个程序，判断一个给定的点是否在这个正方形内（包括正方形边界）
+//
+//x<=1,x>=-1 x<=1,x>=-1
+var x= prompt("x")*1
+var y= prompt("y")*1
+
+console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
+</script>
+
+<script id="ch0104/18" type="123">
+  //18.有一个正方形，四个角的坐标（x,y)分别是
+  //（1，-1），（1，1），（-1，-1），（-1，1），x是横轴，y是纵轴。
+  //   写一个程序，判断一个给定的点是否在这个正方形内（包括正方形边界）
+  //
+  //x<=1,x>=-1 x<=1,x>=-1
+  var x= prompt("x")*1
+  var y= prompt("y")*1
+
+  console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
+  </script>
+  <script id="ch0104/19"  type="123">
+    //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
+    //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
+
+    var x= prompt("x")*1
+    var y= prompt("y")*1
+    var o= prompt("o")
+
+    switch(o){
+      case ("*"):
+        console.log(x*y)
+        break
+      case("/"):
+        console.log(x/y)
+        break
+      case("+"):
+        console.log(x+y)
+        break
+      case("-"):
+        console.log(x-y)
+        break
+      default:
+        console.log("Invalid operator!")
+        break
+    }
+
+    </script>
+    <script id="ch0104/21"  type="132">
+      //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
+      //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
+
+      var n= prompt("n")*1
+      var x= prompt("x")*1
+      var y= prompt("y")*1
+      console.log(n- Math.ceil(y/x))
+
+
+      </script>
