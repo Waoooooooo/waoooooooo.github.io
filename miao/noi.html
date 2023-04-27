@@ -357,7 +357,7 @@ var x= prompt("x")*1
 var y= prompt("y")*1
 console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
 </script>
-<script id="ch0104/19"  type="123">
+<script id="ch0104/19" type="123">
     //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
     //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
 
@@ -376,7 +376,6 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
         }else{
           console.log((x/y).toFixed(0))
         }
-
         break
       case("+"):
         console.log(x+y)
@@ -388,13 +387,196 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
         console.log("Invalid operator!")
         break
     }
-
 </script>
-<script id="ch0104/21"  type="132">
+<script id="ch0104/21" type="132">
   var n= prompt("n")*1
   var x= prompt("x")*1
   var y= prompt("y")*1
   console.log(n- Math.ceil(y/x))
 </script>
 
+<script id="ch0105/01" type="123">
 
+  var n= prompt("n")*1
+  var count = 0 ;
+  var sum = 0;
+  while(count < n){
+    sum= sum + (prompt("成绩")*1)
+    count++
+  }
+  console.log((sum/n).toFixed(2))
+</script>
+
+
+<script id="ch0105/02" type="123">
+  var count = 0 ;
+  var sum = 0 ;
+  while(count < 12){
+    sum= sum + (prompt("工资")*1)
+    count++
+  }
+  console.log("$"+(sum/12).toFixed(2))
+</script>
+
+<script id="ch0105/03" type="123">
+  var size = prompt("样本量")*1 ;
+  var count = size
+  var sum =0
+  while(count){
+    sum= sum + (Math.abs(prompt()*1))
+    count --
+  }
+  console.log((sum/size).toFixed(4))
+</script>
+
+<script id="ch0105/04" type="123">
+  var size = prompt("样本量")*1 ;
+  var count = size
+  var sum =0
+  while(count){
+    sum= sum + (Math.abs(prompt()*1))
+    count --
+  }
+  console.log(sum)
+  console.log((sum/size).toFixed(5))
+</script>
+
+<script id="ch0105/05" type="123">
+  var size = prompt("样本量")*1 ;
+  var count = size
+  var max =0
+  var 成绩 =0
+
+  while(count){
+    成绩=prompt("成绩")*1
+    if(max < 成绩){
+      max=成绩
+    }
+    count --
+  }
+  console.log(max)
+</script>
+
+
+<script id="ch0105/06" type="123">
+  var size = prompt("样本量")*1 ;
+  var count = size
+  var max = -Infinity
+  var min = Infinity
+  //严谨做法 使用infinity 作为做大或最小值
+
+  var 非负整数 =0
+  while(count){
+    非负整数=prompt("非负整数")*1
+
+    if(max < 非负整数){
+      max=非负整数
+    }
+
+    if(min>非负整数){
+      min=非负整数
+    }
+    count --
+  }
+  console.log(max - min)
+</script>
+
+
+<script id="ch0105/07" type="123">
+  var size = prompt("天数")*1 ;
+  var count = 3
+
+  var 金牌 =0
+  var 银牌 =0
+  var 铜牌 =0
+  while(count){
+      金牌=金牌+prompt("金")*1
+      银牌=银牌+prompt("银")*1
+      铜牌=铜牌+prompt("铜")*1
+    count--
+  }
+
+  console.log(金牌)
+  console.log(银牌)
+  console.log(铜牌)
+  console.log(金牌+银牌+铜牌)
+</script>
+
+
+<script id="ch0105/08" type="123">
+  var size = prompt("边数")*1 ;
+  var sum = 0;
+  var count = size -1
+  while(count){
+    sum += prompt("度数")*1
+    count--
+  }
+  console.log((size-2) * 180 - sum)
+</script>
+
+<script id="ch0105/09" type="123">
+  var min = prompt("m") * 1;
+  var max = prompt("n") * 1;
+
+  //如果min是偶数 则对其加一
+  if (min % 2 == 0) {
+    min = min + 1
+  }
+
+  //sum初始值为min或者min+1
+  var sum = min
+
+  //当min+2小于max时  min 累加2  sum 累加 min+2
+  while (min + 2 <= max) {
+    min += 2
+    sum += min
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/10" type="123">
+  var min = prompt("m") * 1;
+  var max = prompt("n") * 1;
+  //获取第一个17的倍数
+  min=min + 17 - min % 17
+  //初始化sum
+  var sum = min
+  //当min+17小于等于max的时候 min自身加17 sum累加min
+  while (min + 17 <= max) {
+    min = min +17
+    sum = sum + min
+  }
+  console.log(sum)
+</script>
+
+
+<script id="ch0105/11" type="123">
+  var k = prompt("正整数数量") * 1;
+  var count1 = 0
+  var count5 = 0
+  var count10 = 0
+  debugger
+  while (k) {
+    switch (prompt("正整数") * 1) {
+      case (1):
+        count1++
+        break;
+      case (5):
+        count5++
+        break;
+      case (10):
+        count10++
+        break;
+      default:
+        break;
+    }
+    k--
+  }
+  console.log(count1)
+  console.log(count5)
+  console.log(count10)
+</script>
+
+<script id="ch0105/11" type="123">
+
+</script>
