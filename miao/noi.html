@@ -291,8 +291,7 @@ console.log(a+b)
       //4.如果用户选择加急，多收5元。
   var weigth= prompt("weigth")
   var isFast= prompt("Fast?")
-  var money=0
-  money+=8
+  var money=8
   if(weigth>1000){
     money+=Math.ceil((weigth-1000)/500) * 4
   }
@@ -308,7 +307,14 @@ console.log(a+b)
   var a= prompt("a")*1
   var b= prompt("b")*1
   var c= prompt("c")*1
-  console.log(a>b && a>c ? a : (b>a && b>c ? b: c))
+  var 最大值=a
+  if(b>最大值){
+    最大值=b
+  }
+  if(c>最大值){
+    最大值=c
+  }
+  console.log(最大值)
 </script>
 
 <script id="ch0104/16" type="123">
@@ -324,34 +330,34 @@ console.log(a+b)
   //但能被100整除而不能被400整除的年份不是闰年，
   //能被3200整除的也不是闰年，如1900年是平年，2000年是闰年，3200年不是闰年。
   var year= prompt("year")*1
-  var flag =false;
+  var flag ="N";
   if(year % 4 == 0 ){
-    flag = true
+    flag = "Y"
   }
   if(year % 100 == 0){
-    flag = false
+    flag = "N"
   }
   if(year%400==0){
-    flag = true
+    flag = "Y"
   }
+
   if(year%3200 == 0){
-    flag= false
+    flag= "N"
   }
-  console.log(flag?"Y":"N")
+  console.log(flag)
 </script>
 
 <script id="ch0104/18" type="123">
-//18.有一个正方形，四个角的坐标（x,y)分别是
+//18.有一个正方形，四个角的坐标x,y分别是
 //（1，-1），（1，1），（-1，-1），（-1，1），x是横轴，y是纵轴。
 //   写一个程序，判断一个给定的点是否在这个正方形内（包括正方形边界）
 //
 //x<=1,x>=-1 x<=1,x>=-1
 var x= prompt("x")*1
 var y= prompt("y")*1
-
 console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
 </script>
-  <script id="ch0104/19"  >
+<script id="ch0104/19"  type="123">
     //19.一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。
     //  输入只有一行，共有三个参数，其中第1、2个参数为整数，第3个参数为操作符（+,-,*,/）
 
@@ -359,12 +365,18 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
     var y= prompt("y")*1
     var o= prompt("o")
     debugger
+
     switch(o){
       case ("*"):
         console.log(x*y)
         break
       case("/"):
-        console.log((x/y).toFixed(0))
+        if(y==0){
+          console.log("Invalid operator!")
+        }else{
+          console.log((x/y).toFixed(0))
+        }
+
         break
       case("+"):
         console.log(x+y)
@@ -377,14 +389,12 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
         break
     }
 
-    </script>
-    <script id="ch0104/21"  type="132">
+</script>
+<script id="ch0104/21"  type="132">
+  var n= prompt("n")*1
+  var x= prompt("x")*1
+  var y= prompt("y")*1
+  console.log(n- Math.ceil(y/x))
+</script>
 
 
-      var n= prompt("n")*1
-      var x= prompt("x")*1
-      var y= prompt("y")*1
-      console.log(n- Math.ceil(y/x))
-
-
-      </script>
