@@ -729,7 +729,7 @@ console.log(count)
   console.log("End")
 </script>
 
-<script id="ch0105/22" type="123">
+<script id="ch0105/22"  type="123">
   var 剩余金额 = 0;
   var 月零花 = 300;
   var  存的钱累加 = 0
@@ -757,14 +757,17 @@ console.log(count)
 
 </script>
 
-<script id="ch0105/23" >
+<script id="ch0105/23">
+  debugger
   var count = 0 //没取到药的人
   var m =  prompt("药的数量") * 1;
   var n =  prompt("取药人数") * 1;
   for (var i = 0 ; i < n ; i++){
-    m=m-prompt("取多少药") * 1;
-    if (m<0){
-      count ++
+    var 剩余药 = m-prompt("取多少药") * 1
+    if(剩余药<0){
+      count++
+    }else{
+      m=剩余药;
     }
   }
   console.log(count)
