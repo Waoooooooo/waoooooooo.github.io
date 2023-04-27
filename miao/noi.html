@@ -715,17 +715,19 @@ console.log(count)
 </script>
 
 
-<script id="ch0105/20">
+<script id="ch0105/21">
 
-  var h= prompt("") * 1;
-  var sum = h
+  var n= prompt("") * 1;
+  var history = ""
+  while (n>1){
+    if(n%2 == 0 ){
+      console.log(n +"/2="+(n/2))
+      n/=2
+    }else{
+      console.log(n +"*3+1="+(n*3+1))
+      n= n*3+1
+    }
 
-  for( let i = 1 ; i < 10 ; i ++ ){
-    h /= 2;
-    sum += h*2;
   }
-
-  console.log(sum)
-  console.log(h/2)
-
+  console.log("End")
 </script>
