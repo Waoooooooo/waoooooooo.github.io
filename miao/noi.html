@@ -658,7 +658,7 @@ console.log(count)
 
 
 </script>
-<script id="ch0105/18"  type="123">
+<script id="ch0105/18" type="123">
 
   var n= prompt("") * 1;
   var 鸡尾酒疗法总病例 =  prompt("")*1
@@ -714,17 +714,44 @@ console.log(count)
 
 <script id="ch0105/21">
 
-  var n= prompt("") * 1;
+  var n = prompt("") * 1;
   var history = ""
-  while (n>1){
-    if(n%2 == 0 ){
-      console.log(n +"/2="+(n/2))
-      n/=2
-    }else{
-      console.log(n +"*3+1="+(n*3+1))
-      n= n*3+1
+  while (n > 1) {
+    if (n % 2 == 0) {
+      console.log(n + "/2=" + (n / 2))
+      n /= 2
+    } else {
+      console.log(n + "*3+1=" + (n * 3 + 1))
+      n = n * 3 + 1
     }
 
   }
   console.log("End")
+</script>
+
+<script id="ch0105/22">
+  var 剩余金额 = 0;
+  var 月零花 = 300;
+  var  存的钱累加 = 0
+  var  当月存钱 =0
+  var 零头 = 0
+  var 账本 = 0
+  for (var i = 1; i <= 12; i++){
+    var 预算 = prompt("预算") * 1;
+    剩余金额 += 月零花;
+    零头=(剩余金额 -预算)%100
+    if(预算 > 剩余金额){
+      账本="-"+i
+      break
+    }else{
+      当月存钱  = 剩余金额 -预算 - 零头
+      剩余金额=零头
+    }
+  }
+  if(账本){
+    console.log(账本)
+  }else{
+    console.log(剩余金额)
+  }
+
 </script>
