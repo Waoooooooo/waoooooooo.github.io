@@ -555,7 +555,7 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
   var count1 = 0
   var count5 = 0
   var count10 = 0
-  debugger
+
   while (k) {
     switch (prompt("正整数") * 1) {
       case (1):
@@ -577,6 +577,42 @@ console.log(x**2<=1&&y**2<=1 ? "yes" : "no")
   console.log(count10)
 </script>
 
-<script id="ch0105/11" type="123">
+<script id="ch0105/12" type="123">
+  var n = prompt("正整数数量") * 1;
+  var m = prompt("数列中相同的数字") * 1;
+  var count =  0
+for(var i = 0 ; i< n; i++){
+  if(m == prompt("输入一个数字") * 1){
+    count++;
+  }
+}
+console.log(count)
+</script>
+<script id="ch0105/13" type="123">
+  var x= prompt("") * 1;
+  var n= prompt("") * 1;
+  for(var i =0 ; i< n; i++){
+    x+=x*0.001;
+  }
+  console.log(x.toFixed(4))
+</script>
 
+<script id="ch0105/14" type="123">
+  var x= prompt("") * 1;
+  var n= prompt("") * 1;
+  for(var i =0 ; i< n; i++){
+    x+=x*0.001;
+  }
+  console.log(x.toFixed(4))
+</script>
+
+<script id="ch0105/15" >
+  //R，M，Y，
+  var R= prompt("") * 1;
+  var M= prompt("") * 1;
+  var Y= prompt("") * 1;
+  for(var i =0 ; i< Y; i++){
+   M+=R*0.01*M
+  }
+  console.log( M.toFixed(0))
 </script>
