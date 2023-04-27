@@ -712,7 +712,7 @@ console.log(count)
 </script>
 
 
-<script id="ch0105/21">
+<script id="ch0105/21" type="123">
 
   var n = prompt("") * 1;
   var history = ""
@@ -729,7 +729,7 @@ console.log(count)
   console.log("End")
 </script>
 
-<script id="ch0105/22">
+<script id="ch0105/22" type="123">
   var 剩余金额 = 0;
   var 月零花 = 300;
   var  存的钱累加 = 0
@@ -746,12 +746,26 @@ console.log(count)
     }else{
       当月存钱  = 剩余金额 -预算 - 零头
       剩余金额=零头
+      存的钱累加 += 当月存钱
     }
   }
   if(账本){
     console.log(账本)
   }else{
-    console.log(剩余金额)
+    console.log(剩余金额+存的钱累加+存的钱累加*0.2)
   }
 
+</script>
+
+<script id="ch0105/23" >
+  var count = 0 //没取到药的人
+  var m =  prompt("药的数量") * 1;
+  var n =  prompt("取药人数") * 1;
+  for (var i = 0 ; i < n ; i++){
+    m=m-prompt("取多少药") * 1;
+    if (m<0){
+      count ++
+    }
+  }
+  console.log(count)
 </script>
