@@ -606,7 +606,7 @@ console.log(count)
   console.log(x.toFixed(4))
 </script>
 
-<script id="ch0105/15" >
+<script id="ch0105/15" type="123">
   //R，M，Y，
   var R= prompt("") * 1;
   var M= prompt("") * 1;
@@ -615,4 +615,86 @@ console.log(count)
    M+=R*0.01*M
   }
   console.log( M.toFixed(0))
+</script>
+
+<script id="ch0105/16" type="123">
+  //N K
+  var N= prompt("") * 1;
+  var K = prompt("") * 1;
+  var 房价=200
+  var 年数=1
+  var 存款 = N
+
+  while(存款 < 房价){
+    if(年数>20){
+      break
+    }
+    房价=房价 + 房价*K*0.01
+    存款 += N
+    年数 ++
+  };
+
+  if (年数<20){
+    console.log( 年数)
+  }else{
+    console.log( "Impossible")
+  }
+
+
+
+</script>
+
+<script id="ch0105/17" type="123">
+
+  var k = prompt("") * 1;
+  var 前一个数 = 1
+  var 前二个数 = 1
+  var 菲波那契数 = 1
+  if (k >2) {
+    for (let i = 3; i <= k; i++) {
+      菲波那契数 = 前一个数 + 前二个数
+      前一个数 = 前二个数
+      前二个数 = 菲波那契数
+    }
+  }
+  console.log(菲波那契数)
+
+
+</script>
+<script id="ch0105/18"  type="123">
+
+  var n= prompt("") * 1;
+  var 鸡尾酒疗法总病例 =  prompt("")*1
+  var 鸡尾酒疗法有效病例 =  prompt("")*1
+  var x =鸡尾酒疗法有效病例/鸡尾酒疗法总病例
+  for (var i = 1 ; i < n ; i ++){
+    var 总病例= prompt("")*1
+    var 有效病例=prompt("")*1
+    var y =有效病例/总病例
+    if(y-x > 0.05){
+      console.log ("better")
+    }else if(x-y > 0.05){
+      console.log ("worse")
+    }else{
+      console.log ("same")
+    }
+  }
+
+
+</script>
+
+<script id="ch0105/19" type="123">
+
+  var n= prompt("") * 1;
+  var timeSum = 0
+  for( let i = 0 ; i < n ; i ++ ){
+    var x= prompt("") * 1;
+    var y= prompt("") * 1;
+    var p=prompt("") * 1;
+    timeSum = timeSum+p+p*0.5+Math.sqrt(x**2+y**2)/50*2
+
+  }
+
+  console.log(Math.ceil(timeSum))
+
 </script>
