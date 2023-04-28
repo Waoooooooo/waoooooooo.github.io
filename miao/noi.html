@@ -793,7 +793,7 @@ console.log(count)
 </script>
 
 
-<script id="ch0105/25">
+<script id="ch0105/25" type="123">
 
   for (var a = 1; a < 7; a++) {
     for (var b = 0; b < 7; b++) {//b可以为0
@@ -808,15 +808,20 @@ console.log(count)
     }
   }
 </script>
-<script id="ch0105/26">
+<script id="ch0105/26" type="123">
 
 var n =prompt("")*1
+var count = 0
 
   for (var i = 0; i < n; i++) {
     var num =prompt("") //不转数字
-    for (var i = 0; i < 4; i++) {
-     var a =  num.indexOf(i)
-
+    var cha = num.indexOf(3)
+    for (var a =2; a > 0; a--) {
+      cha -= num.indexOf(a)
+    }
+    if(cha>0){
+      count++
     }
   }
+  console.log(count) ;
 </script>
