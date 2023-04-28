@@ -775,7 +775,7 @@ console.log(count)
 <script id="ch0105/24" type="123">
   var count =0 //保持小时数
   var 上一次 = 0
-
+  var max =0
   var n =prompt("测量次数")
   for( var i =0 ; i< n ; i++){
     var 收缩压 = prompt("收缩压")
@@ -783,13 +783,16 @@ console.log(count)
     if((收缩压 >= 90 && 收缩压 <= 140)&&(舒张压 >= 60 && 舒张压 <= 90)){
       if(上一次 == i-1 || 上一次 == 0){
         count++
+        if (max < count){
+          max= count
+        }
       }
       上一次=i
     }else{
         count=0
     }
   }
-  console.log(count)
+  console.log(max)
 </script>
 
 
@@ -825,7 +828,8 @@ var count = 0
   }
   console.log(count) ;
 </script>
-<script id="ch0105/27">
+
+<script id="ch0105/28" type="123">
   var k =prompt("")*1
   var n =  0
   var sn = 0
@@ -834,4 +838,13 @@ var count = 0
     sn+= 1/n
   }
   console.log(n+1)
+ </script>
+
+<script id="ch0105/28">
+  var n =prompt("")
+  //
+  for (var i =0;n> 10**i;i++){
+    //循环每次开始,判断是否数字< 10**i
+
+  }
  </script>
