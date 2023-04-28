@@ -729,7 +729,7 @@ console.log(count)
   console.log("End")
 </script>
 
-<script id="ch0105/22"  type="123">
+<script id="ch0105/22" type="123">
   var 剩余金额 = 0;
   var 月零花 = 300;
   var  存的钱累加 = 0
@@ -757,8 +757,7 @@ console.log(count)
 
 </script>
 
-<script id="ch0105/23">
-  debugger
+<script id="ch0105/23" type="123">
   var count = 0 //没取到药的人
   var m =  prompt("药的数量") * 1;
   var n =  prompt("取药人数") * 1;
@@ -771,4 +770,53 @@ console.log(count)
     }
   }
   console.log(count)
+</script>
+
+<script id="ch0105/24" type="123">
+  var count =0 //保持小时数
+  var 上一次 = 0
+
+  var n =prompt("测量次数")
+  for( var i =0 ; i< n ; i++){
+    var 收缩压 = prompt("收缩压")
+    var 舒张压 = prompt("舒张压")
+    if((收缩压 >= 90 && 收缩压 <= 140)&&(舒张压 >= 60 && 舒张压 <= 90)){
+      if(上一次 == i-1 || 上一次 == 0){
+        count++
+      }
+      上一次=i
+    }else{
+        count=0
+    }
+  }
+  console.log(count)
+</script>
+
+
+<script id="ch0105/25">
+
+  for (var a = 1; a < 7; a++) {
+    for (var b = 0; b < 7; b++) {//b可以为0
+      for (var c = 1; c < 7; c++) {
+        if (((7 ** 2) * a + 7 * b +  c) == ( a +9 * b + (9 ** 2) * c)) {
+          console.log((7 ** 2) * a + (7 **  1) * b +  c)
+          console.log("" + a + b + c)
+          console.log("" + c + b + a)
+          break
+        }
+      }
+    }
+  }
+</script>
+<script id="ch0105/26">
+
+var n =prompt("")*1
+
+  for (var i = 0; i < n; i++) {
+    var num =prompt("") //不转数字
+    for (var i = 0; i < 4; i++) {
+     var a =  num.indexOf(i)
+
+    }
+  }
 </script>
