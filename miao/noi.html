@@ -937,10 +937,28 @@ var count = 0
   console.log(result)
 </script>
 
-<script id="ch0105/31">
-  var n = prompt("") * 1  //灯
-  var m = prompt("") * 1   //人
+<script id="ch0105/32" type="123">
+  var n = prompt("") * 1
+  var p = 1
+  var q = 1
+  var  sum = 0
+  for (let index = 0; index < n; index++) {
+    q = p+q
+    p = q-p
+    sum += q/p
+  }
+  console.log(sum)
+</script>
 
-
-
+<script id="ch0105/32" >
+  var n = prompt("") * 1
+  var p = 1
+  var q = 1
+  var  sum = 0
+  for (let index = 0; index < n; index++) {
+    q = p+q
+    p = q-p
+    sum += q/p
+  }
+  console.log(sum)
 </script>
