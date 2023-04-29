@@ -1033,20 +1033,50 @@ var count = 0
   //
 </script>
 
-<script id="ch0105/38" >
+<script id="ch0105/38" type="132">
   var n= prompt("") * 1
 
   for(var i = n ; i>=0;i--){
 
     var k= prompt("") * 1
     var 导函数多项式的系数=i*k
-    if(i==0&&导函数多项式的系数==0){
-
-    }else{
-      console.log(导函数多项式的系数)
+    if(!(i==0&&导函数多项式的系数==0)){
+       console.log(导函数多项式的系数)
     }
 
 
   }
+
+</script>
+
+<script id="ch0105/38">
+  var n = prompt("") * 1
+
+  var sum = 0
+  debugger
+  for (var i = 1; i <= n; i++) {
+    //一个代表状态的变量要与判断该状态的句子放在一个循环中
+    var 与7有关 = false
+    //i是7的倍数,或1是7
+    if (i % 7 == 0) {
+      与7有关 = true
+    }
+    //i中有7(i为至少两位数  也就是i>10)
+    var a = i //a作为循环的变量
+      do {
+        if (  a % 10== 7) {
+          与7有关 = true
+        }
+        a = (a - a % 10) / 10
+      }
+      while ( a != 0)
+
+    //判断是否与7有关  无关则累加当前数的平方和
+    if (与7有关==false) {
+      sum += i ** 2
+    }
+  }
+  console.log(sum)
+
 
 </script>
