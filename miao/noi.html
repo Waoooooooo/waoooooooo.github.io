@@ -796,7 +796,7 @@ console.log(count)
 </script>
 
 
-<script id="ch0105/25"  type="123">
+<script id="ch0105/25" type="123">
 
   for (var a = 1; a < 7; a++) {//百位
     for (var b = 0; b < 7; b++) {//中间可以为0
@@ -841,10 +841,106 @@ var count = 0
  </script>
 
 <script id="ch0105/28" type="123">
-  var n =prompt("")
-  //
-  for (var i =0;n> 10**i;i++){
-    //循环每次开始,判断是否数字< 10**i
+  var n =prompt("")*1
+  var k = 0;
+  do{
+    console.log(n%10)
+    n=(n- n %10)/10
+  }while(n != 0)
+</script>
+
+<script id="ch0105/29" type="123">
+  var n =prompt("")*1
+  var k = "";
+  if(n<0){
+    k="-"
+    n= -n
+  }
+  do{
+    k+=(n%10)
+    n=(n- n %10)/10
+  }while(n != 0)
+  console.log(k*1)
+</script>
+
+<script id="ch0105/30" type="123">
+  var m = prompt("") * 1
+  var s = prompt("") * 1  //3的个数
+  var k = 0  //记录当前取出的数
+  var count = 0;
+  if (m % 19 == 0) {
+
+    do {
+      if (m % 10 == 3) {
+        count++
+      }
+      m = (m - m % 10) / 10
+    } while (m != 0)
+
+    if (count == s) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+
+  } else {
+    console.log("NO")
 
   }
- </script>
+
+
+</script>
+
+<script id="ch0105/31" type="123">
+  var n = prompt("") * 1  //灯
+  var m = prompt("") * 1   //人
+
+  var result = ""
+  debugger
+  if (m == 1) {
+    //全部关闭
+    for (let i = 1; i <= m; i++) {
+      result += i + ","
+    }
+  } else if (m == 2) {
+    //2的倍数打开 其他全部关闭
+    for (let i = 1; i <= m; i++) {
+      if (i % 2 != 0) {
+        result += i + ","
+      }
+    }
+  } else {
+    //人数大于等于三的情况
+    result = 1
+    for (let index = 3; index <= n; index++) {
+      //代表从第三个灯泡后开始遍历,
+      var flag = false  //灯是否开启,默认是关闭,作用域只能在循环内部
+      //首先判断是否为2的倍数  是的话打开
+      if (index % 2 == 0){
+        flag = true
+      };
+
+      //第三人到第n人對第 a*n個灯泡做相反处理
+      for (let indexP = 3; indexP <= index && indexP <= m; indexP++) {
+        if (index >= indexP && index % indexP == 0) {
+          flag = !flag
+        }
+      }
+
+      //每个人对该灯泡操作完后,
+      if (flag == false) {//如果灯是关的
+        result += "," + index
+      }
+    }
+  }
+
+  console.log(result)
+</script>
+
+<script id="ch0105/31">
+  var n = prompt("") * 1  //灯
+  var m = prompt("") * 1   //人
+
+
+
+</script>
