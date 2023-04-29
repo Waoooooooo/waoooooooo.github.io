@@ -1049,7 +1049,7 @@ var count = 0
 
 </script>
 
-<script id="ch0105/38">
+<script id="ch0105/38" type="1">
   var n = prompt("") * 1
 
   var sum = 0
@@ -1077,6 +1077,28 @@ var count = 0
     }
   }
   console.log(sum)
+
+
+</script>
+
+<script>
+
+  var n = prompt("") * 1
+  var count = 0
+  debugger
+
+  for (let index = 1; index <=n; index++) {
+    var a = index
+    do {
+      if (a % 10 == 1) {
+        count += 1
+      }
+      a = (a - a% 10) / 10
+    } while (a != 0)
+  }
+
+
+  console.log(count)
 
 
 </script>
