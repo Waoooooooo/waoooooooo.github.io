@@ -975,24 +975,23 @@ var count = 0
 
 <script id="ch0105/35" type="123">
   var n = prompt("") * 1
-  var sum = 0
-  var 阶乘 = 1
-  for (let index = 1; index <= n; index++) {
-    阶乘 *= index
-    sum += 阶乘
-  }
-  console.log(sum)
-</script>
-
-<script id="ch0105/35">
-  var n = prompt("") * 1
   var sum = 1
   var 阶乘 = 1
   for (let index = 1; index <= n; index++) {
     阶乘 *= index
     sum += 1 / 阶乘
   }
-
-
   console.log(sum.toFixed(10))
+</script>
+
+<script id="ch0105/36" type="123">
+  var x= prompt("") * 1
+  var n= prompt("") * 1
+  var sum = 1
+  var 阶乘 = 1
+  do{
+    sum+=x**n
+    n--
+  }while(n>0)
+  console.log(sum.toFixed(2))
 </script>
