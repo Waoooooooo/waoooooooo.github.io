@@ -947,10 +947,10 @@ var count = 0
     p = q-p
     sum += q/p
   }
-  console.log(sum)
+  console.log(sum.toFixed(4))
 </script>
 
-<script id="ch0105/33"  type="123" >
+<script id="ch0105/33" type="123">
   var n = prompt("") * 1
   var  sum = 0
   for (let index = 1; index <= n; index++) {
@@ -959,3 +959,40 @@ var count = 0
   console.log(sum.toFixed(4))
 </script>
 
+
+
+
+<script id="ch0105/34" type="123">
+  var n = prompt("") * 1
+  var sum = 0
+  var 阶乘 = 1
+  for (let index = 1; index <= n; index++) {
+    阶乘 *= index
+    sum += 阶乘
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/35" type="123">
+  var n = prompt("") * 1
+  var sum = 0
+  var 阶乘 = 1
+  for (let index = 1; index <= n; index++) {
+    阶乘 *= index
+    sum += 阶乘
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/35">
+  var n = prompt("") * 1
+  var sum = 1
+  var 阶乘 = 1
+  for (let index = 1; index <= n; index++) {
+    阶乘 *= index
+    sum += 1 / 阶乘
+  }
+
+
+  console.log(sum.toFixed(10))
+</script>
