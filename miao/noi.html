@@ -950,15 +950,12 @@ var count = 0
   console.log(sum)
 </script>
 
-<script id="ch0105/32" >
+<script id="ch0105/33"  type="123" >
   var n = prompt("") * 1
-  var p = 1
-  var q = 1
   var  sum = 0
-  for (let index = 0; index < n; index++) {
-    q = p+q
-    p = q-p
-    sum += q/p
+  for (let index = 1; index <= n; index++) {
+    sum+= (-1)**(index-1)*1/index
   }
-  console.log(sum)
+  console.log(sum.toFixed(4))
 </script>
+
