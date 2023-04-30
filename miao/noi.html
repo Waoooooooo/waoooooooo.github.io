@@ -1428,9 +1428,10 @@ for (var n = 3 ; n <= 1000;n++){
 
 </script>
 
-<script id="sqrt" type="123">
+<script id="sqrt" >
   //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
   var n = prompt()
+  var x = 0
   debugger
   for (var i = 0; i < n; i++) {
     if (i ** 2 > n) {
@@ -1444,7 +1445,7 @@ for (var n = 3 ; n <= 1000;n++){
               for (var i3 = 0.001; i3 < 0.01; i3 += 0.001) {
                 //最后一位时,提前0.001判断就能得到最后一位数
                 if ((i - 1 + i1 - 0.1 + i2 - 0.01 + i3+0.001) ** 2 > n) {
-                  console.log(i - 1 + i1 - 0.1 + i2 - 0.01 + i3)
+                  x=i - 1 + i1 - 0.1 + i2 - 0.01 + i3
                   break
                 }
               }
@@ -1461,5 +1462,5 @@ for (var n = 3 ; n <= 1000;n++){
       break
     }
   }
-
+  console.log(x.toFixed(4))
 </script>
