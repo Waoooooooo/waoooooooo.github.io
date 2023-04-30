@@ -1303,15 +1303,7 @@ if(sum == x){
   day++
   console.log(day%7 + 1)
 </script>
-<!--
-complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
-complete-numbers: 输出1000以内的完全数
 
-primes: 输出100以内的素数
-itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
-lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
-sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
- -->
 <script id="complete-number" type="123">
   var n = prompt()
   var sum = 0
@@ -1351,10 +1343,92 @@ for (var n = 3 ; n <= 1000;n++){
 
 </script>
 
-<script id="prime">
+<script id="prime" type="123">
   //prime: 输入一个数，判断它是否是素数
   var n = prompt()
+  var flag = "NO"
   for (var i =2 ; i <= Math.sqrt(n);i++){
-
+    //一个n的因数必须有一个在根号n前
+    if(n%i == 0){
+      //素数
+      flag="YES"
+    }
   }
+  console.log(flag)
+
+</script>
+<script id="itob">
+  //itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
+
+  var n = prompt()
+  var str = ""
+  var k = 0
+  do {
+    k = n % 10
+    n = (n - n % 10) / 10
+    switch (k) {
+      case 0:
+        str = "0" + str
+        break;
+      case 1:
+        str = "1" + str
+        break;
+      case 2:
+        str = "2" + str
+        break;
+      case 3:
+        str = "3" + str
+        break;
+      case 4:
+        str = "4" + str
+        break;
+      case 5:
+        str = "5" + str
+        break;
+      case 6:
+        str = "6" + str
+        break;
+      case 7:
+        str = "7" + str
+        break;
+      case 8:
+        str = "8" + str
+        break;
+      case 9:
+        str = "9" + str
+        break;
+    }
+  } while (n != 0)
+  console.log(str)
+</script>
+<script id="lcf&lcm">
+//输入两个数，输出它们的最大公约数和最小公倍数
+
+
+</script>
+
+<script id="sqrt">
+  //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
+  var n = prompt()
+
+  for (var i = 0; i < n; i++) {
+    if (i ** 2 > n) {
+      //确定了整数位为(i-1)
+      for (var i1 = 0; i1 < 1; i1 += 0.1) {
+        if ( ((i-1)+i1) ** 2 > n) {
+          //确定了十分位为i1-0.1
+          for (var i2 = 0; i2 < 1; i2 += 0.01) {
+            if ( (i-1+i1-0.1+i2) ** 2 > n) {
+               //确定了百分位为i2-0.01
+               for (var i3 = 0; i3 < 1; i3 += 0.01) {
+          }
+        }
+
+
+
+      }
+      break
+    }
+  }
+
 </script>
