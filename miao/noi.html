@@ -1049,7 +1049,7 @@ var count = 0
 
 </script>
 
-<script id="ch0105/38" type="1">
+<script id="ch0105/39" type="1">
   var n = prompt("") * 1
 
   var sum = 0
@@ -1081,7 +1081,7 @@ var count = 0
 
 </script>
 
-<script type="2123">
+<script id="ch0105/40" type="2123">
 
   var n = prompt("") * 1
   var count = 0
@@ -1099,7 +1099,7 @@ var count = 0
   console.log(count)
 </script>
 
-<script type="2123">
+<script id="ch0105/41" type="2123">
   var n = prompt("") * 1
   var m = prompt("") * 1
   var count = 0
@@ -1118,17 +1118,11 @@ var count = 0
 
 </script>
 
-<script>
+<script id="ch0105/42" type="123">
   var width = prompt("") * 1
   var height = prompt("") * 1
   var 符号 = prompt("")
   var 是否空心 = prompt("") * 1
-  debugger
-  //实心
-
-
-
-
   if (是否空心 == 0) {
     var str = ""
     //空心
@@ -1137,14 +1131,14 @@ var count = 0
         for (var i1 = 0; i1 < width; i1++) {
           str += 符号
         }
-      }else{
-        // for (var i2 = 1; i2 <= width; i2++) {
-        //   if(i2= 1|| i2 == width){
-        //     str += 符号
-        //   }else{
-        //     str += " "
-        //   }
-        // }
+       }else{
+        for (var i2 = 1; i2 <= width; i2++) {
+          if(i2== 1 || i2 == width){
+            str += 符号
+          }else{
+            str += " "
+          }
+        }
       }
       //换行
       str += "\n"
