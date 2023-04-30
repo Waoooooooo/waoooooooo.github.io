@@ -1258,7 +1258,7 @@ if(sum == x){
   }
 </script>
 
-<script id="weekday">
+<script id="weekday" type="123">
   // 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
   //1900年1月1日星期一
   //1582年以来公历的置闰规则：
@@ -1302,19 +1302,57 @@ if(sum == x){
   //此时 day 为输入的月的前一月的最后一天
   day++
   console.log(day%7 + 1)
- //1168639
 </script>
 <!--
 complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
 complete-numbers: 输出1000以内的完全数
-prime: 输入一个数，判断它是否是素数
+
 primes: 输出100以内的素数
 itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
 lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
 sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
  -->
-<script id="complete-number">
+<script id="complete-number" type="123">
+  var n = prompt()
+  var sum = 0
+  for (var i = 2; i < n; i++) {
+    for (var i2 = i + 1; i2 < n; i2++) {
+      if (i * i2 == n) {
+        sum += i + i2
+      }
+    }
+  }
+  sum += 1
+  if (sum == n) {
+    console.log("YES")
+  } else {
+    console.log("NO")
+  }
+
+</script>
+
+<script id="complete-number" type="123">
+  //输出1000以内的完全数
+for (var n = 3 ; n <= 1000;n++){
+  var sum = 0
+  for (var i = 2; i < n; i++) {
+    for (var i2 = i + 1; i2 < n; i2++) {
+      if (i * i2 == n) {
+        sum += i + i2
+      }
+    }
+  }
+  sum += 1
+  if (sum == n) {
+    console.log(n)
+  }
+}
 
 
+</script>
+
+<script id="prime">
+  //prime: 输入一个数，判断它是否是素数
+  var n = prompt()
 
 </script>
