@@ -1323,7 +1323,7 @@ if(sum == x){
 
 </script>
 
-<script id="complete-number" type="123">
+<script id="complete-numbers" type="123">
   //输出1000以内的完全数
 for (var n = 3 ; n <= 1000;n++){
   var sum = 0
@@ -1355,6 +1355,27 @@ for (var n = 3 ; n <= 1000;n++){
     }
   }
   console.log(flag)
+
+</script>
+<script id="primes" >
+  //primes: 输出100以内的素数
+
+  for(var a = 2 ; a <100;a ++ ){
+    var flag = "NO"
+    for (var i =2 ; i <= Math.sqrt(n);i++){
+      //一个n的因数必须有一个在根号n前
+      if(n%i == 0){
+        //素数
+        flag="YES"
+      }
+    }
+    if(flag == "YES"){
+      console.log(a)
+    }
+  }
+
+
+
 
 </script>
 <script id="itob" type="123">
@@ -1407,7 +1428,7 @@ for (var n = 3 ; n <= 1000;n++){
 
 </script>
 
-<script id="sqrt">
+<script id="sqrt" type="123">
   //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
   var n = prompt()
   debugger
