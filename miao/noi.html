@@ -1346,12 +1346,12 @@ for (var n = 3 ; n <= 1000;n++){
 <script id="prime" type="123">
   //prime: 输入一个数，判断它是否是素数
   var n = prompt()
-  var flag = "NO"
+  var flag = "YES"
   for (var i =2 ; i <= Math.sqrt(n);i++){
     //一个n的因数必须有一个在根号n前
     if(n%i == 0){
-      //素数
-      flag="YES"
+      //合数
+      flag="NO"
     }
   }
   console.log(flag)
@@ -1361,12 +1361,12 @@ for (var n = 3 ; n <= 1000;n++){
   //primes: 输出100以内的素数
 
   for(var a = 2 ; a <100;a ++ ){
-    var flag = "NO"
-    for (var i =2 ; i <= Math.sqrt(n);i++){
+    var flag = "YES"
+    for (var i =2 ; i <= Math.sqrt(a);i++){
       //一个n的因数必须有一个在根号n前
-      if(n%i == 0){
-        //素数
-        flag="YES"
+      if(a%i == 0){
+        //合数
+        flag="NO"
       }
     }
     if(flag == "YES"){
