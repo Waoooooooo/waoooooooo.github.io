@@ -1357,7 +1357,7 @@ for (var n = 3 ; n <= 1000;n++){
   console.log(flag)
 
 </script>
-<script id="itob">
+<script id="itob" type="123">
   //itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
 
   var n = prompt()
@@ -1410,23 +1410,33 @@ for (var n = 3 ; n <= 1000;n++){
 <script id="sqrt">
   //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
   var n = prompt()
-
+  debugger
   for (var i = 0; i < n; i++) {
     if (i ** 2 > n) {
       //确定了整数位为(i-1)
-      for (var i1 = 0; i1 < 1; i1 += 0.1) {
-        if ( ((i-1)+i1) ** 2 > n) {
+      for (var i1 = 0.1; i1 < 1; i1 += 0.1) {
+        if (((i - 1) + i1) ** 2 > n) {
           //确定了十分位为i1-0.1
-          for (var i2 = 0; i2 < 1; i2 += 0.01) {
-            if ( (i-1+i1-0.1+i2) ** 2 > n) {
-               //确定了百分位为i2-0.01
-               for (var i3 = 0; i3 < 1; i3 += 0.01) {
+          for (var i2 = 0.01; i2 < 0.1; i2 += 0.01) {
+            if ((i - 1 + i1 - 0.1 + i2) ** 2 > n) {
+              //确定了百分位为i2-0.01
+              for (var i3 = 0.001; i3 < 0.01; i3 += 0.001) {
+                //最后一位时,提前0.001判断就能得到最后一位数
+                if ((i - 1 + i1 - 0.1 + i2 - 0.01 + i3+0.001) ** 2 > n) {
+                  console.log(i - 1 + i1 - 0.1 + i2 - 0.01 + i3)
+                  break
+                }
+              }
+              break
+            }
           }
+          break
         }
-
-
-
       }
+      break
+    }
+    if (i ** 2 == n){
+      console.log(i)
       break
     }
   }
