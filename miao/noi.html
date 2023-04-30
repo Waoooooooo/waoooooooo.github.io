@@ -1160,13 +1160,15 @@ var count = 0
 
 </script>
 
-<script id="ch0105/43">
+<script id="ch0105/43" type="132">
   var n = prompt()
   for (var i = 2; i <= n / 2; i++) {
     //质数判断,非合数
-    if (!(i != 2 && i != 3 && i != 5 && i != 7 && i != 11 && i % 2 == 0 && i % 3 == 0 && i % 5 == 0 && i % 7 == 0 && i % 11 == 0)) {
+    if ((i == 2 || i == 3 || i == 5 || i == 7 || i == 11 )|| (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0 && i % 11 != 0)) {
+
       for (var i2 = i; i2 <= n / 2; i2++) {
-        if (!(i != 2 && i != 3 && i != 5 && i != 7 && i != 11 && i % 2 == 0 && i % 3 == 0 && i % 5 == 0 && i % 7 == 0 && i % 11 == 0)) {
+        if ((i == 2 || i == 3 || i == 5 || i == 7 || i == 11 )|| (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0 && i % 11 != 0)) {
+
           if (i * i2 == n) {
             console.log(i > i2 ? i : i2)
           }
@@ -1175,6 +1177,38 @@ var count = 0
     }
   }
 </script>
-<script id="ch0105/44">
 
+
+<script id="ch0105/44" type="123">
+  var n = prompt()
+  var count = 0
+  for (var i = 2; i < 10000; i++) {
+    //质数判断,非合数
+    if ((i == 2 || i == 3 || i == 5 || i == 7 || i == 11) || (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0 && i % 11 != 0)) {
+      count++
+      if (count == n) {
+        console.log(i)
+        break
+      }
+    }
+  }
+</script>
+
+<script id="ch0105/45">
+  var n = prompt()
+  var 天数 = 1
+  var 每天金币数 = 1
+  var 金币sum = 0
+  while ( n > 0){
+    if( n<天数){
+      金币sum+= (天数-n)*每天金币数
+      n=0
+    }else{
+      金币sum+=天数*每天金币数
+      n-=天数
+    }
+    天数++
+    每天金币数++
+  }
+  console.log(金币sum)
 </script>
