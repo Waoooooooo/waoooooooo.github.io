@@ -1344,9 +1344,11 @@ for (var n = 3 ; n <= 1000;n++){
 
 <script id="prime" type="123">
   //prime: 输入一个数，判断它是否是素数
+  debugger
   var n = prompt()
   var flag = "YES"
-  for (var i =1 ; i <= Math.sqrt(n);i++){
+  //如果n为1或2 i的初始值都大于 Math.sqrt(n)  则会跳过循环
+  for (var i =2 ; i <= Math.sqrt(n);i++){
     //一个n的因数必须有一个在根号n前
     if(n%i == 0){
       //合数
@@ -1379,7 +1381,7 @@ for (var n = 3 ; n <= 1000;n++){
 </script>
 <script id="itob" type="123">
   //itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
-  var n = prompt()
+  var n = prompt()*1
   var str = ""
   var k = 0
   do {
@@ -1420,7 +1422,7 @@ for (var n = 3 ; n <= 1000;n++){
   } while (n != 0)
   console.log(str)
 </script>
-<script id="lcf&lcm" >
+<script id="lcf&lcm" type="123">
   //输入两个数，输出它们的最大公约数和最小公倍数
   //最大公约数
   //a%n=0
