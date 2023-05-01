@@ -1356,7 +1356,7 @@ for (var n = 3 ; n <= 1000;n++){
   console.log(flag)
 
 </script>
-<script id="primes" type="123" >
+<script id="primes" type="123">
   //primes: 输出100以内的素数
 
   for(var a = 2 ; a <100;a ++ ){
@@ -1379,7 +1379,6 @@ for (var n = 3 ; n <= 1000;n++){
 </script>
 <script id="itob" type="123">
   //itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
-
   var n = prompt()
   var str = ""
   var k = 0
@@ -1422,12 +1421,48 @@ for (var n = 3 ; n <= 1000;n++){
   console.log(str)
 </script>
 <script id="lcf&lcm">
-//输入两个数，输出它们的最大公约数和最小公倍数
+  //输入两个数，输出它们的最大公约数和最小公倍数
+  //最大公约数
+  //a%n=0
+  debugger
+  var a = prompt()*1
+  var b = prompt()*1
+  var 最大公约数 = 0
+  var 最小公倍数 = 0
+  for (var i = 1; i <= Math.sqrt(a); i++) {
+    //当i能被a整除的时候 i 为a 的因数  另一个为a/i  i的范围是<=sqrt(a)
+    //a = 2时
+    if (a % i == 0) {
+      //此时确定了两个因数  一个为 i  一个 为a/i
+      //分支一:因数為i
+      if (b % i == 0) {
+        if (i > 最大公约数) {
+          最大公约数 = i
+        }
+      }
+      //分支二:因数為a/i
+      if (b % (a / i) == 0) {
+        //a的另一个因数
+        if (a / i > 最大公约数) {
+          最大公约数 = a / i
+        }
+      }
+    }
+  }
 
 
+  //最小公倍数  a*(1到i) % b==0
+  for (var i = 1; i <= 100000; i++) {
+    if ((a * i) % b == 0){
+      最小公倍数=a*i
+      break
+    }
+  }
+  console.log(最大公约数)
+  console.log(最小公倍数)
 </script>
 
-<script id="sqrt"  type="123">
+<script id="sqrt" type="123">
   //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
   var n = prompt()
   var x = 0
@@ -1435,7 +1470,6 @@ for (var n = 3 ; n <= 1000;n++){
     if (i ** 2 > n) {
       //确定了整数位为(i-1)
       for (var i1 = 0.1; i1 < 1; i1 += 0.1) {
-
         if (((i - 1) + i1) ** 2 > n) {
           //确定了十分位为i1-0.1
           for (var i2 = 0.01; i2 < 0.1; i2 += 0.01) {
