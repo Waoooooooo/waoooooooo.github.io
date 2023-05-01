@@ -1322,22 +1322,30 @@ if(sum == x){
 
 </script>
 
-<script id="complete-numbers" type="123">
+<script id="complete-numbers" >
+  //一个数恰好等于它的因子之和
   //输出1000以内的完全数
-for (var n = 3 ; n <= 1000;n++){
-  var sum = 0
-  for (var i = 2; i < n; i++) {
-    for (var i2 = i + 1; i2 < n; i2++) {
-      if (i * i2 == n) {
-        sum += i + i2
-      }
+  //1因子为1  完全数是排除自身的和 所以1不为完全数
+
+  for (var i = 2; i < 1000; i++) {
+    //i的因数
+    var sum = 0
+    //从2开始是因为 下面加了1
+    for (var i1 = 2; i1 <= Math.sqrt(i); i1++) {
+        if (i % i1 == 0) {
+          //i1  和 i/i1分别为i的两个因数
+          sum += i1 + i / i1
+        }
     }
+    sum++
+    //1和数自身是所有数的因数  但 根据完全数的规则 数的自身不计入 所以在此处+1
+    if (sum == i) {
+      console.log(i)
+    }
+
+
   }
-  sum += 1
-  if (sum == n) {
-    console.log(n)
-  }
-}
+
 
 
 </script>
