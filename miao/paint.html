@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <canvas width="500" height="400"></canvas>
+  <canvas width="1500" height="1500"></canvas>
 </body>
 <script>
   var canvas = document.querySelector('canvas')
@@ -100,8 +100,8 @@
   //     * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
 
   for (var i = 1; i < 500; i += 1) {
-    dot(i, Math.abs((Math.tan(30) * i).toFixed(0)))
-    dot(Math.abs((Math.tan(30) * i).toFixed(0)), i)
+    dot(i, 0.5 * i)
+    dot(0.5 * i, i)
   }
   //     * 画一条跨越画布左上角和右下角的对角线
   for (var i = 1; i < 500; i += 1) {
@@ -127,37 +127,58 @@
   //     * 画两个空心的圆，圆心在画布中心：
   dot(400 / 2, 500 / 2)
   //r 50  s =
-  var r = 50
-  var pi = 3.14
-  var l = pi * r * 2
-  var 起点x = 250
-  var 起点y = 200
-  for (let x = 0; x <= r; x++) {
-    //x方+y方 = r方
-    dot(x + 起点x, Math.abs(Math.sqrt(r ** 2 - x ** 2)) + 起点y)
-    dot(x + 起点x, 起点y - Math.abs(Math.sqrt(r ** 2 - x ** 2)))
+
+
+  function 画圆(起点x, 起点y, r) {
+    var y = r
+    for (let x = 0; x <= y; x++) {
+      //x方+y方 = r方
+      //x = 0 y =r
+      //判断y和r的差
+      var y2 = y - 1
+      var 点到圆心的距离的平方1 = x * x + y * y
+      var 点到圆心的距离的平方2 = x * x + y2 * y2
+      if (Math.abs(点到圆心的距离的平方1 - r * r) > Math.abs(点到圆心的距离的平方2 - r * r)) {
+        dot(x + 起点x, y2 + 起点y)
+        dot(-x + 起点x, -y2 + 起点y)
+        dot(-x + 起点x, y2 + 起点y)
+        dot(x + 起点x, -y2 + 起点y)
+        dot(y2 + 起点x, x + 起点y)
+        dot(-y2 + 起点x, -x + 起点y)
+        dot(-y2 + 起点x, x + 起点y)
+        dot(y2 + 起点x, -x + 起点y)
+        y--
+      } else {
+        dot(x + 起点x, y + 起点y)
+        dot(-x + 起点x, -y + 起点y)
+        dot(-x + 起点x, y + 起点y)
+        dot(x + 起点x, -y + 起点y)
+        dot(y + 起点x, x + 起点y)
+        dot(-y + 起点x, -x + 起点y)
+        dot(-y + 起点x, x + 起点y)
+        dot(y + 起点x, -x + 起点y)
+      }
+    }
   }
-  for (let x = 0; x <= r; x++) {
-    //x方+y方 = r方
-    dot(起点x - x, Math.abs(Math.sqrt(r ** 2 - x ** 2)) + 起点y)
-    dot(起点x - x, 起点y - Math.abs(Math.sqrt(r ** 2 - x ** 2)))
-  }
+  画圆(500, 250, 50)
+  画圆(500, 250, 150)
 
 
   //       * 一个半径为50像素
   //       * 一个半径为200像素
-  var r2 = 200
-  var pi = 3.14
-  for (let x = 0; x <= r2; x++) {
-    //x方+y方 = r方
-    dot(x + 起点x, Math.abs(Math.sqrt(r2 ** 2 - x ** 2)) + 起点y)
-    dot(x + 起点x, 起点y - Math.abs(Math.sqrt(r2 ** 2 - x ** 2)))
-  }
-  for (let x = 0; x <= r2; x++) {
-    //x方+y方 = r方
-    dot(起点x - x, Math.abs(Math.sqrt(r2 ** 2 - x ** 2)) + 起点y)
-    dot(起点x - x, 起点y - Math.abs(Math.sqrt(r2 ** 2 - x ** 2)))
-  }
+  // for (let x = 0; x <= r2; x++) {
+  //   //x方+y方 = r方
+  //   dot(x + 起点x, Math.abs(Math.sqrt(r2 ** 2 - x ** 2)) + 起点y)
+  //   dot(x + 起点x, 起点y - Math.abs(Math.sqrt(r2 ** 2 - x ** 2)))
+  // }
+  // for (let x = 0; x <= r2; x++) {
+  //   //x方+y方 = r方
+  //   dot(起点x - x, Math.abs(Math.sqrt(r2 ** 2 - x ** 2)) + 起点y)
+  //   dot(起点x - x, 起点y - Math.abs(Math.sqrt(r2 ** 2 - x ** 2)))
+  // }
+
+
+
   //     * 画一个实心的圆，半径至少为100像素
   var 起点x1 = 150
   var 起点y2 = 150
@@ -170,35 +191,49 @@
       dot(x + 起点x1, y)
     }
   }
+
+
+
+
   //     * 画一个【大小位置都合适】的sin(x)的图像
   for (var x = -250; x <= 250; x++) {
-    dot(x + 250, Math.sin(x / 30) * 100 + 200)
+    dot(x + 250, Math.sin(x / 30) * 20 + 200)
   }
 
   //rgb
   //255*255个点
   //dot(x, y, color = 'black')
   //        2 0
- //         0 2
- //         ------
- //         1  0.27
- //         0  1
- //         ------
- //         0.5    0.87
- //         -0.87  0.5
- //
- function 矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(a,b,x1 ,y1,x2 ,y2) {
+  //         0 2
+  //         ------
+  //         1  0.27
+  //         0  1
+  //         ------
+  //         0.5    0.87
+  //         -0.87  0.5
+  //
+  function 矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(a, b, x1, y1, x2, y2) {
 
-  for (let x = 1; x <= 255; x++) {
-    for (let y = 1; y <= 255; y++) {
+    for (let x = 1; x <= 255; x++) {
+      for (let y = 1; y <= 255; y++) {
 
-      dot(x1*x+x2*y+a,x*y1+y*y2+b, color = "rgb(255," + (255 - y) + "," + x + ")")
+        dot(x1 * x + x2 * y + a, x * y1 + y * y2 + b, color = "rgb(255," + (255 - y) + "," + x + ")")
+      }
     }
   }
- }
- 矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(200,0,1,0.33,-0.33,1)
- 矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(0,200,0.5,0.27,0,0.5)
- 矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(0,0,0.5,0,0,0.5)
+  矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(200, 400, 1, 0.33, -0.33, 1)
+  矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(0, 200, 0.5, 0.27, 0, 0.5)
+  矩阵改变彩色方块_前两位是起点_后四位是矩阵x1_y1_x2_y2(0, 0, 0.5, 0, 0, 0.5)
+
+
+
+
+
+
+
+
+
+
 </script>
 
 </html>
