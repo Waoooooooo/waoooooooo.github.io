@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>随机抽取餐厅</title>
+  <style>
+    body {
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      margin-top: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3E8E41;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 30px;
+      color:rgb(250, 4, 4)
+    }
+    div {
+      margin-top: 30px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>随机抽取餐厅</h1>
+  <p>今天想吃什么？点一下按钮让我为你抽选！</p>
+  <button id="pickButton">抽选餐厅</button>
+  <div>今天吃<b id="result">*******</b>可以吗</div>
+
+  <script>
+    const restaurants = ["东北饺子馆", "沈记牛肉汤", "太和板面", "徐州炒饭","重庆小面"];
+
+    const pickButton = document.getElementById("pickButton");
+    const resultDiv = document.getElementById("result");
+
+    pickButton.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * restaurants.length);
+      const selectedRestaurant = restaurants[randomIndex];
+      resultDiv.innerText = ` ${selectedRestaurant} `;
+
+    });
+  </script>
+
+</body>
+
+</html>

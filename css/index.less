@@ -1,7 +1,9 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4032193 */
+  font-family: "iconfont";
+  /* Project id 4032193 */
   src: url('../icon/iconfont.ttf') format('truetype');
 }
+
 .icon {
   font-family: "iconfont" !important;
   font-size: 20px;
@@ -14,9 +16,11 @@
 :root {
   --main-width: 1128px;
 }
-html,body {
+
+html,
+body {
   margin: 0;
-  height:100%;
+  height: 100%;
   background-color: #DEE1E6;
 
 }
@@ -24,15 +28,18 @@ html,body {
 * {
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
   color: #333;
 }
-p{
-  color:#777;
+
+p {
+  color: #777;
 }
-h2{
-  color:#333;
+
+h2 {
+  color: #333;
 }
 
 
@@ -40,69 +47,78 @@ h2{
 
 //svg动画
 svg {
-  path.s0{
-    fill: none;stroke: #e06f6f;stroke-width: 40 ;
-    stroke-dasharray:800,800;
+  path.s0 {
+    fill: none;
+    stroke: #e06f6f;
+    stroke-width: 40;
+    stroke-dasharray: 800, 800;
     stroke-dashoffset: 0;
     animation: flow1;
-    animation-duration:10s;
-    animation-iteration-count:infinite;
-    animation-timing-function:ease-in-out;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
   }
-  path.s1{
 
-    fill: none;stroke: #e06f6f;stroke-width: 122;
-    stroke-dasharray:800,800;
+  path.s1 {
+
+    fill: none;
+    stroke: #e06f6f;
+    stroke-width: 122;
+    stroke-dasharray: 800, 800;
     stroke-dashoffset: 0;
     animation: flow2;
-    animation-duration:10s;
-    animation-iteration-count:infinite;
-    animation-timing-function:ease-in-out;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
   }
 }
-@keyframes  flow1{
-  0%{
-    stroke-dasharray:0,100%;
+
+@keyframes flow1 {
+  0% {
+    stroke-dasharray: 0, 100%;
     stroke-dashoffset: 0;
     fill: white;
   }
-  50%{
-    stroke-dasharray:100%,0;
+
+  50% {
+    stroke-dasharray: 100%, 0;
     stroke-dashoffset: 100%;
     fill: #e06f6f
   }
 
-  100%{
-    stroke-dasharray:0,100%;
+  100% {
+    stroke-dasharray: 0, 100%;
     stroke-dashoffset: 200%;
     fill: white;
   }
 }
 
 
-@keyframes  flow2{
-  0%{
-    stroke-dasharray:0,100%;
+@keyframes flow2 {
+  0% {
+    stroke-dasharray: 0, 100%;
     stroke-dashoffset: 0;
   }
-  35%{
-    stroke-dasharray:100%,0;
+
+  35% {
+    stroke-dasharray: 100%, 0;
     stroke-dashoffset: 100%;
   }
 
-  65%{
-    stroke-dasharray:100%,0;
+  65% {
+    stroke-dasharray: 100%, 0;
     stroke-dashoffset: 100%;
   }
-  100%{
-    stroke-dasharray:0,100%;
+
+  100% {
+    stroke-dasharray: 0, 100%;
     stroke-dashoffset: 200%;
   }
 }
 
 
-div.container{
-  height:100%;
+div.container {
+  height: 100%;
   background: url(/img/123.png);
   background-repeat: no-repeat;
   background-size: 100%;
@@ -118,6 +134,7 @@ div.header {
   width: 100%;
   background-color: #FFFFFF;
   box-shadow: #99999950 0px 0px 5px 2px;
+
   div.header-inner {
     display: flex;
     width: var(--main-width);
@@ -128,25 +145,29 @@ div.header {
     div.right {
       display: flex;
       height: 100%;
+
       >span {
         height: 100%;
-        padding:0 10px;
+        padding: 0 10px;
         width: 140px;
         text-align: center;
-        font-weight:500;
+        font-weight: 500;
         font-size: 1.1em;
         display: flex;
-        a{
+
+        a {
           line-height: 1.5em;
           margin-top: auto;
           margin-bottom: auto;
           // display: inline-block;
-          color:#666;
+          color: #666;
           position: relative;
+
           span {
-           position: relative;
-           z-index: 2;
+            position: relative;
+            z-index: 2;
           }
+
           &::before {
             content: " ";
             position: absolute;
@@ -156,12 +177,14 @@ div.header {
             bottom: 0;
             left: 0;
             width: 100%;
-            transform-origin:bottom;
+            transform-origin: bottom;
             transition: 0.5s;
           }
-          &:hover{
+
+          &:hover {
             color: #222;
-            &::before{
+
+            &::before {
               visibility: visible;
               transition: 0.5s;
               transform: scaleY(12);
@@ -201,34 +224,40 @@ div.main {
   padding: 40px;
 
   //自我介绍
-  div.introduction{
+  div.introduction {
     display: flex;
-    height: 420px;;
+    height: 420px;
+    ;
+
     div.left {
       display: flex;
       flex-flow: column;
       align-items: center;
+
       img {
         width: 300px;
         height: 300px;
         border-radius: 10000px;
       }
-      h1{
-        flex:1;
+
+      h1 {
+        flex: 1;
         font-family: Comic Sans MS;
       }
     }
+
     div.right {
       font-size: 1.3em;
-      margin-left:40px;
+      margin-left: 40px;
       flex: 1;
 
       >div {
         font-size: 16px;
-        color:#444;
+        color: #444;
         float: left;
         line-height: 40px;
-        margin-right: 40px ;
+        margin-right: 40px;
+
         b {
           margin-right: 20px;
         }
@@ -241,66 +270,80 @@ div.main {
   div.works-list {
 
     padding-top: 60px;
+
     //作品集左右字样
     >div.works-list-header {
       display: flex;
       align-items: center;
+
       h1.left {
-        flex:1;
+        flex: 1;
       }
     }
 
     //作品集清单
     ul {
       list-style: none;
-      padding:0;
+      padding: 0;
       margin: 0;
       display: flex;
-      gap:20px;
+      gap: 20px;
+
       li {
         display: flex;
         flex-flow: column;
-        padding:20px;
+        padding: 20px;
         margin: 0;
         flex: 1;
         height: 500px;
         border-radius: 25px;
         background-color: #fff;
         box-shadow: #99999950 0px 3px 10px;
-        &:hover{
-          outline: rgb(249, 192, 69) 5px  solid;
+
+        &:hover {
+          outline: rgb(249, 192, 69) 5px solid;
         }
 
         //文字描述样式
-        span.text{
+        span.text {
           flex-grow: 1;
           display: block;
         }
+
         //tag样式
         span.tags {
           flex-grow: 0;
           display: flex;
-          margin:10px 0;
-          span+span{
-            margin-left:10px;
+          margin: 10px 0;
+
+          span+span {
+            margin-left: 10px;
           }
-          span.tag{
+
+          span.tag {
             padding: 5px 20px;
-            background-color:rgb(250, 220, 155);
+            background-color: rgb(250, 220, 155);
             box-shadow: 1px 3px 3px #99999950;
             border-radius: 3px;
-            &:hover{
+
+            &:hover {
               background-color: rgb(68, 162, 188);
               color: white;
             }
           }
         }
+
         //缩略图样式
-        span.printscreen{
+        span.printscreen {
           flex-grow: 0;
-          >img{
-                width: 100%;
-                border-radius: 15px;
+
+          >img {
+            border:1px solid#000 ;
+            display: block;
+            margin:auto;
+            height:200px;
+            width:100%;
+            border-radius: 15px;
           }
         }
       }
@@ -309,50 +352,61 @@ div.main {
   }
 
   //笔记
-  div.notes-list{
+  div.notes-list {
     >div.works-list-header {
       display: flex;
       align-items: center;
+
       h1.left {
-        flex:1;
+        flex: 1;
       }
     }
 
     margin-top: 40px;
-    table{
+
+    table {
       width: 100%;
       border-collapse: collapse;
       // background-color: #fff;
       position: relative;
     }
+
     tr {
       position: relative;
       border-bottom: 1px solid gray;
       height: 140px;
       z-index: 2;
+
       i {
         font-size: 40px;
       }
-      &:hover{
+
+      &:hover {
         color: rgb(236, 236, 236);
-        transition: 0.3s ;
-        i{
-          color:rgb(236, 236, 236);
+        transition: 0.3s;
+
+        i {
+          color: rgb(236, 236, 236);
         }
       }
-      &:first-child{
+
+      &:first-child {
         color: rgb(236, 236, 236);
-        i{
-          color:rgb(236, 236, 236);
+
+        i {
+          color: rgb(236, 236, 236);
         }
       }
     }
-    td,th {
+
+    td,
+    th {
       padding: 20px;
       text-align: left;
     }
+
     //hover动效
-    table::before{
+    table::before {
       content: "";
       position: absolute;
       height: 140px;
@@ -361,78 +415,78 @@ div.main {
       z-index: 1;
       transition: 0.4s;
     }
-    table:has(tr:nth-child(2):hover){
-      &::before{
-       transform: translateY(calc(140px * 1));
+
+    table:has(tr:nth-child(2):hover) {
+      &::before {
+        transform: translateY(calc(140px * 1));
       }
-      tr:not(:nth-child(2)){
-        color:black;
-        i{
-          color:black;
+
+      tr:not(:nth-child(2)) {
+        color: black;
+
+        i {
+          color: black;
         }
       }
     }
-    table:has(tr:nth-child(3):hover){
-      &::before{
-       transform: translateY(calc(140px * 2));
+
+    table:has(tr:nth-child(3):hover) {
+      &::before {
+        transform: translateY(calc(140px * 2));
       }
-      tr:not(:nth-child(3)){
-        color:black;
-        i{
-          color:black;
+
+      tr:not(:nth-child(3)) {
+        color: black;
+
+        i {
+          color: black;
         }
       }
     }
-    table:has(tr:nth-child(4):hover){
-      &::before{
-       transform: translateY(calc(140px * 3));
+
+    table:has(tr:nth-child(4):hover) {
+      &::before {
+        transform: translateY(calc(140px * 3));
       }
-      tr:not(:nth-child(4)){
-        color:black;
-        i{
-          color:black;
+
+      tr:not(:nth-child(4)) {
+        color: black;
+
+        i {
+          color: black;
         }
       }
     }
-    table:has(tr:nth-child(5):hover){
-      &::before{
-       transform: translateY(calc(140px * 4));
+
+    table:has(tr:nth-child(5):hover) {
+      &::before {
+        transform: translateY(calc(140px * 4));
       }
-      tr:not(:nth-child(5)){
-        color:black;
-        i{
-          color:black;
+
+      tr:not(:nth-child(5)) {
+        color: black;
+
+        i {
+          color: black;
         }
       }
     }
   }
 
 
-//主要内容结束
+  //主要内容结束
 }
 
-div.footer{
+div.footer {
   text-align: center;
 }
 
 //小鸡
-div.cxk{
+div.cxk {
   position: fixed;
-  right:10px;
+  right: 10px;
   top: 30%;
   z-index: 10;
   transform: scale(0.4);
   transform-origin: right;
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1391,7 +1391,7 @@ if(sum == x){
   //itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
   var n = prompt()*1
   var str = ""
-  
+
   do {
     var   k = n % 10
     n = (n - n % 10) / 10
@@ -1506,5 +1506,80 @@ if(sum == x){
       break
     }
   }
+
   console.log(x.toFixed(3))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<script>
+  function abc(a,b) {
+    var c =  a%b
+    if (c!=0) {
+      return abc(b,c)
+    }
+    else{
+      return b
+    }
+  }
+
+  console.log(abc(3,100))
+
+</script>
+
+<script>
+  function abc(a,b) {
+
+    if (a>b) {
+      var c = a-b
+      return c
+    }else{
+      var c = b-a
+      return a
+    }
+
+
+
+    if (c!=0) {
+      return abc(b,c)
+    }
+    else{
+      return b
+    }
+  }
+
+
+
+</script>
+<script>
+//二分法
+
+
+var n = prompt()
+var k = 0
+var a = n
+while(true){
+  k=a/2
+ if (n*n-k*k <= 0.0001) {
+  break
+ }
+}
+console.log(k)
+
 </script>
