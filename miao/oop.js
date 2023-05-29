@@ -175,7 +175,7 @@ class MySet {
     }
     return false
   }
-  remove(key) {
+  delete(key) {
     var hashNum = this.getHashNum(key)
     var dummy = { next: this._pairs[hashNum] }
     var head = dummy
