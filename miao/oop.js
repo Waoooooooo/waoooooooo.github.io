@@ -277,6 +277,9 @@ class Stack {
       this.head = this.head.next
     }
   }
+  get size(){
+    return this
+  }
 }
 
 class Queue{
