@@ -314,14 +314,17 @@ class Queue {
   }
   pop() {
     //从head处删除
+    var result = undefined
     if (this.head == null) {
-      return
     } else if (this.head == this.end) {
+      result =this.head.val
       this.head = this.end = null
     } else if (this.head == this.end) {
+      result =this.head.val
       this.head = this.head.next
     }
     this.count--
+    return result
   }
   get size() {
     return this.count
@@ -342,7 +345,7 @@ class LinkedList {
       this.end.next = node
       this.end= node
     }
-    count++
+    this.count++
   }
   prepend(val) {
     var node = {val,next : null}
@@ -352,7 +355,7 @@ class LinkedList {
       node.next =  this.head
       this.head= node
     }
-    count++
+    this.count++
   }
   at(index) {
     var p = this.head
