@@ -226,7 +226,7 @@ class Vector {
     return new Vector(vector.x + this.x, vector.y + this.y)
   }
   minus(vector) {
-    return new Vector(vector.x - this.x, vector.y - this.y)
+    return new Vector(this.x-vector.x , this.y - vector.y)
   }
   get length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)
