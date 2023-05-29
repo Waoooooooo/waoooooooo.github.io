@@ -22,7 +22,7 @@ class MyMap {
     return hash % this._capacity
   }
 
-  put(key, val) {
+  set(key, val) {
     var hashNum = this.getHashNum(key)
 
     var p = this._pairs[hashNum]
@@ -67,7 +67,7 @@ class MyMap {
     }
     return false
   }
-  remove(key) {
+  delete(key) {
     var hashNum = this.getHashNum(key)
     var dummy = { next: this._pairs[hashNum] }
     var head = dummy
@@ -101,7 +101,7 @@ class MyMap {
     this._size = 0
     arr.forEach((linkedList) => {
       while (linkedList) {
-        this.put(linkedList.key, linkedList.val)
+        this.set(linkedList.key, linkedList.val)
         linkedList = linkedList.next
       }
     })
