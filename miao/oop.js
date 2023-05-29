@@ -240,7 +240,7 @@ class Complex {
   }
   div(complex){
 
-    return  new Complex(( this.real * complex.real + this.imag*complex.imag )/ (complex.imag**2 +complex.imag**2) ,  (complex.real*this.imag - this.real*complex.imag)  / (complex.imag**2 +complex.imag**2))
+    return  new Complex(( this.real * complex.real + this.imag*complex.imag )/ (complex.imag**2 +complex.imag**2) ,  (this.imag*complex.real - this.real*complex.imag)  / (complex.imag**2 +this.imag**2))
   }
 
 
