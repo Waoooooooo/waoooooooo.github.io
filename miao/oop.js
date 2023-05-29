@@ -234,9 +234,13 @@ class Vector {
 }
 
 class Complex {
-  constructor(ip, re) {
-    this.ip = ip
-    this.re = re
+  constructor(real , imag ) {
+    this.real  = real
+    this.imag  = imag
+  }
+  div(complex){
+
+    return  new Complex(( this.real * complex.real + this.imag*complex.imag )/ (complex.imag**2 +complex.imag**2) ,  (complex.real*this.imag - this.real*complex.imag)  / (complex.imag**2 +complex.imag**2))
   }
 
 
