@@ -219,17 +219,17 @@ class MySet {
 
 class Vector {
   constructor(x, y) {
-    this._x = x
-    this._y = y
+    this.x = x
+    this.y = y
   }
   plus(vector) {
-    return new Vector(vector._x + this._x, vector._y + this._y)
+    return new Vector(vector.x + this.x, vector.y + this.y)
   }
   minus(vector) {
-    return new Vector(vector._x - this._x, vector._y - this._y)
+    return new Vector(vector.x - this.x, vector.y - this.y)
   }
   get length() {
-    return Math.sqrt(this._x * this._x + this._y * this._y)
+    return Math.sqrt(this.x * this.x + this.y * this.y)
   }
 }
 
