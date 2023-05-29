@@ -271,9 +271,7 @@ class Stack {
   pop() {
     //删除头结点
     var result = null
-
     if (this.head === null) {
-
     } else if (this.head === this.end) {
       //如果只有一个
       var result = this.head.val
@@ -292,5 +290,24 @@ class Stack {
 }
 
 class Queue {
+  // 表示一个队列
+  // 只有两个操作：
+  // 从一端添加元素，从另一端删除元素
+  // 先进先出
+  // 其每一个操作的时间复杂度都为O（1）
+  constructor() {
+    this.head = null
+    this.end = null
+  }
 
+  add(val) {
+    var node = { val, next: null }
+    if (this.head == null) {
+      this.head = this.end =
+    }
+  }
+  pop() { }
+  get size() {
+
+  }
 }
