@@ -256,6 +256,7 @@ class Stack {
   constructor() {
     this.head = null
     this.end = null
+    this.count = 0
   }
   push(val) {
     if (this.head === null) {
@@ -265,23 +266,31 @@ class Stack {
       node.next = this.head
       this.head = node
     }
+    count++
   }
   pop() {
     //删除头结点
+    var result = null
+
     if (this.head === null) {
-      return
+
     } else if (this.head === this.end) {
       //如果只有一个
+      var result = this.head.val
       this.head = this.end = null
+      count--
     } else {
+      var result = this.head.val
       this.head = this.head.next
+      count--
     }
+    return result
   }
-  get size(){
-    return this
+  get size() {
+    return this.count
   }
 }
 
-class Queue{
+class Queue {
 
 }
