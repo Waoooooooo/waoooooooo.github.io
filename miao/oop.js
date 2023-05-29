@@ -266,7 +266,7 @@ class Stack {
       node.next = this.head
       this.head = node
     }
-    count++
+    this.count++
   }
   pop() {
     //删除头结点
@@ -276,11 +276,11 @@ class Stack {
       //如果只有一个
       var result = this.head.val
       this.head = this.end = null
-      count--
+      this.count--
     } else {
       var result = this.head.val
       this.head = this.head.next
-      count--
+      this.count--
     }
     return result
   }
