@@ -163,7 +163,7 @@ class MySet {
     }
     return -1
   }
-  contains(key) {
+  has(key) {
     var key = String(key)
     var hashNum = this.getHashNum(key)
     var head = this._pairs[hashNum]
@@ -306,7 +306,7 @@ class Queue {
     var node = { val, next: null }
     if (this.head == null) {
       this.head = this.end = node
-    } else if (this.head == this.end) {
+    } else {
       this.end.next = node
       this.end = node
     }
@@ -336,7 +336,7 @@ class LinkedList {
   }
   append(val) {
     var node = {val,next : null}
-    if (head == null) {
+    if (this.head == null) {
       this.head = this.end = node
     }else{
       this.end.next = node
@@ -346,7 +346,7 @@ class LinkedList {
   }
   prepend(val) {
     var node = {val,next : null}
-    if (head == null) {
+    if (this.head == null) {
       this.head = this.end = node
     }else{
       node.next =  this.head
