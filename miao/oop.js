@@ -315,12 +315,12 @@ class Queue {
   pop() {
     //从head处删除
     var result = undefined
+    result =this.head.val
     if (this.head == null) {
+      return
     } else if (this.head == this.end) {
-      result =this.head.val
       this.head = this.end = null
-    } else if (this.head == this.end) {
-      result =this.head.val
+    } else{
       this.head = this.head.next
     }
     this.count--
