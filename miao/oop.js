@@ -298,16 +298,32 @@ class Queue {
   constructor() {
     this.head = null
     this.end = null
+    this.count  = 0
   }
 
   add(val) {
+    //从end 处添加
     var node = { val, next: null }
     if (this.head == null) {
-      this.head = this.end =
+      this.head = this.end = node
+    } else if (this.head == this.end) {
+      this.end.next = node
+      this.end = node
     }
+    this.count ++
   }
-  pop() { }
+  pop() {
+    //从head处删除
+    if (this.head == null) {
+      return
+    } else if (this.head == this.end) {
+      this.head = this.end = null
+    }else if (this.head == this.end) {
+      this.head = this.head.next
+    }
+    this.count --
+  }
   get size() {
-
+    return this.count
   }
 }
