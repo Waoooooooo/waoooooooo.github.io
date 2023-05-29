@@ -298,7 +298,7 @@ class Queue {
   constructor() {
     this.head = null
     this.end = null
-    this.count  = 0
+    this.count = 0
   }
 
   add(val) {
@@ -310,7 +310,7 @@ class Queue {
       this.end.next = node
       this.end = node
     }
-    this.count ++
+    this.count++
   }
   pop() {
     //从head处删除
@@ -318,10 +318,51 @@ class Queue {
       return
     } else if (this.head == this.end) {
       this.head = this.end = null
-    }else if (this.head == this.end) {
+    } else if (this.head == this.end) {
       this.head = this.head.next
     }
-    this.count --
+    this.count--
+  }
+  get size() {
+    return this.count
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null
+    this.end = null
+    this.count = 0
+  }
+  append(val) {
+    var node = {val,next : null}
+    if (head == null) {
+      this.head = this.end = node
+    }else{
+      this.end.next = node
+      this.end= node
+    }
+    count++
+  }
+  prepend(val) {
+    var node = {val,next : null}
+    if (head == null) {
+      this.head = this.end = node
+    }else{
+      node.next =  this.head
+      this.head= node
+    }
+    count++
+  }
+  at(index) {
+    var p = this.head
+    while (p) {
+      if (index == 0) {
+        return p.val
+      }
+      index--
+      p = p.next
+    }
   }
   get size() {
     return this.count
