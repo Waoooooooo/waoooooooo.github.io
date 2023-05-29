@@ -6,7 +6,7 @@ class MyMap {
     //初始化数组容器
     this._pairs = new Array(this._capacity).fill(null)
     //数据数量
-    this._size = 0
+    this.size = 0
     //扩容因子
     this._loadFactor = 0.5
   }
@@ -36,8 +36,8 @@ class MyMap {
     var node = { key, val, next: null }
     node.next = this._pairs[hashNum]
     this._pairs[hashNum] = node
-    this._size++
-    if (this._size / this._capacity > this._loadFactor) {
+    this.size++
+    if (this.size / this._capacity > this._loadFactor) {
       this.扩容();
     }
     return val
@@ -80,8 +80,8 @@ class MyMap {
       head = head.next
     }
     this._pairs[hashNum] = dummy.next
-    this._size--
-    if (this._capacity != 16 && this._size < this._capacity / 4) {
+    this.size--
+    if (this._capacity != 16 && this.size < this._capacity / 4) {
       this.缩容();
     }
   }
@@ -98,7 +98,7 @@ class MyMap {
   创建新数组并搬运() {
     var arr = this._pairs
     this._pairs = new Array(this._capacity).fill(null)
-    this._size = 0
+    this.size = 0
     arr.forEach((linkedList) => {
       while (linkedList) {
         this.set(linkedList.key, linkedList.val)
@@ -116,7 +116,7 @@ class MySet {
     //初始化数组容器
     this._pairs = new Array(this._capacity).fill(null)
     //数据数量
-    this._size = 0
+    this.size = 0
     //扩容因子
     this._loadFactor = 0.5
   }
@@ -144,8 +144,8 @@ class MySet {
     var node = { key, next: null }
     node.next = this._pairs[hashNum]
     this._pairs[hashNum] = node
-    this._size++
-    if (this._size / this._capacity > this._loadFactor) {
+    this.size++
+    if (this.size / this._capacity > this._loadFactor) {
       this.扩容();
     }
     return
@@ -188,8 +188,8 @@ class MySet {
       head = head.next
     }
     this._pairs[hashNum] = dummy.next
-    this._size--
-    if (this._capacity != 16 && this._size < this._capacity / 4) {
+    this.size--
+    if (this._capacity != 16 && this.size < this._capacity / 4) {
       this.缩容();
     }
   }
@@ -206,7 +206,7 @@ class MySet {
   创建新数组并搬运() {
     var arr = this._pairs
     this._pairs = new Array(this._capacity).fill(null)
-    this._size = 0
+    this.size = 0
     arr.forEach((linkedList) => {
       while (linkedList) {
         this.add(linkedList.key)
