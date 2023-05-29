@@ -1,5 +1,5 @@
 //将MyMap，MySet，Vector，Complex，Stack，Queue，LinkedLi
-class MyHashMap {
+class MyMap {
   constructor() {
     //容器容量
     this._capacity = 16
@@ -109,7 +109,7 @@ class MyHashMap {
 
 }
 
-class MyHashSet {
+class MySet {
   constructor() {
     //容器容量
     this._capacity = 16
