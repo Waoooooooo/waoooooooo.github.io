@@ -1,6 +1,6 @@
 //将MyMap，MySet，Vector，Complex，Stack，Queue，LinkedLi
 //堆
-class Heap {
+class   PriorityQueue {
   constructor(arr = [], fun = i => i) {
     this.fun = fun
     this.arr = arr
