@@ -37,7 +37,7 @@ class   PriorityQueue {
 
   //pop
   //弹出堆顶的值
-  pop() {
+  peek() {
     this.swap(0, this.arr.length - 1)
     var max = this.arr.pop()
     this.heapDown(0)
