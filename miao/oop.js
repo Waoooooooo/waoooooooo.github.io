@@ -73,7 +73,9 @@ class   PriorityQueue {
     }
     return this.arr
   }
-
+  get size(){
+    return this.arr.length
+  }
 
 }
 class MyMap {
