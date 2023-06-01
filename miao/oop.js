@@ -37,13 +37,15 @@ class   PriorityQueue {
 
   //pop
   //弹出堆顶的值
-  peek() {
+  pop() {
     this.swap(0, this.arr.length - 1)
     var max = this.arr.pop()
     this.heapDown(0)
     return max
   }
-
+  peek(){
+    return this.arr[0]
+  }
   //向下调整
   heapDown(i) {
     //i的左右节点的值在数组中对应的位置
