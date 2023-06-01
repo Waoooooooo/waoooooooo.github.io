@@ -1,4 +1,79 @@
 //将MyMap，MySet，Vector，Complex，Stack，Queue，LinkedLi
+//堆
+class Heap {
+  constructor(arr = [], fun = i => i) {
+    this.fun = fun
+    this.arr = arr
+    if (this.arr.length != 0) {
+      this.heapify()
+    }
+  }
+
+  //交换函数
+  swap(i, j) {
+    var a = this.arr[i]
+    this.arr[i] = this.arr[j]
+    this.arr[j] = a
+  }
+
+  //push
+  //接受一个值 将其放于数组的末尾 然后向上调整
+  push(val) {
+    this.arr.push(val)
+    var i = this.arr.length - 1
+    while (true) {
+      //如果根节点的值小于当前节点 则交换根节点与当前节点
+      //在完美二叉树中 根节点的下标为 (i-1)>>1
+      var root = (i - 1) >> 1
+      if (this.fun(this.arr[root]) < this.fun(this.arr[i])) {
+        this.swap(root, i)
+        i = root
+      } else {
+        break
+      }
+    }
+    return this.arr
+  }
+
+  //pop
+  //弹出堆顶的值
+  pop() {
+    this.swap(0, this.arr.length - 1)
+    var max = this.arr.pop()
+    this.heapDown(0)
+    return max
+  }
+
+  //向下调整
+  heapDown(i) {
+    //i的左右节点的值在数组中对应的位置
+    var left = i * 2 + 1
+    var right = i * 2 + 2
+    var max = i
+    if (left < this.arr.length && this.fun(this.arr[i]) < this.fun(this.arr[left])) {
+      max = left
+    }
+    if (right < this.arr.length && this.fun(this.arr[max]) < this.fun(this.arr[right])) {
+      max = right
+    }
+    //取到三个数中最大数的下标
+    if (max != i) {
+      this.swap(max, i)
+      this.heapDown(max)
+    }
+  }
+
+  //堆化
+  heapify() {
+    //从倒数第二层的最后一个`元素((arr.length -1)>>1)开始，以该元素为堆顶向下调整
+    for (var i = (this.arr.length - 1) >> 1; i >= 0; i--) {
+      this.heapDown(i)
+    }
+    return this.arr
+  }
+
+
+}
 class MyMap {
   constructor() {
     //容器容量
