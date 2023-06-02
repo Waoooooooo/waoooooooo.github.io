@@ -42,4 +42,6 @@ var waoooooooo = {
     */
   compact:(array) =>array.filter( i=> i ),
 
+
+
 }
