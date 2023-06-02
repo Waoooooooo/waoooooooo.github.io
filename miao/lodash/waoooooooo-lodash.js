@@ -10,9 +10,7 @@ var waoooooooo = {
    * @return  (Array): 返回一个包含拆分区块的新数组（注：相当于一个二维数组）。
    */
   chunk: function (ary, size) {
-
     var result = []
-
     for (let index = 0; index < ary.length; index++) {
       var count = 0
       var arr = []
@@ -43,7 +41,6 @@ var waoooooooo = {
     * @return  (Array): 返回过滤掉假值的新数组。
     */
   compact: function (array) {
-    array.filter(i=> i )
-    return
+    return  array.filter( i=> i )
   },
 }
