@@ -192,7 +192,24 @@ var waoooooooo = {
     return flag
   },
 
+  /**
+   * flatten
+   * @param {*} array
+   * @returns Array 返回拍平的新数组
+   */
   flatten: array => array.reduce((arr, e) => {Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
+
+
+  flattenDeep: function flattenDeep(array) {
+    return    array.reduce((arr, e) => {
+      if (Array.isArray(e)) {
+        arr.push(...waoooooooo.flattenDeep(e))
+      }else{
+        arr.push(e)
+      }
+      return arr
+    },[])
+  }
 
 
 }
