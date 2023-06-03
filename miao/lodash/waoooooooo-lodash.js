@@ -1,6 +1,6 @@
 
 var waoooooooo = {
-
+  identity: e => e,
   /**
    * chunk
    * 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。
@@ -69,5 +69,20 @@ var waoooooooo = {
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
 
+  findIndex: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
+    if(typeof predicate  ==  "function"){
+      for (let index = fromIndex; index < array.length; index++) {
+        if (predicate(array[index])) {
+          return index
+        }
+      }
+    }else{
+      for (let index = fromIndex; index < array.length; index++) {
+        if (predicate == array[index]) {
+          return index
+        }
+      }
+    }
+  }
 
 }
