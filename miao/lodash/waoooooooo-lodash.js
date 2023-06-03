@@ -69,7 +69,7 @@ var waoooooooo = {
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
   dropRight: (array, n=1)=>array.filter((e, i) => i < array.length - n),
-  dropRightWhile: (array, predicate=waoooooooo.identity)=>{array.filter((value, index) => predicate(value,index,array))}
+  dropRightWhile: (array, predicate=waoooooooo.identity)=>array.filter((value, index) => !predicate(value,index,array)),
 
   /**
    * findIndex
