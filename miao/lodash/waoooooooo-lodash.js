@@ -234,17 +234,17 @@ var waoooooooo = {
    * @param {*} values
    * @returns 除了values的 去重的  新的数组
    */
-  difference: (array,...values) =>{
+  difference: (array, ...values) => {
     var flatValues = waoooooooo.flattenDeep(values)
-    var arr = array.filter((e)=> !(flatValues.indexOf(e)+1)) //0为false 所以加1
+    var arr = array.filter((e) => !(flatValues.indexOf(e) + 1)) //0为false 所以加1
     //去重
     var set = new Set()
     var result = []
     for (let index = 0; index < arr.length; index++) {
       var e = arr[index]
-      if (set.has(e)) {0
+      if (set.has(e)) {
         continue
-      }else{
+      } else {
         set.add(e)
         result.push(e)
       }
@@ -252,10 +252,27 @@ var waoooooooo = {
     return result
   },
 
- differenceBy:(array, values, iteratee=waoooooooo.identity)=>{
-   return  array[waoooooooo.findIndex(waoooooooo.difference(array,values),iteratee)]
+  differenceBy: (array, ...args) => {
+    //1.如果参数的最后一个为函数
+    var arguments = waoooooooo.flattenDeep(args)
+    if (typeof args.at(-1) == "function" ) {
+      var fun = args.at(-1)
+      var arguments = args.slice(0, args.length - 1).map(e => fun(e))
+      var result = array.filter((e)=> !(arguments.indexOf(fun(e)) + 1))
+    }
+    else if(typeof args.at(-1) == "string"){
+      var str = args.at(-1)
+      var result = array.filter(e =>!arguments.find((obj)=>obj[str] == e[str]))
+    }
+    else {
+      var fun = waoooooooo.identity
+      var arguments = args
+      var result = array.filter((e)=> !(arguments.indexOf(fun(e)) + 1))
+    }
+    return result
   },
 
+ differenceWith:(array, [values], [comparator])=>{}
 
 }
 
