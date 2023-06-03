@@ -117,16 +117,23 @@ var waoooooooo = {
     return -1
   },
 
-  findLastIndex: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
+  /**
+   *
+   * @param {*} array
+   * @param {*} predicate
+   * @param {*} fromIndex
+   * @returns 返回查找的值在数组中的坐标
+   */
+  findLastIndex: (array, predicate = waoooooooo.identity, fromIndex = array.length-1) => {
     if (typeof predicate == "function") {
-      for (let index = fromIndex; index < array.length; index++) {
+      for (let index = fromIndex; index >=0; index--) {
         if (predicate(array[index])) {
           return index
         }
       }
     } else {
       //如果predicate不是函数
-      for (let index = fromIndex; index < array.length; index++) {
+      for (let index = fromIndex; index >=0; index--) {
         if (array[index] === predicate) {
           return index
         } else if (typeof array[index] == "object") {
@@ -158,20 +165,30 @@ var waoooooooo = {
     return -1
   },
 
-
+  /**
+   * 判断两个对象是否相等
+   * @param {*} obj1
+   * @param {*} obj2
+   * @returns
+   */
   objectEqual: (obj1, obj2) => {
     var  flag = true
-    for (const key in obj1) {
-      if (!(key in obj2 && obj1[key] == obj2[key])) {
+    try {
+      for (const key in obj1) {
+        if (!(key in obj2 && obj1[key] == obj2[key])) {
+            flag =  false
+            break;
+        }
+      }
+      for (const key in obj2) {
+        if(!(key in obj1 && obj1[key] == obj2[key]))  {
           flag =  false
-          break;
+        }
       }
+    } catch (error) {
+      return false
     }
-    for (const key in obj2) {
-      if(!(key in obj1 && obj1[key] == obj2[key]))  {
-        flag =  false
-      }
-    }
+
     return flag
   },
 }
