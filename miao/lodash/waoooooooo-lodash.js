@@ -363,6 +363,6 @@ var waoooooooo = {
     )
   },
 
-
+  fromPairs:pairs => pairs.reduce((obj ,element) =>{obj[element[0]]=element[1];return obj},{}),
 }
 
