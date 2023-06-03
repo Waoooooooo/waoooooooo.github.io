@@ -254,25 +254,30 @@ var waoooooooo = {
 
   differenceBy: (array, ...args) => {
     //1.如果参数的最后一个为函数
-    var arguments = waoooooooo.flattenDeep(args)
-    if (typeof args.at(-1) == "function" ) {
+
+    if (typeof args.at(-1) == "function") {
       var fun = args.at(-1)
-      var arguments = args.slice(0, args.length - 1).map(e => fun(e))
-      var result = array.filter((e)=> !(arguments.indexOf(fun(e)) + 1))
+      args.pop()
+      var arguments = waoooooooo.flattenDeep(args)
+      for (let index = 0; index < arguments.length; index++) {
+        arguments[index] = fun(arguments[index]);
+      }
+      var result = array.filter((e) => !(arguments.indexOf(fun(e)) + 1))
     }
-    else if(typeof args.at(-1) == "string"){
+    else if (typeof args.at(-1) == "string") {
       var str = args.at(-1)
-      var result = array.filter(e =>!arguments.find((obj)=>obj[str] == e[str]))
+      var result = array.filter(e => !arguments.find((obj) => obj[str] == e[str]))
     }
     else {
       var fun = waoooooooo.identity
-      var arguments = args
-      var result = array.filter((e)=> !(arguments.indexOf(fun(e)) + 1))
+      var arguments = waoooooooo.flattenDeep(args)
+      var result = array.filter((e) => !(arguments.find((val) => fun(e) == val)))
+
     }
     return result
   },
 
- differenceWith:(array, [values], [comparator])=>{}
+  differenceWith: (array, [values], [comparator]) => { }
 
 }
 
