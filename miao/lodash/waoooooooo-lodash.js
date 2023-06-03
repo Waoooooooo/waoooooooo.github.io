@@ -113,46 +113,42 @@ var waoooooooo = {
   },
 
   dropWhile :(array, predicate = waoooooooo.identity) => {
+    var  result = []
     if (typeof predicate == "function") {
-      return array.filter((value, index) => !predicate(value, index, array))
+      for (let index = 0; index < array.length; index++) {
+        if (!predicate(value, index, array)) {
+          return result
+        }
+        result.push(array[index])
+      }
     } else {
       //是对象数组或key
-      var  result = []
       for (let index = 0; index < array.length; index++) {
         var e = array[index]
         if(Array.isArray(predicate) && predicate.length == 2){
-          var flag = false
           for (const key in e) {
               if(key == predicate[0] && e[key] == predicate[1]){
-                //不添加
-                flag = true
-                break
+                return  result
               }
           }
-          if (!flag) {
-            result.push(e)
-          }
+          result.push(e)
         } else if (typeof predicate == "object") {
           //2.predicate是对象
-          if (!waoooooooo.objectEqual(predicate, e)){
-            result.push(e)
+          if (waoooooooo.objectEqual(predicate, e)){
+            return  result
           }
+          result.push(e)
         } else if(typeof predicate == "string"){
-          var flag =false
           for (const key in e) {
             if (key == predicate && e[key]){
-              flag = true
-              break
+              return  result
             }
           }
-          if (!flag) {
-            result.push(e)
-          }
+          result.push(e)
         }
-
       }
-      return  result
     }
+    return result
   },
   /**
    * findIndex
