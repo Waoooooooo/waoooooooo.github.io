@@ -315,7 +315,7 @@ var waoooooooo = {
     var flatValues = waoooooooo.flattenDeep(values)
     var arr = array.filter((e) => !(flatValues.indexOf(e) + 1)) //0为false 所以加1
     //去重
-    return waoooooooo.去重(arr)
+    return waoooooooo.deweight(arr)
   },
 
   differenceBy: (array, ...args) => {
@@ -366,7 +366,12 @@ var waoooooooo = {
     return -1
   },
 
-  去重: arr => {
+  /**
+   * 去重deweight
+   * @param {*} arr
+   * @returns 去重后的新数组
+   */
+  deweight: arr => {
     var set = new Set()
     var result = []
     for (let index = 0; index < arr.length; index++) {
@@ -388,7 +393,7 @@ var waoooooooo = {
     var length = arrays.length
     for (var array of arrays) {
       //去重
-      array =  waoooooooo.去重(array)
+      array =  waoooooooo.deweight(array)
       for (var e of array) {
         if (e in map) {
           map[e]++
