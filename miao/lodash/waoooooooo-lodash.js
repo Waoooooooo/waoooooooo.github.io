@@ -215,7 +215,12 @@ var waoooooooo = {
     },[])
   },
 
-
+  /**
+   *
+   * @param {*} array
+   * @param {*} depth 展开深度
+   * @returns
+   */
   flattenDepth:(array, depth=1)=>{
     for (let index = 0; index < depth; index++) {
       var array = waoooooooo.flatten(array)
