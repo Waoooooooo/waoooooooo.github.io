@@ -76,7 +76,7 @@ var waoooooooo = {
    * @param {*} fromIndex
    * @returns
    */
-  findIndex:(array, predicate = waoooooooo.identity, fromIndex = 0) => {
+  findIndex: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
     if (typeof predicate == "function") {
       for (let index = fromIndex; index < array.length; index++) {
         if (predicate(array[index])) {
@@ -98,12 +98,12 @@ var waoooooooo = {
                 return index
               }
             }
-          } else if (typeof  predicate == "object") {
+          } else if (typeof predicate == "object") {
             //2.predicate是对象
-             if(waoooooooo.objectEqual(predicate,obj) ) {
+            if (waoooooooo.objectEqual(predicate, obj)) {
               return index
-             }
-          }else{
+            }
+          } else {
             //3.predicate是key
             for (const key in obj) {
               if (key == predicate && obj[key]) {
@@ -124,16 +124,16 @@ var waoooooooo = {
    * @param {*} fromIndex
    * @returns 返回查找的值在数组中的坐标
    */
-  findLastIndex: (array, predicate = waoooooooo.identity, fromIndex = array.length-1) => {
+  findLastIndex: (array, predicate = waoooooooo.identity, fromIndex = array.length - 1) => {
     if (typeof predicate == "function") {
-      for (let index = fromIndex; index >=0; index--) {
+      for (let index = fromIndex; index >= 0; index--) {
         if (predicate(array[index])) {
           return index
         }
       }
     } else {
       //如果predicate不是函数
-      for (let index = fromIndex; index >=0; index--) {
+      for (let index = fromIndex; index >= 0; index--) {
         if (array[index] === predicate) {
           return index
         } else if (typeof array[index] == "object") {
@@ -146,12 +146,12 @@ var waoooooooo = {
                 return index
               }
             }
-          } else if (typeof  predicate == "object") {
+          } else if (typeof predicate == "object") {
             //2.predicate是对象
-             if(waoooooooo.objectEqual(predicate,obj) ) {
+            if (waoooooooo.objectEqual(predicate, obj)) {
               return index
-             }
-          }else{
+            }
+          } else {
             //3.predicate是key
             for (const key in obj) {
               if (key == predicate && obj[key]) {
@@ -172,17 +172,17 @@ var waoooooooo = {
    * @returns
    */
   objectEqual: (obj1, obj2) => {
-    var  flag = true
+    var flag = true
     try {
       for (const key in obj1) {
         if (!(key in obj2 && obj1[key] == obj2[key])) {
-            flag =  false
-            break;
+          flag = false
+          break;
         }
       }
       for (const key in obj2) {
-        if(!(key in obj1 && obj1[key] == obj2[key]))  {
-          flag =  false
+        if (!(key in obj1 && obj1[key] == obj2[key])) {
+          flag = false
         }
       }
     } catch (error) {
@@ -191,6 +191,10 @@ var waoooooooo = {
 
     return flag
   },
+
+  flatten: array => array.reduce((arr, e) => {Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
+
+
 }
 
 
