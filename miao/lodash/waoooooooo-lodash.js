@@ -216,7 +216,7 @@ var waoooooooo = {
   },
 
   /**
-   *
+   * 根据 depth 递归减少 array 的嵌套层级
    * @param {*} array
    * @param {*} depth 展开深度
    * @returns
