@@ -277,7 +277,13 @@ var waoooooooo = {
     return result
   },
 
-  differenceWith: (array, [values], [comparator]) => { }
+  differenceWith: (array, [values], [comparator]) => {
+    array.filter(()=>{
+
+    })
+
+
+   }
 
 }
 
