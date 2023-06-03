@@ -266,6 +266,8 @@ var waoooooooo = {
     }
     else if (typeof args.at(-1) == "string") {
       var str = args.at(-1)
+      args.pop()
+      var arguments = waoooooooo.flattenDeep(args)
       var result = array.filter(e => !arguments.find((obj) => obj[str] == e[str]))
     }
     else {
