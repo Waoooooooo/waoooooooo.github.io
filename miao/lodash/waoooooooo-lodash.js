@@ -52,13 +52,21 @@ var waoooooooo = {
    * @return {Array} array  返回传入的数组
    */
   fill: (array, value, start = 0, end = array.length) => {
-    if (strat >= array.length || strat > end || end >= array.length || !Array.isArray(array)) {
-      throw new Error("参数错误")
+    if (start >= array.length || start > end || end > array.length || !Array.isArray(array)) {
+      throw new Error("输入错误")
     }
     for (let index = start; index < end; index++) {
       array[index] = value
     }
     return array
-  }
+  },
+
+  /**
+   *
+   * @param {Array} array 要查询的数组。
+   * @param {Number} n  要去除的元素个数。
+   * @return {Array} 返回array剩余切片。
+   */
+  drop: (array, n = 1) => array.filter((e, i) => i >= n),
 
 }
