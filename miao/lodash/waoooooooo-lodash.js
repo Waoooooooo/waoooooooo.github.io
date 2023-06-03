@@ -283,7 +283,7 @@ var waoooooooo = {
     var fun = args.at(-1)
     args.pop()
     var arguments = waoooooooo.flattenDeep(args)
-    return array.filter(e =>arguments.reduce((flag , val )=>flag || fun(e,val),false)
+    return array.filter(e =>!arguments.reduce((flag , val )=>flag || fun(e,val),false)
    )},
 
 }
