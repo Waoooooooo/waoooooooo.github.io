@@ -405,7 +405,7 @@ var waoooooooo = {
     var result = []
     for (var key in map) {
      if (map[key] == length) {
-      result.push(key)
+      result.push(+key)
      }
     }
     return result
