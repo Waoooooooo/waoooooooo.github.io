@@ -112,7 +112,48 @@ var waoooooooo = {
     }
   },
 
+  dropWhile :(array, predicate = waoooooooo.identity) => {
+    if (typeof predicate == "function") {
+      return array.filter((value, index) => !predicate(value, index, array))
+    } else {
+      //是对象数组或key
+      var  result = []
+      for (let index = 0; index < array.length; index++) {
+        var e = array[index]
+        if(Array.isArray(predicate) && predicate.length == 2){
+          var flag = false
+          for (const key in e) {
+              if(key == predicate[0] && e[key] == predicate[1]){
+                //不添加
+                flag = true
+                break
+              }
+          }
+          if (!flag) {
+            result.push(e)
+          }
+        } else if (typeof predicate == "object") {
+          //2.predicate是对象
+          if (!waoooooooo.objectEqual(predicate, e)){
+            result.push(e)
+          }
+        } else if(typeof predicate == "string"){
+          var flag =false
+          for (const key in e) {
+            if (key == predicate && e[key]){
+              flag = true
+              break
+            }
+          }
+          if (!flag) {
+            result.push(e)
+          }
+        }
 
+      }
+      return  result
+    }
+  },
   /**
    * findIndex
    * @param {*} array
