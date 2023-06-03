@@ -70,11 +70,11 @@ var waoooooooo = {
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
   dropRight: (array, n = 1) => array.filter((e, i) => i < array.length - n),
   //去除array中从 predicate 返回假值开始到尾部的部分
-  dropRightWhile: (array, predicate = waoooooooo.identity) =>array.slice (0,  waoooooooo.findIndexForDrop(array,predicate)),
+  dropRightWhile: (array, predicate = waoooooooo.identity) => array.slice(0, waoooooooo.findIndexForDrop(array, predicate)),
   //去除array中从起点开始到 predicate 返回假值结束部分
-  dropWhile :(array, predicate = waoooooooo.identity) =>array.slice (waoooooooo.findLastIndexForDrop(array,predicate)+1) ,
+  dropWhile: (array, predicate = waoooooooo.identity) => array.slice(waoooooooo.findLastIndexForDrop(array, predicate) + 1),
 
-  findIndexForDrop:(array, predicate = waoooooooo.identity, fromIndex = 0) => {
+  findIndexForDrop: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
     if (typeof predicate == "function") {
       for (let index = fromIndex; index < array.length; index++) {
         if (predicate(array[index])) {
@@ -84,7 +84,7 @@ var waoooooooo = {
     } else {
       //如果predicate不是函数
       for (let index = fromIndex; index < array.length; index++) {
-         if (typeof array[index] == "object") {
+        if (typeof array[index] == "object") {
           var obj = array[index]
           //如果是对象,分三种情况
           //1.predicate是数组(键值对)
@@ -101,26 +101,26 @@ var waoooooooo = {
             }
           } else {
             //3.predicate是key字符串
-              if (!(predicate in obj)) {
-                return index
-              }
+            if (!(predicate in obj)) {
+              return index
+            }
           }
         }
       }
     }
     return Infinity
   },
-  findLastIndexForDrop:(array, predicate = waoooooooo.identity, fromIndex = 0) => {
+  findLastIndexForDrop: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
     if (typeof predicate == "function") {
-      for (let index = array.length-1; index >= fromIndex; index--) {
+      for (let index = array.length - 1; index >= fromIndex; index--) {
         if (predicate(array[index])) {
           return index
         }
       }
     } else {
       //如果predicate不是函数
-      for (let index = array.length-1; index >= fromIndex; index--) {
-         if (typeof array[index] == "object") {
+      for (let index = array.length - 1; index >= fromIndex; index--) {
+        if (typeof array[index] == "object") {
           var obj = array[index]
           //如果是对象,分三种情况
           //1.predicate是数组(键值对)
@@ -137,9 +137,9 @@ var waoooooooo = {
             }
           } else {
             //3.predicate是key字符串
-              if (!(predicate in obj)) {
-                return index
-              }
+            if (!(predicate in obj)) {
+              return index
+            }
           }
         }
       }
@@ -315,18 +315,7 @@ var waoooooooo = {
     var flatValues = waoooooooo.flattenDeep(values)
     var arr = array.filter((e) => !(flatValues.indexOf(e) + 1)) //0为false 所以加1
     //去重
-    var set = new Set()
-    var result = []
-    for (let index = 0; index < arr.length; index++) {
-      var e = arr[index]
-      if (set.has(e)) {
-        continue
-      } else {
-        set.add(e)
-        result.push(e)
-      }
-    }
-    return result
+    return waoooooooo.去重(arr)
   },
 
   differenceBy: (array, ...args) => {
@@ -363,18 +352,61 @@ var waoooooooo = {
     )
   },
 
-  fromPairs:pairs => pairs.reduce((obj ,element) =>{obj[element[0]]=element[1];return obj},{}),
+  fromPairs: pairs => pairs.reduce((obj, element) => { obj[element[0]] = element[1]; return obj }, {}),
 
-  head: array => array.length ? array[0]:undefined,
+  head: array => array.length ? array[0] : undefined,
 
-  indexOf:(array, value, fromIndex=0)=>{
+  indexOf: (array, value, fromIndex = 0) => {
     for (let index = fromIndex; index < array.length; index++) {
       const element = array[index];
-      if (element==value) {
+      if (element == value) {
         return index
       }
     }
     return -1
-  }
+  },
+
+  去重: arr => {
+    var set = new Set()
+    var result = []
+    for (let index = 0; index < arr.length; index++) {
+      var e = arr[index]
+      if (set.has(e)) {
+        continue
+      } else {
+        set.add(e)
+        result.push(e)
+      }
+    }
+    return result
+  },
+
+  initial: array => array.slice(0, array.length - 1),
+
+  intersection: (arrays) => {
+    var map = {}
+    var length = arrays.length
+    for (var array of arrays) {
+      //去重
+      array =  waoooooooo.去重(array)
+      for (var e of array) {
+        if (e in map) {
+          map[e]++
+        } else {
+          map[e] = 0
+        }
+      }
+    }
+    var result = []
+    for (var key in map) {
+     if (key == length) {
+      result.push( key)
+     }
+    }
+    return result
+  },
+
+
+
 }
 
