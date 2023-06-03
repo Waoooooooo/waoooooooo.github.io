@@ -367,6 +367,14 @@ var waoooooooo = {
 
   head: array => array.length ? array[0]:undefined,
 
-  indexOf:(array, value, fromIndex=0)=>{ }
+  indexOf:(array, value, fromIndex=0)=>{
+    for (let index = fromIndex; index < array.length; index++) {
+      const element = array[index];
+      if (element==value) {
+        return index
+      }
+    }
+    return -1
+  }
 }
 
