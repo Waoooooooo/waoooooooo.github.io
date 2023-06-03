@@ -200,7 +200,7 @@ var waoooooooo = {
   flatten: array => array.reduce((arr, e) => {Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
 
   /**
-   *
+   * flattenDeep
    * @param {*} array
    * @returns
    */
