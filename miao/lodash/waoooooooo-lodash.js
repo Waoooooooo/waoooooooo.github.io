@@ -195,14 +195,14 @@ var waoooooooo = {
   /**
    * flatten
    * @param {*} array
-   * @returns Array 返回拍平的新数组
+   * @returns Array 返回拍平一次的新数组
    */
   flatten: array => array.reduce((arr, e) => {Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
 
   /**
    * flattenDeep
    * @param {*} array
-   * @returns
+   * @returns Array 返回拍平的新数组
    */
   flattenDeep: function flattenDeep(array) {
     return    array.reduce((arr, e) => {
@@ -213,9 +213,15 @@ var waoooooooo = {
       }
       return arr
     },[])
+  },
+
+
+  flattenDepth:(array, depth=1)=>{
+    for (let index = 0; index < depth; index++) {
+      var array = waoooooooo.flatten(array)
+    }
+    return  array
   }
-
-
 }
 
 
