@@ -69,86 +69,82 @@ var waoooooooo = {
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
   dropRight: (array, n = 1) => array.filter((e, i) => i < array.length - n),
-  dropRightWhile: (array, predicate = waoooooooo.identity) => {
+  //去除array中从 predicate 返回假值开始到尾部的部分
+  dropRightWhile: (array, predicate = waoooooooo.identity) =>array.slice (0,  waoooooooo.findIndexForDrop(array,predicate)),
+  //去除array中从起点开始到 predicate 返回假值结束部分
+  dropWhile :(array, predicate = waoooooooo.identity) =>array.slice (waoooooooo.findLastIndexForDrop(array,predicate)+1) ,
+
+  findIndexForDrop:(array, predicate = waoooooooo.identity, fromIndex = 0) => {
     if (typeof predicate == "function") {
-      return array.filter((value, index) => !predicate(value, index, array))
+      for (let index = fromIndex; index < array.length; index++) {
+        if (predicate(array[index])) {
+          return index
+        }
+      }
     } else {
-      //是对象数组或key
-      var  result = []
-      for (let index = 0; index < array.length; index++) {
-        var e = array[index]
-        if(Array.isArray(predicate) && predicate.length == 2){
-          var flag = false
-          for (const key in e) {
-              if(key == predicate[0] && e[key] == predicate[1]){
-                //不添加
-                flag = true
-                break
+      //如果predicate不是函数
+      for (let index = fromIndex; index < array.length; index++) {
+         if (typeof array[index] == "object") {
+          var obj = array[index]
+          //如果是对象,分三种情况
+          //1.predicate是数组(键值对)
+          if (Array.isArray(predicate) && predicate.length == 2) {
+            for (const key in obj) {
+              if (key == predicate[0] && obj[key] == predicate[1]) {
+                return index
+              }
+            }
+          } else if (typeof predicate == "object") {
+            //2.predicate是对象
+            if (waoooooooo.objectEqual(predicate, obj)) {
+              return index
+            }
+          } else {
+            //3.predicate是key字符串
+              if (!(predicate in obj)) {
+                return index
               }
           }
-          if (!flag) {
-            result.push(e)
-          }
-        } else if (typeof predicate == "object") {
-          //2.predicate是对象
-          if (!waoooooooo.objectEqual(predicate, e)){
-            result.push(e)
-          }
-        } else if(typeof predicate == "string"){
-          var flag =false
-          for (const key in e) {
-            if (key == predicate && e[key]){
-              flag = true
-              break
-            }
-          }
-          if (!flag) {
-            result.push(e)
-          }
         }
-
       }
-      return  result
     }
+    return Infinity
   },
-
-  dropWhile :(array, predicate = waoooooooo.identity) => {
-    var  result = []
+  findLastIndexForDrop:(array, predicate = waoooooooo.identity, fromIndex = 0) => {
     if (typeof predicate == "function") {
-      for (let index = 0; index < array.length; index++) {
-        if (!predicate(value, index, array)) {
-          return result
+      for (let index = array.length-1; index >= fromIndex; index--) {
+        if (predicate(array[index])) {
+          return index
         }
-        result.push(array[index])
       }
     } else {
-      //是对象数组或key
-      for (let index = 0; index < array.length; index++) {
-        var e = array[index]
-        if(Array.isArray(predicate) && predicate.length == 2){
-          for (const key in e) {
-              if(key == predicate[0] && e[key] == predicate[1]){
-                return  result
+      //如果predicate不是函数
+      for (let index = array.length-1; index >= fromIndex; index--) {
+         if (typeof array[index] == "object") {
+          var obj = array[index]
+          //如果是对象,分三种情况
+          //1.predicate是数组(键值对)
+          if (Array.isArray(predicate) && predicate.length == 2) {
+            for (const key in obj) {
+              if (key == predicate[0] && obj[key] == predicate[1]) {
+                return index
+              }
+            }
+          } else if (typeof predicate == "object") {
+            //2.predicate是对象
+            if (waoooooooo.objectEqual(predicate, obj)) {
+              return index
+            }
+          } else {
+            //3.predicate是key字符串
+              if (!(predicate in obj)) {
+                return index
               }
           }
-          result.push(e)
-        } else if (typeof predicate == "object") {
-          //2.predicate是对象
-          if (waoooooooo.objectEqual(predicate, e)){
-            return  result
-          }
-          result.push(e)
-        } else if(typeof predicate == "string"){
-          for (const key in e) {
-            if (key == predicate && e[key]){
-              return  result
-            }
-          }
-          result.push(e)
         }
       }
     }
-    return result
+    return -1
   },
   /**
    * findIndex
