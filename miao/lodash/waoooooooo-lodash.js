@@ -68,6 +68,8 @@ var waoooooooo = {
    * @return {Array} 返回array剩余切片。(新数组)
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
+  dropRight: (array, n=1)=>array.filter((e, i) => i < array.length - n),
+
 
   /**
    * findIndex
@@ -274,7 +276,6 @@ var waoooooooo = {
       var fun = waoooooooo.identity
       var arguments = waoooooooo.flattenDeep(args)
       var result = array.filter((e) => !(arguments.find((val) => fun(e) == val)))
-
     }
     return result
   },
@@ -285,6 +286,7 @@ var waoooooooo = {
     var arguments = waoooooooo.flattenDeep(args)
     return array.filter(e =>!arguments.reduce((flag , val )=>flag || fun(e,val),false)
    )},
+
 
 }
 
