@@ -197,7 +197,7 @@ var waoooooooo = {
    * @param {*} array
    * @returns Array 返回拍平一次的新数组
    */
-  flatten: array => array.reduce((arr, e) => {Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
+  flatten: array => array.reduce((arr, e) => { Array.isArray(e) ? arr.push(...e) : arr.push(e); return arr }, []),
 
   /**
    * flattenDeep
@@ -205,14 +205,14 @@ var waoooooooo = {
    * @returns Array 返回拍平的新数组
    */
   flattenDeep: function flattenDeep(array) {
-    return    array.reduce((arr, e) => {
+    return array.reduce((arr, e) => {
       if (Array.isArray(e)) {
         arr.push(...waoooooooo.flattenDeep(e))
-      }else{
+      } else {
         arr.push(e)
       }
       return arr
-    },[])
+    }, [])
   },
 
   /**
@@ -221,12 +221,38 @@ var waoooooooo = {
    * @param {*} depth 展开深度
    * @returns
    */
-  flattenDepth:(array, depth=1)=>{
+  flattenDepth: (array, depth = 1) => {
     for (let index = 0; index < depth; index++) {
       var array = waoooooooo.flatten(array)
     }
-    return  array
-  }
-}
+    return array
+  },
 
+  /**
+   *
+   * @param {*} array
+   * @param {*} values
+   * @returns 除了values的 去重的  新的数组
+   */
+  difference: (array,values) =>{
+    var arr = array.filter((e)=> !(values.indexOf(e)+1)) //0为false 所以加1
+    //去重
+    var set = new Set()
+    var result = []
+    for (let index = 0; index < arr.length; index++) {
+      var e = arr[index]
+      if (set.has(e)) {
+        continue
+      }else{
+        set.add(e)
+        result.push(e)
+      }
+    }
+    return result
+  }
+
+
+
+
+}
 
