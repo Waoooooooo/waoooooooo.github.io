@@ -70,19 +70,48 @@ var waoooooooo = {
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
 
   findIndex: (array, predicate = waoooooooo.identity, fromIndex = 0) => {
-    if(typeof predicate  ==  "function"){
+    if (typeof predicate == "function") {
       for (let index = fromIndex; index < array.length; index++) {
         if (predicate(array[index])) {
           return index
         }
       }
-    }else{
-      for (let index = fromIndex; index < array.length; index++) {
-        if (predicate == array[index]) {
-          return index
+    }
+    //如果不是函数
+    for (let index = fromIndex; index < array.length; index++) {
+      if (array[index] === predicate ) {
+        return index
+      }else if( typeof array[index] == "object"){
+        //如果是对象,分两种情况
+        //1.predicate是数组(键值对)
+        //2.predicate是key
+        var obj=  array[index]
+        if(Array.isArray(predicate) && predicate.length == 2){
+
+          for (const key in obj) {
+            if (key == predicate[0]&& obj[key] == predicate[1] ){
+              return index
+            }
+          }
+        }else{
+          for (const key in obj) {
+            if (key == predicate && obj[key]){
+              return index
+            }
+          }
         }
+
       }
     }
-  }
+
+
+
+
+    }
+
+
+
 
 }
+
+
