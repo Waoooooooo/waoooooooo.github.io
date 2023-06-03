@@ -388,12 +388,18 @@ var waoooooooo = {
 
   initial: array => array.slice(0, array.length - 1),
 
+
+  /**
+   * intersection
+   * @param  {...any} arrays 参数为多个数组
+   * @returns 返回并集组成的数组
+   */
   intersection: (...arrays) => {
     var map = {}
     var length = arrays.length
     for (var array of arrays) {
       //去重
-     var newArray =  waoooooooo.deweight(array)
+      var newArray = waoooooooo.deweight(array)
       for (var e of newArray) {
         if (e in map) {
           map[e]++
@@ -404,13 +410,54 @@ var waoooooooo = {
     }
     var result = []
     for (var key in map) {
-     if (map[key] == length) {
-      result.push(+key)
-     }
+      if (map[key] == length) {
+        result.push(+key)
+      }
     }
     return result
   },
 
+
+  intersectionBy: (...arrays) => {
+
+    var map = {} //存储出现的次数
+    var map2 ={} //存储出现的次数的 key对应的原始值
+    var iteratee = arrays.at(-1)
+    arrays=arrays.slice(0,length)
+    var length = arrays.length - 1
+    if (typeof iteratee !== "function") {
+      //分三种Array|Object|string
+      if (Array.isArray(iteratee)) {
+        //???
+      } else if (typeof iteratee == "object") {
+        //???
+      } else if (typeof iteratee == "string") {
+        var key  = iteratee
+        iteratee = e=> e[key]
+      }
+    }
+    for (var array of arrays) {
+      //去重
+      var newArray = waoooooooo.deweight(array)
+      for (var e of newArray) {
+        var val = iteratee(e)
+        if (val in map) {
+          map[val]++
+
+        } else {
+          map[val] = 1
+          map2[val] = e
+        }
+      }
+    }
+    var result = []
+    for (var key in map) {
+      if (map[key] == length) {
+        result.push(map2[key])
+      }
+    }
+    return result
+  }
 
 
 }
