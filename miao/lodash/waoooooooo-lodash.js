@@ -10,28 +10,20 @@ var waoooooooo = {
    * @return {array}  (Array): 返回一个包含拆分区块的新数组（注：相当于一个二维数组）。
    */
   chunk: function (ary, size) {
-    var result = []
+    var result = [[]]
+    var count = 0
+    var j = 0
     for (let index = 0; index < ary.length; index++) {
-      var count = 0
-      var arr = []
-      for (let j = index; j < ary.length; j++) {
-        count++
-        arr.push(ary[j])
-        if (count == size) {
-          result.push(arr)
-          count = 0
-          index = j
-          break
-        }
-      }
-      if (count > 0) {
-        //數組遍歷完有剩余
-        result.push(arr)
-        break
+      count++
+      result[j].push(ary[index])
+      if (count == size) {
+        count = 0
+        j++
+        result[j]=[]
       }
     }
     return result
-  },
+},
 
   /**
     * 02 compact
@@ -40,7 +32,7 @@ var waoooooooo = {
     * @param {*} array array (Array): 待处理的数组
     * @return  (Array): 返回过滤掉假值的新数组。
     */
-  compact:(array) =>array.filter( i=> i ),
+  compact: array => array.filter(i => i)
 
 
 
