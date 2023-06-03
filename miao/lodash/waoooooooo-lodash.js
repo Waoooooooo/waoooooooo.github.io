@@ -279,13 +279,12 @@ var waoooooooo = {
     return result
   },
 
-  differenceWith: (array, [values], [comparator]) => {
-    array.filter(()=>{
-
-    })
-
-
-   }
+  differenceWith: (array, ...args) => {
+    var fun = args.at(-1)
+    args.pop()
+    var arguments = waoooooooo.flattenDeep(args)
+    return array.filter(e =>arguments.reduce((flag , val )=>flag || fun(e,val),false)
+   )},
 
 }
 
