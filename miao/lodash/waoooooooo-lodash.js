@@ -68,8 +68,50 @@ var waoooooooo = {
    * @return {Array} 返回array剩余切片。(新数组)
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
-  dropRight: (array, n=1)=>array.filter((e, i) => i < array.length - n),
-  dropRightWhile: (array, predicate=waoooooooo.identity)=>array.filter((value, index) => !predicate(value,index,array)),
+  dropRight: (array, n = 1) => array.filter((e, i) => i < array.length - n),
+  dropRightWhile: (array, predicate = waoooooooo.identity) => {
+    if (typeof predicate == "function") {
+      return array.filter((value, index) => !predicate(value, index, array))
+    } else {
+      //是对象数组或key
+      var  result = []
+      for (let index = 0; index < array.length; index++) {
+        var e = array[index]
+        if(Array.isArray(predicate) && predicate.length == 2){
+          var flag = false
+          for (const key in e) {
+              if(key == predicate[0] && e[key] == predicate[1]){
+                //不添加
+                flag = true
+                break
+              }
+          }
+          if (!flag) {
+            result.push(e)
+          }
+        } else if (typeof predicate == "object") {
+          //2.predicate是对象
+          if (!waoooooooo.objectEqual(predicate, e)){
+            result.push(e)
+          }
+        } else if(typeof predicate == "string"){
+          var flag =false
+          for (const key in e) {
+            if (key == predicate && e[key]){
+              flag = true
+              break
+            }
+          }
+          if (!flag) {
+            result.push(e)
+          }
+        }
+
+      }
+      return  result
+    }
+  },
+
 
   /**
    * findIndex
@@ -284,8 +326,9 @@ var waoooooooo = {
     var fun = args.at(-1)
     args.pop()
     var arguments = waoooooooo.flattenDeep(args)
-    return array.filter(e =>!arguments.reduce((flag , val )=>flag || fun(e,val),false)
-   )},
+    return array.filter(e => !arguments.reduce((flag, val) => flag || fun(e, val), false)
+    )
+  },
 
 
 }
