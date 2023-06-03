@@ -76,38 +76,34 @@ var waoooooooo = {
           return index
         }
       }
+    }else{
+
     }
     //如果不是函数
     for (let index = fromIndex; index < array.length; index++) {
-      if (array[index] === predicate ) {
+      if (array[index] === predicate) {
         return index
-      }else if( typeof array[index] == "object"){
+      } else if (typeof array[index] == "object") {
+        var obj = array[index]
         //如果是对象,分两种情况
         //1.predicate是数组(键值对)
-        //2.predicate是key
-        var obj=  array[index]
-        if(Array.isArray(predicate) && predicate.length == 2){
-
+        if (Array.isArray(predicate) && predicate.length == 2) {
           for (const key in obj) {
-            if (key == predicate[0]&& obj[key] == predicate[1] ){
+            if (key == predicate[0] && obj[key] == predicate[1]) {
               return index
             }
           }
-        }else{
+        }else {
+          //2.predicate是key
           for (const key in obj) {
-            if (key == predicate && obj[key]){
+            if (key == predicate && obj[key]) {
               return index
             }
           }
         }
-
       }
     }
-
-
-
-
-    }
+  }
 
 
 
