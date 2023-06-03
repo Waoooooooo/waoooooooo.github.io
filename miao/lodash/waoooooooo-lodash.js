@@ -16,7 +16,7 @@ var waoooooooo = {
     for (let index = 0; index < ary.length; index++) {
       count++
       result[j].push(ary[index])
-      if (count == size) {
+      if (count == size && index != ary.length - 1) {
         count = 0
         j++
         result[j] = []
@@ -62,11 +62,12 @@ var waoooooooo = {
   },
 
   /**
-   *
+   * drop
    * @param {Array} array 要查询的数组。
    * @param {Number} n  要去除的元素个数。
-   * @return {Array} 返回array剩余切片。
+   * @return {Array} 返回array剩余切片。(新数组)
    */
   drop: (array, n = 1) => array.filter((e, i) => i >= n),
+
 
 }
