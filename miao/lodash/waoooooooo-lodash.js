@@ -388,24 +388,24 @@ var waoooooooo = {
 
   initial: array => array.slice(0, array.length - 1),
 
-  intersection: (arrays) => {
+  intersection: (...arrays) => {
     var map = {}
     var length = arrays.length
     for (var array of arrays) {
       //去重
-      array =  waoooooooo.deweight(array)
-      for (var e of array) {
+     var newArray =  waoooooooo.deweight(array)
+      for (var e of newArray) {
         if (e in map) {
           map[e]++
         } else {
-          map[e] = 0
+          map[e] = 1
         }
       }
     }
     var result = []
     for (var key in map) {
-     if (key == length) {
-      result.push( key)
+     if (map[key] == length) {
+      result.push(key)
      }
     }
     return result
