@@ -34,11 +34,15 @@ var waoooooooo = {
     */
   compact: array => array.filter(i => i),
   /**
-   * 03
+   * 03 concat
+   *    创建一个新数组，将array与任何数组 或 值连接在一起。
    * @param {Array} array  被连接的数组。
    * @param  {...any} args 连接的值
    */
-  concat: function name(array,...args) {
+  concat: (array,...args) =>array.concat(...args),
+
+
+  fill:(array, value, start=0, end=array.length) =>{
 
   }
 
