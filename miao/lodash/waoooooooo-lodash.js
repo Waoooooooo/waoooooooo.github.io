@@ -698,7 +698,7 @@ var waoooooooo = {
    * @param {Function} iteratee (Array|Function|Object|string): 一个迭代函数，用来转换key（键）。
    */
   countBy: (collection, iteratee = waoooooooo.identity) => {
-    //iteratee处理
+    //iteratee处理 *******
     if (typeof iteratee !== "function") {
       //Array|Object|string
       if (Array.isArray(iteratee)) {
