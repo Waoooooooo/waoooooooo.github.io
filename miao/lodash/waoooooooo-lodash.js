@@ -721,9 +721,8 @@ var waoooooooo = {
     //iteratee处理 *******
     iteratee = waoooooooo.by(iteratee)
     for (const val of collection) {
-        map[iteratee(val)] = val
+        iteratee(val)
     }
-    return map
   },
 
   //处理iteratee函数
