@@ -390,9 +390,9 @@ var waoooooooo = {
 
 
   /**
-   * intersection
+   * intersection系列
    * @param  {...any} arrays 参数为多个数组
-   * @returns 返回并集组成的数组
+   * @returns 返回交集组成的数组
    */
   intersection: (...arrays) => {
     var map = {}
@@ -417,14 +417,13 @@ var waoooooooo = {
     return result
   },
 
-
   intersectionBy: (...arrays) => {
 
     var map = {} //存储出现的次数
-    var map2 ={} //存储出现的次数的 key对应的原始值
+    var map2 = {} //存储出现的次数的 key对应的原始值
     var iteratee = arrays.at(-1)
-    arrays=arrays.slice(0,length)
     var length = arrays.length - 1
+    arrays = arrays.slice(0, length)
     if (typeof iteratee !== "function") {
       //分三种Array|Object|string
       if (Array.isArray(iteratee)) {
@@ -432,8 +431,8 @@ var waoooooooo = {
       } else if (typeof iteratee == "object") {
         //???
       } else if (typeof iteratee == "string") {
-        var key  = iteratee
-        iteratee = e=> e[key]
+        var key = iteratee
+        iteratee = e => e[key]
       }
     }
     for (var array of arrays) {
@@ -457,9 +456,40 @@ var waoooooooo = {
       }
     }
     return result
-  }
+  },
 
-
+  intersectionWith: (...args) => {
+    var comparator = args.at(-1) //比较函数,放入两个元素 返回布尔类型
+    var arrays = args.slice(0, args.length-1) //取交集的参数
+    var length = arrays.length
+    var result = [] //结果数组
+    var comparatorArr = waoooooooo.deweight( arrays[0]) //去重
+    var map = new Map()
+    for (let index = 1; index < arrays.length; index++) {
+      var arr = waoooooooo.deweight( arrays[index]) //去重
+      for (const o of arr) {
+        for (const comp of comparatorArr) {
+          if (comparator(o, comp)) {
+            //如果结果为真 ,将样本数组(arrays[0])的值存入映射  --第一次需要初始化
+            if (map.has(comp)) {
+              map.set(comp,map.get(comp)+1)
+            } else{
+              map.set(comp,2)
+            }
+          }
+        }
+      }
+    }
+    //循环结束后取出map中值与数组长度相等的
+    for(var entry of map){
+      var key = entry[0]
+      var value = entry[1]
+      if (value == length) {
+        result.push(key)
+      }
+    }
+    return result
+  },
 
 }
 
