@@ -510,5 +510,7 @@ var waoooooooo = {
 
   //获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。
   nth :(array, n = 0) => n>=0 ? array[n] : array[array.length+n] ,
+
+  //
 }
 
