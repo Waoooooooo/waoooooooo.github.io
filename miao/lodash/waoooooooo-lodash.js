@@ -641,7 +641,7 @@ var waoooooooo = {
 
   //_.every(collection, [predicate=_.identity])
   //这个方法对于对于空集合返回 true，因为空集合的任何元素都是 true 。(默认为true)
-  every(collection, predicate = waoooooooo.identity) {
+  every:(collection, predicate = waoooooooo.identity)=> {
     var flag = true
     if (typeof predicate !== "function") {
       //Array|Object|string
@@ -664,6 +664,33 @@ var waoooooooo = {
     }
     return flag
   },
+
+  //通过 predicate（断言函数） 检查collection（集合）中的元素是否存在 任意 truthy（真值）的元素，
+  //一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。
+  // predicate 调用3个参数：(value, index|key, collection)。
+  some:(collection, predicate = waoooooooo.identity)=> {
+    if (typeof predicate !== "function") {
+      //Array|Object|string
+      if (Array.isArray(predicate)) {
+        var key = predicate[0]
+        var value = predicate[1]
+        predicate = e => e[key] == value
+      } else if (typeof predicate == "object") {
+        var obj = predicate
+        predicate = e => waoooooooo.isEqual(e,predicate)
+      } else if (typeof predicate == "string") {
+        var key = predicate
+        predicate = e => e[key]
+      }
+    }
+    for (const iterator of collection) {
+      if (predicate(iterator)) {
+        return true
+      }
+    }
+    return false
+  },
+
 
 
   //深度全等方法(数组 对象 的值全等)
