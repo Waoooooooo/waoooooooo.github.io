@@ -724,6 +724,38 @@ var waoooooooo = {
     return map
   },
 
+  /**
+   *
+   * @param {*} collection
+   * @param {*} iteratee
+   * @returns object
+   */
+  groupBy: (collection, iteratee = waoooooooo.identity) => {
+    //iteratee处理 *******
+    if (typeof iteratee !== "function") {
+      //Array|Object|string
+      if (Array.isArray(iteratee)) {
+        var key = iteratee[0]
+        var value = iteratee[1]
+        iteratee = e => e[key] == value
+      } else if (typeof iteratee == "object") {
+        var obj = iteratee
+        iteratee = e => waoooooooo.isEqual(e, iteratee)
+      } else if (typeof iteratee == "string") {
+        var key = iteratee
+        iteratee = e => e[key]
+      }
+    }
+    var map = {}
+    for (const val of collection) {
+      if (iteratee(val) in map) {
+        map[iteratee(val)].push(val)
+      } else {
+        map[iteratee(val)] = [val]
+      }
+    }
+    return map
+  },
 
   //深度全等方法(数组 对象 的值全等)
   isEqual: (a, b, ...args) => {
