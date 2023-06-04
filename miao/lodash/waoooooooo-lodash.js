@@ -366,6 +366,17 @@ var waoooooooo = {
     return -1
   },
 
+  lastIndexOf: (array, value, fromIndex=array.length-1) => {
+    for (let index = fromIndex; index >= 0; index--) {
+      const element = array[index];
+      if (element == value) {
+        return index
+      }
+    }
+    return -1
+  },
+
+
   /**
    * 去重deweight
    * @param {*} arr
@@ -492,8 +503,11 @@ var waoooooooo = {
   },
 
   //将 array 中的所有元素转换为由 separator 分隔的字符串。
-  join :(array, separator=',') => array.reduce((str,e)=>str+e+separator,"").slice(0,-1)
+  join :(array, separator=',') => array.reduce((str,e)=>str+e+separator,"").slice(0,-1),
 
+  //获取array中的最后一个元素。
+  last :array=>array.at(-1),
 
+  //
 }
 
