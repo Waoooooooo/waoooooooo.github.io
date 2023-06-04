@@ -520,7 +520,11 @@ var waoooooooo = {
     var flag = true
     if (a === b) {
       return true
-    } else if (typeof a == typeof b && typeof b == "object") {
+    }
+    else if (typeof a == typeof b && typeof b == "object") {
+      if(Array.isArray(a)!==Array.isArray(b)){
+        return false
+      }
       for (const key in a) {
         if (!(key in b)) {
           return false
