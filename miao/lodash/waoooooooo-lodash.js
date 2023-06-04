@@ -593,7 +593,40 @@ var waoooooooo = {
     return array
   },
 
+  pullAt:(array, ...indexes)=>{
+    var set = new Set(indexes)
+    var moveLength = 0
+    for (let index = 0; index < array.length; index++) {
+      if (set.has(index)) {
+        //如果碰到要删除的元素移动距离加1
+        moveLength++
+      } else {
+        //如果碰到不需要删除的元素,则向前跳moveLength
+        array[index - moveLength] = array[index]
+      };
+    }
+    while (moveLength) {
+      array.pop()
+      moveLength--
+    }
+    return array
+  },
 
+  //反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
+  //这个方法会改变原数组
+  reverse	:(array)=>{
+    //双指针
+    var l = 0
+    var r = array.length - 1
+    while(l<r){
+      var a = array[l]
+      array[l] = array[r]
+      array[r] = a
+      l++
+      r--
+    }
+    return array
+  },
 
   //深度全等方法(数组 对象 的值全等)
   isEqual: (a, b, ...args) => {
