@@ -554,6 +554,7 @@ var waoooooooo = {
     }
     var arr = arr.map(iteratee)
     var moveLength = 0
+    var set = new Set(arr)
     for (let index = 0; index < array.length; index++) {
       if (set.has(iteratee(array[index]))) {
         //如果碰到要删除的元素移动距离加1
