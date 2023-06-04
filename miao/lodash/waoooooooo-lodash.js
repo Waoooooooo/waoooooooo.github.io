@@ -571,6 +571,27 @@ var waoooooooo = {
     return array
   },
 
+  pullAllWith: (array, ...values) => {
+    var arr = values[0]
+    var comparator = values[1]
+    var moveLength = 0
+    for (let index = 0; index < array.length; index++) {
+      //和对照组的每个元素比较,一真为真,全假为假
+      if (arr.some(e=>comparator(e,array[index]))) {
+        //如果碰到要删除的元素移动距离加1
+        moveLength++
+      } else {
+        //如果碰到不需要删除的元素,则向前跳moveLength
+        array[index - moveLength] = array[index]
+      };
+    }
+    while (moveLength) {
+      array.pop()
+      moveLength--
+    }
+    return array
+  },
+
 
 
   //深度全等方法(数组 对象 的值全等)
