@@ -460,28 +460,28 @@ var waoooooooo = {
 
   intersectionWith: (...args) => {
     var comparator = args.at(-1) //比较函数,放入两个元素 返回布尔类型
-    var arrays = args.slice(0, args.length-1) //取交集的参数
+    var arrays = args.slice(0, args.length - 1) //取交集的参数
     var length = arrays.length
     var result = [] //结果数组
-    var comparatorArr = waoooooooo.deweight( arrays[0]) //去重
+    var comparatorArr = waoooooooo.deweight(arrays[0]) //去重
     var map = new Map()
     for (let index = 1; index < arrays.length; index++) {
-      var arr = waoooooooo.deweight( arrays[index]) //去重
+      var arr = waoooooooo.deweight(arrays[index]) //去重
       for (const o of arr) {
         for (const comp of comparatorArr) {
           if (comparator(o, comp)) {
             //如果结果为真 ,将样本数组(arrays[0])的值存入映射  --第一次需要初始化
             if (map.has(comp)) {
-              map.set(comp,map.get(comp)+1)
-            } else{
-              map.set(comp,2)
+              map.set(comp, map.get(comp) + 1)
+            } else {
+              map.set(comp, 2)
             }
           }
         }
       }
     }
     //循环结束后取出map中值与数组长度相等的
-    for(var entry of map){
+    for (var entry of map) {
       var key = entry[0]
       var value = entry[1]
       if (value == length) {
@@ -491,5 +491,7 @@ var waoooooooo = {
     return result
   },
 
+  //将 array 中的所有元素转换为由 separator 分隔的字符串。
+  join :(array, separator=',') => array.reduce((str,e)=>str+e+separator,"").slice(0,-1)
 }
 
