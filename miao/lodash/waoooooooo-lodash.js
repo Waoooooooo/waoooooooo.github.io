@@ -514,7 +514,7 @@ var waoooooooo = {
   //移除数组array中所有和给定值相等的元素，使用SameValueZero 进行全等比较。
   //这个方法会改变数组
   pull: (array, ...values) => {
-    var set = new Set(...values)
+    var set = new Set(waoooooooo.flattenDeep(values))
     var moveLength = 0
     for (let index = 0; index < array.length; index++) {
       if (set.has(array[index])) {
