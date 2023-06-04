@@ -366,7 +366,7 @@ var waoooooooo = {
     return -1
   },
 
-  lastIndexOf: (array, value, fromIndex=array.length-1) => {
+  lastIndexOf: (array, value, fromIndex = array.length - 1) => {
     for (let index = fromIndex; index >= 0; index--) {
       const element = array[index];
       if (element == value) {
@@ -503,14 +503,44 @@ var waoooooooo = {
   },
 
   //将 array 中的所有元素转换为由 separator 分隔的字符串。
-  join :(array, separator=',') => array.reduce((str,e)=>str+e+separator,"").slice(0,-1),
+  join: (array, separator = ',') => array.reduce((str, e) => str + e + separator, "").slice(0, -1),
 
   //获取array中的最后一个元素。
-  last :array=>array.at(-1),
+  last: array => array.at(-1),
 
   //获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。
-  nth :(array, n = 0) => n>=0 ? array[n] : array[array.length+n] ,
+  nth: (array, n = 0) => n >= 0 ? array[n] : array[array.length + n],
 
-  //
+  //移除数组array中所有和给定值相等的元素，使用SameValueZero 进行全等比较。
+  //some 或
+  pull: (array, values) => array.filter(e => values.some(val => waoooooooo.isEqual(e, val))),
+
+  //深度全等方法(数组 对象 的值全等)
+  isEqual: (a, b,...args) => {
+    var flag = true
+    if (a === b) {
+      return true
+    } else if (typeof a == typeof b && typeof b == "object") {
+      for (const key in a) {
+        if (!(key in b)) {
+          return false
+        }
+        if (!(waoooooooo.isEqual(a[key],b[key]))) {
+          return false
+        }
+      }
+      for (const key in b) {
+        if (!(key in a)) {
+          return false
+        }
+        if (!(waoooooooo.isEqual(a[key],b[key]))) {
+          return false
+        }
+      }
+      return true
+    }else{
+      return false
+    }
+  }
 }
 
