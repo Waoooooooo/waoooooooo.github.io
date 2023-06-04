@@ -537,7 +537,7 @@ var waoooooooo = {
 
   pullAllBy: (array,...values) => {
 
-  }
+  },
 
 
 
