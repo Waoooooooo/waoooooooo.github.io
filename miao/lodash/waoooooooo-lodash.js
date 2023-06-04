@@ -512,24 +512,42 @@ var waoooooooo = {
   nth: (array, n = 0) => n >= 0 ? array[n] : array[array.length + n],
 
   //移除数组array中所有和给定值相等的元素，使用SameValueZero 进行全等比较。
-  //some 或 ||
-  pull: (array, values) => array.filter(e => !values.some(val => waoooooooo.isEqual(e, val))),
+  //这个方法会改变数组
+  pull: (array, ...values) => {
+    var set = new Set(...values)
+    var moveLength = 0
+    for (let index = 0; index < array.length; index++) {
+      if (set.has(array[index])) {
+        //如果碰到要删除的元素移动距离加1
+        moveLength++
+      }else{
+        //如果碰到不需要删除的元素,则向前跳moveLength
+        array[index-moveLength]=array[index]
+      };
+
+    }
+    while (moveLength) {
+      array.pop()
+      moveLength--
+    }
+    return array
+  },
 
   //深度全等方法(数组 对象 的值全等)
-  isEqual: (a, b,...args) => {
+  isEqual: (a, b, ...args) => {
     var flag = true
     if (a === b) {
       return true
     }
     else if (typeof a == typeof b && typeof b == "object") {
-      if(Array.isArray(a)!==Array.isArray(b)){
+      if (Array.isArray(a) !== Array.isArray(b)) {
         return false
       }
       for (const key in a) {
         if (!(key in b)) {
           return false
         }
-        if (!(waoooooooo.isEqual(a[key],b[key]))) {
+        if (!(waoooooooo.isEqual(a[key], b[key]))) {
           return false
         }
       }
@@ -537,12 +555,12 @@ var waoooooooo = {
         if (!(key in a)) {
           return false
         }
-        if (!(waoooooooo.isEqual(a[key],b[key]))) {
+        if (!(waoooooooo.isEqual(a[key], b[key]))) {
           return false
         }
       }
       return true
-    }else{
+    } else {
       return false
     }
   }
