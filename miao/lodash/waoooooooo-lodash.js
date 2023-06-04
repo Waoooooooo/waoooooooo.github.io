@@ -533,6 +533,15 @@ var waoooooooo = {
     return array
   },
 
+  pullAll: (array,...values) =>waoooooooo.pull(array,values),
+
+  pullAllBy: (array,...values) => {
+    var comparator = values.at(-1) //比较函数,放入两个元素 返回布尔类型
+    var arr = values.slice(0, values.length - 1) //取交集的参数
+  }
+
+
+
   //深度全等方法(数组 对象 的值全等)
   isEqual: (a, b, ...args) => {
     var flag = true
