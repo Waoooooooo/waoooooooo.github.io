@@ -520,11 +520,10 @@ var waoooooooo = {
       if (set.has(array[index])) {
         //如果碰到要删除的元素移动距离加1
         moveLength++
-      }else{
+      } else {
         //如果碰到不需要删除的元素,则向前跳moveLength
-        array[index-moveLength]=array[index]
+        array[index - moveLength] = array[index]
       };
-
     }
     while (moveLength) {
       array.pop()
@@ -533,10 +532,42 @@ var waoooooooo = {
     return array
   },
 
-  pullAll: (array,...values) =>waoooooooo.pull(array,values),
+  pullAll: (array, ...values) => waoooooooo.pull(array, values),
 
-  pullAllBy: (array,...values) => {
-
+  pullAllBy: (array, ...values) => {
+    var arr = values[0]
+    var iteratee = values[1]
+    //如果没有传参 设置iteratee初始值为 identity
+    if (!iteratee) {
+      iteratee = waoooooooo.identity
+    }
+    if (typeof iteratee !== "function") {
+      //Array|Object|string
+      if (Array.isArray(iteratee)) {
+        //???
+      } else if (typeof iteratee == "object") {
+        //???
+      } else if (typeof iteratee == "string") {
+        var key = iteratee
+        iteratee = e => e[key]
+      }
+    }
+    var arr = arr.map(iteratee)
+    var moveLength = 0
+    for (let index = 0; index < array.length; index++) {
+      if (set.has(iteratee(array[index]))) {
+        //如果碰到要删除的元素移动距离加1
+        moveLength++
+      } else {
+        //如果碰到不需要删除的元素,则向前跳moveLength
+        array[index - moveLength] = array[index]
+      };
+    }
+    while (moveLength) {
+      array.pop()
+      moveLength--
+    }
+    return array
   },
 
 
