@@ -493,5 +493,7 @@ var waoooooooo = {
 
   //将 array 中的所有元素转换为由 separator 分隔的字符串。
   join :(array, separator=',') => array.reduce((str,e)=>str+e+separator,"").slice(0,-1)
+
+
 }
 
