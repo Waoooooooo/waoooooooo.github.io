@@ -717,6 +717,14 @@ var waoooooooo = {
     return map
   },
 
+  forEach: (collection, iteratee = waoooooooo.identity) => {
+    //iteratee处理 *******
+    iteratee = waoooooooo.by(iteratee)
+    for (const val of collection) {
+        map[iteratee(val)] = val
+    }
+    return map
+  },
 
   //处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
