@@ -596,6 +596,7 @@ var waoooooooo = {
   },
 
   pullAt: (array, ...indexes) => {
+    indexes= waoooooooo.flattenDeep(indexes)
     var set = new Set(indexes)
     var moveLength = 0
     for (let index = 0; index < array.length; index++) {
