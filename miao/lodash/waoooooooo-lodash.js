@@ -637,9 +637,33 @@ var waoooooooo = {
 
   //使用二进制的方式检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。
   // 返回 value值 应该在数组array中插入的索引位置 index。
-  sortedIndex:(array, value)=>{},
+  sortedIndex: (array, value) => { },
 
-  every :
+  //_.every(collection, [predicate=_.identity])
+  //这个方法对于对于空集合返回 true，因为空集合的任何元素都是 true 。(默认为true)
+  every(collection, predicate = waoooooooo.identity) {
+    var flag = true
+    if (typeof predicate !== "function") {
+      //Array|Object|string
+      if (Array.isArray(predicate)) {
+        var key = predicate[0]
+        var value = predicate[1]
+        predicate = e => e[key] == value
+      } else if (typeof predicate == "object") {
+        var obj = predicate
+        predicate = e => waoooooooo.isEqual(e,predicate)
+      } else if (typeof predicate == "string") {
+        var key = predicate
+        predicate = e => e[key]
+      }
+    }
+    for (const iterator of collection) {
+      if (!predicate(iterator)) {
+        return false
+      }
+    }
+    return flag
+  },
 
 
   //深度全等方法(数组 对象 的值全等)
