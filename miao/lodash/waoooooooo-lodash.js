@@ -512,7 +512,7 @@ var waoooooooo = {
   nth: (array, n = 0) => n >= 0 ? array[n] : array[array.length + n],
 
   //移除数组array中所有和给定值相等的元素，使用SameValueZero 进行全等比较。
-  //some 或
+  //some 或 ||
   pull: (array, values) => array.filter(e => !values.some(val => waoooooooo.isEqual(e, val))),
 
   //深度全等方法(数组 对象 的值全等)
@@ -542,5 +542,8 @@ var waoooooooo = {
       return false
     }
   }
+
+
+
 }
 
