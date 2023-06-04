@@ -707,6 +707,18 @@ var waoooooooo = {
     return map
   },
 
+  keyBy: (collection, iteratee = waoooooooo.identity) => {
+    //iteratee处理 *******
+    iteratee = waoooooooo.by(iteratee)
+    var map = {}
+    for (const val of collection) {
+        map[iteratee(val)] = val
+    }
+    return map
+  },
+
+
+  //处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
     if (typeof iteratee !== "function") {
