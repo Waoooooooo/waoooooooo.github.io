@@ -571,6 +571,7 @@ var waoooooooo = {
     return array
   },
 
+  // ***some***
   pullAllWith: (array, ...values) => {
     var arr = values[0]
     var comparator = values[1]
