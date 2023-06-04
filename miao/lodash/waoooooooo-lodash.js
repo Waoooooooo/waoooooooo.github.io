@@ -578,7 +578,7 @@ var waoooooooo = {
     var moveLength = 0
     for (let index = 0; index < array.length; index++) {
       //和对照组的每个元素比较,一真为真,全假为假
-      if (arr.some(e=>comparator(e,array[index]))) {
+      if (arr.some(e => comparator(e, array[index]))) {
         //如果碰到要删除的元素移动距离加1
         moveLength++
       } else {
@@ -593,7 +593,7 @@ var waoooooooo = {
     return array
   },
 
-  pullAt:(array, ...indexes)=>{
+  pullAt: (array, ...indexes) => {
     var set = new Set(indexes)
     var moveLength = 0
     for (let index = 0; index < array.length; index++) {
@@ -614,11 +614,11 @@ var waoooooooo = {
 
   //反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
   //这个方法会改变原数组
-  reverse	:(array)=>{
+  reverse: (array) => {
     //双指针
     var l = 0
     var r = array.length - 1
-    while(l<r){
+    while (l < r) {
       var a = array[l]
       array[l] = array[r]
       array[r] = a
@@ -627,6 +627,20 @@ var waoooooooo = {
     }
     return array
   },
+
+  slice: (array, start = 0, end = array.length) => array.reduce((arr, e, i) => {
+    if (i >= start && i < end) {
+      arr.push(e)
+    }
+    return arr
+  }, []),
+
+  //使用二进制的方式检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。
+  // 返回 value值 应该在数组array中插入的索引位置 index。
+  sortedIndex:(array, value)=>{},
+
+  every :
+
 
   //深度全等方法(数组 对象 的值全等)
   isEqual: (a, b, ...args) => {
