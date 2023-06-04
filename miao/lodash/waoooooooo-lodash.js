@@ -1,6 +1,8 @@
 
 var waoooooooo = {
-  identity: e => e,
+  identity: function (e) {
+    return e
+  },
   /**
    * chunk
    * 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。
@@ -643,20 +645,7 @@ var waoooooooo = {
   //这个方法对于对于空集合返回 true，因为空集合的任何元素都是 true 。(默认为true)
   every: (collection, predicate = waoooooooo.identity) => {
     var flag = true
-    if (typeof predicate !== "function") {
-      //Array|Object|string
-      if (Array.isArray(predicate)) {
-        var key = predicate[0]
-        var value = predicate[1]
-        predicate = e => e[key] == value
-      } else if (typeof predicate == "object") {
-        var obj = predicate
-        predicate = e => waoooooooo.isEqual(e, predicate)
-      } else if (typeof predicate == "string") {
-        var key = predicate
-        predicate = e => e[key]
-      }
-    }
+    predicate = waoooooooo.by(predicate)
     for (const iterator of collection) {
       if (!predicate(iterator)) {
         return false
@@ -669,20 +658,7 @@ var waoooooooo = {
   //一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。
   // predicate 调用3个参数：(value, index|key, collection)。
   some: (collection, predicate = waoooooooo.identity) => {
-    if (typeof predicate !== "function") {
-      //Array|Object|string
-      if (Array.isArray(predicate)) {
-        var key = predicate[0]
-        var value = predicate[1]
-        predicate = e => e[key] == value
-      } else if (typeof predicate == "object") {
-        var obj = predicate
-        predicate = e => waoooooooo.isEqual(e, predicate)
-      } else if (typeof predicate == "string") {
-        var key = predicate
-        predicate = e => e[key]
-      }
-    }
+    predicate = waoooooooo.by(predicate)
     for (const iterator of collection) {
       if (predicate(iterator)) {
         return true
@@ -699,20 +675,7 @@ var waoooooooo = {
    */
   countBy: (collection, iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
-    if (typeof iteratee !== "function") {
-      //Array|Object|string
-      if (Array.isArray(iteratee)) {
-        var key = iteratee[0]
-        var value = iteratee[1]
-        iteratee = e => e[key] == value
-      } else if (typeof iteratee == "object") {
-        var obj = iteratee
-        iteratee = e => waoooooooo.isEqual(e, iteratee)
-      } else if (typeof iteratee == "string") {
-        var key = iteratee
-        iteratee = e => e[key]
-      }
-    }
+    iteratee = waoooooooo.by(iteratee)
     var map = {}
     for (const val of collection) {
       if (iteratee(val) in map) {
@@ -725,12 +688,26 @@ var waoooooooo = {
   },
 
   /**
-   *
+   * groupBy
    * @param {*} collection
    * @param {*} iteratee
-   * @returns object
+   * @returns map[处理过的key : key原始值数组]
    */
   groupBy: (collection, iteratee = waoooooooo.identity) => {
+    //iteratee处理 *******
+    iteratee = waoooooooo.by(iteratee)
+    var map = {}
+    for (const val of collection) {
+      if (iteratee(val) in map) {
+        map[iteratee(val)].push(val)
+      } else {
+        map[iteratee(val)] = [val]
+      }
+    }
+    return map
+  },
+
+  by: (iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
     if (typeof iteratee !== "function") {
       //Array|Object|string
@@ -746,16 +723,9 @@ var waoooooooo = {
         iteratee = e => e[key]
       }
     }
-    var map = {}
-    for (const val of collection) {
-      if (iteratee(val) in map) {
-        map[iteratee(val)].push(val)
-      } else {
-        map[iteratee(val)] = [val]
-      }
-    }
-    return map
+    return iteratee
   },
+
 
   //深度全等方法(数组 对象 的值全等)
   isEqual: (a, b, ...args) => {
