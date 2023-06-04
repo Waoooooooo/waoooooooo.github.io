@@ -536,8 +536,7 @@ var waoooooooo = {
   pullAll: (array,...values) =>waoooooooo.pull(array,values),
 
   pullAllBy: (array,...values) => {
-    var comparator = values.at(-1) //比较函数,放入两个元素 返回布尔类型
-    var arr = values.slice(0, values.length - 1) //取交集的参数
+
   }
 
 
