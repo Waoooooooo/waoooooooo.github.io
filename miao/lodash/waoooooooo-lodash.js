@@ -730,12 +730,14 @@ var waoooooooo = {
     for (const key in collection) {
       arr.push(key)
     }
-    for (let index = array.length-1; index >= 0 ; index++) {
+    for (let index = arr.length-1; index >= 0 ; index--) {
      var key =  arr.pop()
      iteratee(collection[key],key,collection)
     }
   },
-  //处理iteratee函数
+
+
+  //BY系列处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
     if (typeof iteratee !== "function") {
