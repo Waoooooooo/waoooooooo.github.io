@@ -596,7 +596,7 @@ var waoooooooo = {
   },
 
   pullAt: (array, ...indexes) => {
-    indexes= waoooooooo.flattenDeep(indexes)
+    indexes = waoooooooo.flattenDeep(indexes)
     var set = new Set(indexes)
     var moveLength = 0
     for (let index = 0; index < array.length; index++) {
@@ -713,19 +713,27 @@ var waoooooooo = {
     iteratee = waoooooooo.by(iteratee)
     var map = {}
     for (const val of collection) {
-        map[iteratee(val)] = val
+      map[iteratee(val)] = val
     }
     return map
   },
 
   forEach: (collection, iteratee = waoooooooo.identity) => {
     for (const key in collection) {
-      iteratee(collection[key],key,collection)
+      iteratee(collection[key], key, collection)
     }
   },
 
-  forEachRight:(collection, iteratee = waoooooooo.identity) => {
-
+  forEachRight: (collection, iteratee = waoooooooo.identity) => {
+    //倒序forEach
+    var arr = []
+    for (const key in collection) {
+      arr.push(key)
+    }
+    for (let index = array.length-1; index >= 0 ; index++) {
+     var key =  arr.pop()
+     iteratee(collection[key],key,collection)
+    }
   },
   //处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
