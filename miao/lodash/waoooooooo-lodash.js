@@ -738,11 +738,58 @@ var waoooooooo = {
     }
   },
 
+  /**
+   * map
+   * @param {*} collection
+   * @param {*} iteratee
+   * @return {Array}
+   */
   map: (collection, iteratee=waoooooooo.identity)=>{
     iteratee  =  waoooooooo.by(iteratee)
+    var arr = []
     for (const key in collection) {
-      var  iteratee(collection[key], key, collection)
+      arr.push(iteratee(collection[key], key, collection))
     }
+    return arr
+  },
+
+  filter:(collection, predicate=waoooooooo.identity)=>{
+    predicate  =  waoooooooo.by(predicate)
+    var arr = []
+    for (const key in collection) {
+      if( predicate(collection[key], key, collection)){
+        arr.push(collection[key])
+      }
+    }
+    return arr
+  },
+
+  //处理predicate系列函数
+  transformPredicate : (predicate)=>{
+    if (typeof predicate !== "function") {
+      //Array|Object|string
+      //参数(value, index|key, collection)
+      if (Array.isArray(predicate)) {
+        var key = predicate[0]
+        var value = predicate[1]
+        predicate = e => e[key] == value
+      } else if (typeof predicate == "object") {
+        var obj = predicate
+        predicate = e => {
+          //e的每个key value
+          for (const key in obj) {
+            if (obj[key] !== e[key]) {
+              return false
+            }
+          }
+          return true
+        }
+      } else if (typeof predicate == "string") {
+        var key = predicate
+        predicate = e => e[key]
+      }
+    }
+    return predicate
   },
 
 
