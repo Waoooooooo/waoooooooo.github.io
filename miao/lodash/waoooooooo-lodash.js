@@ -599,10 +599,12 @@ var waoooooooo = {
     indexes = waoooooooo.flattenDeep(indexes)
     var set = new Set(indexes)
     var moveLength = 0
+    var result = []
     for (let index = 0; index < array.length; index++) {
       if (set.has(index)) {
         //如果碰到要删除的元素移动距离加1
         moveLength++
+        result.push(array[index])
       } else {
         //如果碰到不需要删除的元素,则向前跳moveLength
         array[index - moveLength] = array[index]
@@ -612,7 +614,7 @@ var waoooooooo = {
       array.pop()
       moveLength--
     }
-    return array
+    return
   },
 
   //反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
@@ -757,7 +759,7 @@ var waoooooooo = {
     predicate = waoooooooo.transformPredicate(predicate)
     var arr = []
     for (const key in collection) {
-      if (predicate(collection[key], key, collection)) {
+      if (predicate(collection[key], isNaN(Number(key)) ? key : Number(key), collection)) {
         arr.push(collection[key])
       }
     }
@@ -777,7 +779,7 @@ var waoooooooo = {
     iteratee = waoooooooo.by(iteratee)
     var arr = accumulator
     for (const key in collection) {
-      arr = iteratee(collection[key], key, collection)
+      arr = iteratee(collection[key], isNaN(Number(key)) ? key : Number(key), collection)
     }
     return arr
   },
@@ -835,8 +837,14 @@ var waoooooooo = {
         var obj = iteratee
         iteratee = e => waoooooooo.isEqual(e, iteratee)
       } else if (typeof iteratee == "string") {
-        var key = iteratee
-        iteratee = e => e[key]
+        var keys = iteratee.split(".")
+        iteratee = e => {
+          var result = e
+          for (const key of keys) {
+             result =  result[key]
+          }
+          return result
+        }
       }
     }
     return iteratee
