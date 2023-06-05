@@ -718,15 +718,21 @@ var waoooooooo = {
     return map
   },
 
-  forEach: (collection, iteratee = waoooooooo.identity) => collection.forEach(waoooooooo.by(iteratee)),
+  forEach: (collection, iteratee = waoooooooo.identity) => {
+    for (const key in collection) {
+      iteratee(collection[key],key,collection)
+    }
+  },
+
   forEachRight:(collection, iteratee = waoooooooo.identity) => {
-    collection.forEach()
+
   },
   //处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
     if (typeof iteratee !== "function") {
       //Array|Object|string
+      //参数(value, index|key, collection)
       if (Array.isArray(iteratee)) {
         var key = iteratee[0]
         var value = iteratee[1]
@@ -741,6 +747,7 @@ var waoooooooo = {
     }
     return iteratee
   },
+
 
 
   //深度全等方法(数组 对象 的值全等)
