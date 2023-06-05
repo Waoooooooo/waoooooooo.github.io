@@ -434,23 +434,12 @@ var waoooooooo = {
 
     var map = {} //存储出现的次数
     var map2 = {} //存储出现的次数的 key对应的原始值
-    var iteratee = arrays.at(-1)
+    var iteratee =waoooooooo.by(arrays.at(-1))
     var length = arrays.length - 1
     arrays = arrays.slice(0, length)
-    if (typeof iteratee !== "function") {
-      //分三种Array|Object|string
-      if (Array.isArray(iteratee)) {
-        //???
-      } else if (typeof iteratee == "object") {
-        //???
-      } else if (typeof iteratee == "string") {
-        var key = iteratee
-        iteratee = e => e[key]
-      }
-    }
+    //去重
+    var newArray = waoooooooo.deweight(array)
     for (var array of arrays) {
-      //去重
-      var newArray = waoooooooo.deweight(array)
       for (var e of newArray) {
         var val = iteratee(e)
         if (val in map) {
