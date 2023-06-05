@@ -434,12 +434,12 @@ var waoooooooo = {
 
     var map = {} //存储出现的次数
     var map2 = {} //存储出现的次数的 key对应的原始值
-    var iteratee =waoooooooo.by(arrays.at(-1))
+    var iteratee = waoooooooo.by(arrays.at(-1))
     var length = arrays.length - 1
     arrays = arrays.slice(0, length)
     //去重
-    var newArray = waoooooooo.deweight(array)
     for (var array of arrays) {
+      var newArray = waoooooooo.deweight(array)
       for (var e of newArray) {
         var val = iteratee(e)
         if (val in map) {
@@ -708,6 +708,12 @@ var waoooooooo = {
     return map
   },
 
+  /**
+   *
+   * @param {*} collection
+   * @param {*} iteratee
+   * @returns
+   */
   forEach: (collection, iteratee = waoooooooo.identity) => {
     iteratee = waoooooooo.by(iteratee)
     for (const key in collection) {
@@ -745,6 +751,12 @@ var waoooooooo = {
     return arr
   },
 
+  /**
+   *
+   * @param {*} collection
+   * @param {*} predicate
+   * @returns
+   */
   filter: (collection, predicate = waoooooooo.identity) => {
     predicate = waoooooooo.transformPredicate(predicate)
     var arr = []
@@ -765,17 +777,27 @@ var waoooooooo = {
    * @param {*} accumulator
    * @return {Array}
    */
-  reduce: (collection, iteratee = waoooooooo.identity, accumulator=0) => {
+  reduce: (collection, iteratee = waoooooooo.identity, accumulator = 0) => {
     iteratee = waoooooooo.by(iteratee)
     for (const key in collection) {
-      accumulator = iteratee(accumulator,collection[key],key)
+      accumulator = iteratee(accumulator, collection[key], key)
     }
     return accumulator
   },
 
+  /**
+   *
+   * @param {*} collection
+   * @return {Number}
+   */
+  size: collection => waoooooooo.reduce(collection, e => e + 1),
 
-
-
+  /**
+   *
+   * @param {*} predicate
+   * @returns
+   */
+  sortBy: (collection, iterateess = [waoooooooo.identity]) => { },
 
   /**
    * transformPredicate :处理predicate的函数
@@ -809,9 +831,6 @@ var waoooooooo = {
     return predicate
   },
 
-
-
-
   //BY系列处理iteratee函数
   by: (iteratee = waoooooooo.identity) => {
     //iteratee处理 *******
@@ -830,7 +849,7 @@ var waoooooooo = {
         iteratee = e => {
           var result = e
           for (const key of keys) {
-             result =  result[key]
+            result = result[key]
           }
           return result
         }
@@ -839,6 +858,13 @@ var waoooooooo = {
     return iteratee
   },
 
+  //BY系列处理iteratees函数/數組
+  byIteratees: (iteratees) => {
+    if(iteratees){
+
+    }
+    return iteratees
+  },
 
 
   //深度全等方法(数组 对象 的值全等)
