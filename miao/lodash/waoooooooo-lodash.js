@@ -806,7 +806,7 @@ var waoooooooo = {
         predicate = e => {
           //e的每个key value
           for (const key in obj) {
-            if (waoooooooo.isEqual(obj[key], e[key])) {
+            if (!waoooooooo.isEqual(obj[key], e[key])) {
               return false
             }
           }
