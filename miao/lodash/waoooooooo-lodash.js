@@ -719,22 +719,22 @@ var waoooooooo = {
   },
 
   forEach: (collection, iteratee = waoooooooo.identity) => {
-    iteratee  =  waoooooooo.by(iteratee)
+    iteratee = waoooooooo.by(iteratee)
     for (const key in collection) {
       iteratee(collection[key], key, collection)
     }
   },
 
   forEachRight: (collection, iteratee = waoooooooo.identity) => {
-    iteratee  =  waoooooooo.by(iteratee)
+    iteratee = waoooooooo.by(iteratee)
     //倒序forEach
     var arr = []
     for (const key in collection) {
       arr.push(key)
     }
-    for (let index = arr.length-1; index >= 0 ; index--) {
-     var key =  arr.pop()
-     iteratee(collection[key],key,collection)
+    for (let index = arr.length - 1; index >= 0; index--) {
+      var key = arr.pop()
+      iteratee(collection[key], key, collection)
     }
   },
 
@@ -744,8 +744,8 @@ var waoooooooo = {
    * @param {*} iteratee
    * @return {Array}
    */
-  map: (collection, iteratee=waoooooooo.identity)=>{
-    iteratee  =  waoooooooo.by(iteratee)
+  map: (collection, iteratee = waoooooooo.identity) => {
+    iteratee = waoooooooo.by(iteratee)
     var arr = []
     for (const key in collection) {
       arr.push(iteratee(collection[key], key, collection))
@@ -753,19 +753,45 @@ var waoooooooo = {
     return arr
   },
 
-  filter:(collection, predicate=waoooooooo.identity)=>{
-    predicate  =  waoooooooo.transformPredicate(predicate)
+  filter: (collection, predicate = waoooooooo.identity) => {
+    predicate = waoooooooo.transformPredicate(predicate)
     var arr = []
     for (const key in collection) {
-      if( predicate(collection[key], key, collection)){
+      if (predicate(collection[key], key, collection)) {
         arr.push(collection[key])
       }
     }
     return arr
   },
 
-  //处理predicate系列函数
-  transformPredicate : (predicate)=>{
+
+  //每次返回的值会作为下一次迭代使用(accumulator:累加器)
+  /**
+   * reduce :累加迭代
+   * @param {*} collection
+   * @param {*} iteratee
+   * @param {*} accumulator
+   * @return {Array}
+   */
+  reduce: (collection, iteratee = waoooooooo.identity, accumulator) => {
+    iteratee = waoooooooo.by(iteratee)
+    var arr = accumulator
+    for (const key in collection) {
+      arr = iteratee(collection[key], key, collection)
+    }
+    return arr
+  },
+
+
+
+
+
+  /**
+   * transformPredicate :处理predicate的函数
+   * @param {*} predicate
+   * @return {Function}
+   */
+  transformPredicate: (predicate) => {
     if (typeof predicate !== "function") {
       //Array|Object|string
       //参数(value, index|key, collection)
@@ -778,7 +804,7 @@ var waoooooooo = {
         predicate = e => {
           //e的每个key value
           for (const key in obj) {
-            if (obj[key] !== e[key]) {
+            if (waoooooooo.isEqual(obj[key],e[key])) {
               return false
             }
           }
