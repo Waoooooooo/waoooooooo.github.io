@@ -777,13 +777,12 @@ var waoooooooo = {
    * @param {*} accumulator
    * @return {Array}
    */
-  reduce: (collection, iteratee = waoooooooo.identity, accumulator) => {
+  reduce: (collection, iteratee = waoooooooo.identity, accumulator=0) => {
     iteratee = waoooooooo.by(iteratee)
-    var arr = accumulator
     for (const key in collection) {
-      arr = iteratee(collection[key], isNaN(Number(key)) ? key : Number(key), collection)
+      accumulator = iteratee(accumulator,collection[key])
     }
-    return arr
+    return accumulator
   },
 
 
