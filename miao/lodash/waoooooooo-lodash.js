@@ -780,7 +780,7 @@ var waoooooooo = {
   reduce: (collection, iteratee = waoooooooo.identity, accumulator=0) => {
     iteratee = waoooooooo.by(iteratee)
     for (const key in collection) {
-      accumulator = iteratee(accumulator,collection[key])
+      accumulator = iteratee(accumulator,collection[key],key)
     }
     return accumulator
   },
