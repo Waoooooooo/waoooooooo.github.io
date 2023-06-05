@@ -754,7 +754,7 @@ var waoooooooo = {
   },
 
   filter:(collection, predicate=waoooooooo.identity)=>{
-    predicate  =  waoooooooo.by(predicate)
+    predicate  =  waoooooooo.transformPredicate(predicate)
     var arr = []
     for (const key in collection) {
       if( predicate(collection[key], key, collection)){
