@@ -719,12 +719,14 @@ var waoooooooo = {
   },
 
   forEach: (collection, iteratee = waoooooooo.identity) => {
+    iteratee  =  waoooooooo.by(iteratee)
     for (const key in collection) {
       iteratee(collection[key], key, collection)
     }
   },
 
   forEachRight: (collection, iteratee = waoooooooo.identity) => {
+    iteratee  =  waoooooooo.by(iteratee)
     //倒序forEach
     var arr = []
     for (const key in collection) {
@@ -735,6 +737,15 @@ var waoooooooo = {
      iteratee(collection[key],key,collection)
     }
   },
+
+  map: (collection, iteratee=waoooooooo.identity)=>{
+    iteratee  =  waoooooooo.by(iteratee)
+    for (const key in collection) {
+      var  iteratee(collection[key], key, collection)
+    }
+  },
+
+
 
 
   //BY系列处理iteratee函数
