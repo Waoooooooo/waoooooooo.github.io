@@ -748,7 +748,7 @@ var waoooooooo = {
     iteratee = waoooooooo.by(iteratee)
     var arr = []
     for (const key in collection) {
-      arr.push(iteratee(collection[key], key, collection))
+      arr.push(iteratee(collection[key], isNaN(Number(key)) ? key : Number(key), collection))
     }
     return arr
   },
@@ -804,7 +804,7 @@ var waoooooooo = {
         predicate = e => {
           //e的每个key value
           for (const key in obj) {
-            if (waoooooooo.isEqual(obj[key],e[key])) {
+            if (waoooooooo.isEqual(obj[key], e[key])) {
               return false
             }
           }
