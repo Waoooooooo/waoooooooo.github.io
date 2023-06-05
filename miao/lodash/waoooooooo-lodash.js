@@ -725,6 +725,7 @@ var waoooooooo = {
     for (const key in collection) {
       iteratee(collection[key], key, collection)
     }
+    return collection
   },
 
   forEachRight: (collection, iteratee = waoooooooo.identity) => {
@@ -738,6 +739,7 @@ var waoooooooo = {
       var key = arr.pop()
       iteratee(collection[key], key, collection)
     }
+    return collection
   },
 
   /**
