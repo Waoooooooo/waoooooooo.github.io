@@ -793,7 +793,7 @@ var waoooooooo = {
   size: collection => waoooooooo.reduce(collection, e => e + 1),
 
 
-  sample:(collection)=>{},
+  sample: (collection) => { },
   /**
    * sortBy
    * @param1 {*} (Array|Object): 用来迭代的集合。
@@ -802,7 +802,7 @@ var waoooooooo = {
    */
   sortBy: (collection, iterateess = waoooooooo.identity) => {
 
-},
+  },
 
 
 
@@ -815,58 +815,58 @@ var waoooooooo = {
    * @return {Function}
    */
   transformPredicate: (predicate) => {
-    if(typeof predicate !== "function") {
-  //Array|Object|string
-  //参数(value, index|key, collection)
-  if (Array.isArray(predicate)) {
-    var key = predicate[0]
-    var value = predicate[1]
-    predicate = e => e[key] == value
-  } else if (typeof predicate == "object") {
-    var obj = predicate
-    predicate = e => {
-      //e的每个key value
-      for (const key in obj) {
-        if (!waoooooooo.isEqual(obj[key], e[key])) {
-          return false
+    if (typeof predicate !== "function") {
+      //Array|Object|string
+      //参数(value, index|key, collection)
+      if (Array.isArray(predicate)) {
+        var key = predicate[0]
+        var value = predicate[1]
+        predicate = e => e[key] == value
+      } else if (typeof predicate == "object") {
+        var obj = predicate
+        predicate = e => {
+          //e的每个key value
+          for (const key in obj) {
+            if (!waoooooooo.isEqual(obj[key], e[key])) {
+              return false
+            }
+          }
+          return true
         }
+      } else if (typeof predicate == "string") {
+        var key = predicate
+        predicate = e => e[key]
       }
-      return true
     }
-  } else if (typeof predicate == "string") {
-    var key = predicate
-    predicate = e => e[key]
-  }
-}
-return predicate
+    return predicate
   },
 
-//BY系列处理iteratee函数
-by: (iteratee = waoooooooo.identity) => {
-  //iteratee处理 *******
-  if (typeof iteratee !== "function") {
-    //Array|Object|string
-    //参数(value, index|key, collection)
-    if (Array.isArray(iteratee)) {
-      var key = iteratee[0]
-      var value = iteratee[1]
-      iteratee = e => e[key] == value
-    } else if (typeof iteratee == "object") {
-      var obj = iteratee
-      iteratee = e => waoooooooo.isEqual(e, iteratee)
-    } else if (typeof iteratee == "string") {
-      var keys = iteratee.split(".")
-      iteratee = e => {
-        var result = e
-        for (const key of keys) {
-          result = result[key]
+  //BY系列处理iteratee函数
+  by: (iteratee = waoooooooo.identity) => {
+    //iteratee处理 *******
+    if (typeof iteratee !== "function") {
+      //Array|Object|string
+      //参数(value, index|key, collection)
+      if (Array.isArray(iteratee)) {
+        var key = iteratee[0]
+        var value = iteratee[1]
+        iteratee = e => e[key] == value
+      } else if (typeof iteratee == "object") {
+        var obj = iteratee
+        iteratee = e => waoooooooo.isEqual(e, iteratee)
+      } else if (typeof iteratee == "string") {
+        var keys = iteratee.split(".")
+        iteratee = e => {
+          var result = e
+          for (const key of keys) {
+            result = result[key]
+          }
+          return result
         }
-        return result
       }
     }
-  }
-  return iteratee
-},
+    return iteratee
+  },
 
   //BY系列处理多个iteratees函数/數組
   byIteratees: (iteratees) => {
@@ -877,37 +877,37 @@ by: (iteratee = waoooooooo.identity) => {
   },
 
 
-    //深度全等方法(数组 对象 的值全等)
-    isEqual: (a, b, ...args) => {
-      var flag = true
-      if (a === b) {
-        return true
-      }
-      else if (typeof a == typeof b && typeof b == "object") {
-        if (Array.isArray(a) !== Array.isArray(b)) {
-          return false
-        }
-        for (const key in a) {
-          if (!(key in b)) {
-            return false
-          }
-          if (!(waoooooooo.isEqual(a[key], b[key]))) {
-            return false
-          }
-        }
-        for (const key in b) {
-          if (!(key in a)) {
-            return false
-          }
-          if (!(waoooooooo.isEqual(a[key], b[key]))) {
-            return false
-          }
-        }
-        return true
-      } else {
+  //深度全等方法(数组 对象 的值全等)
+  isEqual: (a, b, ...args) => {
+    var flag = true
+    if (a === b) {
+      return true
+    }
+    else if (typeof a == typeof b && typeof b == "object") {
+      if (Array.isArray(a) !== Array.isArray(b)) {
         return false
       }
+      for (const key in a) {
+        if (!(key in b)) {
+          return false
+        }
+        if (!(waoooooooo.isEqual(a[key], b[key]))) {
+          return false
+        }
+      }
+      for (const key in b) {
+        if (!(key in a)) {
+          return false
+        }
+        if (!(waoooooooo.isEqual(a[key], b[key]))) {
+          return false
+        }
+      }
+      return true
+    } else {
+      return false
     }
+  }
 
 
 
