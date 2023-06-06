@@ -801,22 +801,6 @@ var waoooooooo = {
    * @returns
    */
   sortBy: (collection, iterateess = waoooooooo.identity) => {
-    if (!Array.isArray(iterateess)) {
-      iterateess = [iterateess]
-    }
-    collection.sort((a, b) => {
-      for (const iterator of iterateess) {
-        var iterator = waoooooooo.by(iterator)
-        var a = iterator(a)
-        var b = iterator(b)
-        if (a < b) {
-          return -1
-        }else if (a > b){
-          return 1
-        }
-      }
-      return 0
-    })
 
 },
 
