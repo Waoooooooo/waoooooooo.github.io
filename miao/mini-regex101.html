@@ -45,7 +45,7 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()" value="(').*?[,.?!](')"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="(').*?[,.?!](\1)"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
   <label>G <input type="checkbox" oninput="run()"  checked  id="checkG"></label>
