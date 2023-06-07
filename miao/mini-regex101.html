@@ -35,17 +35,21 @@
 <script>
 
   function run(  ){
-    var flag
+    var flag = ""
     if (checkI.checked) {
-      flag = "i"
-    } if (checkG.checked) {
-      flag = "g"
-    } if (checkM.checked) {
-      flag = "m"
-    } if (checkY.checked) {
-      flag = "y"
-    } if (checkS.checked) {
-      flag = "s"
+      flag += "i"
+    }
+    if (checkG.checked) {
+      flag += "g"
+    }
+    if (checkM.checked) {
+      flag += "m"
+    }
+    if (checkY.checked) {
+      flag += "y"
+    }
+    if (checkS.checked) {
+      flag += "s"
     }
     var string  =  inputString.value
     var re = new RegExp(regString.value,flag)
