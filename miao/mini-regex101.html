@@ -14,7 +14,6 @@
 
     div {
       position: relative;
-
       >* {
         border: 1px solid black;
         padding: 0;
@@ -47,11 +46,11 @@
 <body>
   正则: <br>
   <input type="text" id="regString" oninput="run()"> <button onclick="run()">run</button><br>
-  <label>I <input type="checkbox" id="checkI"></label>
-  <label>S <input type="checkbox" id="checkS"></label>
-  <label>G <input type="checkbox" checked id="checkG"></label>
-  <label>M <input type="checkbox" id="checkM"></label>
-  <label>Y <input type="checkbox" id="checkY"></label>
+  <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
+  <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
+  <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
+  <label>M <input type="checkbox" oninput="run()" id="checkM"></label>
+  <label>Y <input type="checkbox" oninput="run()" id="checkY"></label>
   <br>
   匹配字符串:
   <div>
