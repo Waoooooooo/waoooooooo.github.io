@@ -45,23 +45,22 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="(').*?[,.?!](')"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
-  <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
+  <label>G <input type="checkbox" oninput="run()"  checked  id="checkG"></label>
   <label>M <input type="checkbox" oninput="run()" id="checkM"></label>
   <label>Y <input type="checkbox" oninput="run()" id="checkY"></label>
   <br>
   匹配字符串:
   <div>
-    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">
-
+    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asdasd.'asdas:'i'm strong.'Lucy:'can canneed?' Tom say:'How  are you?'
     </textarea>
     <pre id="pre"></pre>
   </div>
 </body>
 <script>
-
+run()
   function run() {
     var flag = ""
     if (checkI.checked) {
