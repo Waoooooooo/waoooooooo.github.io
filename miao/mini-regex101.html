@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正则</title>
+  <style>
+    b {
+    background-color:  rgb(21, 132, 243);
+    color: aliceblue
+    };
+
+  </style>
+</head>
+
+<body>
+  正则: <br>
+  <input type="text" id="regString" oninput="run()"> <button onclick="run()">run</button><br>
+  <label>I <input type="checkbox"  id="checkI"></label>
+  <label>S <input type="checkbox"  id="checkS"></label>
+  <label>G <input type="checkbox"  checked id="checkG"></label>
+  <label>M <input type="checkbox"  id="checkM"></label>
+  <label>Y <input type="checkbox"  id="checkY"></label>
+  <br>
+  匹配字符串:
+  <div>
+    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">
+
+    </textarea>
+    <pre id="pre"></pre>
+  </div>
+  </body>
+<script>
+
+  function run(  ){
+    var flag
+    if (checkI.checked) {
+      flag = "i"
+    } if (checkG.checked) {
+      flag = "g"
+    } if (checkM.checked) {
+      flag = "m"
+    } if (checkY.checked) {
+      flag = "y"
+    } if (checkS.checked) {
+      flag = "s"
+    }
+    var string  =  inputString.value
+    var re = new RegExp(regString.value,flag)
+    pre.innerHTML = string.replace(re,s=>`<b>${s}</b>`)
+  }
+</script>
+</html>
