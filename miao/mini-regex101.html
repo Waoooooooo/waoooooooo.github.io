@@ -32,6 +32,13 @@
 
       font-weight: normal;
       color: black;
+      position: relative;
+
+      &:before {
+        content: attr(data-index);
+        position: absolute;
+        top: -50%;
+      }
 
       &:nth-child(odd) {
         background-color: rgb(99, 177, 249);
@@ -52,7 +59,7 @@
     }
 
     em {
-      outline: red 1px solid ;
+      outline: red 1px solid;
       position: relative;
     }
 
@@ -72,7 +79,7 @@
         border: 2px solid #9fcfff;
         padding: 0;
         margin: 0px;
-        position: absolute;
+        /* position: absolute; */
         width: 300px;
         height: 300px;
         background-color: transparent;
@@ -125,7 +132,6 @@
       flag += "s"
     }
     var string = inputString.value
-
     try {
       var re = new RegExp(regString.value, "d" + flag)
     } catch (error) {
@@ -137,6 +143,7 @@
     var leftMap = {}
     var resultStr = ""
     var preIndex = 0
+    var count = 0
     while (match = re.exec(string)) {
       resultStr += string.slice(preIndex, match.index)
       preIndex = re.lastIndex
@@ -155,15 +162,16 @@
 
       //****分组情况****
       //如果使用或可能会出现分组为undefind的情况 所以先过滤掉空白分组
-      indices=indices.filter(e=>e)
+      indices = indices.filter(e => e)
       //如果存在分组,取出匹配到的分组,映射储存的是相对下标有几个tag
-      if (indices.length > 1 ) {
-        resultStr += "<b>"
+      if (indices.length > 1) {
+        resultStr += "<b data-index =${count} >"
+        count++
         indices = indices.slice(1)
 
         var leftTagsMap = indices.reduce((map, e, i) => {
           if (!e) {
-            return  map
+            return map
           }
           var position = e[0] - match.index
           if (map[position]) {
@@ -188,7 +196,7 @@
           var leftTag = ""
           var rightTag = ""
           while (leftTagsMap[index]) {
-            leftTag += `<i dataId =${i}>`
+            leftTag += `<i dataId =${i} >`
             i++
             leftTagsMap[index]--
           }
@@ -214,7 +222,8 @@
       } else if (indices.length == 1 && match[0] !== '') {
         //没有分组
         //两边加上<b>
-        resultStr += `<b>${matchStr}</b>`
+        resultStr += `<b data-index =${count} >${matchStr}</b>`
+        count++
       }
 
 
