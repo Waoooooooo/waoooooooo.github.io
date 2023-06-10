@@ -165,7 +165,7 @@
       indices = indices.filter(e => e)
       //如果存在分组,取出匹配到的分组,映射储存的是相对下标有几个tag
       if (indices.length > 1) {
-        resultStr += "<b data-index =${count} >"
+        resultStr += `<b data-index =${count} >`
         count++
         indices = indices.slice(1)
 
