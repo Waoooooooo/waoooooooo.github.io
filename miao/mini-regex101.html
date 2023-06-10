@@ -34,10 +34,13 @@
       color: black;
       position: relative;
 
-      &:before {
-        content: attr(data-index);
+      &:hover::before {
+        content: "match:"attr(data-index);
         position: absolute;
-        top: -50%;
+        bottom: 100%;
+
+        color:white ;
+        background-color: black;
       }
 
       &:nth-child(odd) {
