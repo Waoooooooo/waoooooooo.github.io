@@ -497,7 +497,13 @@ String.prototype.myreplaceAll = function (regExp, replaceStr) {
   }
   if (typeof replaceStr == "string") {
     var s = replaceStr
-    replaceStr = e => s
+    //
+    replaceStr = e => {
+      //将s中的$1改为分组1 的内容,再返回
+      return s.replace(/\$(\d)/g,(m,index)=>{
+        return e[index]
+      })
+    }
   }
   var match
   var last = 0
