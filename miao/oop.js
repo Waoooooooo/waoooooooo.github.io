@@ -468,113 +468,112 @@
 // String.prototype.mysearch
 // RegExp.prototype.mytest
 
-  // 利用RegExp.prototype.exec实现以上所有函数
-  // 调用方式跟自带的一样
-  // String.prototype.mymatch
-  String.prototype.mymatch = function (regExp) {
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
-    var str = this
-    var arr = []
-    while (match = regExp.exec(str)) {
-      if (!regExp.global) {
-        return match
-      }
-      arr.push(match[0])
-    }
-    return arr
+// 利用RegExp.prototype.exec实现以上所有函数
+// 调用方式跟自带的一样
+// String.prototype.mymatch
+String.prototype.mymatch = function (regExp) {
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
   }
-  // String.prototype.mymatch
-  String.prototype.mymatch = function (regExp) {
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
-    var str = this
-    var arr = []
-    while (match = regExp.exec(str)) {
-      if (!regExp.global) {
-        return match
-      }
-      arr.push(match[0])
-    }
-    return arr
-  }
-  // String.prototype.myreplaceAll
-  String.prototype.myreplaceAll = function (regExp, replaceStr) {
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
+  var str = this
+  var arr = []
+  while (match = regExp.exec(str)) {
     if (!regExp.global) {
-      throw new Error("没有g")
+      return match
     }
-    var str = this
-    var lastIndex = 0
-    while (match = regExp.exec(str)) {
-      var newstr = ""
-      for (let index = lastIndex; index < str.length; index++) {
-        if (index == match.index) {
-          newstr += replaceStr
-          index += match.length - 1
-          continue
-        }
-        newstr += str[index]
-      }
-      lastIndex = match.lastIndex
-      if (!regExp.global) {
-        break
-      }
-      str = newstr
+    arr.push(match[0])
+  }
+  return arr
+}
+// String.prototype.mymatch
+String.prototype.mymatch = function (regExp) {
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
+  }
+  var str = this
+  var arr = []
+  while (match = regExp.exec(str)) {
+    if (!regExp.global) {
+      return match
     }
-    return str
+    arr.push(match[0])
+  }
+  return arr
+}
+// String.prototype.myreplaceAll
+String.prototype.myreplace = function (regExp, replaceStr) {
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
+  }
+  if (typeof replaceStr == "string") {
+    var s = replaceStr
+    replaceStr = e => s
+  }
+  if (regExp.global) {
+    return this.myreplaceAll(regExp, replaceStr)
   }
 
-  // String.prototype.myreplaceAll
-  String.prototype.myreplaceAll = function (regExp, replaceStr) {
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
-    var str = this
-    var lastIndex = 0
-    if (!regExp.global) {
-      throw new Error("没有g")
-    }
-    while (match = regExp.exec(str)) {
-      var newstr = ""
-      for (let index = lastIndex; index < str.length; index++) {
-        if (index == match.index) {
-          newstr += replaceStr
-          index += match.length - 1
-          continue
-        }
-        newstr += str[index]
-      }
-      lastIndex = match.lastIndex
-      str = newstr
-    }
-    return str
+  var match = regExp.exec(this)
+  if (match) {
+    var end = match.index + match[0].length
+    var start = match.index
+    //match.index 到match[0].length替换为 replaceStr
+    return this.slice(0, start) + replaceStr(this.slice(start, end)) + this.slice(end)
+  }else{
+    return this.toString()
   }
+}
 
-  // String.prototype.mysearch
-  String.prototype.mysearch = function (regExp) {
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
-    var str = this
-    var lastIndex = 0
-    var match = regExp.exec(str)
+// String.prototype.myreplaceAll
+String.prototype.myreplaceAll = function (regExp, replaceStr) {
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
+  }
+  if (typeof replaceStr == "string") {
+    var s = replaceStr
+    replaceStr = e => s
+  }
+  var  match
+  var  last = 0
+  var  str = ""
+  while (match=regExp.exec(this)) {
+    //1.拼接   从上次结束到这次匹配正则开始的部分
+    str+=this.slice(last,match.index)
+    //2.拼接替换部分
+    str+= replaceStr(this.slice(match.index, regExp.lastIndex))
+    //3.将结束下标保存
+    last =  regExp.lastIndex
+  }
+  //循环结束后 将剩余部分拼接上去
+  str+=this.slice(last)
+  return str
+}
+
+// String.prototype.mysearch
+String.prototype.mysearch = function (regExp) {
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
+  }
+  var str = this
+  var lastIndex = 0
+  var match = regExp.exec(str)
+  if (match) {
     return match.index
+  } else {
+    return -1
   }
 
-  // RegExp.prototype.mytest
-  RegExp.prototype.mytest = function (regExp) {
-    if (regExp == null) {
-      return -1
-    }
-    if (typeof regExp == "string") {
-      regExp = new RegExp(regExp)
-    }
-    var str = this
-    var match = regExp.exec(str)
-    return match !== null
+}
+
+// RegExp.prototype.mytest
+RegExp.prototype.mytest = function (regExp) {
+  if (regExp == null) {
+    return -1
   }
+  if (typeof regExp == "string") {
+    regExp = new RegExp(regExp)
+  }
+  var str = this
+  var match = regExp.exec(str)
+  return match !== null
+}
