@@ -500,7 +500,7 @@ String.prototype.mymatch = function (regExp) {
   }
   return arr
 }
-// String.prototype.myreplaceAll
+// String.prototype.myreplace
 String.prototype.myreplace = function (regExp, replaceStr) {
   if (typeof regExp == "string") {
     regExp = new RegExp(regExp)
@@ -527,7 +527,10 @@ String.prototype.myreplace = function (regExp, replaceStr) {
 // String.prototype.myreplaceAll
 String.prototype.myreplaceAll = function (regExp, replaceStr) {
   if (typeof regExp == "string") {
-    regExp = new RegExp(regExp)
+    regExp = new RegExp(regExp, "gd")
+  }
+  if (!regExp.global) {
+    regExp = new RegExp(regExp.source, "gd")
   }
   if (typeof replaceStr == "string") {
     var s = replaceStr
@@ -539,10 +542,16 @@ String.prototype.myreplaceAll = function (regExp, replaceStr) {
   while (match = regExp.exec(this)) {
     //1.拼接   从上次结束到这次匹配正则开始的部分
     str += this.slice(last, match.index)
-    //2.拼接替换部分
-    str += replaceStr(this.slice(match.index, regExp.lastIndex))
     //3.将结束下标保存
     last = regExp.lastIndex
+    //2.将当前分组的内容依次存入
+    arr = match.filter(e => e)
+    if (match.length > 1) {
+      //有分组
+      for (let index = 1; index < arr.length; index++) {
+        str += replaceStr(match,arr[index])
+      }
+    }
   }
   //循环结束后 将剩余部分拼接上去
   str += this.slice(last)
