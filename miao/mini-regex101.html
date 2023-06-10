@@ -54,27 +54,23 @@
         }
       }
     }
-
     em {
       outline: red 1px solid;
       position: relative;
     }
-
     i[dataId] {
       font-weight: normal;
       font-style: normal;
       position: relative;
       z-index: 1;
     }
-
-
-
     div {
       position: relative;
       display: flex;
       >* {
         border: 2px solid #9fcfff;
-        padding: 0;
+        padding: 5px;
+        border-radius: 10px;
         margin: 0px;
         /* position: absolute; */
         width: 300px;
@@ -84,10 +80,15 @@
         text-wrap: wrap;
         overflow-wrap: break-word;
       }
-
       >pre {
+        margin-left: 10px;
         /* z-index: -1; */
       }
+    }
+    p {
+      margin: 0;
+      padding: 10px;
+      padding-left: 0;
     }
   </style>
 </head>
@@ -101,7 +102,6 @@
   <label>M <input type="checkbox" oninput="run()" id="checkM"></label>
   <label>Y <input type="checkbox" oninput="run()" id="checkY"></label>
   <p><span>msg:</span><span id="msg"></span></p>
-  <br>
   匹配字符串:
   <div>
     <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asdasd.'asdas:'i'm strong.'Lucy:'can can  need?' Tom say:'How  are you?''
