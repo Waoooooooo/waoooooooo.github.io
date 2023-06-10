@@ -34,21 +34,26 @@
       color: black;
       position: relative;
 
+      /*选中后代被hover的b的后伪元素*/
+
+
+      /*不选中 没有元素被hover的b*/
       &:hover:not(:has(:hover)) {
-        box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
+        box-shadow: 0 0 3px rgb(106, 99, 99);
+        &:after {
+          content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
+          position: absolute;
+          bottom: 120%;
+          left: 0px;
+          color: white;
+          background-color: black;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: 10px;
+        }
       }
 
-      &:hover::after {
-        content: "match:" attr(data-index);
-        position: absolute;
-        bottom: 120%;
-        left: 0px;
-        color: white;
-        background-color: black;
-        padding: 5px;
-        border-radius: 5px;
-        font-size: 10px;
-      }
+
 
       &:nth-child(odd) {
         background-color: rgb(99, 177, 249);
@@ -63,7 +68,6 @@
 
         & i {
           background-color: var(--group-color);
-
         }
       }
     }
@@ -78,15 +82,28 @@
       font-style: normal;
       position: relative;
       z-index: 1;
-      &:hover {
-        box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
+    }
+    /*不选中里面有被hover的i*/
+    i:hover:not(:has(:hover)) {
+      box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
+      &:after {
+        content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
+        position: absolute;
+        white-space: pre;
+        bottom: 120%;
+        left: 0px;
+        color: white;
+        background-color: black;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 10px;
       }
     }
+
 
     div {
       position: relative;
       display: flex;
-
       >* {
         border: 2px solid #9fcfff;
         padding: 5px;
@@ -117,7 +134,7 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()" value="(a(b)(c))|a|om|"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="a(b)(c)|a|om|"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
   <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
@@ -214,7 +231,7 @@
           var leftTag = ""
           var rightTag = ""
           while (leftTagsMap[index]) {
-            leftTag += `<i dataId =${i} >`
+            leftTag += `<i dataId =${i} data-index =${count}>`
             i++
             leftTagsMap[index]--
           }
