@@ -43,7 +43,6 @@
       }
       &:nth-child(odd) {
         background-color: rgb(99, 177, 249);
-
         & i {
           background-color: color-mix(in srgb, var(--group-color) 60%, white);
         }
@@ -96,7 +95,7 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()" value="ab(c)"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="(a(b)(c))|a|om|"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
   <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
@@ -105,8 +104,7 @@
   <p><span>msg:</span><span id="msg"></span></p>
   匹配字符串:
   <div>
-    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asdasd.'asdas:'i'm strong.'Lucy:'can can  need?' Tom say:'How  are you?''
-    </textarea>
+    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asdasd.'asdas:'</textarea>
     <pre id="pre"></pre>
   </div>
 </body>
