@@ -8,16 +8,52 @@
   <title>正则</title>
   <style>
     b {
+
+      /*变量声明*/
+      [dataId="1"] {
+        --group-color: #9fcba1;
+      }
+
+      [dataId="2"] {
+        --group-color: #e0bf8b;
+      }
+
+      [dataId="3"] {
+        --group-color: #acadfc;
+      }
+
+      [dataId="4"] {
+        --group-color: #e1abf5;
+      }
+
+      [dataId="5"] {
+        --group-color: #ef9b95;
+      }
+
       font-weight: normal;
       color: black;
 
       &:nth-child(odd) {
         background-color: rgb(99, 177, 249);
+
+        & i {
+          background-color: color-mix(in srgb, var(--group-color) 60%, white);
+        }
       }
 
       &:nth-child(even) {
         background-color: rgb(188, 219, 247);
+
+        & i {
+          background-color: var(--group-color);
+        }
+
       }
+    }
+
+    em {
+      outline: red 1px solid ;
+      position: relative;
     }
 
     i[dataId] {
@@ -25,8 +61,9 @@
       font-style: normal;
       position: relative;
       z-index: 1;
-      background-color: #db2727;
     }
+
+
 
     div {
       position: relative;
@@ -40,15 +77,12 @@
         height: 300px;
         background-color: transparent;
         font-size: large;
-
         text-wrap: wrap;
         overflow-wrap: break-word;
       }
 
       >pre {
         z-index: -1;
-
-
       }
     }
   </style>
@@ -56,12 +90,13 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" value="ab(c)"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="ab(c)"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
   <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
   <label>M <input type="checkbox" oninput="run()" id="checkM"></label>
   <label>Y <input type="checkbox" oninput="run()" id="checkY"></label>
+  <p><span>msg:</span><span id="msg"></span></p>
   <br>
   匹配字符串:
   <div>
@@ -90,7 +125,14 @@
       flag += "s"
     }
     var string = inputString.value
-    var re = new RegExp(regString.value, "d" + flag)
+
+    try {
+      var re = new RegExp(regString.value, "d" + flag)
+    } catch (error) {
+      msg.innerHTML = error.name
+      return
+    }
+    msg.innerHTML = ""
     var match
     var leftMap = {}
     var resultStr = ""
@@ -99,13 +141,30 @@
       resultStr += string.slice(preIndex, match.index)
       preIndex = re.lastIndex
       var indices = match.indices
+
+      //****0宽断言****
+      //匹配长度为0的时候,lastIndex是不变的,此时为0宽断言
+      if (match[0] == '') {
+        //在match.index前拼上em标签
+        re.lastIndex++
+        resultStr += "<em></em>"
+      }
+
       //处理匹配到的字符串index - lastindex
       var matchStr = match[0]
+
+      //****分组情况****
+      //如果使用或可能会出现分组为undefind的情况 所以先过滤掉空白分组
+      indices=indices.filter(e=>e)
       //如果存在分组,取出匹配到的分组,映射储存的是相对下标有几个tag
-      if (indices.length > 1) {
+      if (indices.length > 1 ) {
         resultStr += "<b>"
         indices = indices.slice(1)
+
         var leftTagsMap = indices.reduce((map, e, i) => {
+          if (!e) {
+            return  map
+          }
           var position = e[0] - match.index
           if (map[position]) {
             map[position]++
@@ -125,7 +184,6 @@
         }, {})
         //拼接匹配的字符串
         var i = 1 //i作为组号
-
         for (var index = 0; index < matchStr.length; index++) {
           var leftTag = ""
           var rightTag = ""
@@ -138,8 +196,13 @@
             rightTag += `</i>`
             rightTagsMap[index]--
           }
-          //如果左右标签同时存在 先拼右括号
-          resultStr += leftTag + matchStr[index] + rightTag
+          if (leftTag && rightTag) {
+            //如果左右标签同时存在一个下标上
+            //左+右+当前下标
+            resultStr += rightTag + leftTag + matchStr[index]
+          } else {
+            resultStr += leftTag + rightTag + matchStr[index]
+          }
         }
         rightTag = ""
         while (rightTagsMap[index]) {
@@ -148,51 +211,27 @@
         }
         resultStr += rightTag
         resultStr += "</b>"
-      } else {
+      } else if (indices.length == 1 && match[0] !== '') {
         //没有分组
         //两边加上<b>
         resultStr += `<b>${matchStr}</b>`
       }
-      if (match.global) {
+
+
+      //****非全局情况****
+      if (!re.global) {
+        //如果g没有设定则 lastindex 为0
+        preIndex = match.indices[0][1]
         break
       }
     }
+
     //循环结束后将剩余部分拼接
     resultStr += string.slice(preIndex)
-    //
-    //
     // var resultStr=getStr(left,right,string)
     pre.innerHTML = resultStr
   }
-  /* getStr 可以用map
-   * @param {array} left 左边的标签位置
-   * @param {array} right 右边的标签的位置
-   * @param {string} string
-   * @return {string}
-  */
-  function getStr(left, right, string) {
-    var resultStr = ""
-    //变成两行
 
-    for (let index = 0; index < string.length; index++) {
-      //获取左边标签
-      var leftTag = left.reduce((str, e, i) => {
-        if (index == e) {
-          return str += `<i data=${i}>`
-        }
-        return str
-      }, "")
-      //获取右边标签
-      var rightTag = right.reduce((str, e, i) => {
-        if (index == e - 1) {
-          return str += `</i>`
-        }
-        return str
-      }, "")
-      resultStr += leftTag + string[index] + rightTag
-    }
-    return resultStr
-  }
 </script>
 
 </html>
