@@ -39,7 +39,7 @@
 
       /*不选中 没有元素被hover的b*/
       &:hover:not(:has(:hover)) {
-        box-shadow: 0 0 3px rgb(106, 99, 99);
+        outline: black 2px solid ;
         &:after {
           content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
           position: absolute;
@@ -86,7 +86,7 @@
 
     /*不选中里面有被hover的i*/
     i:hover:not(:has(:hover)) {
-      box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
+      outline: black 2px solid ;
       &:after {
         content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
         position: absolute;
@@ -144,7 +144,7 @@
   <p><span>msg:</span><span id="msg"></span></p>
   匹配字符串:
   <div>
-    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asdasd.'asdas:'</textarea>
+    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asabadasd.'asdas:'</textarea>
     <pre id="pre"></pre>
   </div>
 </body>
