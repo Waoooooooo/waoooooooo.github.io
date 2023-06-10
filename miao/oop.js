@@ -454,3 +454,121 @@ class LinkedList {
     return this.count
   }
 }
+
+// String.prototype.mymatch
+// String.prototype.mymatchAll
+// String.prototype.myreplace
+// String.prototype.myreplaceAll
+// String.prototype.mysearch
+// RegExp.prototype.mytest
+
+  // 利用RegExp.prototype.exec实现以上所有函数
+  // 调用方式跟自带的一样
+  // String.prototype.mymatch
+  String.prototype.mymatch = function (regExp) {
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    var str = this
+    var arr = []
+    while (match = regExp.exec(str)) {
+      if (!regExp.global) {
+        return match
+      }
+      arr.push(match[0])
+    }
+    return arr
+  }
+  // String.prototype.mymatch
+  String.prototype.mymatch = function (regExp) {
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    var str = this
+    var arr = []
+    while (match = regExp.exec(str)) {
+      if (!regExp.global) {
+        return match
+      }
+      arr.push(match[0])
+    }
+    return arr
+  }
+  // String.prototype.myreplaceAll
+  String.prototype.myreplaceAll = function (regExp, replaceStr) {
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    if (!regExp.global) {
+      throw new Error("没有g")
+    }
+    var str = this
+    var lastIndex = 0
+    while (match = regExp.exec(str)) {
+      var newstr = ""
+      for (let index = lastIndex; index < str.length; index++) {
+        if (index == match.index) {
+          newstr += replaceStr
+          index += match.length - 1
+          continue
+        }
+        newstr += str[index]
+      }
+      lastIndex = match.lastIndex
+      if (!regExp.global) {
+        break
+      }
+      str = newstr
+    }
+    return str
+  }
+
+  // String.prototype.myreplaceAll
+  String.prototype.myreplaceAll = function (regExp, replaceStr) {
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    var str = this
+    var lastIndex = 0
+    if (!regExp.global) {
+      throw new Error("没有g")
+    }
+    while (match = regExp.exec(str)) {
+      var newstr = ""
+      for (let index = lastIndex; index < str.length; index++) {
+        if (index == match.index) {
+          newstr += replaceStr
+          index += match.length - 1
+          continue
+        }
+        newstr += str[index]
+      }
+      lastIndex = match.lastIndex
+      str = newstr
+    }
+    return str
+  }
+
+  // String.prototype.mysearch
+  String.prototype.mysearch = function (regExp) {
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    var str = this
+    var lastIndex = 0
+    var match = regExp.exec(str)
+    return match.index
+  }
+
+  // RegExp.prototype.mytest
+  String.prototype.mytest = function (regExp) {
+    if (regExp == null) {
+      return -1
+    }
+    if (typeof regExp == "string") {
+      regExp = new RegExp(regExp)
+    }
+    var str = this
+    var match = regExp.exec(str)
+    return match !== null
+  }
