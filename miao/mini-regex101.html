@@ -135,7 +135,7 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()" value="a(b)((c)|a)|om|(?=s)"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" oninput="run()" value="a(b)((c)|a)|om|(?=s)"> <button onclick="copyReg()">copy</button><br>
   <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
   <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
   <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
@@ -276,7 +276,29 @@
     // var resultStr=getStr(left,right,string)
     pre.innerHTML = resultStr
   }
-
+  function copyReg(){
+    var flag = ""
+    if (checkI.checked) {
+      flag += "i"
+    }
+    if (checkG.checked) {
+      flag += "g"
+    }
+    if (checkM.checked) {
+      flag += "m"
+    }
+    if (checkY.checked) {
+      flag += "y"
+    }
+    if (checkS.checked) {
+      flag += "s"
+    }
+    copy(`/${regString.value}/${flag}`)
+    var Url2=document.getElementById("biao1");
+    Url2.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    alert("已复制好，可贴粘。");
+  }
 </script>
 
 </html>
