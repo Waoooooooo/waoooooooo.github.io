@@ -8,65 +8,85 @@
   <title>正则</title>
   <style>
     b {
+
       /*变量声明*/
       [dataId="1"] {
         --group-color: #9fcba1;
       }
+
       [dataId="2"] {
         --group-color: #e0bf8b;
       }
+
       [dataId="3"] {
         --group-color: #acadfc;
       }
+
       [dataId="4"] {
         --group-color: #e1abf5;
       }
+
       [dataId="5"] {
         --group-color: #ef9b95;
       }
+
       font-weight: normal;
       color: black;
       position: relative;
-      &:hover{
-        box-shadow: 0 0 3px rgb(106, 99, 99),0 0 3px rgb(106, 99, 99);
+
+      &:hover:not(:has(:hover)) {
+        box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
       }
+
       &:hover::after {
-        content: "match:"attr(data-index);
+        content: "match:" attr(data-index);
         position: absolute;
         bottom: 120%;
-        left:0px;
-        color:white ;
+        left: 0px;
+        color: white;
         background-color: black;
-        padding:5px;
+        padding: 5px;
         border-radius: 5px;
         font-size: 10px;
       }
+
       &:nth-child(odd) {
         background-color: rgb(99, 177, 249);
+
         & i {
           background-color: color-mix(in srgb, var(--group-color) 60%, white);
         }
       }
+
       &:nth-child(even) {
         background-color: rgb(188, 219, 247);
+
         & i {
           background-color: var(--group-color);
+
         }
       }
     }
+
     em {
       outline: red 1px solid;
       position: relative;
     }
+
     i[dataId] {
       font-weight: normal;
       font-style: normal;
       position: relative;
       z-index: 1;
+      &:hover {
+        box-shadow: 0 0 3px rgb(106, 99, 99), 0 0 3px rgb(106, 99, 99);
+      }
     }
+
     div {
       position: relative;
       display: flex;
+
       >* {
         border: 2px solid #9fcfff;
         padding: 5px;
@@ -80,11 +100,13 @@
         text-wrap: wrap;
         overflow-wrap: break-word;
       }
+
       >pre {
         margin-left: 10px;
         /* z-index: -1; */
       }
     }
+
     p {
       margin: 0;
       padding: 10px;
