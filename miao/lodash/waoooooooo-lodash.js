@@ -93,7 +93,7 @@ var waoooooooo = {
       while (str[i] >= "0" && str[i] <= "9" &&i< str.length ) {
         i++
       }
-      return str.slice(start , i )
+      return Number(str.slice(start , i ))
     }
   },
 
