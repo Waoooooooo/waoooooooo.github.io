@@ -3,6 +3,103 @@ var waoooooooo = {
   identity: function (e) {
     return e
   },
+
+
+  partition:  function (str) {
+    var i = 0
+    return parseValue()
+    function parseValue() {
+      if (str[i] == "{") {
+        return parseObj()
+      }
+      if (str[i] == "[") {
+        return parseArr()
+      }
+      if (str[i] == "\"") {
+        return parseStr()
+      }
+
+      if (str[i] == "t") {
+        if (str.slice(i, i + 4) != "true") {
+          throw new Error("not a token")
+        }
+        i += 4
+        return true
+      }
+      if (str[i] == "f") {
+        if (str.slice(i, i + 5) != "false") {
+          throw new Error("not a token")
+        }
+        i += 5
+        return false
+      }
+      return parseNum()
+    }
+
+    //解析对象
+    function parseObj() {
+      i++
+      var obj = {}
+      while (true) {
+        var key = parseStr()
+        i++//跳过:
+        var value = parseValue()
+        obj[key] = value
+        if (str[i] == ",") {
+          i++
+        }
+        if (str[i] == "}") {
+          i++
+          return obj
+        }
+      }
+    }
+
+    //解析字符串
+    function parseStr() {
+      i++
+      var start = i
+      while (true) {
+        if (str[i] == "\"") {
+          result = str.slice(start, i)
+          i++
+          return result
+        }
+        i++
+      }
+    }
+
+    //解析数组
+    function parseArr() {
+      i++
+      var arr = []
+      while (true) {
+        var element = parseValue()
+        arr.push(element)
+        if (str[i] == ",") {
+          i++
+        }
+        if (str[i] == "]") {
+          i++
+          return arr
+        }
+      }
+
+    }
+
+    //解析数字
+    function parseNum() {
+      var start = i
+      while (str[i] >= "0" && str[i] <= "9" &&i< str.length ) {
+        i++
+      }
+      return str.slice(start , i )
+    }
+  },
+
+
+
+
   /**
    * chunk
    * 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。
@@ -784,6 +881,18 @@ var waoooooooo = {
     }
     return accumulator
   },
+
+
+
+  reduceRight: (collection, iteratee = waoooooooo.identity, accumulator = 0) => {
+    iteratee = waoooooooo.by(iteratee)
+    var  reverseArr = waoooooooo.reduce(collection,(arr,e)=>arr.push(e),[])
+    for (const key in collection) {
+      accumulator = iteratee(accumulator, collection[key], key)
+    }
+    return accumulator
+  },
+
 
   /**
    *
