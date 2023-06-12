@@ -5,7 +5,7 @@ var waoooooooo = {
   },
 
 
-  partition:  function (str) {
+  parseJSON:  function (str) {
     var i = 0
     return parseValue()
     function parseValue() {
