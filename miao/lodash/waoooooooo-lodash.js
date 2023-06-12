@@ -26,6 +26,13 @@ var waoooooooo = {
         i += 4
         return true
       }
+      if (str[i] == "n") {
+        if (str.slice(i, i + 4) != "null") {
+          throw new Error("not a token")
+        }
+        i += 4
+        return null
+      }
       if (str[i] == "f") {
         if (str.slice(i, i + 5) != "false") {
           throw new Error("not a token")
