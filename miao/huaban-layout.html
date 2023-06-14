@@ -19,12 +19,14 @@
       display: flex;
       width: 80%;
       margin: auto;
-      gap: 10px;
       align-items: start;
+      justify-content: space-between;
+      gap:10px;
     }
 
     div {
       flex: 1;
+      width: 200px;
     }
 
     img {
@@ -35,12 +37,9 @@
 
 <body>
   <section>
-    <div></div>
-    <div></div>
-    <div></div>
   </section>
   <script>
-    //1.获取section元素对象
+
     var section = document.querySelector("section")
     var cats = [
       {
@@ -369,23 +368,36 @@
       }
     ]
       ;
-    var divs = document.querySelectorAll("div")
-    divs["reduce"] = [].reduce
-    for (let index = 0; index < cats.length; index++) {
-      var cat = cats[index];
-      var img = document.createElement("img")
-      img.src = cat.fullUrl
-      //计算出最小长度的div
-      var div = divs.reduce((min, div) => {
-        if (div.offsetHeight < min.offsetHeight) {
-          min = div
-        }
-        return min
-      })
-      div.append(img)
+    run()
+    window.onresize = run
+    function run() {
+
+      //1.获取section元素对象
+
+      //div的个数为section的实际宽度/220取整
+      section.innerHTML=""
+      var quantityOfDiv = Math.floor(section.offsetWidth / 220)
+
+      for (let index = 0; index < quantityOfDiv; index++) {
+        section.append(document.createElement("div"))
+      }
+      var divs = document.querySelectorAll("div")
+      divs["reduce"] = [].reduce
+      for (let index = 0; index < cats.length; index++) {
+        var cat = cats[index];
+        var img = document.createElement("img")
+        img.src = cat.fullUrl
+        //计算出最小长度的div
+        var div = divs.reduce((min, div) => {
+          if (div.offsetHeight < min.offsetHeight) {
+            min = div
+          }
+          return min
+        })
+        div.append(img)
+      }
+
     }
-
-
   </script>
 </body>
 
