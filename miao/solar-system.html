@@ -48,7 +48,6 @@
     }
     #moon {
       display: inline-block;
-      box-shadow: 0 0 10px rgb(190, 190, 190);
       background-color: rgb(251, 255, 206);
       border-radius: 999px;
       width: 10px;
@@ -98,7 +97,7 @@
     function turn2(time) {
       var time = Date.now()
       if (lastTime != null) {
-        angle += (time - lastTime) * 0.001;
+        angle += (time - lastTime) * 0.0024;
       }
       lastTime = time;
       var top = (Math.sin(angle) * 30)
