@@ -32,7 +32,7 @@
       position: absolute;
       left: 50%;
       right: 50%;
-      top: 50%;
+      top: 40%;
       z-index: 1;
     }
 
@@ -44,7 +44,6 @@
       width: 30px;
       height: 30px;
       margin: auto;
-      margin-top :550px;;
       position: relative;
     }
     #moon {
@@ -83,6 +82,7 @@
         angle += (time - lastTime) * 0.0001;
       }
       lastTime = time;
+
       var top = (Math.sin(angle) * 50)
       var left = (Math.cos(angle) * 450)
       if (top < 0 && left < 100) {
@@ -92,7 +92,7 @@
       }
       地球.style.top = top -10+"px";
       地球.style.left = left + 20+ "px";
-      setTimeout(turn, 17);
+      setTimeout(turn, 30);
     }
 
     function turn2(time) {
@@ -105,7 +105,7 @@
       var left = (Math.cos(angle) * 50)
       moon.style.top = top +"px";
       moon.style.left = left + "px";
-      setTimeout(turn2, 17);
+      setTimeout(turn2, 30);
     }
 
 
