@@ -21,7 +21,7 @@
 /*双色模式*/
 .table-striped {
   /**/
-  font-color: black;
+  color: black;
 }
 .table-striped tr:nth-child(2n+1) :is(td,th) {
   background-color: #d7d7d780;
