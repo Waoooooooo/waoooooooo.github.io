@@ -69,7 +69,9 @@
   </section>
   <script>
     var angle = 0
-    var lastTime = null
+    var angle2 = 0
+    var lastTime1 = null
+    var lastTime2 = null
     var earth = document.querySelector("#earth")
     var moon = document.querySelector("#moon")
     setTimeout(turn, 17);
@@ -77,10 +79,10 @@
 
     function turn(time) {
       var time = Date.now()
-      if (lastTime != null) {
-        angle += (time - lastTime) * 0.0001;
+      if (lastTime1 != null) {
+        angle += (time - lastTime1) * 0.0001;
       }
-      lastTime = time;
+      lastTime1 = time;
 
       var top = (Math.sin(angle) * 50)
       var left = (Math.cos(angle) * 450)
@@ -96,12 +98,12 @@
 
     function turn2(time) {
       var time = Date.now()
-      if (lastTime != null) {
-        angle += (time - lastTime) * 0.0024;
+      if (lastTime2 != null) {
+        angle2 += (time - lastTime2) * 0.0024;
       }
-      lastTime = time;
-      var top = (Math.sin(angle) * 30)
-      var left = (Math.cos(angle) * 50)
+      lastTime2 = time;
+      var top = (Math.sin(angle2) * 30)
+      var left = (Math.cos(angle2) * 50)
       moon.style.top = top +"px";
       moon.style.left = left + "px";
       setTimeout(turn2, 30);
