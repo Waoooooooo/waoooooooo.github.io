@@ -22,7 +22,7 @@
 
     }
 
-    #太阳 {
+    #sun {
       background-color: yellow;
       border-radius: 999px;
       width: 100px;
@@ -36,7 +36,7 @@
       z-index: 1;
     }
 
-    #地球 {
+    #earth {
       display: flex;
       box-shadow: 0 0 10px rgb(195, 195, 239);
       background-color: blue;
@@ -61,8 +61,8 @@
 
 <body>
   <section>
-    <div id="太阳"></div>
-    <div id="地球">
+    <div id="sun"></div>
+    <div id="earth">
       <span id="moon">
 
       </span>
@@ -71,7 +71,7 @@
   <script>
     var angle = 0
     var lastTime = null
-    var 地球 = document.querySelector("#地球")
+    var earth = document.querySelector("#earth")
     var moon = document.querySelector("#moon")
     setTimeout(turn, 17);
     setTimeout(turn2, 17);
@@ -86,12 +86,12 @@
       var top = (Math.sin(angle) * 50)
       var left = (Math.cos(angle) * 450)
       if (top < 0 && left < 100) {
-        地球.style.zIndex = 0
+        earth.style.zIndex = 0
       } else {
-        地球.style.zIndex = 2
+        earth.style.zIndex = 2
       }
-      地球.style.top = top -10+"px";
-      地球.style.left = left + 20+ "px";
+      earth.style.top = top -40+"px";
+      earth.style.left = left + 20+ "px";
       setTimeout(turn, 30);
     }
 
