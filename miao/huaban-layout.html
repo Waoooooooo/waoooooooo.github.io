@@ -20,7 +20,7 @@
       width: 80%;
       margin: auto;
       align-items: start;
-      gap:10px;
+      gap: 10px;
     }
 
     div {
@@ -365,37 +365,39 @@
         "width": 775,
         "height": 1170
       }
-    ]
-      ;
+    ];
     run()
     window.onresize = run
     function run() {
-
       //1.获取section元素对象
-
       //div的个数为section的实际宽度/220取整
-      section.innerHTML=""
+      section.innerHTML = ""
       var quantityOfDiv = Math.floor(section.offsetWidth / 220)
-
       for (let index = 0; index < quantityOfDiv; index++) {
         section.append(document.createElement("div"))
       }
+      //获取div宽度
+      var divWidth = document.querySelectorAll("div")[0].offsetWidth
       var divs = document.querySelectorAll("div")
-      divs["reduce"] = [].reduce
-      for (let index = 0; index < cats.length; index++) {
-        var cat = cats[index];
+      //div的长度 初始都为0
+      var divHeights = Array(quantityOfDiv).fill(0)
+      var imgs = Array(quantityOfDiv).fill(0).map(it => [])
+      for (const cat of cats) {
+        //计算出每张图片的高度
+        var imgHeight = divWidth / (cat.width / cat.height)
+        //添加入高度最小的数组中
+        var minHeight = Math.min(...divHeights)
+        //得到最矮的div 在 divs和divHeights/imgs数组中的下标
+        var minIndex = divHeights.indexOf(minHeight)
+        divHeights[minIndex] += imgHeight
         var img = document.createElement("img")
         img.src = cat.fullUrl
-        //计算出最小长度的div
-        var div = divs.reduce((min, div) => {
-          if (div.offsetHeight < min.offsetHeight) {
-            min = div
-          }
-          return min
-        })
-        div.append(img)
+        imgs[minIndex].push(img)
       }
-
+      //循环结束后 imgs中的每个数组分别对应divs中的每个div中药append的图片
+      divs.forEach((div, i) => {
+        div.append(...imgs[i])
+      })
     }
   </script>
 </body>
