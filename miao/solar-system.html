@@ -9,51 +9,39 @@
     html,
     body {
       margin: 0;
-      height: 100%;
       background-color: #202020;
     }
 
-    section {
-      display: flex;
-      align-content: center;
-      justify-content: center;
-      height: 100%;
-      position: relative;
-
-    }
-
     #sun {
-      background-color: yellow;
+      background-color: gold;
       border-radius: 999px;
       width: 100px;
       height: 100px;
-      margin: auto;
       box-shadow: 0 0 50px rgb(239, 117, 17);
-      position: absolute;
-      left: 50%;
-      right: 50%;
-      top: 40%;
-      z-index: 1;
     }
 
     #earth {
-      display: flex;
       box-shadow: 0 0 10px rgb(195, 195, 239);
       background-color: blue;
       border-radius: 999px;
       width: 30px;
       height: 30px;
-      margin: auto;
-      position: relative;
     }
+
     #moon {
-      display: inline-block;
       background-color: rgb(251, 255, 206);
       border-radius: 999px;
       width: 10px;
       height: 10px;
-      margin: auto;
-      position: relative;
+    }
+
+    #moon,
+    #earth,
+    #sun {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
@@ -61,53 +49,54 @@
 <body>
   <section>
     <div id="sun"></div>
-    <div id="earth">
-      <span id="moon">
-
-      </span>
-    </div>
+    <div id="earth"></div>
+    <div id="moon"></div>
   </section>
   <script>
-    var angle = 0
-    var angle2 = 0
-    var lastTime1 = null
-    var lastTime2 = null
+    var earthAngle = 0
+    var moonAngle = 0
+    var sunAngle = 0
     var earth = document.querySelector("#earth")
     var moon = document.querySelector("#moon")
+    var sun = document.querySelector("#sun")
     setTimeout(turn, 17);
-    setTimeout(turn2, 17);
 
-    function turn(time) {
+
+
+
+
+    function turn() {
+      sun.style.top = window.innerHeight / 2 + "px";
+      sun.style.left = window.innerWidth / 2 + "px";
+
       var time = Date.now()
-      if (lastTime1 != null) {
-        angle += (time - lastTime1) * 0.0005;
+      var earthAngle = time * 0.001
+      var earthTop = (Math.sin(earthAngle) * 50)
+      var earthLeft = (Math.cos(earthAngle) * 300)
+      earth.style.top = earthTop + window.innerHeight / 2 + "px";
+      earth.style.left = earthLeft + window.innerWidth / 2 + "px";
+      if (earthTop < 0 ) {
+        earth.style.zIndex=-1
+      }else{
+        earth.style.zIndex=1
       }
-      lastTime1 = time;
 
-      var top = (Math.sin(angle) * 50)
-      var left = (Math.cos(angle) * 450)
-      if (top < 0 && left < 100) {
-        earth.style.zIndex = 0
-      } else {
-        earth.style.zIndex = 2
+      var moonAngle = time * 0.015
+      var moonTop = (Math.sin(moonAngle) * 10)
+      var moonLeft = (Math.cos(moonAngle) * 50)
+      moon.style.top = parseFloat(earth.style.top) + moonTop +  "px";
+      moon.style.left = parseFloat(earth.style.left) + moonLeft + "px";
+      if (moonTop < 0 ) {
+        moon.style.zIndex=-2
+      }else{
+        moon.style.zIndex=1
       }
-      earth.style.top = top +"px";
-      earth.style.left = left + 20+ "px";
-      setTimeout(turn, 30);
+
+
+
+      setTimeout(turn, 17);
     }
 
-    function turn2(time) {
-      var time = Date.now()
-      if (lastTime2 != null) {
-        angle2 += (time - lastTime2) * 0.0024;
-      }
-      lastTime2 = time;
-      var top = (Math.sin(angle2) * 30)
-      var left = (Math.cos(angle2) * 50)
-      moon.style.top = top +"px";
-      moon.style.left = left + "px";
-      setTimeout(turn2, 30);
-    }
 
 
   </script>
