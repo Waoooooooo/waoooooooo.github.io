@@ -30,6 +30,7 @@
 
     img {
       width: 100%;
+      transition: 0.3s;
     }
   </style>
 </head>
@@ -367,6 +368,32 @@
       }
     ];
     run()
+    section.addEventListener("click", function fun(event) {
+      //如果触发事件的为img
+      if (event.target.matches("img")) {
+        var img = event.target
+        if (img.style.transform != "") {
+          img.style.transform=""
+          img.style.boxShadow =""
+          return
+        }
+        //获取窗口的中点
+        var windowHeight = window.innerHeight
+        var windowWidth = window.innerWidth
+        var imgPosition = img.getBoundingClientRect()
+        //移动距离
+        var x = windowWidth / 2 - imgPosition.x - imgPosition.width/2
+        var y = windowHeight / 2 - imgPosition.y - imgPosition.height/2
+        //放大系数
+        var coefficient   =  windowHeight / imgPosition.height
+        img.style.transform = `translate(${x}px, ${y}px) scale(${coefficient})`
+        img.style.boxShadow = "0 0 0  500px black"
+        img.style.zIndex++
+      }
+    })
+
+
+
     window.onresize = run
     function run() {
       //1.获取section元素对象
@@ -376,6 +403,7 @@
       for (let index = 0; index < quantityOfDiv; index++) {
         section.append(document.createElement("div"))
       }
+
       //获取div宽度
       var divWidth = document.querySelectorAll("div")[0].offsetWidth
       var divs = document.querySelectorAll("div")
@@ -394,6 +422,7 @@
         img.src = cat.fullUrl
         imgs[minIndex].push(img)
       }
+
       //循环结束后 imgs中的每个数组分别对应divs中的每个div中药append的图片
       divs.forEach((div, i) => {
         div.append(...imgs[i])
