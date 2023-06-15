@@ -30,7 +30,7 @@
 
     img {
       width: 100%;
-      transition: 0.3s;
+      transition: transform 0.3s , boxShadow 0s;
     }
   </style>
 </head>
@@ -385,9 +385,9 @@
         var x = windowWidth / 2 - imgPosition.x - imgPosition.width/2
         var y = windowHeight / 2 - imgPosition.y - imgPosition.height/2
         //放大系数
-        var coefficient   =  windowHeight / imgPosition.height
+        var coefficient   =  (windowHeight / imgPosition.height) * 0.8
         img.style.transform = `translate(${x}px, ${y}px) scale(${coefficient})`
-        img.style.boxShadow = "0 0 0  500px black"
+        img.style.boxShadow = "0 0 0  9999px #000a"
         img.style.zIndex++
       }
     })
