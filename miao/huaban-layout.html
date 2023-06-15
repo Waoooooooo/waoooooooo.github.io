@@ -41,6 +41,7 @@
   <script>
 
     var section = document.querySelector("section")
+    var html = document.querySelector("html")
     var cats = [
       {
         "url": "photo-103450229.jpg",
@@ -368,10 +369,20 @@
       }
     ];
     run()
-    section.addEventListener("click", function fun(event) {
+    var clickCat = null
+    html.addEventListener("click", function fun(event) {
+      //如果存在被放大的猫 则使其在用户点击html时重置为初始位置初始大小 并结束函数
+      if (clickCat) {
+        clickCat.style.transform=""
+        clickCat.style.boxShadow =""
+        clickCat = null
+        return
+      }
       //如果触发事件的为img
       if (event.target.matches("img")) {
         var img = event.target
+        //给全局变量clickcat赋值
+        clickCat= img
         if (img.style.transform != "") {
           img.style.transform=""
           img.style.boxShadow =""
@@ -384,8 +395,10 @@
         //移动距离
         var x = windowWidth / 2 - imgPosition.x - imgPosition.width/2
         var y = windowHeight / 2 - imgPosition.y - imgPosition.height/2
-        //放大系数
+        //放大系数 0.8倍的屏幕高度
+
         var coefficient   =  (windowHeight / imgPosition.height) * 0.8
+
         img.style.transform = `translate(${x}px, ${y}px) scale(${coefficient})`
         img.style.boxShadow = "0 0 0  9999px #000a"
         img.style.zIndex++
