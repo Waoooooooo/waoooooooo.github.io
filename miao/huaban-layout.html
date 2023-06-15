@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>花瓣</title>
+  <title>花瓣网布局</title>
   <style>
     html,
     body {
@@ -43,12 +43,6 @@
     var section = document.querySelector("section")
     var html = document.querySelector("html")
     var cats = [
-      {
-        "url": "photo-103450229.jpg",
-        "fullUrl": "https://xieranmaya.github.io/images/cats/photo-103450229.jpg",
-        "width": 675,
-        "height": 900
-      },
       {
         "url": "photo-108273877.jpg",
         "fullUrl": "https://xieranmaya.github.io/images/cats/photo-108273877.jpg",
@@ -162,12 +156,6 @@
         "fullUrl": "https://xieranmaya.github.io/images/cats/stock-photo-144730939.jpg",
         "width": 1000,
         "height": 1000
-      },
-      {
-        "url": "stock-photo-145414771.jpg",
-        "fullUrl": "https://xieranmaya.github.io/images/cats/stock-photo-145414771.jpg",
-        "width": 780,
-        "height": 1170
       },
       {
         "url": "stock-photo-146038669.jpg",
@@ -368,6 +356,11 @@
         "height": 1170
       }
     ];
+    cats.push(...cats)
+    cats.push(...cats)
+    cats.push(...cats)
+    cats.push(...cats)
+    cats.push(...cats)
     run()
     var clickCat = null
     html.addEventListener("click", function fun(event) {
@@ -416,7 +409,6 @@
       for (let index = 0; index < quantityOfDiv; index++) {
         section.append(document.createElement("div"))
       }
-
       //获取div宽度
       var divWidth = document.querySelectorAll("div")[0].offsetWidth
       var divs = document.querySelectorAll("div")
