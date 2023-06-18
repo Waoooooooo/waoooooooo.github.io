@@ -8,62 +8,159 @@
 
 </head>
 <style>
-
-
+  html,
+  body {
+    background-color: black;
+  }
+  input{
+    width: 400px;
+    height: 30px;
+    display: inline-block;
+  }
+  button{
+    height: 30px;
+  }
   span {
     height: 15px;
     width: 15px;
     display: inline-block;
     position: absolute;
     border-radius: 50%;
-    background: #72db72;
-    box-shadow: 0 0 5px #66bf66;
-    transform: scale(calc(var(--i)*0.1));
-    z-index: -1
-    ;
+    background: transparent;
+    transition: 0.05s;
+    z-index: -1;
+    top: 0;
+    left: 0;
   }
-
-
 </style>
 
 <body>
-  <span style="--i:1;"></span>
-  <span style="--i:2;"></span>
-  <span style="--i:3;"></span>
-  <span style="--i:4;"></span>
-  <span style="--i:5;"></span>
-  <span style="--i:6;"></span>
-  <span style="--i:7;"></span>
-  <span style="--i:8;"></span>
-  <span style="--i:9;"></span>
-  <span style="--i:10;"></span>
-  <span style="--i:11;"></span>
-  <span style="--i:12;"></span>
+  <input id="quantityText" type="text" placeholder="输入跟随鼠标元素的数量,最大50个">
+  <button onclick="changeSpanQuantity()">
+    点击生效
+  </button>
   <script>
     //作业3：实现鼠标特效
     //挑战：单击锁定
 
     var preTime = Date.now()
-    var spans = document.querySelectorAll("span")
-    var arr = Array(spans.length).fill({ x: 0, y: 0 })
-    window.addEventListener("mousemove", (event) => {
+    //鼠标停止移动的函数
+    // var setIsMouseMove = () => {
+    //   //鼠标停止移动后执行
+    //   //每18毫秒执行一次
+    //   var copyspans = []
+    //   for (const span of spans) {
+    //     copyspans.push(span)
+    //   }
+    //   var copyarr = arr.slice()
+    //   var lastxy = {}
+    //   function fun(params) {
+    //      console.log(1)
+    //     if (copyarr.length == 0) {
+    //       clearInterval(fun)
+    //       arr = Array(spans.length).fill(lastxy)
+    //       console.log(2)
+    //       return
+    //     }
+    //     for (let index = 0; index < copyspans.length; index++) {
+    //       var span = copyspans[index]
+    //       var rectMsg = span.getBoundingClientRect()
+    //       var y = copyarr[index].y - rectMsg.height / 2 + "px"
+    //       var x = copyarr[index].x - rectMsg.width / 2 + "px"
+    //       span.style.transform = `translate(${x},${y})`
+    //       if (copyspans.length == spans.length) {
+    //         //记录最后鼠标悬停的位置
+    //         lastxy = arr[arr.length - 1]
+    //       }
+    //     }
+    //     copyspans.pop()
+    //     console.log(copyspans.length)
+    //     copyarr.shift()
+    //   }
+    //   setInterval(fun, 18);
+    // }
+    var spanQuantity = 40
+    var spans = []
+    var arr = []
+    var innit = function () {
+      //如果存在span则全部清空
+      if (spans.length) {
+        for (const span of spans) {
+          document.body.removeChild(span)
+        }
+
+      }
+      arr = [], spans = []
+      console.log(spanQuantity)
+
+      //如果是鼠标第一次移动,初始化数值
+      for (let index = 0; index < spanQuantity; index++) {
+        spans.push(document.createElement("span"))
+      }
+      document.body.append(...spans)
+
+      //设定span大小
+      for (let index = 0; index < spans.length; index++) {
+        var rectMsg = spans[index].getBoundingClientRect()
+        var k = (index / spanQuantity)
+        spans[index].style.height = rectMsg.width * k + "px"
+        spans[index].style.width = rectMsg.height * k + "px"
+
+        //设置定时器 500毫秒后将所有span跟换颜色
+        setTimeout(() => {
+          var k = index / spanQuantity
+          //模糊效果
+          spans[index].style.filter = `blur(${k}px)`
+          //颜色
+          spans[index].style.background = "#66bf66"
+          //边缘
+          spans[index].style.boxshadow = "0 0 5px #66bf66, 0 0 3px #66bf66, 0 0 2px #66bf66, 0 0 1px #66bf66"
+        }, 200);
+      }
+      arr = Array(spanQuantity).fill({ x: event.clientX, y: event.clientY })
+    }
+    var changeSpanQuantity = () => {
+
+      spanQuantity = quantityText.value * 1
+      if (spanQuantity > 50) {
+        spanQuantity = 50
+      }
+      innit()
+    }
+    function mouseMove() {
       var now = Date.now()
-      if (now - preTime > 18) {
+      if (spans.length == 0) {
+        innit()
+      }
+
+      //作废
+      //clearInterval(setIsMouseMove)
+      ////清除之前的定时器 ,设置新定时器 50毫秒
+      ////如果鼠标移动间隔小于50ms则该定时器永远不生效
+      //setInterval(setIsMouseMove, 50);
+
+      if (now - preTime > 5) {
         preTime = now
         var xy = { x: event.clientX, y: event.clientY }
         //记录一次xy
         arr.push(xy)
         //弹出最前面的
         arr.shift()
-        console.log(arr)
         for (let index = 0; index < spans.length; index++) {
           const span = spans[index];
-          var  rectMsg = span.getBoundingClientRect()
-          span.style.top = arr[index].y - rectMsg.height /2+ "px"
-          span.style.left = arr[index].x - rectMsg.width /2+"px"
+          var rectMsg = span.getBoundingClientRect()
+          var y = arr[index].y - rectMsg.height / 2 + "px"
+          var x = arr[index].x - rectMsg.width / 2 + "px"
+          span.style.transform = `translate(${x},${y})`
         }
       }
-    })
+
+    }
+    window.addEventListener("mousemove", mouseMove)
+
+
+
+
 //用span出现在鼠标前500毫秒的位置
 //user-select: none;
 //让元素内的文字不可被鼠标选中

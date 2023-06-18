@@ -891,13 +891,19 @@ var waoooooooo = {
 
 
 
-  reduceRight: (collection, iteratee = waoooooooo.identity, accumulator = 0) => {
+  reduceRight: (collection, iteratee = waoooooooo.identity, accumulator = null) => {
+    if (!accumulator) {
+      for (const e of collection) {
+        accumulator = e
+        break
+      }
+    }
     iteratee = waoooooooo.by(iteratee)
     var  reverseArr = waoooooooo.reduce(collection,(arr,e)=>{
       arr.push(e)
       return arr
     },[])
-
+    waoooooooo.reverse(reverseArr)
     for (const key in reverseArr) {
       accumulator = iteratee(accumulator, reverseArr[key], key)
     }
