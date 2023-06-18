@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<style>
+  div {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    position: absolute;
+  }
+
+  div:nth-child(1) {
+    background-color: #b5e992;
+    left: 150px;
+    top: 150px;
+  }
+
+  div:nth-child(2) {
+    background-color: #ed521e;
+    left: 250px;
+    top: 250px;
+  }
+
+  div:nth-child(3) {
+    background-color: rgb(6, 158, 196);
+  }
+
+  span {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    background: #72db72;
+    box-shadow: 0 0 5px #66bf66;
+    transform: scale(calc(var(--i)*0.1));
+    z-index: -1
+    ;
+  }
+
+
+</style>
+
+<body>
+  <div id="11"></div>
+  <div id="12"></div>
+  <div id="13"></div>
+  <script>
+
+
+
+    //作业2：实现鼠标拖拽功能
+    //获取被mouserdown的元素
+    var divs = document.querySelectorAll("div")
+    var preMouse = null;
+    //当前操作的div
+    var targetDiv = null
+    var 窗口宽度 = window.innerWidth
+    var 窗口高度 = window.innerHeight
+    console.log(窗口宽度)
+    console.log(窗口高度)
+    window.addEventListener("resize", e => {
+      窗口宽度 = window.innerWidth
+      窗口高度 = window.innerHeight
+      console.log(窗口宽度)
+      console.log(窗口高度)
+
+    })
+
+    var moveDiv = function (e) {
+      var mouse = { x: e.clientX, y: e.clientY }
+      var x = mouse.x - preMouse.x
+      var y = mouse.y - preMouse.y
+      preMouse = mouse
+      var position = targetDiv.getBoundingClientRect()
+      targetDiv.style.left = position.x + x + "px"
+      targetDiv.style.top = position.y + y + "px"
+    }
+    for (const div of divs) {
+      div.addEventListener("mousedown", (event) => {
+        //  上一帧鼠标的位置  -   当前鼠标的位置  = 元素移动的距离
+        //当鼠标在div区域按下时,div跟随鼠标移动
+        var element = event.target
+        targetDiv = element
+        preMouse = { x: event.clientX, y: event.clientY }
+        window.addEventListener("mousemove", moveDiv)
+        element.style.zIndex = 999
+      })
+
+      div.addEventListener("mouseup", (event) => {
+        //当鼠标在div区域弹起时,解绑鼠标移动事件
+        var element = event.target
+        window.removeEventListener("mousemove", moveDiv)
+        //解绑时 发现xy中存在负值 则弹回
+        var position = event.target.getBoundingClientRect()
+        if (position.x < 100) {
+          event.target.style.left = 0
+        }
+        if (position.y < 100) {
+          event.target.style.top = 0
+        }
+        if (position.right > 窗口宽度 - 100) {
+          console.log(position.right + "lalala-")
+          element.style.left = 窗口宽度 - 100 + "px"
+        }
+        if (position.bottom > 窗口高度 - 100) {
+          element.style.top = 窗口高度 - 100 + "px"
+        }
+        element.style.zIndex = 1
+        console.log("解绑")
+      })
+    }
+  </script>
+</body>
+
+</html>

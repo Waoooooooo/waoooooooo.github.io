@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<style>
+
+
+  span {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    background: #72db72;
+    box-shadow: 0 0 5px #66bf66;
+    transform: scale(calc(var(--i)*0.1));
+    z-index: -1
+    ;
+  }
+
+
+</style>
+
+<body>
+  <span style="--i:1;"></span>
+  <span style="--i:2;"></span>
+  <span style="--i:3;"></span>
+  <span style="--i:4;"></span>
+  <span style="--i:5;"></span>
+  <span style="--i:6;"></span>
+  <span style="--i:7;"></span>
+  <span style="--i:8;"></span>
+  <span style="--i:9;"></span>
+  <span style="--i:10;"></span>
+  <span style="--i:11;"></span>
+  <span style="--i:12;"></span>
+  <script>
+    //作业3：实现鼠标特效
+    //挑战：单击锁定
+
+    var preTime = Date.now()
+    var spans = document.querySelectorAll("span")
+    var arr = Array(spans.length).fill({ x: 0, y: 0 })
+    window.addEventListener("mousemove", (event) => {
+      var now = Date.now()
+      if (now - preTime > 18) {
+        preTime = now
+        var xy = { x: event.clientX, y: event.clientY }
+        //记录一次xy
+        arr.push(xy)
+        //弹出最前面的
+        arr.shift()
+        console.log(arr)
+        for (let index = 0; index < spans.length; index++) {
+          const span = spans[index];
+          var  rectMsg = span.getBoundingClientRect()
+          span.style.top = arr[index].y - rectMsg.height /2+ "px"
+          span.style.left = arr[index].x - rectMsg.width /2+"px"
+        }
+      }
+    })
+//用span出现在鼠标前500毫秒的位置
+//user-select: none;
+//让元素内的文字不可被鼠标选中
+
+  </script>
+</body>
+
+</html>
