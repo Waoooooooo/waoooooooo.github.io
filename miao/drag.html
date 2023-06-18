@@ -48,9 +48,7 @@
 </style>
 
 <body>
-  <div id="11"></div>
-  <div id="12"></div>
-  <div id="13"></div>
+  <div id="11"></div><div id="12"></div><div id="13"></div>
   <script>
 
 
@@ -59,6 +57,7 @@
     //获取被mouserdown的元素
     var divs = document.querySelectorAll("div")
     var preMouse = null;
+    var zindex  = 1
     //当前操作的div
     var targetDiv = null
     var 窗口宽度 = window.innerWidth
@@ -70,7 +69,6 @@
       窗口高度 = window.innerHeight
       console.log(窗口宽度)
       console.log(窗口高度)
-
     })
 
     var moveDiv = function (e) {
@@ -90,7 +88,8 @@
         targetDiv = element
         preMouse = { x: event.clientX, y: event.clientY }
         window.addEventListener("mousemove", moveDiv)
-        element.style.zIndex = 999
+        zindex++
+        element.style.zIndex = zindex
       })
 
       div.addEventListener("mouseup", (event) => {
@@ -105,14 +104,17 @@
         if (position.y < 100) {
           event.target.style.top = 0
         }
+        if (position.right > 窗口宽度 - 100 && position.bottom > 窗口高度 - 100) {
+          element.style.left = 窗口宽度 - 101 + "px"
+          element.style.top = 窗口高度 - 101 + "px"
+        }
         if (position.right > 窗口宽度 - 100) {
-          console.log(position.right + "lalala-")
-          element.style.left = 窗口宽度 - 100 + "px"
+          element.style.left = 窗口宽度 - 101 + "px"
         }
         if (position.bottom > 窗口高度 - 100) {
-          element.style.top = 窗口高度 - 100 + "px"
+          element.style.top = 窗口高度 - 101 + "px"
         }
-        element.style.zIndex = 1
+
         console.log("解绑")
       })
     }
