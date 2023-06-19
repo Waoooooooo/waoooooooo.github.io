@@ -156,7 +156,7 @@
           var y = arr[index].y - rectMsg.height / 2 + "px"
           var x = arr[index].x - rectMsg.width / 2 + "px"
           // span.style.transform = `translate(${x},${y})`
-          //不加定时器的情况下 在最后一次执行此函数后 页面还未开始绘制 所以不会
+
           setTimeout(() => {
             span.style.transform = `translate(${x},${y})`
           }, 10 * timeK);
