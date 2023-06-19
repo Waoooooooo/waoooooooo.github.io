@@ -12,18 +12,21 @@
   body {
     background-color: black;
   }
-  input{
+
+  input {
     width: 400px;
     height: 30px;
     display: inline-block;
     position: relative;
     z-index: 1;
   }
-  button{
+
+  button {
     height: 30px;
     position: relative;
     z-index: 1;
   }
+
   span {
     height: 15px;
     width: 15px;
@@ -44,9 +47,6 @@
     点击生效
   </button>
   <script>
-    //作业3：实现鼠标特效
-    //挑战：单击锁定
-
     var preTime = Date.now()
     //鼠标停止移动的函数
     // var setIsMouseMove = () => {
@@ -107,8 +107,8 @@
       for (let index = 0; index < spans.length; index++) {
         var rectMsg = spans[index].getBoundingClientRect()
         var k = (index / spanQuantity)
-        spans[index].style.height =4* rectMsg.width * k + "px"
-        spans[index].style.width = 4*rectMsg.height * k + "px"
+        spans[index].style.height =1 * rectMsg.width * k + "px"
+        spans[index].style.width = 1* rectMsg.height * k + "px"
 
         //设置定时器 500毫秒后将所有span跟换颜色
         setTimeout(() => {
@@ -141,25 +141,31 @@
       ////清除之前的定时器 ,设置新定时器 50毫秒
       ////如果鼠标移动间隔小于50ms则该定时器永远不生效
       //setInterval(setIsMouseMove, 50);
-
-      if (now - preTime > 5) {
+      console.log(arr)
+      if (now - preTime > 16) {
         preTime = now
         var xy = { x: event.clientX, y: event.clientY }
 
         arr.push(xy)
         arr.shift()
-        var  timeK  = spans.length-1
+        var timeK = spans.length - 1
+
         for (let index = 0; index < spans.length; index++) {
           const span = spans[index];
           var rectMsg = span.getBoundingClientRect()
           var y = arr[index].y - rectMsg.height / 2 + "px"
           var x = arr[index].x - rectMsg.width / 2 + "px"
+          // span.style.transform = `translate(${x},${y})`
+          //不加定时器的情况下 在最后一次执行此函数后 页面还未开始绘制 所以不会
           setTimeout(() => {
             span.style.transform = `translate(${x},${y})`
-          }, 10*timeK );
+          }, 10 * timeK);
+
+
           timeK--
         }
-      }
+
+       }
 
     }
     window.addEventListener("mousemove", mouseMove)
