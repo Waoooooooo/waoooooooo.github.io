@@ -16,9 +16,13 @@
     width: 400px;
     height: 30px;
     display: inline-block;
+    position: relative;
+    z-index: 1;
   }
   button{
     height: 30px;
+    position: relative;
+    z-index: 1;
   }
   span {
     height: 15px;
@@ -28,7 +32,7 @@
     border-radius: 50%;
     background: transparent;
     transition: 0.05s;
-    z-index: -1;
+    z-index: 0;
     top: 0;
     left: 0;
   }
@@ -103,8 +107,8 @@
       for (let index = 0; index < spans.length; index++) {
         var rectMsg = spans[index].getBoundingClientRect()
         var k = (index / spanQuantity)
-        spans[index].style.height = rectMsg.width * k + "px"
-        spans[index].style.width = rectMsg.height * k + "px"
+        spans[index].style.height =4* rectMsg.width * k + "px"
+        spans[index].style.width = 4*rectMsg.height * k + "px"
 
         //设置定时器 500毫秒后将所有span跟换颜色
         setTimeout(() => {
@@ -120,10 +124,9 @@
       arr = Array(spanQuantity).fill({ x: event.clientX, y: event.clientY })
     }
     var changeSpanQuantity = () => {
-
       spanQuantity = quantityText.value * 1
-      if (spanQuantity > 50) {
-        spanQuantity = 50
+      if (spanQuantity > 100) {
+        spanQuantity = 100
       }
       innit()
     }
