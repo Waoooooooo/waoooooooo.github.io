@@ -35,17 +35,33 @@
   div:nth-child(3) {
     background-color: rgb(6, 158, 196);
   }
+
+
+  span{
+    background-color: red;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    right:0;
+    bottom: 0;
+    &:hover{
+      cursor :nwse-resize;
+    }
+  }
 </style>
 
 <body>
   <div>
     <h3 data-num="1">窗口1</h3>
+    <span></span>
   </div>
   <div>
     <h3 data-num="2">窗口2</h3>
+    <span></span>
   </div>
   <div>
     <h3 data-num="3">窗口3</h3>
+    <span></span>
   </div>
   <script>
     var preX = 0
@@ -59,7 +75,9 @@
     //鼠标按下的函数
 
     var changeZ = (e) => {
-      console.log("Z")
+      if (e.target.matches("div")) {
+        targetDiv = e.target
+      }
       targetDiv.style.zIndex = z++
     }
 
@@ -119,6 +137,7 @@
     var mouseUp = (e) => {
       document.removeEventListener("mousemove", mouseMove)
     }
+
 
     //绑定函数
     for (let index = 0; index < h3s.length; index++) {
