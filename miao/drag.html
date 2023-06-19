@@ -137,8 +137,15 @@
         div宽度 += differenceX
         div高度 += differenceY
         console.log()
-        targetDiv.style.width = div宽度+"PX"
-        targetDiv.style.height = div高度+"PX"
+        if (div宽度 < 100) {
+          div宽度 = 100
+        }
+
+        if (div高度 < 200) {
+          div高度 = 200
+        }
+        targetDiv.style.width = div宽度 + "PX"
+        targetDiv.style.height = div高度 + "PX"
       }
     }
 

@@ -142,16 +142,19 @@
       if (now - preTime > 5) {
         preTime = now
         var xy = { x: event.clientX, y: event.clientY }
-        //记录一次xy
+
         arr.push(xy)
-        //弹出最前面的
         arr.shift()
+        var  timeK  = spans.length-1
         for (let index = 0; index < spans.length; index++) {
           const span = spans[index];
           var rectMsg = span.getBoundingClientRect()
           var y = arr[index].y - rectMsg.height / 2 + "px"
           var x = arr[index].x - rectMsg.width / 2 + "px"
-          span.style.transform = `translate(${x},${y})`
+          setTimeout(() => {
+            span.style.transform = `translate(${x},${y})`
+          }, 10*timeK );
+          timeK--
         }
       }
 
