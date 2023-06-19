@@ -8,9 +8,14 @@
 
 </head>
 <style>
+  h3 {
+    margin: 0;
+    background-color: #fffc;
+  }
+
   div {
-    height: 100px;
-    width: 100px;
+    height: 300px;
+    width: 200px;
     display: inline-block;
     position: absolute;
   }
@@ -30,94 +35,100 @@
   div:nth-child(3) {
     background-color: rgb(6, 158, 196);
   }
-
-  span {
-    height: 15px;
-    width: 15px;
-    display: inline-block;
-    position: absolute;
-    border-radius: 50%;
-    background: #72db72;
-    box-shadow: 0 0 5px #66bf66;
-    transform: scale(calc(var(--i)*0.1));
-    z-index: -1
-    ;
-  }
-
-
 </style>
 
 <body>
-  <div id="11"></div><div id="12"></div><div id="13"></div>
+  <div>
+    <h3 data-num="1">窗口1</h3>
+  </div>
+  <div>
+    <h3 data-num="2">窗口2</h3>
+  </div>
+  <div>
+    <h3 data-num="3">窗口3</h3>
+  </div>
   <script>
-
-
-
-    //作业2：实现鼠标拖拽功能
-    //获取被mouserdown的元素
-    var divs = document.querySelectorAll("div")
-    var preMouse = null;
-    var zindex  = 1
-    //当前操作的div
+    var preX = 0
+    var preY = 0
+    var z = 0
     var targetDiv = null
+    var targetH3 = null
+    var h3s = document.querySelectorAll("h3")
     var 窗口宽度 = window.innerWidth
-    var 窗口高度 = window.innerHeight
-    console.log(窗口宽度)
-    console.log(窗口高度)
-    window.addEventListener("resize", e => {
-      窗口宽度 = window.innerWidth
-      窗口高度 = window.innerHeight
-      console.log(窗口宽度)
-      console.log(窗口高度)
-    })
+    var  窗口高度 = window.innerHeight
+    //鼠标按下的函数
 
-    var moveDiv = function (e) {
-      var mouse = { x: e.clientX, y: e.clientY }
-      var x = mouse.x - preMouse.x
-      var y = mouse.y - preMouse.y
-      preMouse = mouse
-      var position = targetDiv.getBoundingClientRect()
-      targetDiv.style.left = position.x + x + "px"
-      targetDiv.style.top = position.y + y + "px"
+    var changeZ = (e) => {
+      console.log("Z")
+      targetDiv.style.zIndex = z++
     }
+
+    //div绑定函数
+    var divs = document.querySelectorAll("div")
     for (const div of divs) {
-      div.addEventListener("mousedown", (event) => {
-        //  上一帧鼠标的位置  -   当前鼠标的位置  = 元素移动的距离
-        //当鼠标在div区域按下时,div跟随鼠标移动
-        var element = event.target
-        targetDiv = element
-        preMouse = { x: event.clientX, y: event.clientY }
-        window.addEventListener("mousemove", moveDiv)
-        zindex++
-        element.style.zIndex = zindex
-      })
-
-      div.addEventListener("mouseup", (event) => {
-        //当鼠标在div区域弹起时,解绑鼠标移动事件
-        var element = event.target
-        window.removeEventListener("mousemove", moveDiv)
-        //解绑时 发现xy中存在负值 则弹回
-        var position = event.target.getBoundingClientRect()
-        if (position.x < 100) {
-          event.target.style.left = 0
-        }
-        if (position.y < 100) {
-          event.target.style.top = 0
-        }
-        if (position.right > 窗口宽度 - 100 && position.bottom > 窗口高度 - 100) {
-          element.style.left = 窗口宽度 - 101 + "px"
-          element.style.top = 窗口高度 - 101 + "px"
-        }
-        if (position.right > 窗口宽度 - 100) {
-          element.style.left = 窗口宽度 - 101 + "px"
-        }
-        if (position.bottom > 窗口高度 - 100) {
-          element.style.top = 窗口高度 - 101 + "px"
-        }
-
-        console.log("解绑")
-      })
+      div.addEventListener("mousedown", changeZ)
     }
+
+    //鼠标按下的函数
+    var mouseDown = (e) => {
+      targetH3 = e.target
+      preX = e.clientX
+      preY = e.clientY
+      targetDiv = targetH3.closest("div")
+      document.addEventListener("mousemove", mouseMove)
+    }
+
+    //鼠标移动的函数
+    var mouseMove = (e) => {
+      e.preventDefault()
+      //如果which = 0 则说明没有按键被按下
+      if (e.which == 0) {
+        //解绑
+        mouseUp()
+      }
+      var x = e.clientX
+      var y = e.clientY
+      var differenceX = x - preX
+      var differenceY = y - preY
+      preX = x
+      preY = y
+      var rect = targetDiv.getBoundingClientRect()
+      var left = rect.x + differenceX
+      var top = rect.y + differenceY
+      var div宽度 = targetDiv.offsetWidth
+      var div高度 = targetDiv.offsetHeight
+      if (left > 窗口宽度 - div宽度) {
+        left = 窗口宽度 - div宽度
+      }
+      if (top > 窗口高度 - div高度) {
+        top = 窗口高度 - div高度
+      }
+      if (left < 0) {
+        left = 0
+      }
+      if (top < 0) {
+        top = 0
+      }
+      targetDiv.style.left = left + "px"
+      targetDiv.style.top = top + "px"
+    }
+
+    //窗口变化reSize
+    window.addEventListener("resize" , ()=>{ 窗口宽度 = window.innerWidth; 窗口高度 = window.innerHeight })
+    //鼠标松开的函数
+    var mouseUp = (e) => {
+      document.removeEventListener("mousemove", mouseMove)
+    }
+
+    //绑定函数
+    for (let index = 0; index < h3s.length; index++) {
+      const h3 = h3s[index];
+      h3.addEventListener("mousedown", mouseDown)
+      h3.addEventListener("mouseup", mouseUp)
+      h3.addEventListener("mousedown", changeZ)
+    }
+
+
   </script>
 </body>
 
