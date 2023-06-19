@@ -26,21 +26,15 @@
     document.addEventListener("click", () => {
       var html =   document.querySelector("html")
       //除了第一次以外 只要时间差小于1秒 就累加次数
-      if (Date.now() - clickTime <= 300 && clickTime > 0) {
-        //点击间隔小于1000毫秒
+      if (Date.now() - clickTime <= 300 ) {
         if (clickCount + 1 == 3) {
-         alert(`检测到您连点三次`)
-          //重置数值
-          clickCount = 0
-        } else {
-          //第二次 或第一次点击
-          clickCount++
+         console.log(`检测到您连点三次`)
         }
+        clickCount++
       } else {
-        //点击间隔大于1000毫秒
+        //点击间隔大于300毫秒
         //重置为第一次点击
         clickCount = 1
-
       }
       clickTime = Date.now()
     })
