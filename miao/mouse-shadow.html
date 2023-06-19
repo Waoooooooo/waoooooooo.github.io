@@ -34,7 +34,6 @@
     position: absolute;
     border-radius: 50%;
     background: transparent;
-    transition: 0.05s;
     z-index: 0;
     top: 0;
     left: 0;
@@ -48,44 +47,8 @@
   </button>
   <script>
     var preTime = Date.now()
-    //鼠标停止移动的函数
-    // var setIsMouseMove = () => {
-    //   //鼠标停止移动后执行
-    //   //每18毫秒执行一次
-    //   var copyspans = []
-    //   for (const span of spans) {
-    //     copyspans.push(span)
-    //   }
-    //   var copyarr = arr.slice()
-    //   var lastxy = {}
-    //   function fun(params) {
-    //      console.log(1)
-    //     if (copyarr.length == 0) {
-    //       clearInterval(fun)
-    //       arr = Array(spans.length).fill(lastxy)
-    //       console.log(2)
-    //       return
-    //     }
-    //     for (let index = 0; index < copyspans.length; index++) {
-    //       var span = copyspans[index]
-    //       var rectMsg = span.getBoundingClientRect()
-    //       var y = copyarr[index].y - rectMsg.height / 2 + "px"
-    //       var x = copyarr[index].x - rectMsg.width / 2 + "px"
-    //       span.style.transform = `translate(${x},${y})`
-    //       if (copyspans.length == spans.length) {
-    //         //记录最后鼠标悬停的位置
-    //         lastxy = arr[arr.length - 1]
-    //       }
-    //     }
-    //     copyspans.pop()
-    //     console.log(copyspans.length)
-    //     copyarr.shift()
-    //   }
-    //   setInterval(fun, 18);
-    // }
     var spanQuantity = 40
     var spans = []
-    var arr = []
     var innit = function () {
       //如果存在span则全部清空
       if (spans.length) {
@@ -94,7 +57,7 @@
         }
 
       }
-      arr = [], spans = []
+      spans = []
       console.log(spanQuantity)
 
       //如果是鼠标第一次移动,初始化数值
@@ -107,8 +70,8 @@
       for (let index = 0; index < spans.length; index++) {
         var rectMsg = spans[index].getBoundingClientRect()
         var k = (index / spanQuantity)
-        spans[index].style.height =1 * rectMsg.width * k + "px"
-        spans[index].style.width = 1* rectMsg.height * k + "px"
+        spans[index].style.height = 1 * rectMsg.width * k + "px"
+        spans[index].style.width = 1 * rectMsg.height * k + "px"
 
         //设置定时器 500毫秒后将所有span跟换颜色
         setTimeout(() => {
@@ -121,8 +84,11 @@
           spans[index].style.boxshadow = "0 0 5px #66bf66, 0 0 3px #66bf66, 0 0 2px #66bf66, 0 0 1px #66bf66"
         }, 200);
       }
-      arr = Array(spanQuantity).fill({ x: event.clientX, y: event.clientY })
+
     }
+
+
+
     var changeSpanQuantity = () => {
       spanQuantity = quantityText.value * 1
       if (spanQuantity > 100) {
@@ -130,42 +96,30 @@
       }
       innit()
     }
+
+
+
+
     function mouseMove() {
       var now = Date.now()
       if (spans.length == 0) {
         innit()
       }
 
-      //作废
-      //clearInterval(setIsMouseMove)
-      ////清除之前的定时器 ,设置新定时器 50毫秒
-      ////如果鼠标移动间隔小于50ms则该定时器永远不生效
-      //setInterval(setIsMouseMove, 50);
-      console.log(arr)
-      if (now - preTime > 16) {
-        preTime = now
-        var xy = { x: event.clientX, y: event.clientY }
+      var xy = { x: event.clientX, y: event.clientY }
+      var timeK = spans.length - 1
 
-        arr.push(xy)
-        arr.shift()
-        var timeK = spans.length - 1
+      for (let index = 0; index < spans.length; index++) {
+        const span = spans[index];
+        var y = xy.y-span.offsetHeight/2 + "px"
+        var x = xy.x-span.offsetWidth/2 + "px"
+        //**关键代码:设置定时器 让最小的元素最晚到**
+        setTimeout(() => {
+          span.style.transform = `translate(${x},${y})`
+        }, 10 * timeK);
+        timeK--
+      }
 
-        for (let index = 0; index < spans.length; index++) {
-          const span = spans[index];
-          var rectMsg = span.getBoundingClientRect()
-          var y = arr[index].y - rectMsg.height / 2 + "px"
-          var x = arr[index].x - rectMsg.width / 2 + "px"
-          // span.style.transform = `translate(${x},${y})`
-
-          setTimeout(() => {
-            span.style.transform = `translate(${x},${y})`
-          }, 10 * timeK);
-
-
-          timeK--
-        }
-
-       }
 
     }
     window.addEventListener("mousemove", mouseMove)
