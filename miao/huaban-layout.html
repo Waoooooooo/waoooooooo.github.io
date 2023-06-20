@@ -26,8 +26,8 @@
     img {
       display: block;
       position: absolute;
-      /* opacity: 0; */
-      transition: 0.3s;
+      opacity: 0;
+      transition: 1s;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
@@ -455,7 +455,8 @@
         var html = document.querySelector("html")
         var 屏幕最下方 = html.scrollTop + window.innerHeight
         var 屏幕最上方 = html.scrollTop
-        var showedCats = cats.filter(cat => cat.y < 屏幕最下方 + 200 && cat.y > 屏幕最上方 - cat.realHeight - 200)
+        var 增量  =0
+        var showedCats = cats.filter(cat => cat.y < 屏幕最下方 + 增量 && cat.y > 屏幕最上方 - cat.realHeight - 增量)
         //3.2 找出符合条件的猫猫的img
         var indexes = showedCats.map(cat => cat.id)
         var indexesSet = new Set(indexes)
@@ -469,17 +470,21 @@
           //preIndexes:上一次的图片对象的索引
           var 新增元素indexes = new Set(indexes.filter(i => !preIndexesSet.has(i)))
           var 新增元素s = imgs.filter((img, i) => 新增元素indexes.has(i))
-
           section.append(...新增元素s)
+          新增元素s.forEach(img => img.style.opacity = "1")
 
           //2. preIndexes中存在的 indexes 中不存在的 是要删减的元素
           var 删减元素indexes = new Set(preIndexes.filter(i => !indexesSet.has(i)))
           var 删减元素s = imgs.filter((img, i) => 删减元素indexes.has(i))
-          删减元素s.forEach(img => img.remove())
+          删减元素s.forEach(img => {
+            img.style.opacity = "0";
+            img.remove();
+          })
 
         } else {
           //不存在则直接加载全部
           var newImgs = imgs.filter((img, i) => indexesSet.has(i))
+          newImgs.forEach(img => img.style.opacity = "1")
           section.append(...newImgs)
         }
         preIndexes = indexes
