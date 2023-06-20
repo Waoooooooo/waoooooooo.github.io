@@ -26,8 +26,7 @@
     img {
       display: block;
       position: absolute;
-      opacity: 0;
-      transition: 1s;
+      transition: 0.5s;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
@@ -434,13 +433,20 @@
         cat["x"] = minHeightCol * (colGap + colWidth)
         cat["y"] = colHeights[minHeightCol] - cat["realHeight"]
         cat["id"] = index
+
         //2.4创建对象丢到图片数组里
-        var img = document.createElement("img")
+
+        let img = document.createElement("img")
         img.src = cat.fullUrl
         img.id = `img${index}`
         img.style.width = colWidth + "px"
         img.style.height = cat["realHeight"] + "px"
         img.style.transform = `translate(${cat["x"]}px,${cat["y"]}px)`
+        img.style.opacity = '0'
+        img.onload = () => {
+          //
+          img.style.opacity = '1'
+        }
         imgs.push(img)
       }
       //设定section的高度
@@ -455,7 +461,7 @@
         var html = document.querySelector("html")
         var 屏幕最下方 = html.scrollTop + window.innerHeight
         var 屏幕最上方 = html.scrollTop
-        var 增量  =0
+        var 增量 = -50
         var showedCats = cats.filter(cat => cat.y < 屏幕最下方 + 增量 && cat.y > 屏幕最上方 - cat.realHeight - 增量)
         //3.2 找出符合条件的猫猫的img
         var indexes = showedCats.map(cat => cat.id)
@@ -470,23 +476,25 @@
           //preIndexes:上一次的图片对象的索引
           var 新增元素indexes = new Set(indexes.filter(i => !preIndexesSet.has(i)))
           var 新增元素s = imgs.filter((img, i) => 新增元素indexes.has(i))
+          新增元素s.forEach((img) => {
+            img.style.opacity = '0'
+            setTimeout(() => {
+              img.style.opacity = '1'
+            },500);
+          })
           section.append(...新增元素s)
-          新增元素s.forEach(img => img.style.opacity = "1")
 
           //2. preIndexes中存在的 indexes 中不存在的 是要删减的元素
           var 删减元素indexes = new Set(preIndexes.filter(i => !indexesSet.has(i)))
           var 删减元素s = imgs.filter((img, i) => 删减元素indexes.has(i))
-          删减元素s.forEach(img => {
-            img.style.opacity = "0";
-            img.remove();
-          })
+          删减元素s.forEach(img => img.remove())
 
         } else {
           //不存在则直接加载全部
           var newImgs = imgs.filter((img, i) => indexesSet.has(i))
-          newImgs.forEach(img => img.style.opacity = "1")
           section.append(...newImgs)
         }
+
         preIndexes = indexes
       }
     }
