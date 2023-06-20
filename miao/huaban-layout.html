@@ -376,8 +376,10 @@
         var windowWidth = window.innerWidth
         var imgPosition = img.getBoundingClientRect()
         //移动距离
-        var x = windowWidth / 2 - imgPosition.x - imgPosition.width / 2
-        var y = windowHeight / 2 - imgPosition.y - imgPosition.height / 2
+        let x = windowWidth / 2 - imgPosition.x - imgPosition.width / 2
+        let y = windowHeight / 2 - imgPosition.y - imgPosition.height / 2
+
+        console.log( x  ,  y  )
         //放大系数 0.8倍的屏幕高度
         var coefficient = (windowHeight / imgPosition.height) * 0.8
 
