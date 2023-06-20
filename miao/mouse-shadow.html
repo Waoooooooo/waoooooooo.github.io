@@ -113,7 +113,7 @@
         const span = spans[index];
         var y = xy.y-span.offsetHeight/2 + "px"
         var x = xy.x-span.offsetWidth/2 + "px"
-        //**关键代码:设置定时器 让最小的元素最晚到**
+        //**关键代码:设置定时器 让最小的元素最晚到鼠标的位置**
         setTimeout(() => {
           span.style.transform = `translate(${x},${y})`
         }, 10 * timeK);

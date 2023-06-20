@@ -5,10 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>花瓣网布局</title>
+
   <style>
     html,
     body {
       margin: 0;
+      min-width: 550px;
     }
 
     * {
@@ -16,30 +18,25 @@
     }
 
     section {
-      display: flex;
       width: 80%;
       margin: auto;
-      align-items: start;
-      gap: 10px;
-    }
-
-    div {
-      flex: 1;
-      width: 200px;
+      position: relative;
     }
 
     img {
-      width: 100%;
-      transition: transform 0.3s, boxShadow 0s;
+      display: block;
+      position: absolute;
+      /* opacity: 0; */
+      transition: 0.3s;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 
 <body>
   <section>
   </section>
   <script>
-
     var section = document.querySelector("section")
     var html = document.querySelector("html")
     var cats = [
@@ -356,16 +353,17 @@
         "height": 1170
       }
     ];
-    cats.push(...cats)
-    cats.push(...cats)
-    cats.push(...cats)
-    cats.push(...cats)
-    cats.push(...cats)
-    run()
-    var clickCat = null
-    html.addEventListener("mouseDown", function fun(event) {
+    cats.push(..._.cloneDeep(cats))
+    cats.push(..._.cloneDeep(cats))
+    cats.push(..._.cloneDeep(cats))
+    cats.push(..._.cloneDeep(cats))
 
-    })
+
+    var clickCat = null
+
+    //滚动条的10px
+    run()
+    var preIndexes
     html.addEventListener("click", function fun(event) {
       //如果存在被放大的猫 则使其在用户点击html时重置为初始位置初始大小 并结束函数
       if (clickCat) {
@@ -401,38 +399,91 @@
 
 
 
+    //每当窗口宽高改变时
     window.onresize = run
+
     function run() {
       //1.获取section元素对象
-      //div的个数为section的实际宽度/220取整
       section.innerHTML = ""
-      var quantityOfDiv = Math.floor(section.offsetWidth / 220)
-      for (let index = 0; index < quantityOfDiv; index++) {
-        section.append(document.createElement("div"))
-      }
-      //获取div宽度
-      var divWidth = document.querySelectorAll("div")[0].offsetWidth
-      var divs = document.querySelectorAll("div")
-      //div的长度 初始都为0
-      var divHeights = Array(quantityOfDiv).fill(0)
-      var imgs = Array(quantityOfDiv).fill(0).map(it => [])
-      for (const cat of cats) {
-        //计算出每张图片的高度
-        var imgHeight = divWidth / (cat.width / cat.height)
-        //添加入高度最小的数组中
-        var minHeight = Math.min(...divHeights)
-        //得到最矮的div 在 divs和divHeights/imgs数组中的下标
-        var minIndex = divHeights.indexOf(minHeight)
-        divHeights[minIndex] += imgHeight
+      var sectionHeight = section.offsetHeight
+      var sectionWidth = (window.innerWidth * 0.8) | 0
+      section.style.width = sectionWidth + "px"
+
+      var colWidth = 200
+      //列的数量 = section 的宽度 / 200px 向下取整
+      var colQuantity = (sectionWidth / colWidth) | 0
+      //每列间隙 =   (section 的宽度  - colQuantity * 200 ) / colQuantity-1    取整
+      var colGap = (sectionWidth - colQuantity * colWidth) / (colQuantity - 1) | 0
+      //每列高
+      var colHeights = Array(colQuantity).fill(0)
+      //最矮列
+      var minHeightCol = 0
+
+      var imgs = []
+      //2.计算所有猫猫的位置信息
+      for (let index = 0; index < cats.length; index++) {
+        const cat = cats[index];
+        //2.1计算出猫猫图实际长度
+        cat["realHeight"] = colWidth * cat.height / cat.width
+
+        //2.2找出最矮的列的下标minHeightCol,并将高度累加到最矮列
+        minHeightCol = colHeights.indexOf(Math.min(...colHeights))
+        colHeights[minHeightCol] += cat["realHeight"] + colGap
+
+        //2.3计算出每一张图片相对section的实际的位置  x =  列的序号 (从零开始)  *  gap +列宽 + 20%html
+        cat["x"] = minHeightCol * (colGap + colWidth)
+        cat["y"] = colHeights[minHeightCol] - cat["realHeight"]
+        cat["id"] = index
+        //2.4创建对象丢到图片数组里
         var img = document.createElement("img")
         img.src = cat.fullUrl
-        imgs[minIndex].push(img)
+        img.id = `img${index}`
+        img.style.width = colWidth + "px"
+        img.style.height = cat["realHeight"] + "px"
+        img.style.transform = `translate(${cat["x"]}px,${cat["y"]}px)`
+        imgs.push(img)
       }
+      //设定section的高度
+      section.style.height = Math.max(...colHeights) + "px"
+      //运行
+      appendImg()
+      //绑定函数
+      window.onscroll = appendImg
+      function appendImg() {
+        //3  从imgs中筛选出需要显示的猫猫
+        //3.1 屏幕最下方 =
+        var html = document.querySelector("html")
+        var 屏幕最下方 = html.scrollTop + window.innerHeight
+        var 屏幕最上方 = html.scrollTop
+        var showedCats = cats.filter(cat => cat.y < 屏幕最下方 + 200 && cat.y > 屏幕最上方 - cat.realHeight - 200)
+        //3.2 找出符合条件的猫猫的img
+        var indexes = showedCats.map(cat => cat.id)
+        var indexesSet = new Set(indexes)
+        //3.3 如果存在之前的猫猫图片数组
+        if (preIndexes) {
+          console.log(preIndexes)
+          //存在的话
+          var preIndexesSet = new Set(preIndexes)
+          //1. preIndexes中不存在的 但 indexes 中存在 的是新增元素
+          //indexes:当前次需要展示的图片对象的索引
+          //preIndexes:上一次的图片对象的索引
+          var 新增元素indexes = new Set(indexes.filter(i => !preIndexesSet.has(i)))
+          var 新增元素s = imgs.filter((img, i) => 新增元素indexes.has(i))
 
-      //循环结束后 imgs中的每个数组分别对应divs中的每个div中药append的图片
-      divs.forEach((div, i) => {
-        div.append(...imgs[i])
-      })
+          section.append(...新增元素s)
+
+          //2. preIndexes中存在的 indexes 中不存在的 是要删减的元素
+          var 删减元素indexes = new Set(preIndexes.filter(i => !indexesSet.has(i)))
+          var 删减元素s = imgs.filter((img, i) => 删减元素indexes.has(i))
+          删减元素s.forEach(img => img.remove())
+
+        } else {
+          //不存在则直接加载全部
+          var newImgs = imgs.filter((img, i) => indexesSet.has(i))
+          section.append(...newImgs)
+        }
+        preIndexes = indexes
+      }
     }
   </script>
 </body>
