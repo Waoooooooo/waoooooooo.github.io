@@ -14,7 +14,7 @@
     }
 
     * {
-      background-color: #32323230
+      background-color: #32323230;
     }
 
     section {
@@ -26,13 +26,15 @@
     img {
       display: block;
       position: absolute;
-      transition: 0.5s;
+      transition:  0.3s , outline 0s;
     }
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 
 <body>
+  <pre></pre>
   <section>
   </section>
   <script>
@@ -362,39 +364,68 @@
 
     //滚动条的10px
     run()
-    var preIndexes
+
+    //表示是否存在倍放大的图片
+    var isScaled = false
+    //记录被放大的图片对象
+    var scaledImg = null
+    //记录被放大的图片的原始偏移
+    var preImgtransform
     html.addEventListener("click", function fun(event) {
-      //如果存在被放大的猫 则使其在用户点击html时重置为初始位置初始大小 并结束函数
+      if (isScaled) {
+        //如果存在被放大的图片scaledImg
+        //将属性恢复
+        scaledImg.style.transform = preImgtransform
+        scaledImg.style.zIndex = 1
+        setTimeout(() => {
+          scaledImg.style.zIndex = 0
+        }, 300);
+        scaledImg.style.outline=""
 
-      //如果触发事件的为img
-      if (event.target.matches("img")) {
-        var img = event.target
-        //给全局变量clickcat赋值
-        clickCat = img
-        //获取窗口的中点
-        var windowHeight = window.innerHeight
-        var windowWidth = window.innerWidth
-        var imgPosition = img.getBoundingClientRect()
-        //移动距离
-        let x = windowWidth / 2 - imgPosition.x - imgPosition.width / 2
-        let y = windowHeight / 2 - imgPosition.y - imgPosition.height / 2
+        isScaled = false
 
-        console.log( x  ,  y  )
-        //放大系数 0.8倍的屏幕高度
-        var coefficient = (windowHeight / imgPosition.height) * 0.8
+      } else {
+        //没有图片被放大的情况 如果点击的事件源是图片标签
+        if (event.target.matches("img")) {
+          scaledImg = event.target
+          isScaled = true
+          preImgtransform = scaledImg.style.transform
+          //放大图片
+          ScaleImg(scaledImg, event)
 
-        img.style.transform = `translate(${x}px, ${y}px) scale(${coefficient})`
-        img.style.boxShadow = "0 0 0  9999px #000a"
-        img.style.zIndex++
+        }
       }
-    })
 
+    })
+    function ScaleImg(img, event) {
+      var rect = img.getBoundingClientRect()
+      //设置图片放大系数
+      // 页面宽度:图片宽度  页面高度: 图片高度 取两者中较小者
+      //否则有可能出现另一边超出屏幕的情况
+      var innerWidth = section.offsetWidth
+      var innerHeight = window.innerHeight
+      var imgWidth = img.offsetWidth
+      var imgHeight = img.offsetHeight
+      var scaleK =0.8* Math.min(innerWidth / imgWidth, innerHeight / imgHeight)
+      // 图片居中的x,y
+      // (section宽度-/宽度)/2
+      //(页面高度-图片的高度)/2 + 页面被卷起来的高度
+      var x = (innerWidth - imgWidth) / 2
+      var y = (innerHeight - imgHeight) / 2 + html.scrollTop
+      console.log(innerWidth,imgWidth,x)
+      console.log(innerHeight,imgHeight,y)
+
+      //scale函数是将图片从中点放大  ,所以要先将图片放置到正中心
+      img.style.transform = `translate(${x}px,${y}px) scale(${scaleK})`
+      img.style.outline="9999px #0006 solid"
+      img.style.zIndex = 999
+    }
 
 
     //每当窗口宽高改变时
     window.onresize = run
-
     function run() {
+      var preIndexes
       //1.获取section元素对象
       section.innerHTML = ""
       var sectionHeight = section.offsetHeight
@@ -460,7 +491,7 @@
         var indexes = showedCats.map(cat => cat.id)
         var indexesSet = new Set(indexes)
         //3.3 如果存在之前的猫猫图片数组
-        if (preIndexes) {
+        if (document.querySelectorAll("img").length) {
           console.log(preIndexes)
           //存在的话
           var preIndexesSet = new Set(preIndexes)
@@ -473,7 +504,7 @@
             img.style.opacity = '0'
             setTimeout(() => {
               img.style.opacity = '1'
-            },500);
+            }, 15);
           })
           section.append(...新增元素s)
 
