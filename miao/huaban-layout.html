@@ -26,9 +26,8 @@
     img {
       display: block;
       position: absolute;
-      transition:  0.3s , outline 0s;
+      transition: 1s, outline 0s;
     }
-
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
@@ -380,8 +379,7 @@
         setTimeout(() => {
           scaledImg.style.zIndex = 0
         }, 300);
-        scaledImg.style.outline=""
-
+        scaledImg.style.outline = ""
         isScaled = false
 
       } else {
@@ -406,18 +404,18 @@
       var innerHeight = window.innerHeight
       var imgWidth = img.offsetWidth
       var imgHeight = img.offsetHeight
-      var scaleK =0.8* Math.min(innerWidth / imgWidth, innerHeight / imgHeight)
+      var scaleK = 0.8 * Math.min(innerWidth / imgWidth, innerHeight / imgHeight)
       // 图片居中的x,y
       // (section宽度-/宽度)/2
       //(页面高度-图片的高度)/2 + 页面被卷起来的高度
       var x = (innerWidth - imgWidth) / 2
       var y = (innerHeight - imgHeight) / 2 + html.scrollTop
-      console.log(innerWidth,imgWidth,x)
-      console.log(innerHeight,imgHeight,y)
+      console.log(innerWidth, imgWidth, x)
+      console.log(innerHeight, imgHeight, y)
 
       //scale函数是将图片从中点放大  ,所以要先将图片放置到正中心
       img.style.transform = `translate(${x}px,${y}px) scale(${scaleK})`
-      img.style.outline="9999px #0006 solid"
+      img.style.outline = "9999px #0006 solid"
       img.style.zIndex = 999
     }
 
@@ -500,10 +498,18 @@
           //preIndexes:上一次的图片对象的索引
           var 新增元素indexes = new Set(indexes.filter(i => !preIndexesSet.has(i)))
           var 新增元素s = imgs.filter((img, i) => 新增元素indexes.has(i))
+
+
           新增元素s.forEach((img) => {
+            // img.style.opacity = '0'
+            // img.onload = () => {
+
+              // img.style.opacity = '1'
+            // }
+            //
             img.style.opacity = '0'
             setTimeout(() => {
-              img.style.opacity = '1'
+            img.style.opacity = '1'
             }, 15);
           })
           section.append(...新增元素s)

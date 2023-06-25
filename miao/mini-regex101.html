@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>正则</title>
   <style>
+    body {
+      position: relative;
+    }
+
     b {
 
       /*变量声明*/
@@ -35,22 +39,10 @@
       position: relative;
 
       /*选中后代被hover的b的后伪元素*/
-
-
       /*不选中 没有元素被hover的b*/
       &:hover:not(:has(:hover)) {
-        outline: black 2px solid ;
-        &:after {
-          content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
-          position: absolute;
-          bottom: 120%;
-          left: 0px;
-          color: white;
-          background-color: black;
-          padding: 5px;
-          border-radius: 5px;
-          font-size: 10px;
-        }
+        outline: black 2px solid;
+
       }
 
 
@@ -86,26 +78,27 @@
 
     /*不选中里面有被hover的i*/
     i:hover:not(:has(:hover)) {
-      outline: black 2px solid ;
-      &:after {
-        content: "match:" attr(data-index) '\A-------\AGroup: 'attr(dataId);
-        position: absolute;
-        white-space: pre;
-        bottom: 120%;
-        left: 0px;
-        color: white;
-        background-color: black;
-        padding: 5px;
-        border-radius: 5px;
-        font-size: 10px;
-      }
+      outline: black 2px solid;
+
     }
 
+    #matchMsg {
+      position: absolute;
+      white-space: pre;
+      color: white;
+      background-color: black;
+      padding: 5px;
+      border-radius: 5px;
+      display: block;
+      font-size: 10px;
+      box-sizing: border-box;
+    }
 
     div {
       position: relative;
       display: flex;
-      >* {
+
+      >pre {
         border: 2px solid #9fcfff;
         padding: 5px;
         border-radius: 10px;
@@ -131,26 +124,121 @@
       padding-left: 0;
     }
   </style>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
 <body>
   正则: <br>
-  <input type="text" id="regString" oninput="run()" value="a(b)((c)|a)|om|(?=s)"> <button onclick="copyReg()">copy</button><br>
-  <label>I <input type="checkbox" oninput="run()" id="checkI"></label>
-  <label>S <input type="checkbox" oninput="run()" id="checkS"></label>
-  <label>G <input type="checkbox" oninput="run()" checked id="checkG"></label>
-  <label>M <input type="checkbox" oninput="run()" id="checkM"></label>
-  <label>Y <input type="checkbox" oninput="run()" id="checkY"></label>
+  <input type="text" id="regString" value="1"> <button onclick="run()">run</button><br>
+  <label>I <input type="checkbox" id="checkI"></label>
+  <label>S <input type="checkbox" id="checkS"></label>
+  <label>G <input type="checkbox" checked id="checkG"></label>
+  <label>M <input type="checkbox" id="checkM"></label>
+  <label>Y <input type="checkbox" id="checkY"></label>
   <p><span>msg:</span><span id="msg"></span></p>
   匹配字符串:
   <div>
-    <textarea name="" id="inputString" cols="30" rows="10" oninput="run()">Tomsay:'abc'abc'asabadasd.'asdas:'</textarea>
-    <pre id="pre"></pre>
+    <pre id="pre" contenteditable oninput="run()"></pre>
   </div>
+
+  <span id="matchMsg"></span>
 </body>
 <script>
+  //1.匹配部分改成worker x
+  //2.pre 改为可编辑  √
+  //3.光标归位 √
+  var isInit = true
   run()
+  isInit = false
+  //监听run函数的内容改变事件
+
+
+
+
+  /*
+  *getCursorPosition
+  *获取匹配前的el元素光标位置
+  *依赖函数 traverse
+  */
+  function getCursorPosition(el) {
+    //获取Selection对象
+    var selection = window.getSelection()
+    var startIdx = getIdx(selection.anchorNode, selection.anchorOffset)
+    var endIdx = getIdx(selection.focusNode, selection.focusOffset)
+    //传入开始和结束节点以及开始和结束字符对应的下标 找出光标位置
+    function getIdx(target, targetIdx) {
+      var idx = 0
+      traverse(el, (e) => {
+        if (e.nodeType === Node.TEXT_NODE) {
+          //如果当前遍历的是文本节点
+          if (e === target) {
+            idx += targetIdx
+            return true
+          }
+          idx += e.textContent.length
+        }
+        return false
+      })
+      return idx
+    }
+    //返回开始和结束位置的最大值
+    return Math.max(startIdx, endIdx)
+  }
+  /*
+  * 遍历元素 对element的子元素做action操作
+  */
+  function traverse(element, action) {
+    if (action(element)) {
+      return true
+    }
+
+    for (var child of element.childNodes) {
+      if (traverse(child, action)) {
+        return true
+      }
+    }
+    return false
+  }
+
+
+  /*
+ *setCursorPosition
+ *将光标插入元素(element)的文本内容的position位置
+ *依赖函数 traverse
+ */
+  function setCursorPosition(element, position) {
+    //先序遍历元素的所有文本节点,
+    //每过一个文本节点 position 总是减去该节点的文本的长度,
+    //结束条件:当文本节点的文本长度大于position时停止遍历 此时的position和文本节点就是 光标要插入的位置
+    traverse(element, (e) => {
+      if (e.nodeType === Node.TEXT_NODE) {
+        if (position > e.textContent.length) {
+          position -= e.textContent.length
+        } else {
+          //要插入到e节点的 position位置
+          //1.通过selection对象获取range对象
+          var selection = window.getSelection()
+          console.log(e)
+          console.log(position)
+
+          var range = selection.getRangeAt(0)
+          range.setStart(e, position)
+          //结束函数
+          return true
+        }
+      }
+    })
+
+  }
+
+
   function run() {
+    if (!isInit) {
+      //如果不是第一次
+      //获取光标位置
+      var cursorPosition = getCursorPosition(pre)
+      console.log(cursorPosition)
+    }
     var flag = ""
     if (checkI.checked) {
       flag += "i"
@@ -167,7 +255,11 @@
     if (checkS.checked) {
       flag += "s"
     }
-    var string = inputString.value
+
+
+
+
+    var string = pre.innerText
     try {
       var re = new RegExp(regString.value, "d" + flag)
     } catch (error) {
@@ -275,26 +367,36 @@
     resultStr += string.slice(preIndex)
     // var resultStr=getStr(left,right,string)
     pre.innerHTML = resultStr
+
+
+    if (!isInit) {
+      //如果不是第一次
+      setCursorPosition(pre, cursorPosition)
+    }
+    $("b").on("mouseout", function (e) {
+      $(matchMsg).css({
+        display: "none",
+      })
+    }).on("mouseover", function (e) {
+      var rect = e.target.getBoundingClientRect()
+      var left = rect.x - 8
+      var top = rect.y - 100 - 8
+      $(matchMsg).css({
+        display: "block",
+        left,
+        top,
+        width: 100,
+        height: 100
+      }).text(`match : ${$(e.target).attr("data-index")}`)
+
+    });
+
   }
-  function copyReg(){
-    var flag = ""
-    if (checkI.checked) {
-      flag += "i"
-    }
-    if (checkG.checked) {
-      flag += "g"
-    }
-    if (checkM.checked) {
-      flag += "m"
-    }
-    if (checkY.checked) {
-      flag += "y"
-    }
-    if (checkS.checked) {
-      flag += "s"
-    }
-    copy(`/${regString.value}/${flag}`)
-  }
+
+
+
+
+
 </script>
 
 </html>
