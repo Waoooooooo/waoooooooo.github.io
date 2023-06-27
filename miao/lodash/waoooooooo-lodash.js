@@ -614,24 +614,11 @@ var waoooooooo = {
 
   pullAll: (array, ...values) => waoooooooo.pull(array, values),
 
-  pullAllBy: (array, ...values) => {
+  pullAllBy: (array, arr,iteratee = waoooooooo.identity) => {
     var arr = values[0]
     var iteratee = values[1]
     //如果没有传参 设置iteratee初始值为 identity
-    if (!iteratee) {
-      iteratee = waoooooooo.identity
-    }
-    if (typeof iteratee !== "function") {
-      //Array|Object|string
-      if (Array.isArray(iteratee)) {
-        //???
-      } else if (typeof iteratee == "object") {
-        //???
-      } else if (typeof iteratee == "string") {
-        var key = iteratee
-        iteratee = e => e[key]
-      }
-    }
+    iteratee = waoooooooo.by(iteratee)
     var arr = arr.map(iteratee)
     var moveLength = 0
     var set = new Set(arr)
@@ -1020,8 +1007,5 @@ var waoooooooo = {
       return false
     }
   }
-
-
-
 }
 
