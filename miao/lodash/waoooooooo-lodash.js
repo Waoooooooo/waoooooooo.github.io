@@ -426,27 +426,13 @@ var waoooooooo = {
 
   differenceBy: (array, ...args) => {
     //1.如果参数的最后一个为函数
-
-    if (typeof args.at(-1) == "function") {
-      var fun = args.at(-1)
+    var fun =  waoooooooo.by(args.at(-1))
       args.pop()
       var arguments = waoooooooo.flattenDeep(args)
       for (let index = 0; index < arguments.length; index++) {
         arguments[index] = fun(arguments[index]);
       }
       var result = array.filter((e) => !(arguments.indexOf(fun(e)) + 1))
-    }
-    else if (typeof args.at(-1) == "string") {
-      var str = args.at(-1)
-      args.pop()
-      var arguments = waoooooooo.flattenDeep(args)
-      var result = array.filter(e => !arguments.find((obj) => obj[str] == e[str]))
-    }
-    else {
-      var fun = waoooooooo.identity
-      var arguments = waoooooooo.flattenDeep(args)
-      var result = array.filter((e) => !(arguments.find((val) => fun(e) == val)))
-    }
     return result
   },
 
