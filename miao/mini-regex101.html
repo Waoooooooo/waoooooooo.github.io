@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>正则</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
   <style>
     body {
       position: relative;
@@ -129,7 +130,7 @@
 
 <body>
   正则: <br>
-  <input type="text" id="regString" value="1"> <button onclick="run()">run</button><br>
+  <input type="text" id="regString" value="1(1(1)(.)(.))"> <button onclick="run()">run</button><br>
   <label>I <input type="checkbox" id="checkI"></label>
   <label>S <input type="checkbox" id="checkS"></label>
   <label>G <input type="checkbox" checked id="checkG"></label>
@@ -138,7 +139,8 @@
   <p><span>msg:</span><span id="msg"></span></p>
   匹配字符串:
   <div>
-    <pre id="pre" contenteditable oninput="run()"></pre>
+    <pre id="pre" contenteditable
+      oninput="run()">12222222222222222222222222222222222211111231111111231211114231233312312312312313</pre>
   </div>
 
   <span id="matchMsg"></span>
@@ -152,6 +154,9 @@
   isInit = false
   //监听run函数的内容改变事件
 
+  L2Dwidget.init({
+        model: { jsonPath: "./assets/asuna_04.model.json" }
+      });
 
 
 
@@ -165,7 +170,7 @@
     var selection = window.getSelection()
     var startIdx = getIdx(selection.anchorNode, selection.anchorOffset)
     var endIdx = getIdx(selection.focusNode, selection.focusOffset)
-    //传入开始和结束节点以及开始和结束字符对应的下标 找出光标位置
+    //传入开始和结束节点以及开始和结束字符对应 的下标 找出光标位置
     function getIdx(target, targetIdx) {
       var idx = 0
       traverse(el, (e) => {
