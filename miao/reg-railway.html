@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
+
+    text {
+      dominant-baseline: text-before-edge;
+    }
+
+    h1 {
+      margin: auto;
+      font-size: 60px;
+    }
+
+    div {
+      display: flex;
+      margin: auto;
+      flex-direction: column;
+    }
+
+    .run {
+      margin-top: 200px;
+      margin-bottom: 0px;
+    }
+
+    div div {
+      padding-top: 40px;
+      display: flex;
+      height: auto;
+      width: auto;
+      margin-top: 0;
+      flex-direction: row;
+    }
+
+    div.draw {
+      height: 500px;
+      width: auto;
+      margin: 0;
+    }
+
+    section {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+    }
+
+    button {
+      background-color: #30a15c;
+      color: rgb(255, 255, 255);
+      border: none;
+      width: 100px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 5px;
+    }
+
+
+    #regInput {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      border: gray 1px solid;
+      width: 300px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 5px;
+      padding: 0;
+      padding-left: 10px;
+      box-sizing: border-box;
+      margin-right: 10px;
+
+      &:focus {
+        outline-color: #30a15c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="run">
+      <h1>正则铁路图</h1>
+      <div><input type="text" id="regInput" value="[ab]+(ab[a-z]3?)">
+        <button onclick="bottonClick()">生 成</button>
+      </div>
+    </div>
+    <div class="draw">
+
+    </div>
+  </section>
+
+
+
+
+
+  <script>
+    function bottonClick() {
+      console.log(1)
+      var button = document.querySelector("button")
+      button.style.backgroundColor = "#4fd381"
+      setTimeout(() => {
+        button.style.backgroundColor = "#30a15c"
+      }, 100);
+      var obj = parse(regInput.value)
+      console.log(obj)
+      draw(obj)
+    }
+    //****************************************************以下为类型声明************************************************************
+
+    //声明 最原始的节点类
+    class RegexNode {
+      constructor(type = "", start = 0, end = 0, source = "", batches = []) {
+        this.type = type;
+        this.start = start;
+        this.end = end;
+        this.source = source;
+      }
+    }
+
+    //captureGroup类
+    class CaptureGroup extends RegexNode {
+      constructor(start = 0, end = 0, source = "", batches = []) {
+        super("captureGroup", start);
+        this.batches = batches;
+      }
+    }
+
+    //batch类
+    class BatchNode extends RegexNode {
+      constructor(start = 0, end = 0, source = "", parts = []) {
+        super("batch", start);
+        this.parts = parts;
+      }
+    }
+
+    //character类
+    class CharacterNode extends RegexNode {
+      constructor(start = 0, end = 0, source = "") {
+        super("character", start);
+      }
+    }
+
+    //CharacterClass
+    class CharacterClass extends RegexNode {
+      constructor(start = 0, end = 0, source = "", batches = []) {
+        super("characterClass", start);
+        this.batches = batches;
+      }
+    }
+
+    //Quantifier
+    class Quantifier extends RegexNode {
+      constructor(start = 0, end = 0, source = "", max = Infinity, min = 0, GreedyMatching = false, DescriptiveObj = null) {
+        super("quantifier", start);
+      }
+    }
+
+
+    //****************************************************以上为类型声明************************************************************
+
+    //将正则字符串解析为语法树
+    //[.*+?^${}()|[\]\\]/g, "\\$&")
+    //(a|b|c)
+    function parse(regexStr) {
+      var i = 0
+      var regexpObj = {
+        type: "regexObj",
+        source: regexStr,
+        batches: [],
+      }
+      regexpObj.batches = parseBatches()
+      return regexpObj
+
+
+
+      //*************************以下parse函数依赖的函数定义********************************************
+
+      //导航函数
+      function parseRegex() {
+        if (regexStr[i] == "(") {
+          //捕获分组
+          return parseCaptureGroup()
+        }
+        if (regexStr[i] == "[") {
+          //内含分支
+          return parseCharacterClass()
+        }
+        if (regexStr[i] == "{" || regexStr[i] == "+" || regexStr[i] == "*" || regexStr[i] == "." || regexStr[i] == "?") {
+          //量词
+          return parseQuantifier()
+        }
+        //字符类
+        return parseCharacter()
+      }
+
+
+      //解析捕获分组函数
+      //依赖函数: parseCharacter
+      //依赖外部变量: i 和 regexStr
+      //返回值: captureGroup类型的node对象
+      function parseCaptureGroup() {
+        var node = new CaptureGroup(i)
+        i++ //skip "("
+        node.batches = parseBatches()
+        i++ //skip ")"
+        node.end = i
+        node.source = regexStr.slice(node.start, node.end)
+        return node
+      }
+
+      //解析数个分支
+      //判定范围:遇到  )  ]  或者i指向字符串末尾
+      //依赖函数: parseBatch
+      //依赖外部变量: i 和 regexStr
+      //返回值: 一个由node组成的数组
+      function parseBatches() {
+        var batches = []
+        while (regexStr[i] != ")" && regexStr[i] != "]" && i < regexStr.length) {
+          batches.push(parseBatch()) // aabvb|basd|csada
+          if (regexStr[i] == "|") {
+            i++ //skip "|"
+          }
+        }
+        return batches
+      }
+
+      //解析一个分支
+      //判定范围:遇到|或者i指向字符串末尾
+      //依赖函数: parseRegex
+      //依赖外部变量: i 和 regexStr
+      //返回值: 一个batch类型的node
+      function parseBatch() {
+        var node = new BatchNode(i)
+        //当i指向 "|" 或指向 regexStr 末尾的时候返回
+        while (regexStr[i] != "|" && regexStr[i] != ")" && regexStr[i] != "]" && i < regexStr.length) {
+          var part = parseRegex()
+          //如果新添加的是量词对象
+          if (part.type == "quantifier") {
+            if (node.parts.length == 0) {
+              //说明量词前没有节点
+              throw new SyntaxError("nothing to  repeat")
+            }
+            part.DescriptiveObj = node.parts.pop()
+            part.start = part.DescriptiveObj.start
+            part.source = regexStr.slice(part.start, part.end)
+          }
+          node.parts.push(part)
+        }
+        node.end = i
+        node.source = regexStr.slice(node.start, node.end)
+        return node
+      }
+
+
+      //解析一个字符
+      //判定范围:一次只走一步
+      //依赖函数: parseRegex
+      //依赖外部变量: i 和 regexStr
+      //返回值: 一个Character类型的node
+      function parseCharacter() {
+        var node = new CharacterNode(i)
+        node.end = i
+        node.source = regexStr[i]
+        i++
+        return node
+      }
+
+
+      //解析一个字符分支
+      //判定范围:"[" 开始 "]" 结束
+      //依赖函数: parseBatches
+      //依赖外部变量: i 和 regexStr
+      //返回值: 一个CharacterClass类型的node
+      function parseCharacterClass() {
+        var node = new CharacterClass(i)
+        i++  // skip "["
+        node.batches = parseBatches()
+        i++ // skip "]"
+        node.end = i
+        node.source = regexStr.slice(node.start, i)
+        return node
+      }
+
+
+      //解析一个量词
+      //判定范围:"{" 开始 "}" 结束
+      //依赖函数:
+      //依赖外部变量: i 和 regexStr
+      //返回值: 一个CharacterClass类型的node
+      //bo{3,}h  [.*?\]
+      //x*  0-n
+      //x+  1-n
+      //x?  0-1
+      //x{n} 必须出现n次  (min,max)
+      //x{n,} 至少出现n次 (min)
+      //x{n,m} 出现n到m次  包含m
+      //x*?  ?代表贪婪匹配 GreedyMatching
+
+      function parseQuantifier() {
+        var node = new Quantifier(i)
+        if (regexStr[i] == "*") {
+          //x*  0-n
+          node.min = 0
+          node.max = Infinity
+        } else if (regexStr[i] == "+") {
+          node.min = 1
+          node.max = Infinity
+        } else if (regexStr[i] == "?") {
+          node.min = 0
+          node.max = 1
+        } else if (regexStr[i] == "{") {
+          i++  //skip "{"
+          node.min = parseInt()
+          //解析一个数字后可能出现的情况
+          //1.x{n} 必须出现n次  (min,max)               **直接结束
+          //2.x{n,} 至少出现n次 (min,Infinity)          **跳过逗号结束
+          //3.x{n,m} 出现n到m次  包含(min,max)          **再次调用parseint
+          if (regexStr[i] == ",") {
+            //2,3分支会进入该if
+            i++ // skip ","
+          } else {
+            //1分支
+            node.max = min
+          }
+          //parseInt函数在没解析到数值的情况下 默认返回Infinity,所以此时2,3分支可以一起处理
+          node.max = parseInt()
+        }
+        i++ // skip "}" 或 "+" 或 "*"
+        if (regexStr[i] == "?") {
+          //贪婪匹配
+          node.GreedyMatching = true
+          i++ // skip "?"
+        }
+        if (regexStr[i] == "*" || regexStr[i] == "+" || regexStr[i] == "{") {
+          //量词接量词
+          throw new SyntaxError("Nothing to repeat")
+        }
+        node.end = i
+        return node
+      }
+
+      //解析一个整数
+      //判定范围:"0-9" 开始 "0-9" 结束
+      //依赖外部变量: i 和 regexStr
+      //返回值: number
+      function parseInt() {
+        var start = i
+        do {
+          i++
+        } while (regexStr[i] < "9" && regexStr[i] > "0");
+        return Number(regexStr.slice(start, i))
+      }
+    }
+
+
+    //draw  画svg
+    //传入一个 regex 对象
+    function draw(node) {
+      //初始化svg
+      var svg = createSvg("svg")
+      svg.setAttribute("style", "width:100%;height:100%;");
+      var drawDiv = document.querySelector(".draw")
+      drawDiv.appendChild(svg)
+      var gap = 10
+      //1.解析语法树
+
+      node.batches.map(e => {
+        navigate(e)
+      })
+
+
+
+
+
+
+
+
+
+      //************************函数定义********************************
+      //路由函数
+      function navigate(node) {
+        if (node.type == "captureGroup") {
+          return drawCaptureGroup(node)
+        } else if (node.type == "batch") {
+          return drawBatch(node)
+        } else if (node.type == "character") {
+          return drawCharacter(node)
+        } else if (node.type == "characterClass") {
+          return drawCharacterClass(node)
+        } else if (node.type == "quantifier") {
+          return drawQuantifier(node)
+        }
+      }
+
+
+      //画出一个捕获分组
+      function drawCaptureGroup(node) {
+        //初始化一个组
+        var group = createSvg("g")
+        //1.画出内部的对象
+        var matches = node.matches
+        var imgs = matches.map(navigate)
+        //2.将所有分支的图像 纵向并联起来
+        imgs.forEach((element, index) => {
+
+
+
+        });
+        //2.画出外部的虚线框
+
+
+      }
+
+
+      //画出一个字符 (最小单位)
+      function drawCharacter(node) {
+        var textImg = createSvgText(node.source)
+        textImg.setAttribute("text-anchor", "start")
+
+        return textImg
+      }
+
+
+      //画一个分支
+      function drawBatch(node) {
+        var group = createSvg("g")
+        svg.append(group)
+        var partImgs = node.parts.map(navigate)
+        group.append(...partImgs)
+        var  width  =  0
+        debugger;
+        partImgs.forEach((e, idx) => {
+          var x   = gap*(idx+1)  + width
+          width  += gap + e.getBBox().width
+          e.setAttribute("transform", `translate(${x},${gap})`)
+        })
+
+        var box = group.getBBox()
+        var rect = createSvgRect(box.width + gap * 2, box.height + gap * 2, 5)
+        group.append(rect)
+
+        //摆好位置
+        return group
+      }
+    }
+
+
+
+
+
+
+
+
+
+    //一个简单的创建svg元素的函数
+    function createSvg(type) {
+      var element = document.createElementNS('http://www.w3.org/2000/svg', type)
+      return element
+    }
+
+    //创建svg文本节点的函数
+    function createSvgText(content) {
+      var element = createSvg("text")
+      element.innerHTML = content
+      return element
+    }
+
+    //创建矩形的函数
+    function createSvgRect(width, height, rx = "0", fill = "none", stroke = "black") {
+      var element = createSvg("rect")
+      element.setAttribute("width", width)
+      element.setAttribute("height", height)
+      element.setAttribute("rx", rx)
+      element.setAttribute("fill", fill)
+      element.setAttribute("stroke", stroke)
+      return element
+    }
+
+  </script>
+
+
+
+
+</body>
+
+</html>
