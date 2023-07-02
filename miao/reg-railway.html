@@ -7,9 +7,11 @@
   <title>Document</title>
   <style>
     body,
-    html {
-      height: 100%;
-      margin: 0;
+    html {}
+
+    svg {
+      overflow: auto;
+      margin: auto;
     }
 
     text {
@@ -28,12 +30,12 @@
     }
 
     .run {
-      margin-top: 200px;
+      margin-top: 100px;
       margin-bottom: 0px;
     }
 
     div div {
-      padding-top: 40px;
+      padding-top: 20px;
       display: flex;
       height: auto;
       width: auto;
@@ -42,7 +44,8 @@
     }
 
     div.draw {
-      height: 500px;
+      display: block;
+      height: 1000px;
       width: auto;
       margin: 0;
     }
@@ -105,6 +108,11 @@
 
 
   <script>
+    var svg = createSvg("svg")
+    svg.setAttribute("style", "width:100%;height:100%;");
+    var drawDiv = document.querySelector(".draw")
+    drawDiv.appendChild(svg)
+
     function bottonClick() {
       console.log(1)
       var button = document.querySelector("button")
@@ -113,7 +121,6 @@
         button.style.backgroundColor = "#30a15c"
       }, 100);
       var obj = parse(regInput.value)
-      console.log(obj)
       draw(obj)
     }
     //****************************************************以下为类型声明************************************************************
@@ -161,7 +168,7 @@
 
     //Quantifier
     class Quantifier extends RegexNode {
-      constructor(start = 0, end = 0, source = "", max = Infinity, min = 0, GreedyMatching = false, DescriptiveObj = null) {
+      constructor(start = 0, end = 0, source = "", max = Infinity, min = 0, GreedyMatching = false, descriptiveObj = null) {
         super("quantifier", start);
       }
     }
@@ -251,8 +258,8 @@
               //说明量词前没有节点
               throw new SyntaxError("nothing to  repeat")
             }
-            part.DescriptiveObj = node.parts.pop()
-            part.start = part.DescriptiveObj.start
+            part.descriptiveObj = node.parts.pop()
+            part.start = part.descriptiveObj.start
             part.source = regexStr.slice(part.start, part.end)
           }
           node.parts.push(part)
@@ -285,7 +292,16 @@
       function parseCharacterClass() {
         var node = new CharacterClass(i)
         i++  // skip "["
-        node.batches = parseBatches()
+        var batches = node.batches
+        while (regexStr[i] != "]" && i < regexStr.length) {
+
+          var batch = new BatchNode(i)
+          batch.end = i
+          var part = parseRegex()
+          batch.parts.push(part)
+          batch.source = regexStr[i]
+          batches.push(batch)
+        }
         i++ // skip "]"
         node.end = i
         node.source = regexStr.slice(node.start, i)
@@ -368,16 +384,32 @@
     //传入一个 regex 对象
     function draw(node) {
       //初始化svg
-      var svg = createSvg("svg")
-      svg.setAttribute("style", "width:100%;height:100%;");
-      var drawDiv = document.querySelector(".draw")
-      drawDiv.appendChild(svg)
-      var gap = 10
-      //1.解析语法树
+      svg.innerHTML = ""
+      var gap = 20
+      console.log(node)
 
-      node.batches.map(e => {
-        navigate(e)
+      //加左右兩邊的綫
+      var groupInner = navigate(node.batches)
+      box = groupInner.getBBox()
+      var y = box.height / 2 + box.y //通用的y
+      var x = gap
+      var lineLeft = createSvgLine({
+        x1: x, y1: y,
+        x2: 0, y2: y
       })
+      var lineRight = createSvgLine({
+        x1: x + box.width, y1: y,
+        x2: x + box.width + gap, y2: y
+      })
+      groupInner.setAttribute("transform", `translate(${gap},0)`)
+      var group = createSvg("g")
+      group.append(lineRight, lineLeft, groupInner)
+      svg.append(group)
+      //劇中
+      group.setAttribute("transform", `translate( ${svg.getBoundingClientRect().width / 2 - group.getBBox().width / 2},0)`)
+      var box = group.getBBox()
+
+
 
 
 
@@ -400,37 +432,101 @@
           return drawCharacterClass(node)
         } else if (node.type == "quantifier") {
           return drawQuantifier(node)
+        } else if (Array.isArray(node)) {
+          return drawBatches(node)
         }
       }
 
 
-      //画出一个捕获分组
-      function drawCaptureGroup(node) {
-        //初始化一个组
+      function drawQuantifier(node) {
         var group = createSvg("g")
-        //1.画出内部的对象
-        var matches = node.matches
-        var imgs = matches.map(navigate)
-        //2.将所有分支的图像 纵向并联起来
-        imgs.forEach((element, index) => {
+        var img = navigate(node.descriptiveObj)
+        svg.append(group)
+        var box = img.getBBox()
+        var msg = "最多出现:" + node.max
+        if (node.min == 0) {
+          //画上半圈
+          var rect = createSvgRect(box.width + gap, box.height / 2, 20/box.height)
+          console.log(20/box.height)
+          rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
+          group.prepend(rect)
+        } else {
+          msg = "最少出现:" + node.min + "  " + node.msg
+        }
 
-
-
-        });
-        //2.画出外部的虚线框
-
-
+        //画下半圈
+        var text = createSvgText(msg)
+        //如果最大值为1就不用画下半圈
+        group.append(img)
+        if (node.max ==  1) {
+          group.setAttribute("class", "quantifierGroup")
+          return group
+        }
+        //起点坐标 x = 0  y =box.height / 2
+        //宽度 = box.width
+        //高度 = box.height+gap/2
+        var rect = createSvgRect(box.width + gap, box.height / 2)
+        rect.setAttribute("transform", `translate(${-gap / 2},${box.height / 2})`)
+        group.prepend(rect)
+        group.setAttribute("class", "quantifierGroup")
+        return group
       }
 
+      //画出一个捕获分组
+      function drawCaptureGroup(node) {
+        //初始化一个内部的组
+        var groupInner = createSvg("g")
+        //1.画出内部的对象
+        var batches = node.batches
+        var batchesImg = navigate(batches)
+        //2.画出外部的虚线框
+        groupInner.append(batchesImg)
+        svg.append(groupInner)
+        var box = groupInner.getBBox()
+        //创建虚线框并设置偏移
+        var rectInner = createSvgRect(box.width, box.height)
+        rectInner.setAttribute("stroke-dasharray", "5 2")
+        groupInner.append(rectInner)
+        //将内部的组xy整体偏移gap
+        groupInner.setAttribute("transform", `translate(${gap},0)`)
+
+
+        //画出外部的小杠
+        box = groupInner.getBBox()
+        var y = box.height / 2  //通用的y
+        var x = gap
+        var lineLeft = createSvgLine({
+          x1: x, y1: y,
+          x2: 0, y2: y
+        })
+        //从(x,y +  box.height /2)到(0,y +  box.height /2)
+        var lineRight = createSvgLine({
+          x1: x + box.width, y1: y,
+          x2: x + box.width + gap, y2: y
+        })
+
+        var group = createSvg("g")
+        group.append(lineRight, lineLeft, groupInner)
+        group.setAttribute("class", "catchGroup")
+
+        return group
+      }
 
       //画出一个字符 (最小单位)
       function drawCharacter(node) {
+        var group = createSvg("g")
         var textImg = createSvgText(node.source)
         textImg.setAttribute("text-anchor", "start")
-
-        return textImg
+        group.append(textImg)
+        svg.append(group)
+        var box = group.getBBox()
+        var rect = createSvgRect(box.width, box.height,)
+        rect.setAttribute("stroke", "none")
+        // rect.setAttribute("transform", `translate(0,${box.height / 2})`)
+        group.prepend(rect)
+        group.setAttribute("class", "quantifierGroup")
+        return group
       }
-
 
       //画一个分支
       function drawBatch(node) {
@@ -438,21 +534,113 @@
         svg.append(group)
         var partImgs = node.parts.map(navigate)
         group.append(...partImgs)
-        var  width  =  0
-        debugger;
+        var width = 0
+
+        //求出最高高度
+        var maxHeight = Math.max(...partImgs.map(e => e.getBBox().height))
+
         partImgs.forEach((e, idx) => {
-          var x   = gap*(idx+1)  + width
-          width  += gap + e.getBBox().width
-          e.setAttribute("transform", `translate(${x},${gap})`)
+          var x = gap * (idx + 1) + width
+          width += gap + e.getBBox().width
+          if (e.getBBox().height < maxHeight) {
+            e.setAttribute("transform", `translate(${x},${gap + maxHeight / 2 - e.getBBox().height / 2})`)
+          } else {
+            e.setAttribute("transform", `translate(${x},${gap})`)
+          }
         })
 
         var box = group.getBBox()
         var rect = createSvgRect(box.width + gap * 2, box.height + gap * 2, 5)
-        group.append(rect)
-
+        rect.setAttribute("stroke", "none")
+        rect.setAttribute("fill", "#DAE9E5")
+        group.prepend(rect)
+        group.setAttribute("class", "batchGroup")
         //摆好位置
         return group
       }
+
+      //画分支数组
+      function drawBatches(batches) {
+        var group = createSvg("g")
+        svg.append(group)
+        var groups = batches.map(drawBatch)
+        group.append(...groups)
+        //得到数个分支图像 此时图像已被渲染
+        //将分支并联
+        var height = 0
+        var maxWidth = Math.max(...groups.map(e => e.getBBox().width))
+
+        groups.forEach((e, idx) => {
+          var box = e.getBBox()
+          var y = gap * (idx + 1) + height
+          var x = gap + (maxWidth - box.width) / 2
+          height += gap + box.height
+          e.setAttribute("transform", `translate(${x},${y})`)
+          //画小杠
+          var y1y2 = y + box.height / 2
+          //从(x,y +  box.height /2)到(0,y +  box.height /2)
+
+          var lineLeft = createSvgLine({
+            x1: x, y1: y1y2,
+            x2: 0, y2: y1y2
+          })
+
+          //从(x,y +  box.height /2)到(0,y +  box.height /2)
+          var lineRight = createSvgLine({
+            x1: x + box.width, y1: y1y2,
+            x2: x + box.width + (maxWidth - box.width) / 2 + gap, y2: y1y2
+          })
+          group.append(lineLeft, lineRight)
+        })
+        if (groups.length == 1) {
+          group.append(line1, line2)
+          var box = group.getBBox()
+          var rect = createSvgRect(box.width, box.height + gap * 2, 5)
+          rect.setAttribute("stroke", "none")
+          group.append(rect)
+          return group
+        }
+        //将两边封住
+        //bbox返回的是布局位置而不是渲染位置 所以此时应该获取transform后的坐标
+
+        var startCTM = groups[0].getCTM()
+        var endCTM = groups.at(-1).getCTM()
+        var startBox = groups[0].getBBox()
+        var endBox = groups.at(-1).getBBox()
+        //左边竖线   (0,startBox.x+startBox.heigth / 2 )  ( 0 , endBox.x+startBox.heigth/2)
+        //右边竖线   (group.getBBox().width  , startBox.x+startBox.heigth / 2 )  (group.getBBox().width  , endBox.x+startBox.heigth/2 )
+
+        var line1 = createSvgLine({
+          x1: 0,
+          y1: startCTM.f + startBox.height / 2,
+          x2: 0,
+          y2: endCTM.f + endBox.height / 2
+        })
+        var line2 = createSvgLine({
+          x1: group.getBBox().width,
+          y1: startCTM.f + startBox.height / 2,
+          x2: group.getBBox().width,
+          y2: endCTM.f + endBox.height / 2
+        })
+
+        group.append(line1, line2)
+        var box = group.getBBox()
+        //rect
+        var rect = createSvgRect(box.width, box.height, 5)
+        rect.setAttribute("stroke", "none")
+        group.setAttribute("class", "batchesGroup")
+
+        group.append(rect)
+        return group
+      }
+
+
+
+      //画一个CharacterClass
+      function drawCharacterClass(node) {
+        return drawBatches(node.batches)
+      }
+
     }
 
 
@@ -476,6 +664,18 @@
       return element
     }
 
+    //创建一条线的函数
+    function createSvgLine(obj = { x1: 0, y1: 0, x2: 0, y2: 0 }, stroke = "black", strokeWidth = 2) {
+      var element = createSvg("line")
+      for (const key in obj) {
+        element.setAttribute(key, obj[key])
+      }
+      element.setAttribute("stroke", stroke)
+      element.setAttribute("strokeWidth", strokeWidth)
+      return element
+    }
+
+
     //创建矩形的函数
     function createSvgRect(width, height, rx = "0", fill = "none", stroke = "black") {
       var element = createSvg("rect")
@@ -488,10 +688,6 @@
     }
 
   </script>
-
-
-
-
 </body>
 
 </html>
