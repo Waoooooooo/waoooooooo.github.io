@@ -94,7 +94,7 @@
   <section>
     <div class="run">
       <h1>正则铁路图</h1>
-      <div><input type="text" id="regInput" value="[ab]+(ab[a-z]3?)">
+      <div><input type="text" id="regInput" value="[ab]+(ab[a-zb1-9]3?)">
         <button onclick="bottonClick()">生 成</button>
       </div>
     </div>
@@ -294,12 +294,23 @@
         i++  // skip "["
         var batches = node.batches
         while (regexStr[i] != "]" && i < regexStr.length) {
-
-          var batch = new BatchNode(i)
-          batch.end = i
-          var part = parseRegex()
-          batch.parts.push(part)
-          batch.source = regexStr[i]
+          if (regexStr[i + 1] == "-") {
+            //存在范围的时候
+            var batch = new BatchNode(i)
+            var part = new CharacterNode(i)
+            part.source = regexStr.slice(i, i + 3)
+            batch.parts.push(part)
+            batch.source = part.source
+            i += 3
+            part.end = i
+            batch.end = i
+          } else {
+            var batch = new BatchNode(i)
+            batch.end = i
+            var part = parseRegex()
+            batch.parts.push(part)
+            batch.source = regexStr[i]
+          }
           batches.push(batch)
         }
         i++ // skip "]"
@@ -446,8 +457,8 @@
         var msg = "最多出现:" + node.max
         if (node.min == 0) {
           //画上半圈
-          var rect = createSvgRect(box.width + gap, box.height / 2, 20/box.height)
-          console.log(20/box.height)
+          var rect = createSvgRect(box.width + gap, box.height / 2, 8)
+          console.log(20 / box.height)
           rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
           group.prepend(rect)
         } else {
@@ -458,14 +469,14 @@
         var text = createSvgText(msg)
         //如果最大值为1就不用画下半圈
         group.append(img)
-        if (node.max ==  1) {
+        if (node.max == 1) {
           group.setAttribute("class", "quantifierGroup")
           return group
         }
         //起点坐标 x = 0  y =box.height / 2
         //宽度 = box.width
         //高度 = box.height+gap/2
-        var rect = createSvgRect(box.width + gap, box.height / 2)
+        var rect = createSvgRect(box.width + gap, box.height / 2, 8)
         rect.setAttribute("transform", `translate(${-gap / 2},${box.height / 2})`)
         group.prepend(rect)
         group.setAttribute("class", "quantifierGroup")
