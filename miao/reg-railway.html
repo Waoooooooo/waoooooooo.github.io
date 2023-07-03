@@ -398,7 +398,7 @@
     function draw(node) {
       //初始化svg
       svg.innerHTML = ""
-      var gap = 20
+      var gap = 10
       console.log(node)
 
       //加左右兩邊的綫
@@ -478,15 +478,15 @@
         //起点坐标 x = 0  y =box.height / 2
         //宽度 = box.width
         //高度 = box.height+gap/2
-        var box  = group.getBBox()
+        var box = group.getBBox()
 
         var rect = createSvgRect(box.width + gap, box.height / 2, 8)
-        rect.setAttribute("transform",`translate(${-gap/2},${0})`)
+        rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
         group.prepend(rect)
-        group.setAttribute("transform",`translate(${gap},${0})`)
+        group.setAttribute("transform", `translate(${gap},${0})`)
 
 
-        var rect = createSvgRect(box.width + gap*2, box.height, 8)
+        var rect = createSvgRect(box.width + gap * 2, box.height, 8)
         rect.setAttribute("stroke", "none")
         var outerGroup = createSvg("g")
         svg.append(outerGroup)
@@ -535,7 +535,7 @@
         group.append(lineRight, lineLeft, groupInner)
         group.setAttribute("class", "catchGroup")
         var box = group.getBBox()
-        var rect = createSvgRect(box.width,box.height)
+        var rect = createSvgRect(box.width, box.height)
         return group
       }
 
@@ -544,7 +544,7 @@
         var group = createSvg("g")
         var textImg = createSvgText(node.source)
         textImg.setAttribute("text-anchor", "start")
-        textImg.setAttribute("transform",`translate(${gap/2},0)`)
+        textImg.setAttribute("transform", `translate(${gap / 2},0)`)
 
         group.append(textImg)
         svg.append(group)
@@ -552,23 +552,23 @@
         var rect = createSvgRect(box.width, box.height,)
         rect.setAttribute("stroke", "none")
         rect.setAttribute("fill", "#DAE9E5")
-        rect.setAttribute("transform",`translate(${gap/2},0)`)
+        rect.setAttribute("transform", `translate(${gap / 2},0)`)
 
         //添加小横杠
         box = group.getBBox()
         var y = box.height / 2
-        var x = gap/2
+        var x = gap / 2
         var lineLeft = createSvgLine({
-          x1: gap/2, y1: y,
+          x1: gap / 2, y1: y,
           x2: 0, y2: y
         })
         //从(x,y +  box.height /2)到(0,y +  box.height /2)
         var lineRight = createSvgLine({
-          x1: box.width+gap/2, y1: y,
+          x1: box.width + gap / 2, y1: y,
           x2: box.width + gap, y2: y
         })
         // rect.setAttribute("transform", `translate(0,${box.height / 2})`)
-        group.prepend(rect,lineLeft,lineRight)
+        group.prepend(rect, lineLeft, lineRight)
         var outerGroup = createSvg("g")
         svg.append(outerGroup)
         outerGroup.append(group)
@@ -586,25 +586,33 @@
         var partImgs = node.parts.map(navigate)
         group.append(...partImgs)
         var width = 0
-
         //求出最高高度
         var maxHeight = Math.max(...partImgs.map(e => e.getBBox().height))
-
+        var lines = [] //存储每个part之间连接的线
         partImgs.forEach((e, idx) => {
-          var x =width
-          width +=gap +e.getBBox().width
+          var x = width
+
+
+          width += gap + e.getBBox().width
           if (e.getBBox().height < maxHeight) {
             e.setAttribute("transform", `translate(${x},${maxHeight / 2 - e.getBBox().height / 2})`)
-
+            var line = { x1: width, y1: maxHeight / 2, x2: width - gap, y2: maxHeight / 2 }
           } else {
             e.setAttribute("transform", `translate(${x},${0})`)
+            var line = { x1: width, y1: maxHeight / 2, x2: width - gap, y2: maxHeight / 2 }
+          }
+          if (idx != partImgs.length - 1) {
+            //不是最後一個元素
+            lines.push(line)
           }
         })
-
-        debugger
+        lines.forEach(it=>{
+          group.append(createSvgLine(it))
+          console.log(group)
+        })
 
         var box = group.getBBox()
-        var rect = createSvgRect(box.width-box.x , box.height, 5)
+        var rect = createSvgRect(box.width - box.x, box.height, 5)
         rect.setAttribute("stroke", "none")
         rect.setAttribute("fill", "#DAE9E5")
         group.prepend(rect)
@@ -654,7 +662,7 @@
           var box = group.getBBox()
           var rect = createSvgRect(box.width, box.height + gap * 2, 5)
           rect.setAttribute("stroke", "none")
-        group.setAttribute("class", "batchesGroup-0")
+          group.setAttribute("class", "batchesGroup-0")
           group.append(rect)
           return group
 
