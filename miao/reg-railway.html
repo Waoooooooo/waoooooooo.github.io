@@ -475,21 +475,25 @@
           // console.log(20 / box.height)
           // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
           // group.prepend(rect)
-
-
-
-
+          var path = createSvg("path")
+         // d="M0,21.571428298950195q10,0 10,-10v-1.5714282989501953q0,-10 10,-10h14.678571701049805q10,0 10,10v1.5714282989501953q0,10 10,10"
+         path.setAttribute("d",`
+         M 0 ${box.height/2} L ${gap/2} ${box.height/2-gap/2}
+         `)
+         path.setAttribute("stroke","black")
+         path.setAttribute("strokeWidth","2")
         } else {
           msg = "最少出现:" + node.min + "  " + node.msg
         }
-
         //画下半圈
         var text = createSvgText(msg)
         //如果最大值为1就不用画下半圈
         group.append(img)
         if (node.max == 1) {
-          group.setAttribute("class", "quantifierGroup")
-          return group
+
+          //不画下半圈
+
+
         }
         //起点坐标 x = 0  y =box.height / 2
         //宽度 = box.width
@@ -506,6 +510,7 @@
         rect.setAttribute("stroke", "none")
         var outerGroup = createSvg("g")
         svg.append(outerGroup)
+        outerGroup.append(path)
         outerGroup.append(group)
         outerGroup.append(rect)
         outerGroup.setAttribute("class", "quantifierGroup")
