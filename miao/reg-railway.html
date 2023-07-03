@@ -14,6 +14,7 @@
     svg {
       overflow: auto;
       margin: auto;
+      padding-top: 100px;
     }
 
     text {
@@ -425,6 +426,7 @@
         x2: x + box.width + gap, y2: y
       })
       groupInner.setAttribute("transform", `translate(${gap},0)`)
+      var rect = groupInner.querySelector(rect)
       var group = createSvg("g")
       group.append(lineRight, lineLeft, groupInner)
       svg.append(group)
@@ -469,10 +471,14 @@
         var msg = "最多出现:" + node.max
         if (node.min == 0) {
           //画上半圈
-          var rect = createSvgRect(box.width + gap, box.height / 2, 8)
-          console.log(20 / box.height)
-          rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
-          group.prepend(rect)
+          // var rect = createSvgRect(box.width + gap, box.height / 2, 8)
+          // console.log(20 / box.height)
+          // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
+          // group.prepend(rect)
+
+
+
+
         } else {
           msg = "最少出现:" + node.min + "  " + node.msg
         }
@@ -490,9 +496,9 @@
         //高度 = box.height+gap/2
         var box = group.getBBox()
 
-        var rect = createSvgRect(box.width + gap, box.height / 2, 8)
-        rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
-        group.prepend(rect)
+        // var rect = createSvgRect(box.width + gap, box.height / 2, 8)
+        // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
+        // group.prepend(rect)
         group.setAttribute("transform", `translate(${gap},${0})`)
 
 
@@ -519,11 +525,8 @@
         svg.append(groupInner)
         var box = groupInner.getBBox()
         //创建虚线框并设置偏移
-        var rectInner = createSvgRect(box.width, box.height)
-        rectInner.setAttribute("stroke-dasharray", "5 2")
-        groupInner.append(rectInner)
         //将内部的组xy整体偏移gap
-        groupInner.setAttribute("transform", `translate(${gap},0)`)
+        groupInner.setAttribute("transform", `translate(${gap},${gap})`)
 
 
         //画出外部的小杠
@@ -531,21 +534,23 @@
         var y = box.height / 2  //通用的y
         var x = gap
         var lineLeft = createSvgLine({
-          x1: x, y1: y,
-          x2: 0, y2: y
+          x1: x, y1: y+gap,
+          x2: 0, y2: y+gap
         })
         //从(x,y +  box.height /2)到(0,y +  box.height /2)
         var lineRight = createSvgLine({
-          x1: x + box.width, y1: y,
-          x2: x + box.width + gap, y2: y
+          x1: x + box.width, y1: y+gap,
+          x2: x + box.width + gap, y2: y+gap
         })
-
+        groupInner.append()
         var group = createSvg("g")
         svg.append(group)
         group.append(lineRight, lineLeft, groupInner)
         group.setAttribute("class", "catchGroup")
         var box = group.getBBox()
-        var rect = createSvgRect(box.width, box.height)
+        var rect = createSvgRect(box.width, box.height+gap*2,15)
+        rect.setAttribute("stroke-dasharray", "5 2")
+        group.append(rect)
         return group
       }
 
@@ -554,38 +559,36 @@
         var group = createSvg("g")
         var textImg = createSvgText(node.source)
         textImg.setAttribute("text-anchor", "start")
-        textImg.setAttribute("transform", `translate(${gap / 2},0)`)
+        textImg.setAttribute("transform", `translate(${gap},0)`)
 
         group.append(textImg)
         svg.append(group)
         var box = group.getBBox()
-        var rect = createSvgRect(box.width, box.height,)
+        var rect = createSvgRect(box.width + gap * 2, box.height, 5)
         rect.setAttribute("stroke", "none")
+        rect.setAttribute("transform", `translate(0,0)`)
         rect.setAttribute("fill", "#DAE9E5")
-        rect.setAttribute("transform", `translate(${gap / 2},0)`)
-
         //添加小横杠
-        box = group.getBBox()
-        var y = box.height / 2
-        var x = gap / 2
-        var lineLeft = createSvgLine({
-          x1: gap / 2, y1: y,
-          x2: 0, y2: y
-        })
-        //从(x,y +  box.height /2)到(0,y +  box.height /2)
-        var lineRight = createSvgLine({
-          x1: box.width + gap / 2, y1: y,
-          x2: box.width + gap, y2: y
-        })
+        // box = group.getBBox()
+        // var y = box.height / 2
+        // var x = gap / 2
+        // var lineLeft = createSvgLine({
+        // x1: gap / 2, y1: y,
+        // x2: 0, y2: y
+        // })
+        // 从(x,y +  box.height /2)到(0,y +  box.height /2)
+        // var lineRight = createSvgLine({
+        // x1: box.width + gap / 2, y1: y,
+        // x2: box.width + gap, y2: y
+        // })
         // rect.setAttribute("transform", `translate(0,${box.height / 2})`)
-        group.prepend(rect, lineLeft, lineRight)
+        // group.prepend(rect, lineLeft, lineRight)
+        group.prepend(rect)
         var outerGroup = createSvg("g")
         svg.append(outerGroup)
-        outerGroup.append(group)
         box = outerGroup.getBBox()
-        // var rect = createSvgRect(box.width+gap/2*2, box.height,)
+        outerGroup.append(group)
         outerGroup.setAttribute("class", "char")
-
         return outerGroup
       }
 
@@ -593,10 +596,6 @@
       function drawBatch(node) {
         var group = createSvg("g")
         svg.append(group)
-
-
-
-
         //将parts中连续的character节点 合成单个
         var newParts = []
         var newCharacter
@@ -610,7 +609,6 @@
               newCharacter.start == it.start
             }
             continuous++
-            debugger
             newCharacter.source += it.source
           } else {
             //如果是第一次 创建一个字符节点
@@ -653,6 +651,7 @@
             //不是最後一個元素
             lines.push(line)
           }
+
         })
         lines.forEach(it => {
           group.append(createSvgLine(it))
@@ -660,13 +659,32 @@
         })
 
         var box = group.getBBox()
-        var rect = createSvgRect(box.width - box.x, box.height, 5)
+        group.setAttribute("class", "batchGroup-inner")
+        // group.setAttribute("transform", `translate(${gap},${gap})`)
+        //  var rect = createSvgRect(box.width + gap * 2, box.height + gap * 2, 2)
+        // rect.setAttribute("stroke", "none")
+        // rect.setAttribute("fill", "none")
+        // group.prepend(rect)
+
+        //inner两边的小竖岗
+
+
+
+        var rect = createSvgRect(box.width, box.height, 2)
         rect.setAttribute("stroke", "none")
-        rect.setAttribute("fill", "#DAE9E5")
-        group.prepend(rect)
-        group.setAttribute("class", "batchGroup")
+        rect.setAttribute("fill", "none")
+        // rect.setAttribute("fill", "#DAE9E5")
+
+
+
+        rect.setAttribute("class", "batchGroup")
+        var outerGroup = createSvg("g")
+        svg.append(outerGroup)
+        outerGroup.prepend(rect, group)
+
+
         //摆好位置
-        return group
+        return outerGroup
       }
 
       //画分支数组
@@ -682,7 +700,7 @@
 
         groups.forEach((e, idx) => {
           var box = e.getBBox()
-          var y = gap * (idx + 1) + height
+          var y =  height
           var x = gap + (maxWidth - box.width) / 2
           height += gap + box.height
           e.setAttribute("transform", `translate(${x},${y})`)
@@ -703,18 +721,15 @@
           group.append(lineLeft, lineRight)
         })
         if (groups.length == 1) {
-
-
-
+          groups[0].children[0].setAttribute("fill", "none")
           group.append(line1, line2)
           var box = group.getBBox()
-          var rect = createSvgRect(box.width, box.height + gap * 2, 5)
+          var rect = createSvgRect(box.width, box.height, 5)
           rect.setAttribute("stroke", "none")
-
+          rect.setAttribute("class", "batchesGroup-0")
           group.setAttribute("class", "batchesGroup-0")
           group.append(rect)
           return group
-
 
 
         }
@@ -743,13 +758,17 @@
 
         group.append(line1, line2)
         var box = group.getBBox()
-        //rect
         var rect = createSvgRect(box.width, box.height, 5)
         rect.setAttribute("stroke", "none")
-
-        group.setAttribute("class", "batchesGroup")
         group.append(rect)
-        return group
+        //rect
+
+        var outerGroup = createSvg("g")
+        outerGroup.setAttribute("class", "batchesGroup")
+        svg.append(outerGroup)
+        outerGroup.append(group)
+
+        return outerGroup
       }
 
 
