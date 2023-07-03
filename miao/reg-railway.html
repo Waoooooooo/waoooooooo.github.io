@@ -710,6 +710,7 @@
           var box = group.getBBox()
           var rect = createSvgRect(box.width, box.height + gap * 2, 5)
           rect.setAttribute("stroke", "none")
+
           group.setAttribute("class", "batchesGroup-0")
           group.append(rect)
           return group
@@ -745,6 +746,7 @@
         //rect
         var rect = createSvgRect(box.width, box.height, 5)
         rect.setAttribute("stroke", "none")
+
         group.setAttribute("class", "batchesGroup")
         group.append(rect)
         return group
