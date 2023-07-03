@@ -110,21 +110,6 @@
 
 
   <script>
-    var svg = createSvg("svg")
-    svg.setAttribute("style", "width:100%;height:100%;");
-    var drawDiv = document.querySelector(".draw")
-    drawDiv.appendChild(svg)
-
-    function bottonClick() {
-      console.log(1)
-      var button = document.querySelector("button")
-      button.style.backgroundColor = "#4fd381"
-      setTimeout(() => {
-        button.style.backgroundColor = "#30a15c"
-      }, 100);
-      var obj = parse(regInput.value)
-      draw(obj)
-    }
     //****************************************************以下为类型声明************************************************************
 
     //声明 最原始的节点类
@@ -177,6 +162,31 @@
 
 
     //****************************************************以上为类型声明************************************************************
+
+    var svg = createSvg("svg")
+    svg.setAttribute("style", "width:100%;height:100%;");
+    var drawDiv = document.querySelector(".draw")
+    drawDiv.appendChild(svg)
+
+    // setTimeout(() => {
+    draw(parse(regInput.value))
+    // }, 100);
+
+
+
+
+
+
+    function bottonClick() {
+      console.log(1)
+      var button = document.querySelector("button")
+      button.style.backgroundColor = "#4fd381"
+      setTimeout(() => {
+        button.style.backgroundColor = "#30a15c"
+      }, 100);
+      var obj = parse(regInput.value)
+      draw(obj)
+    }
 
     //将正则字符串解析为语法树
     //[.*+?^${}()|[\]\\]/g, "\\$&")
@@ -398,7 +408,7 @@
     function draw(node) {
       //初始化svg
       svg.innerHTML = ""
-      var gap = 10
+      var gap = 20
       console.log(node)
 
       //加左右兩邊的綫
@@ -583,7 +593,45 @@
       function drawBatch(node) {
         var group = createSvg("g")
         svg.append(group)
-        var partImgs = node.parts.map(navigate)
+
+
+
+
+        //将parts中连续的character节点 合成单个
+        var newParts = []
+        var newCharacter
+        var continuous = -1
+        node.parts.forEach((it) => {
+          if (it.type == "character") {
+            if (continuous == -1) {
+              //如果是第一次 创建
+              newCharacter = new CharacterNode()
+              newCharacter.source == ""
+              newCharacter.start == it.start
+            }
+            continuous++
+            debugger
+            newCharacter.source += it.source
+          } else {
+            //如果是第一次 创建一个字符节点
+            if (continuous > 0) {
+              //如果之前的是多个字符,则将之前合并好的节点放进parts
+              newParts.push(newCharacter)
+              continuous = -1
+            }
+            newParts.push(it)
+          }
+
+        })
+
+        //如果结束之后  还有字符未被添加
+        if (continuous >= 0) {
+          //如果之前的是多个字符,则将之前合并好的节点放进parts
+          newParts.push(newCharacter)
+        }
+        console.log(newParts)
+
+        var partImgs = newParts.map(navigate)
         group.append(...partImgs)
         var width = 0
         //求出最高高度
@@ -606,7 +654,7 @@
             lines.push(line)
           }
         })
-        lines.forEach(it=>{
+        lines.forEach(it => {
           group.append(createSvgLine(it))
           console.log(group)
         })
