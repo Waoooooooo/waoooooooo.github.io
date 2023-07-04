@@ -97,7 +97,7 @@
   <section>
     <div class="run">
       <h1>正则铁路图</h1>
-      <div><input type="text" id="regInput" value="[ab]+(ab[a-zb1-9]3?)">
+      <div><input type="text" id="regInput" value="[ab]{0,9}(ab[a-zb1-9]3?)|05">
         <button onclick="bottonClick()">生 成</button>
       </div>
     </div>
@@ -468,33 +468,11 @@
         var img = navigate(node.descriptiveObj)
         svg.append(group)
         var box = img.getBBox()
-        var msg = "最多出现:" + node.max
-        if (node.min == 0) {
-          //画上半圈
-          // var rect = createSvgRect(box.width + gap, box.height / 2, 8)
-          // console.log(20 / box.height)
-          // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
-          // group.prepend(rect)
-          var path = createSvg("path")
-         // d="M0,21.571428298950195q10,0 10,-10v-1.5714282989501953q0,-10 10,-10h14.678571701049805q10,0 10,10v1.5714282989501953q0,10 10,10"
-         path.setAttribute("d",`
-         M 0 ${box.height/2} L ${gap/2} ${box.height/2-gap/2}
-         `)
-         path.setAttribute("stroke","black")
-         path.setAttribute("strokeWidth","2")
-        } else {
-          msg = "最少出现:" + node.min + "  " + node.msg
-        }
+
         //画下半圈
-        var text = createSvgText(msg)
         //如果最大值为1就不用画下半圈
         group.append(img)
-        if (node.max == 1) {
 
-          //不画下半圈
-
-
-        }
         //起点坐标 x = 0  y =box.height / 2
         //宽度 = box.width
         //高度 = box.height+gap/2
@@ -503,17 +481,63 @@
         // var rect = createSvgRect(box.width + gap, box.height / 2, 8)
         // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
         // group.prepend(rect)
-        group.setAttribute("transform", `translate(${gap},${0})`)
+        group.setAttribute("transform", `translate(${gap},${gap})`)
 
 
-        var rect = createSvgRect(box.width + gap * 2, box.height, 8)
+        var rect = createSvgRect(box.width + gap * 2, box.height + gap * 2, 8)
         rect.setAttribute("stroke", "none")
         var outerGroup = createSvg("g")
         svg.append(outerGroup)
-        outerGroup.append(path)
         outerGroup.append(group)
         outerGroup.append(rect)
         outerGroup.setAttribute("class", "quantifierGroup")
+
+
+        var box = outerGroup.getBBox()
+        var paths = []
+        if (node.min == 0) {
+          //画上半圈
+          // var rect = createSvgRect(box.width + gap, box.height / 2, 8)
+          // console.log(20 / box.height)
+          // rect.setAttribute("transform", `translate(${-gap / 2},${0})`)
+          // group.prepend(rect)
+          var path = createSvg("path")
+          // d="M0,21.571428298950195q10,0 10,-10v-1.5714282989501953q0,-10 10,-10h14.678571701049805q10,0 10,10v1.5714282989501953q0,10 10,10"
+          path.setAttribute("d", `M 0 ${box.height / 2}
+         L ${gap / 2} ${box.height / 2 - gap / 2}
+         L ${gap / 2} ${gap / 2}
+         L ${box.width - gap / 2} ${gap / 2}
+         L ${box.width - gap / 2} ${box.height / 2 - gap / 2}
+         L ${box.width - gap / 2} ${box.height / 2 - gap / 2}
+         L ${box.width} ${box.height / 2}
+         `)
+
+          path.setAttribute("stroke", "black")
+          path.setAttribute("fill", "none")
+          path.setAttribute("strokeWidth", "2")
+          paths.push(path)
+        }
+        if (node.max > 1) {
+          //下半圈
+          var path = createSvg("path")
+          path.setAttribute("d", `
+         M ${gap} ${box.height / 2}
+         L ${gap / 2} ${box.height / 2 + gap / 2}
+         L ${gap / 2} ${box.height - gap / 2}
+         L ${box.width - gap / 2} ${box.height - gap / 2}
+         L ${box.width - gap / 2} ${box.height / 2 + gap / 2}
+         L ${box.width - gap} ${box.height / 2}
+
+         `)
+          path.setAttribute("stroke", "black")
+          path.setAttribute("fill", "none")
+          path.setAttribute("strokeWidth", "2")
+          paths.push(path)
+        }
+        var leftline = createSvgLine({ x1: 0, y1: box.height / 2, x2: gap, y2: box.height / 2 })
+        var rightline = createSvgLine({ x1: box.width, y1: box.height / 2, x2: box.width - gap, y2: box.height / 2 })
+        outerGroup.append(leftline, rightline)
+        outerGroup.append(...paths)
 
         return outerGroup
       }
@@ -539,13 +563,13 @@
         var y = box.height / 2  //通用的y
         var x = gap
         var lineLeft = createSvgLine({
-          x1: x, y1: y+gap,
-          x2: 0, y2: y+gap
+          x1: x, y1: y + gap,
+          x2: 0, y2: y + gap
         })
         //从(x,y +  box.height /2)到(0,y +  box.height /2)
         var lineRight = createSvgLine({
-          x1: x + box.width, y1: y+gap,
-          x2: x + box.width + gap, y2: y+gap
+          x1: x + box.width, y1: y + gap,
+          x2: x + box.width + gap, y2: y + gap
         })
         groupInner.append()
         var group = createSvg("g")
@@ -553,7 +577,7 @@
         group.append(lineRight, lineLeft, groupInner)
         group.setAttribute("class", "catchGroup")
         var box = group.getBBox()
-        var rect = createSvgRect(box.width, box.height+gap*2,15)
+        var rect = createSvgRect(box.width, box.height + gap * 2, 15)
         rect.setAttribute("stroke-dasharray", "5 2")
         group.append(rect)
         return group
@@ -607,6 +631,10 @@
         var continuous = -1
         node.parts.forEach((it) => {
           if (it.type == "character") {
+            if (it.source[1] == "-" && it.source.length == 3) {
+              it.source = "范围: "+it.source
+            }
+
             if (continuous == -1) {
               //如果是第一次 创建
               newCharacter = new CharacterNode()
@@ -630,6 +658,7 @@
         //如果结束之后  还有字符未被添加
         if (continuous >= 0) {
           //如果之前的是多个字符,则将之前合并好的节点放进parts
+
           newParts.push(newCharacter)
         }
         console.log(newParts)
@@ -705,7 +734,7 @@
 
         groups.forEach((e, idx) => {
           var box = e.getBBox()
-          var y =  height
+          var y = height
           var x = gap + (maxWidth - box.width) / 2
           height += gap + box.height
           e.setAttribute("transform", `translate(${x},${y})`)
