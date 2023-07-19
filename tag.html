@@ -103,7 +103,7 @@
     <li style="background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);">成熟的女性</li>
   </ul>
   <button id="b1">新建文本标签</button>
-  <button id="b2" onclick="localStorage.clear();$(`div`).remove()">刪除歷史記錄(谨慎)</button>
+  <button id="b2" onclick="localStorage.clear();$(`div`).remove();datas=[]">刪除歷史記錄(谨慎)</button>
   <h1>在标签上点击右键更换背景颜色</h1>
   <h1>标签内容会自动保存在本地浏览器</h1>
   <h1>鼠标放在标签右下角可以拉伸</h1>
@@ -145,7 +145,6 @@
           var writeBox = $(`<writeBox contenteditable>${msg.writeBoxValue}</writeBox>`)
           var span = $(` <span></span>`)
           var div = $(`<div id = "d${idx}"></div>`)
-          debugger
           div.css('width', msg.width)
           div.css('height', msg.height)
           div.css('left', msg.x * 1)
@@ -199,7 +198,6 @@
     function boxInput(e) {
       var idx = e.target.closest("div").id.slice(1)
       var value
-      debugger
       if (e.target.tagName == "WRITEBOX") {
         value = e.target.textContent
         datas[idx].writeBoxValue = value
@@ -365,7 +363,8 @@
     function liClick(e) {
       $(e.target.closest("ul")).css("display", "none")
       var idx = targetDiv.id.slice(1)
-      if (e.id = "delete") {
+      debugger
+      if (e.id === "delete") {
         datas[idx] = undefined
         targetDiv.remove()
       } else {

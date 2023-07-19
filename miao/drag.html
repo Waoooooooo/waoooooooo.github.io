@@ -8,34 +8,41 @@
 
 </head>
 <style>
+  html,
+  body {
+    margin: 0;
+  }
+
   h3 {
     margin: 0;
-    background-color: #fffc;
+    background-color: rgba(232, 232, 232, 0.5);
+    padding: 10px;
   }
 
   div {
-    height: 300px;
-    width: 200px;
-    display: inline-block;
+    height: 350px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
     position: absolute;
   }
 
-  div:nth-child(1) {
-    background-color: #b5e992;
-    left: 150px;
-    top: 150px;
+  div:nth-child(1n) {
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
   }
 
-  div:nth-child(2) {
-    background-color: #ed521e;
-    left: 250px;
-    top: 250px;
+  div:nth-child(2n) {
+    background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
   }
 
-  div:nth-child(3) {
-    background-color: rgb(6, 158, 196);
+  div:nth-child(3n) {
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   }
 
+  writeBox {
+    flex: 1;
+    padding: 10px;
+  }
 
   span {
     background-color: red;
@@ -49,25 +56,176 @@
       cursor: nwse-resize;
     }
   }
+
+  ul {
+    position: absolute;
+    display: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: medium;
+
+    >li {
+      height: 40px;
+      line-height: 40px;
+      box-sizing: border-box;
+
+      &:hover {
+        border: rgb(0, 0, 0) solid 2px;
+      }
+    }
+  }
+  button{
+    display: block;
+    background-color: #e48282;
+    width: 200px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #ffffff;
+    border: #aeb1af;
+    margin-bottom:10px;
+  }
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <body>
-  <div>
-    <h3 data-num="1">窗口1</h3>
-    <span></span>
-  </div>
-  <div>
-    <h3 data-num="2">窗口2</h3>
-    <span></span>
-  </div>
-  <div>
-    <h3 data-num="3">窗口3</h3>
-    <span></span>
-  </div>
+  <ul>
+    <li style="background-color: red ;color :white" id="delete">刪除當前標簽</li>
+    <li style="background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);">未成熟的果实</li>
+    <li style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">北方大雪纷飞</li>
+    <li style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">柔软的小青草</li>
+    <li style="background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);">诱人的蔚蓝</li>
+    <li style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">冬季的哈尔滨湖</li>
+    <li style="background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);">对你的祝福</li>
+    <li style="background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);">已是黄昏</li>
+    <li style="background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);">成熟的女性</li>
+  </ul>
+  <button id="b1">新建文本标签</button>
+  <button id="b2" onclick="localStorage.clear();$(`div`).remove()">刪除歷史記錄(谨慎)</button>
+  <h1>在标签上点击右键更换背景颜色</h1>
+  <h1>标签内容会自动保存在本地浏览器</h1>
+  <h1>鼠标放在标签右下角可以拉伸</h1>
   <script>
+    function getYearDate() {
+      let tempDate = null;
+      let d = new Date; var year = d.getFullYear();
+      let month = (d.getMonth() + 1) >= 10 ? (d.getMonth() + 1) : "0" + (d.getMonth() + 1);
+      let date = d.getDate() >= 10 ? d.getDate() : "0" + d.getDate();
+      return tempDate = year + "-" + month + "-" + date + " " + d.toTimeString().slice(0, 8);
+    }
+
+    class TagMsg {
+      constructor(id, h3Value = getYearDate(), writeBoxValue = "请输入内容-", color = "", width = "350", height = "350", x = "0", y = "0") {
+        this.id = id;
+        this.h3Value = h3Value;
+        this.writeBoxValue = writeBoxValue;
+        this.color = color
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+
+
+
+    var datas
+    //保存當前元素内容的函數
+    if (datas = localStorage.getItem("datas")) {
+      //如果存在
+      //遍历并将内容展开
+      datas = JSON.parse(datas)
+
+      datas.forEach((msg, idx) => {
+        if (msg) {
+          var h3 = $(`<h3 contenteditable>${msg.h3Value}</h3>`)
+          var writeBox = $(`<writeBox contenteditable>${msg.writeBoxValue}</writeBox>`)
+          var span = $(` <span></span>`)
+          var div = $(`<div id = "d${idx}"></div>`)
+          debugger
+          div.css('width', msg.width)
+          div.css('height', msg.height)
+          div.css('left', msg.x * 1)
+          div.css('top', msg.y * 1)
+          console.log(msg.color)
+          div.css("background-image", msg.color)
+          div.append(h3, writeBox, span);
+          $("body").append(div)
+        }
+      });
+    } else {
+      var datas = []
+      //每次新建一个标签  就会往该数组中push一个表示该标签的对象
+    }
+
+    //新建文本标签
+
+    $(b1).on("click", () => {
+      var length = document.querySelectorAll("div").length
+      var tag = new TagMsg(length)
+      var h3 = $(`<h3 contenteditable>${tag.h3Value}</h3>`)
+      var writeBox = $(`<writeBox contenteditable>${tag.writeBoxValue}</writeBox>`)
+      var span = $(` <span></span>`)
+      var div = $(`<div id = "d${length}"></div>`)
+      // constructor(id,  h3Value = "", h3Color = "", writeBoxValue = "", writeBoxColor = "", width = "", height = "", x = "", y = "") {
+
+      $(div).append(h3, writeBox, span);
+      $("body").append(div)
+      datas.push(tag)
+      datasJSON = JSON.stringify(datas)
+      localStorage.setItem("datas", datasJSON)
+
+      h3.on("mousedown", mouseDown)
+      h3.on("mousedown", () => task = 1)
+      h3.on("mouseup", mouseUp)
+      h3.on("mousedown", changeZ)
+      h3.on("input", boxInput)
+
+      h3.on("mousedown", rightClick)
+      writeBox.on("input", boxInput)
+      writeBox.on("mousedown", rightClick)
+
+      span.on("mousedown", mouseDown)
+      span.on("mousedown", () => task = 0)
+      span.on("mouseup", mouseUp)
+      span.on("mousedown", changeZ)
+
+    })
+
+
+    function boxInput(e) {
+      var idx = e.target.closest("div").id.slice(1)
+      var value
+      debugger
+      if (e.target.tagName == "WRITEBOX") {
+        value = e.target.textContent
+        datas[idx].writeBoxValue = value
+      } else {
+        value = e.target.textContent
+        datas[idx].h3Value = value
+      }
+      console.log(value)
+      localStorage.setItem("datas", JSON.stringify(datas))
+    }
+
+    //取消系统的弹窗
+    document.oncontextmenu = function (e) {
+      return false
+      //或者 e.preventDefault()
+    }
+    document.onmouseup = function (e) {
+
+    }
+
+
+
+
     var preX = 0
     var preY = 0
-    var z = 0
+    var z = 100
     var targetDiv = null
     var targetH3 = null
     var h3s = document.querySelectorAll("h3")
@@ -76,16 +234,30 @@
     var 窗口宽度 = window.innerWidth
     var 窗口高度 = window.innerHeight
     var task = null //0 改变大小   1 移动
+    function rightClick(e) {
+      if (e.button == 2) {
+        var idx = e.target.closest("div").id
+        var x = e.clientX
+        var y = e.clientY
+        $("ul").css("left", x)
+        $("ul").css("top", y)
+        $("ul").css("display", "block")
+        $("ul").css("zIndex", z + 1)
+        targetDiv = e.target.closest("div")
+      }
+    }
+    var writeBoxMouseDown = (e) => {
 
-
-
+      target = e.target
+      preX = e.clientX
+      preY = e.clientY
+      targetDiv = target.closest("div")
+      console.log(1)
+    }
 
     //鼠标按下的函数
     var changeZ = (e) => {
-      if (e.target.matches("div")) {
-        targetDiv = e.target
-      }
-      targetDiv.style.zIndex = z++
+      e.target.closest("div").style.zIndex = z++
     }
 
 
@@ -133,6 +305,8 @@
         }
         targetDiv.style.left = left + "px"
         targetDiv.style.top = top + "px"
+        datas[targetDiv.id.slice(1)].x = targetDiv.style.left.slice(0, -2)
+        datas[targetDiv.id.slice(1)].y = targetDiv.style.top.slice(0, -2)
       } else {
         div宽度 += differenceX
         div高度 += differenceY
@@ -146,7 +320,13 @@
         }
         targetDiv.style.width = div宽度 + "PX"
         targetDiv.style.height = div高度 + "PX"
+        datas[targetDiv.id.slice(1)].width = targetDiv.style.width
+        datas[targetDiv.id.slice(1)].height = targetDiv.style.height
       }
+      console.log(datas)
+      localStorage.setItem("datas", JSON.stringify(datas))
+
+
     }
 
     //窗口变化reSize
@@ -158,9 +338,7 @@
 
     //div绑定函数
     var divs = document.querySelectorAll("div")
-    for (const div of divs) {
-      div.addEventListener("mousedown", changeZ)
-    }
+
 
     //h3绑定函数
     for (let index = 0; index < h3s.length; index++) {
@@ -169,6 +347,8 @@
       h3.addEventListener("mousedown", () => task = 1)
       h3.addEventListener("mouseup", mouseUp)
       h3.addEventListener("mousedown", changeZ)
+      h3.addEventListener("input", boxInput)
+      h3.addEventListener("mousedown", rightClick)
     }
 
     //span绑定函数
@@ -178,6 +358,42 @@
       span.addEventListener("mousedown", () => task = 0)
       span.addEventListener("mouseup", mouseUp)
       span.addEventListener("mousedown", changeZ)
+
+    }
+
+    //writeBox绑定函数
+    function liClick(e) {
+      $(e.target.closest("ul")).css("display", "none")
+      var idx = targetDiv.id.slice(1)
+      if (e.id = "delete") {
+        datas[idx] = undefined
+        targetDiv.remove()
+      } else {
+        $(targetDiv).css("background-image", $(e.target).css("background-image"))
+        datas[idx].color = $(e.target).css("background-image")
+      }
+      localStorage.setItem("datas", JSON.stringify(datas))
+    }
+
+
+
+    $("writeBox").on("mousedown", changeZ)
+    $("h3").on("mousedown", changeZ)
+    //*************************************************************************
+
+    $("h3").on("input", changeZ)
+    $("writeBox").on("input", changeZ)
+    $("writeBox").on("input", boxInput)
+    $("writeBox").on("mousedown", rightClick)
+    $("li").on("click", liClick)
+    window.addEventListener("click", () => {
+      $("ul").css("display", "none")
+      console.log(2131231)
+
+    })
+
+
+    function save(e) {
     }
   </script>
 </body>

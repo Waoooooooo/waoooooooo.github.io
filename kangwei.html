@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>康威生命游戏</title>
+  <style>
+    console {
+      margin-top: 20px;
+      display: block;
+      zoom: 1.5;
+
+    }
+
+    div {
+      display: flex;
+    }
+
+    input {
+      width: 100px;
+    }
+
+    span {
+      background-color: #fff;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: black solid 1px;
+    }
+
+    #autoNext {
+      width: 100px;
+    }
+
+    button+button {
+      margin-left: 20px;
+    }
+
+    button,
+    button::after {
+      padding: 10px;
+      background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+      border: 0;
+      color: #fff;
+      letter-spacing: 3px;
+      line-height: 1;
+      box-shadow: 3px 0px 0px #00e6f6;
+      outline: transparent;
+      position: relative;
+    }
+
+    button::after {
+      --slice-0: inset(50% 50% 50% 50%);
+      --slice-1: inset(80% -6px 0 0);
+      --slice-2: inset(50% -6px 30% 0);
+      --slice-3: inset(10% -6px 85% 0);
+      --slice-4: inset(40% -6px 43% 0);
+      --slice-5: inset(80% -6px 5% 0);
+      content: "HOVER ME";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
+      text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+      clip-path: var(--slice-0);
+    }
+
+    button:hover::after {
+      animation: 1s glitch;
+      animation-timing-function: steps(2, end);
+    }
+
+    @keyframes glitch {
+      0% {
+        clip-path: var(--slice-1);
+        transform: translate(-20px, -10px);
+      }
+
+      10% {
+        clip-path: var(--slice-3);
+        transform: translate(10px, 10px);
+      }
+
+      20% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 10px);
+      }
+
+      30% {
+        clip-path: var(--slice-3);
+        transform: translate(0px, 5px);
+      }
+
+      40% {
+        clip-path: var(--slice-2);
+        transform: translate(-5px, 0px);
+      }
+
+      50% {
+        clip-path: var(--slice-3);
+        transform: translate(5px, 0px);
+      }
+
+      60% {
+        clip-path: var(--slice-4);
+        transform: translate(5px, 10px);
+      }
+
+      70% {
+        clip-path: var(--slice-2);
+        transform: translate(-10px, 10px);
+      }
+
+      80% {
+        clip-path: var(--slice-5);
+        transform: translate(20px, -10px);
+      }
+
+      90% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 0px);
+      }
+
+      100% {
+        clip-path: var(--slice-1);
+        transform: translate(0);
+      }
+    }
+
+
+
+    .input-container {
+      position: relative;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      width: 200px;
+    }
+
+    .input-container input[type="text"] {
+      font-size: 20px;
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      padding: 5px 0;
+      background-color: transparent;
+      outline: none;
+    }
+
+    .input-container .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #ccc;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .input-container input[type="text"]:focus~.label,
+    .input-container input[type="text"]:valid~.label {
+      top: -20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .input-container .underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #333;
+      transform: scaleX(0);
+      transition: all 0.3s ease;
+    }
+
+    .input-container input[type="text"]:focus~.underline,
+    .input-container input[type="text"]:valid~.underline {
+      transform: scaleX(1);
+    }
+
+    .inputs {
+      display: flex;
+      gap: 20px;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+  <section>
+
+  </section>
+  <console>
+    <p>
+    <div class="inputs">
+      <div class="input-container">
+        <input type="text" id="rowInput" required="">
+        <label for="rowInput" class="label">行数</label>
+        <div class="underline"></div>
+      </div>
+      <div class="input-container">
+        <input type="text" id="columnInput" required="">
+        <label for="columnInput" class="label">列数</label>
+        <div class="underline"></div>
+      </div>
+    </div>
+    <button class="blob" id="createButton">生成</button>
+
+
+    </p>
+    <p>
+    <div class="input-container">
+      <input type="text" id="percentageInput" required="">
+      <label for="percentageInput" class="label">随机百分比</label>
+      <div class="underline"></div>
+    </div>
+    <button class="blob" id="randomAliveCell">随机生成存活细胞</button>
+    </p>
+
+    <p>
+    <div class="input-container">
+      <input type="text" id="autoTimeGapInput" required="">
+      <label for="autoTimeGapInput" class="label">自动演化间隔(毫秒)</label>
+      <div class="underline"></div>
+    </div>
+    <button class="blob" id="autoNext">自动演化</button>
+    <button class="blob" id="nextButton">NEXT</button>
+    </p>
+    <p>
+      <a href="https://zhuanlan.zhihu.com/p/45026142">相关资料(知乎)</a>
+    </p>
+
+  </console>
+
+  <script>
+    var cells = []
+    //细胞对象
+    class Cell {
+      constructor(element, row, column, id, others = [], isAlive = false) {
+        this.element = element
+        this.row = row
+        this.column = column
+        this.id = id
+        this.others = others
+        this.isAlive = isAlive
+      }
+    }
+
+
+    var row = 20;
+    var column = 40
+    //初始化
+    createCell(20, 40)
+    $(createButton).on("click", (e) => {
+      row = rowInput.value
+      column = columnInput.value
+      rowInput.value = ""
+      columnInput.value = ""
+      createCell(row, column)
+    })
+
+    $(nextButton).on("click", next)
+    $(randomAliveCell).on("click", () => {
+      debugger
+      percentage = percentageInput.value * 0.01
+      randomAC(percentage)
+    })
+    var interval
+
+
+
+
+    var running = false
+    $(autoNext).on("click", () => {
+
+      if (running) {
+        clearInterval(interval);
+        running = false
+        autoNext.innerHTML = "自动演化"
+
+      } else {
+        running = true
+        autoNext.innerHTML = "停止"
+        interval = setInterval(() => {
+          next()
+        }, autoTimeGapInput.value)
+      }
+
+    })
+
+
+
+    function randomAC(percentage) {
+      console.log(column)
+      createCell(row, column)
+      cells.forEach(cell => {
+        if (Math.random() < percentage) {
+          changeAlive(cell)
+        }
+      })
+
+
+
+    }
+
+    function next() {
+      //用来记录下一轮的细胞状态
+      var isAlives = []
+      cells.forEach(it => {
+        //当前细胞身边存货的细胞数量
+        var lives = it.others.filter(it => it.isAlive)
+        if (lives.length < 2 || lives.length > 3) {
+          var isAlive = false
+        } else if (lives.length == 3) {
+          var isAlive = true
+        } else {
+          var isAlive = it.isAlive
+        }
+        isAlives.push(isAlive)
+      })
+
+      cells.forEach((it, idx) => {
+        console.log(it.isAlive)
+        if (isAlives[idx] != it.isAlive) {
+          changeAlive(it)
+        }
+      })
+    }
+
+    //接受一个cell对象
+    //改变cell的alive属性 并改变其在页面中的显示
+    function changeAlive(cell) {
+      if (cell.isAlive) {
+        cell.isAlive = false
+        cell.element.css("background-color", "white")
+      } else {
+        cell.isAlive = true
+        cell.element.css("background-color", "green")
+
+      }
+    }
+
+
+
+    //用一个对象封装细胞
+    //创建细胞
+    function createCell(row, column) {
+      cells = []
+      var $section = $("section").empty();
+      for (let index = 0; index < row; index++) {
+        var $div = $(`<div data-row ="${index}"></div>`)
+        for (let index2 = 0; index2 < column; index2++) {
+          var $span = $(`<span data-row = "${index}"  data-column = "${index2}" data-id = "${index * column + index2}" >
+
+            </span>`)
+          $div.append($span)
+          //创建细胞对象 并放入数组 element, row, column, id, others = []
+          var cell = new Cell($span, index, index2, index * column + index2)
+          cells.push(cell)
+        }
+        $section.append($div)
+      }
+      cells.forEach((cell, idx) => {
+        //当前元素上面的一个
+        var cell1 = cells.at(idx - Number(column))
+        var cell2 = cells.at(idx - Number(column) - 1)
+        var cell3 = cells.at(idx - Number(column) + 1)
+        //左边的一个
+        var cell4 = cells.at(idx + 1)
+        //右边的一个
+        var cell5 = cells.at(idx - 1)
+        //下面的三个
+        var cell6 = cells.at(idx + Number(column))
+        var cell7 = cells.at(idx + Number(column) - 1)
+        var cell8 = cells.at(idx + Number(column) + 1)
+
+
+        //*****会错乱***
+        let itColumn = cell.column
+        let itRow = cell.row
+        var others = []
+        others.push(cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8)
+        others = others.filter(it => it)
+        //最行的范围   //列的范围
+        others = others.filter(it => !(it.row > itRow + 1 || it.row < itRow - 1 || it.column > itColumn + 1 || it.column < itColumn - 1))
+        //去除undefined
+        cell.others = others
+      })
+
+      $("span").on("click", (e) => {
+        console.log($(e.target).data("id"))
+        let idx = $(e.target).data("id")
+        changeAlive(cells[idx])
+      })
+
+    }
+
+
+  </script>
+</body>
+
+
+</html>
