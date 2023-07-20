@@ -15,11 +15,13 @@
     var button = document.querySelector("button")
     var quantity = 1
     var cats
+    var catsJSON
+
     //1.异步请求//https://xieranmaya.github.io/images/cats/cats.json
     //得到json
     get("https://xieranmaya.github.io/images/cats/cats.json", (data) => {
-      cats = JSON.parse(data)
-      cats = cats.map((it, idx) => it.fullUrl)
+      catsJSON = JSON.parse(data)
+      cats = catsJSON.map((it, idx) => it.fullUrl)
     })
 
     input.addEventListener("input", () => {
@@ -28,6 +30,11 @@
 
 
     button.addEventListener("click", () => {
+      //第二次按按钮,重新装填
+      if (cats.length == 0) {
+        cats = catsJSON.map((it, idx) => it.fullUrl)
+      }
+
       //此时假定json解析完毕
       //先请求n个猫猫
       for (let index = 0; index < quantity; index++) {
@@ -36,12 +43,16 @@
       }
     })
 
+    //回调函数
     function callb(data) {
       let nextCat = cats.pop()
       if (nextCat) {
         get(nextCat, callb)
       }
     }
+
+
+
     //get请求
     function get(url, callback) {
       var request = new XMLHttpRequest()
