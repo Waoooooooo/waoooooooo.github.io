@@ -17,7 +17,7 @@
     var cats
     //1.异步请求//https://xieranmaya.github.io/images/cats/cats.json
     //得到json
-    post("https://xieranmaya.github.io/images/cats/cats.json", (data) => {
+    get("https://xieranmaya.github.io/images/cats/cats.json", (data) => {
       cats = JSON.parse(data)
       cats = cats.map((it, idx) => it.fullUrl)
     })
@@ -29,21 +29,21 @@
 
     button.addEventListener("click", () => {
       //此时假定json解析完毕
-      //先请求n个猫
+      //先请求n个猫猫
       for (let index = 0; index < quantity; index++) {
         let cat = cats.pop()
-        post(cat, callb)
+        get(cat, callb)
       }
     })
 
     function callb(data) {
       let nextCat = cats.pop()
       if (nextCat) {
-        post(nextCat, callb)
+        get(nextCat, callb)
       }
     }
     //get请求
-    function post(url, callback) {
+    function get(url, callback) {
       var request = new XMLHttpRequest()
       request.open("GET", url, true)
       request.send()
