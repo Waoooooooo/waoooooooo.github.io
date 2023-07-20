@@ -25,6 +25,10 @@
     })
 
     input.addEventListener("input", () => {
+      if(input.value > 6){
+        input.value = 6
+      }
+
       quantity = input.value
     })
 
