@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>猫猫下载</title>
+</head>
+
+<body>
+  并行下载数量<input type="number" placeholder="最大:3 默认:1">
+  <button>开始下载猫猫</button>
+  <script>
+    var input = document.querySelector("input")
+    var button = document.querySelector("button")
+    var quantity = 1
+    var cats
+    //1.异步请求//https://xieranmaya.github.io/images/cats/cats.json
+    //得到json
+    post("https://xieranmaya.github.io/images/cats/cats.json", (data) => {
+      cats = JSON.parse(data)
+      cats = cats.map((it, idx) => it.fullUrl)
+    })
+
+    input.addEventListener("input", () => {
+      quantity = input.value
+    })
+
+
+    button.addEventListener("click", () => {
+      //此时假定json解析完毕
+      //先请求n个猫
+      for (let index = 0; index < quantity; index++) {
+        let cat = cats.pop()
+        post(cat, callb)
+      }
+    })
+
+    function callb(data) {
+      let nextCat = cats.pop()
+      if (nextCat) {
+        post(nextCat, callb)
+      }
+    }
+    //get请求
+    function post(url, callback) {
+      var request = new XMLHttpRequest()
+      request.open("GET", url, true)
+      request.send()
+      request.addEventListener("load", () => {
+        callback(request.responseText)
+      })
+    }
+  </script>
+</body>
+
+</html>
