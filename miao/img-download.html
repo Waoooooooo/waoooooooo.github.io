@@ -24,15 +24,16 @@
     })
 
     input.addEventListener("input", () => {
-      if(input.value > 6){
+      if (input.value > 6) {
         input.value = 6
       }
 
-      quantity = input.value
+
     })
 
 
     button.addEventListener("click", () => {
+      quantity = input.value
       //第二次按按钮,重新装填
       if (cats.length == 0) {
         cats = catsJSON.map((it, idx) => it.fullUrl)
@@ -45,13 +46,25 @@
         get(cat, callb)
       }
     })
-
+    var isOver = 0
     //回调函数
     function callb(data) {
+      if (cats.length == 0) {
+        //第  n个结束的
+        isOver++
+        console.log(isOver)
+        if (isOver == quantity) {
+          var h1 = document.createElement("h1")
+          h1.innerHTML = "下载完成..."
+          document.body.append(h1)
+          return
+        }
+      }
       let nextCat = cats.pop()
       if (nextCat) {
         get(nextCat, callb)
       }
+
     }
 
 
