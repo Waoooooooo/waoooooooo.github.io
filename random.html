@@ -40,24 +40,35 @@
       margin-top: 30px;
       font-size: 30px;
     }
+    ul{
+      position: absolute;
+      left: 0;
+
+    }
   </style>
 </head>
 
 <body>
   <h1>随机抽取餐厅</h1>
+  <ul></ul>
   <p>今天想吃什么？点一下按钮让我为你抽选！</p>
   <button id="pickButton">抽选餐厅</button>
   <div>今天吃<b id="result">*******</b>可以吗</div>
 
   <script>
-    const restaurants = ["东北饺子馆", "沈记牛肉汤", "太和板面", "徐州炒饭","重庆小面"];
-
+    var 午餐 = ["酸菜鱼", "煲仔饭", "黄焖鸡","盖浇饭","口水鸡","卤肉饭"];
+    //渲染到界面上
+    var ul = document.querySelector("ul")
+    debugger
+    ul.innerHTML=`
+    ${午餐.map(it=>"<li>"+it+ "</li>").join("")}
+    `
     const pickButton = document.getElementById("pickButton");
     const resultDiv = document.getElementById("result");
 
     pickButton.addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * restaurants.length);
-      const selectedRestaurant = restaurants[randomIndex];
+      const randomIndex = Math.floor(Math.random() * 午餐.length);
+      const selectedRestaurant = 午餐[randomIndex];
       resultDiv.innerText = ` ${selectedRestaurant} `;
 
     });
