@@ -290,6 +290,7 @@
   <header>
     <h1>todos</h1>
   </header>
+  <!-- v-cloak会在vue编译完成后自行删除 利用这一点让vue编译时,展示页面的元素不显示 -->
   <div id="centerBox" :class="showMode" v-cloak>
     <main>
       <button id="showLists" @click="selectAll()" :style="todos.length?'':'visibility: hidden'">
