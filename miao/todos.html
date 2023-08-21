@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./font/iconfont.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+
+    footer {
+      background-color: transparent;
+
+    }
+
+    footer * {
+      background-color: transparent;
+    }
+
+    main {
+      display: flex;
+      border: 1px solid #cccccc77;
+      width: 600px;
+      height: 70px;
+      margin: auto;
+    }
+
+    #tasksList {
+      width: 600px;
+      font-size: 30px;
+      border: 1px solid #cccccc77;
+      border-top: none;
+      margin: auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    h1 {
+      text-align: center;
+      color: #EAD7D7;
+      font-size: 100px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    input {
+      padding: 0;
+      width: 498px;
+      height: 68px;
+      outline: none;
+      border: none;
+      font-size: 30px;
+      line-height: 70px;
+      box-sizing: border-box;
+    }
+
+    #showLists {
+      padding: 0;
+      color: #E6E6E6;
+      width: 70px;
+      background-color: #FEFEFE;
+    }
+
+    li {
+      line-height: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    footer div {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 12px;
+      color: rgb(170, 172, 174);
+    }
+
+    input::placeholder {
+      font-style: italic;
+      color: #EAE8E6;
+    }
+
+    li+li{
+      box-sizing: initial;
+      border-top:1px solid #cccccc77;
+    }
+
+    button {
+      border: none;
+      vertical-align: top;
+      color: #E6E6E6;
+      width: 70px;
+      background-color: #FEFEFE;
+    }
+
+    /*li的类别*/
+    /*已完成*/
+    li.finished {}
+
+    li input {
+      flex: 1;
+    }
+
+    li.finished button {
+      color: #5DC2AF;
+    }
+
+    li.finished button span {
+      visibility: none;
+    }
+
+    li.finished>input {
+      text-decoration: line-through;
+      color: #D9D9D9;
+      padding-left: 30px;
+
+    }
+
+    #completion {
+      width: 600px;
+      font-size: 30px;
+      border: 1px solid #cccccc77;
+      border-top: none;
+      margin: auto;
+      display: flex;
+      padding: 10px;
+      box-sizing: border-box;
+      justify-content: space-between;
+
+    }
+
+
+    /*最底部 显示选项*/
+    #completion button {
+      color: black;
+      width: 100px;
+      ;
+    }
+
+    #completion button:hover {
+      border: #cccccc77 solid 1px;
+      border-radius: 5px;
+    }
+
+    #completion span {
+      font-size: 12px;
+      border: none;
+      vertical-align: top;
+      width: 70px;
+      text-align: center;
+      line-height: 34px;
+    }
+
+
+
+
+    /*未完成*/
+    li.unfinished {}
+
+    li.unfinished button {
+      color: #D9D9D9;
+    }
+
+    li.unfinished button span {
+      visibility: hidden;
+    }
+
+    li.unfinished>input {
+      text-decoration: none;
+      color: black;
+      padding-left: 30px;
+
+    }
+
+    li>input.unlock.unlock {
+      text-decoration: none;
+      color: black;
+      box-shadow: inset rgb(229, 229, 229) 0px 0px 10px ;
+      outline: 1px solid ;
+    }
+
+    /*代表是否完成的按钮*/
+    .isFinished {
+      border-radius: 999px;
+      border: 2px solid;
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+      padding: 0;
+    }
+
+    .icon-check {
+      font-weight: 800;
+      font-size: 30px;
+      position: relative;
+    }
+
+    .icon-close {
+      line-height: 0;
+      font-weight: 800;
+      font-size: 28px;
+      position: relative;
+      display: none;
+      color: #EAD7D7;
+      padding-right: 10px;
+    }
+
+    li:hover .icon-close {
+      display: inline-block;
+    }
+
+    .icon-close:hover {
+      color: #a96d6d;
+
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /*优先级问题*/
+    #completion.hidden {
+      display: none;
+    }
+
+    .thisMode {
+      border: #cccccc77 solid 1px;
+      border-radius: 5px;
+    }
+
+    button#clearBt{
+      width: 150px;
+
+    }
+    button#clearBt:hover{
+      border: none;
+      text-decoration: underline;
+    }
+    centerBox {
+      width: 600px;
+      display: block;
+      margin: auto;
+      border-radius: 0px;
+      background: linear-gradient(145deg, #cacaca, #f0f0f0);
+      box-shadow: 0px 40px 1000px #f4f4f4,
+                 0px 10px 30px #e2e2e2;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>todos</h1>
+  </header>
+  <centerBox>
+    <main>
+      <button id="showLists">
+        <span class="iconfont icon-down"></span>
+      </button>
+      <input id="editTask" type="text" placeholder="What needs to be done?">
+    </main>
+    <ul id="tasksList">
+    </ul>
+    <div id="completion">
+      <span>
+        <span id="leftNumber">0</span> <span id="item">item</span> left
+      </span>
+      <button id="showAllBt" onclick="showAll()">
+        All
+      </button>
+      <button id="showActiveBt" onclick="showActive()">
+        Active
+      </button>
+      <button id="showCompletedBt" onclick="showCompleted()">
+        Completed
+      </button>
+      <button id="clearBt" onclick="clearCompleted()">
+        Clear completed
+      </button>
+    </div>
+  </centerBox>
+  <footer>
+    <div>
+      <p>Double-click to edit a todo</p>
+      <p>Written by <a href="">Addy Osmani</a></p>
+      <p>
+        Part of <a href="https://todomvc.com/examples/backbone/#/active">TodoMVC</a>
+      </p>
+    </div>
+  </footer>
+  <script>
+    //打开页面时的初始化------------
+    //用户输入的内容
+    //输入框左边的按钮
+    const showLists = document.querySelector("#showLists");
+    //任务编辑框
+    const editTask = document.querySelector("#editTask");
+    //任务列表
+    const tasksList = document.querySelector("#tasksList");
+    //需要完成的任务数量
+    const leftNumber = document.querySelector("#leftNumber");
+    //item或items
+    const item = document.querySelector("#item")
+    class Task {
+      #status
+      #content
+      constructor(content, status = false, tag = null) {
+        this.#content = content;
+        this.#status = status
+      }
+
+      set status(flag) {
+        this.#status = Boolean(flag);
+        //一定要有一个属性作为status的实际存储位置 而不是this.status = flag(无限递归)
+        console.log('status被赋值', flag);
+        if (this.tag) {
+          //标签的类名随着属性名的改变而改变
+          this.tag.className = flag ? 'finished' : 'unfinished'
+        }
+        updateLeftNumber(tasks)
+      }
+      get status() {
+        return Boolean(this.#status)
+      }
+
+      set content(str) {
+        this.#content = str
+        //一定要有一个属性作为content的实际存储位置 而不是this.content = count(无限递归)
+        console.log('content被赋值', str);
+        if (this.tag) {
+          //标签的类名随着属性名的改变而改变
+          this.tag.children[1].value = str
+        }
+      }
+      get content() {
+        return this.#content
+      }
+
+
+
+    }
+
+    //模式  0为all 1为Active 2为Complitd
+    var controller = { mode: 0 }
+    Object.defineProperty(controller, "mode", {
+      set: function (x) {
+        //切换模式
+        showAllBt.classList.toggle("thisMode", x == 0)
+        showActiveBt.classList.toggle("thisMode", x == 1)
+        showCompletedBt.classList.toggle("thisMode", x == 2)
+        this._mod = x;
+      },
+      get: function () {
+        return this._mode
+      }
+    })
+
+
+
+
+    //从本地数据中解析出tasks的内容和状态 创建成Task类型的对象
+    var tasks = parse(localStorage.getItem("myTask") || null)
+
+    //覆盖tasks的push方法
+    var push = tasks.push.bind(tasks)
+    tasks.push = function (element) {
+      push(element)
+      updateLeftNumber(tasks)
+      return element
+    }
+
+
+    //将列表内容填充到相应位置
+    var tags = tasks.map((task, idx) => {
+      var li = document.createElement("li")
+      li.className = `${task.status ? 'finished' : 'unfinished'}`
+      li.dataset.idx = idx
+      li.innerHTML = `
+       <button class="isFinished"><span class="iconfont icon-check">
+        </span>
+       </button>
+       <input readonly class="taskText" value="${task.content}">
+       <span class="iconfont icon-close"></span>
+      `
+      //初始化时设置readonly 让input 只读
+      task.tag = li
+      return li
+    })
+
+    updateLeftNumber(tasks)
+
+    //插入元素操作
+    insetNodes(tasksList, tags)
+    //事件绑定
+    //下拉选项绑定事件
+    showLists.addEventListener("click", event => {
+      //如果当前所有task都为true
+      //该按钮的颜色由task是否全部完成决定
+      var isAllComplete = tasks.every(task => task.status)
+      if (isAllComplete) {
+        //如果点击的时候为全部完成的状态,就将所有task的状态改为false
+        tasks.forEach(task => task.status = false)
+        event.target.style.color = "#EAE0DA"
+      } else {
+        tasks.forEach(task => task.status = true)
+        event.target.style.color = "black"
+      }
+      saveLocal()
+    })
+
+
+
+    //增加内容 输入框绑定回车事件
+    editTask.addEventListener("keydown", event => {
+      if (event.keyCode == "13" && editTask.value !== "") {
+        //按下回车且输入框的值不为空时
+        //1.将该数据封装成一个对象(放入数组)
+        var task = new Task(editTask.value)
+        tasks.push(task)
+        //2.创建出相应的li标签(插入ul)
+        var li = document.createElement("li")
+        li.className = `${task.status ? 'finished' : 'unfinished'}`
+        li.dataset.idx = tasks.length - 1
+        var str = ""
+        if (controller.mode == 2) {
+          //新添加的需要隐藏
+          li.classList.add("hidden")
+        }
+        li.innerHTML = `
+       <button class="isFinished"><span class="iconfont icon-check">
+        </span>
+       </button>
+       <input readonly class="taskText" value="${task.content}">
+       <span class="iconfont icon-close"></span>
+      `
+        //初始化时设置readonly 让input 只读
+
+        task.tag = li
+        tasksList.append(li)
+        //3.将输入框数据清空
+        editTask.value = ""
+        updateLeftNumber(tasks)
+        saveLocal()
+      }
+    })
+
+    //修改状态.....任务完成按钮事件绑定...绑在外部元素上 ,这样当增加元素的时候可以不用再绑定
+    //删除单个元素....
+    tasksList.addEventListener("click", event => {
+      if (event.target.classList.contains("isFinished") || event.target.classList.contains("icon-check")) {
+        //当点击时  改变该task对象 和li的状态
+        var li = event.target.closest("li")
+        var idx = getChildrenIndex(li)
+        var task = tasks[idx]
+        // console.log(task.#status)
+        var flag = task.status
+        task.status = !flag
+        saveLocal()
+      }
+      if (event.target.classList.contains("icon-close")) {
+        //当点击时  改变该task对象 和li的状态
+        var li = event.target.closest("li")
+        var idx = getChildrenIndex(li)
+        li.remove()
+        tasks = tasks.filter((it, i) => idx != i)
+        updateLeftNumber(tasks)
+        saveLocal()
+      }
+    })
+
+    //修改内容.......双击事件绑在外部不会改变的元素上
+    tasksList.addEventListener("dblclick", event => {
+      if (event.target.nodeName == "INPUT") {
+        //双击后变成输入框,且将x隐藏
+        event.target.parentElement.children[2].classList.add("hidden")
+        event.target.removeAttribute("readonly")
+        event.target.classList.add("unlock")
+        event.target.selectionStart = 9999
+        event.target.selectionEnd = 9999
+        //当输入框失去焦点时保存数据
+        //1.失去焦点时触发
+        event.target.addEventListener("blur", e => {
+          save(e)
+        })
+
+        //2.回车触发
+        event.target.addEventListener("keydown", e => {
+          //1.获取到数据对应的对象,并且改变他的content属性
+          if (e.keyCode == "13") {
+            save(e)
+          }
+        })
+
+
+        //当输入框失去焦点,或按回车时保存数据
+        function save(e) {
+          var li = e.target.closest("li")
+          //找出当前li是第几个子元素
+          var task = tasks[getChildrenIndex(li)]
+          var content = e.target.value
+          task.content = content
+          //2.开启只读
+          e.target.setAttribute("readonly", "")
+          e.target.classList.remove("unlock")
+          saveLocal()
+          event.target.parentElement.children[2].classList.remove("hidden")
+        }
+
+
+      }
+    })
+
+
+
+    //更新leftNumber
+    function updateLeftNumber(tasks) {
+      var count = 0
+      tasks.forEach(task => {
+        if (task.status == false) {
+          count++
+        }
+      })
+
+
+      if (count > 1) {
+        item.innerText = "items"
+      } else {
+        item.innerText = "item"
+      }
+
+
+      if (tasks.length == 0) {
+        completion.classList.add("hidden")
+        document.querySelector(".icon-down").classList.add("hidden")
+      } else {
+        completion.classList.remove("hidden")
+        document.querySelector(".icon-down").classList.remove("hidden")
+
+      }
+      leftNumber.innerText = count
+    }
+
+
+    //一次插入多个dom节点
+    function insetNodes(parent, childs) {
+      var fragment = document.createDocumentFragment()
+      childs.forEach(element => {
+        fragment.append(element)
+      });
+      parent.appendChild(fragment);
+    }
+
+    //展示全部
+    function showAll() {
+      //遍历所有的li 删除不可见的雷鸣
+      tasksList.children.forEach = [].forEach
+      tasksList.children.forEach(it => it.classList.remove("hidden"))
+      controller.mode = 0
+    }
+
+    //展示还未完成的
+    function showActive() {
+      //遍历所有的li 删除不可见的雷鸣
+      showAll()
+      tasksList.children.forEach(it => {
+        if (it.classList.contains("finished")) {
+          it.classList.add("hidden")
+        }
+      })
+      controller.mode = 1
+    }
+
+    //展示完成的
+    function showCompleted() {
+      showAll()
+      tasksList.children.forEach(it => {
+        if (it.classList.contains("unfinished")) {
+          it.classList.add("hidden")
+        }
+      })
+      controller.mode = 2
+    }
+
+    //清除
+    function clearCompleted() {
+      //删除已完成的dom元素
+      var newTask = []
+      tasks.forEach(it => {
+        if (it.status) {
+          it.tag.remove()
+        } else {
+          newTask.push(it)
+        }
+      })
+      tasks = newTask
+      //重置下数字
+      leftNumber.text = 0
+      saveLocal()
+      updateLeftNumber(tasks)
+    }
+
+    //保存到本地
+    function saveLocal() {
+      storage = JSON.stringify(tasks.map(it => {
+        return {
+          content: it.content,
+          status: it.status
+        }
+      }))
+      localStorage.setItem("myTask", storage);
+
+    }
+
+
+
+    //获取当前元素的索引
+    function getChildrenIndex(ele) {
+      //IE is simplest and fastest
+      if (ele.sourceIndex) {
+        return ele.sourceIndex - ele.parentNode.sourceIndex - 1;
+      }
+      //other browsers
+      var i = 0;
+      while (ele = ele.previousElementSibling) {
+        i++;
+      }
+      return i;
+    }
+
+    //将传入的普通对象组成的数组字符串转为 Task类
+    function parse(tasks) {
+      if (tasks) {
+        var tasks = JSON.parse(tasks)
+        return tasks.map(task => new Task(task.content, task.status))
+      }
+      return []
+    }
+  </script>
+</body>
+
+</html>

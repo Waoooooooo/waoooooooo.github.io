@@ -14,6 +14,7 @@
     var input = document.querySelector("input")
     var button = document.querySelector("button")
     var quantity = 1
+    var length
     var cats
     var catsJSON
     //1.异步请求//https://xieranmaya.github.io/images/cats/cats.json
@@ -21,6 +22,7 @@
     get("https://xieranmaya.github.io/images/cats/cats.json", (data) => {
       catsJSON = JSON.parse(data)
       cats = catsJSON.map((it, idx) => it.fullUrl)
+      length = cats.length
     })
 
     input.addEventListener("input", () => {
@@ -46,20 +48,18 @@
         get(cat, callb)
       }
     })
-    var isOver = 0
+    var isOver =0
     //回调函数
     function callb(data) {
-      if (cats.length == 0) {
-        //第  n个结束的
-        isOver++
-        console.log(isOver)
-        if (isOver == quantity) {
+      isOver++
+      console.log(isOver)
+        if (isOver == length) {
           var h1 = document.createElement("h1")
           h1.innerHTML = "下载完成..."
           document.body.append(h1)
           return
         }
-      }
+
       let nextCat = cats.pop()
       if (nextCat) {
         get(nextCat, callb)

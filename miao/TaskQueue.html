@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //一次调用n个
+        function asyncSeries(tasks, limit, callback) {
+            var count = limit
+            var com = limit
+            var flag = false
+            function cb(err) {
+                if (!flag) {
+                    if (err) {
+                        callback(err)
+                        flag = true
+                    } else {
+                        if (count < tasks.length) {
+                            tasks[count++](() => {
+                                com++
+                                cb(err)
+                                if (com) {
+                                    com
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+            for (let index = 0; index < limit; index++) {
+                tasks[index](cb)
+            }
+
+        }
+
+
+
+
+
+        function asyncSeries(tasks, callback) {
+            var count = 0
+
+            function cb(err) {
+                if (err) {
+                    callback(err)
+                    count = tasks.length
+                    return
+                }
+                count++
+                if (count == tasks.length) {
+                    callback()
+                }
+
+            }
+            for (let index = 0; index < tasks.length; index++) {
+                tasks[index](cb)
+            }
+
+        }
+
+
+        class TaskQueue {
+            constructor(limit = 1) {
+                this.limit = limit
+                this.tasks = []
+                this.running = 0 //表示任务队列中的个数
+            }
+
+
+            addTask(task) {
+                //----关键代码---
+                var that = this //callback在使用时是直接调用的里面读不到taskqueue对象
+
+                if (this.running == this.limit) {
+                    //当前队列未执行完毕,将新任务添加到队列中 等待
+                    this.tasks.push(task)
+                } else {
+                    //this.running < this.limit
+                    //有空闲位置 可以开启新任务
+                    task(cb)
+                    this.running++
+                }
+
+                function cb() {
+                    //一个任务执行完后的回调函数
+                    if (that.tasks.length > 0) {
+                        //当对象中存在任务时
+                        task = that.tasks.shift()
+                        task(cb)
+                    } else {
+                        that.running--
+                    }
+                }
+
+
+                //链式调用
+                return this
+
+            }
+
+
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
