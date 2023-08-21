@@ -355,7 +355,7 @@
         },
         deleteOne(idx){
           console.log(idx)
-          this.todos.splice(idx)
+          this.todos =  this.todos.filter((it,i)=>idx!=i)
         }
       },
       //深度绑定
