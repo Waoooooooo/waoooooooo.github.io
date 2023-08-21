@@ -259,6 +259,27 @@
       box-shadow: 0px 40px 1000px #f4f4f4,
         0px 10px 30px #e2e2e2;
     }
+
+    div.showAll #showAllBt{
+      border: #5DC2AF 1px solid;
+
+    }
+
+
+    div.showActive li.finished{
+      display: none;
+    }
+    div.showActive #showActiveBt{
+      border: #5DC2AF 1px solid;
+
+    }
+
+    div.showCompleted #showCompletedBt{
+      border: #5DC2AF 1px solid;
+    }
+    div.showCompleted li.unfinished{
+      display: none;
+    }
   </style>
 </head>
 
@@ -266,14 +287,14 @@
   <header>
     <h1>todos</h1>
   </header>
-  <div id="centerBox">
+  <div id="centerBox" :class="showMode">
     <main>
       <button id="showLists" @click="selectAll()">
         <span class="iconfont icon-down"></span>
       </button>
       <input type="text" placeholder="What needs to be done?" @keydown.enter="save($event)">
     </main>
-    <ul id="tasksList">
+    <ul id="tasksList" >
       <li v-for="(todo,idx) in todos" :class="todo.completed?'finished':'unfinished'">
         <button class="isFinished" @click="todo.completed = !todo.completed">
           <span class="iconfont icon-check"></span>
@@ -287,20 +308,20 @@
         <span class="iconfont icon-close" @click="deleteOne(idx)"> </span>
       </li>
     </ul>
-    <div id="completion">
+    <div id="completion" v-show="todos.length">
       <span>
         <span id="leftNumber">{{ todos.filter(it=>!it.completed).length }}</span> <span id="item">item</span> left
       </span>
-      <button id="showAllBt" onclick="showAll()">
+      <button id="showAllBt" @click="showAll()">
         All
       </button>
-      <button id="showActiveBt" onclick="showActive()">
+      <button id="showActiveBt" @click="showActive()">
         Active
       </button>
-      <button id="showCompletedBt" onclick="showCompleted()">
+      <button id="showCompletedBt" @click="showCompleted()">
         Completed
       </button>
-      <button id="clearBt" onclick="clearCompleted()">
+      <button id="clearBt" @click="clearCompleted()">
         Clear completed
       </button>
     </div>
@@ -360,8 +381,19 @@
         },
         deleteCompleted(){
           this.todos =  this.todos.filter(it=>!it.completed)
+        },
+        showAll(){
+          this.showMode="showAll"
+        },
+        showActive(){
+          this.showMode="showActive"
+        },
+        showCompleted(){
+          this.showMode="showCompleted"
+        },
+        clearCompleted(){
+          this.todos = this.todos.filter(it=>!it.completed)
         }
-
       },
       //深度绑定
       watch: {
