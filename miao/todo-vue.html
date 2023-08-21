@@ -289,7 +289,7 @@
   </header>
   <div id="centerBox" :class="showMode">
     <main>
-      <button id="showLists" @click="selectAll()">
+      <button id="showLists" @click="selectAll()" :style="todos.length?'':'visibility: hidden'">
         <span class="iconfont icon-down"></span>
       </button>
       <input type="text" placeholder="What needs to be done?" @keydown.enter="save($event)">
@@ -402,7 +402,6 @@
             localStorage.setItem("todos", JSON.stringify(newVal))
             console.log("数据保存成功")
           },
-
           deep: true
         },
         showMode: {
@@ -410,7 +409,6 @@
             localStorage.setItem("showMode",newVal )
             console.log("mode保存成功")
           },
-
           deep: true
         }
       }
