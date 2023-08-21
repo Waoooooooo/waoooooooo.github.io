@@ -278,10 +278,10 @@
         <button class="isFinished" @click="todo.completed = !todo.completed">
           <span class="iconfont icon-check"></span>
         </button>
-        <input redonly class="taskText"
+        <input readonly class="taskText"
           :value=" todo.content "
           @dblclick="edit($event)"
-          @keyup.enter="editOver($event)"
+          @keydown.enter="editOver($event)"
           @blur="editOver($event)"
           >
         <span class="iconfont icon-close" @click="deleteOne(idx)"> </span>
@@ -344,6 +344,7 @@
         },
         editOver(e) {
           e.target.readonly = true
+          console.log(1)
           e.target.classList.remove("unlock")
         },
         selectAll(){
@@ -356,7 +357,11 @@
         deleteOne(idx){
           console.log(idx)
           this.todos =  this.todos.filter((it,i)=>idx!=i)
+        },
+        deleteCompleted(){
+          this.todos =  this.todos.filter(it=>!it.completed)
         }
+
       },
       //深度绑定
       watch: {
