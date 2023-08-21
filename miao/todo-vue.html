@@ -280,6 +280,9 @@
     div.showCompleted li.unfinished{
       display: none;
     }
+    [v-cloak]{
+      display: none;
+    }
   </style>
 </head>
 
@@ -287,7 +290,7 @@
   <header>
     <h1>todos</h1>
   </header>
-  <div id="centerBox" :class="showMode">
+  <div id="centerBox" :class="showMode" v-cloak>
     <main>
       <button id="showLists" @click="selectAll()" :style="todos.length?'':'visibility: hidden'">
         <span class="iconfont icon-down"></span>
