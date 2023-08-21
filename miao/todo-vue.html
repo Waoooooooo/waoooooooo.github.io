@@ -341,7 +341,7 @@
       el: "#centerBox",
       data: {
         todos: JSON.parse(localStorage.getItem("todos") || "[]"),
-        showMode: "all"
+        showMode: localStorage.getItem("showMode")|| "showAll"
       },
       methods: {
         save(e) {
@@ -400,8 +400,17 @@
         todos: {
           handler(newVal, oldVal) {
             localStorage.setItem("todos", JSON.stringify(newVal))
-            console.log("保存成功")
+            console.log("数据保存成功")
           },
+
+          deep: true
+        },
+        showMode: {
+          handler(newVal, oldVal) {
+            localStorage.setItem("showMode",newVal )
+            console.log("mode保存成功")
+          },
+
           deep: true
         }
       }
