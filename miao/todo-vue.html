@@ -335,7 +335,8 @@
       </p>
     </div>
   </footer>
-  <script src="./vue2.js"></script>
+  <!-- <script src="./vue2.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
     var app = new Vue({
       el: "#centerBox",
@@ -357,14 +358,15 @@
           return
         },
         edit(e) {
-          e.target.readonly = false
+          e.target.readOnly = false
           e.target.classList.add("unlock")
+          debugger
           e.target.selectionStart = 9999
           e.target.selectionEnd = 9999
 
         },
         editOver(e) {
-          e.target.readonly = true
+          e.target.readOnly = true
           console.log(1)
           e.target.classList.remove("unlock")
         },
