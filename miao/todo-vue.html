@@ -321,7 +321,7 @@
       <button id="showCompletedBt" @click="showCompleted()">
         Completed
       </button>
-      <button id="clearBt" @click="clearCompleted()">
+      <button id="clearBt" @click="clearCompleted()" :style="todos.some(it=>it.completed)? '' :'visibility: hidden'">
         Clear completed
       </button>
     </div>
