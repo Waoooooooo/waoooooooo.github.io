@@ -314,7 +314,7 @@
     var app = new Vue({
       el: "#centerBox",
       data: {
-        todos: JSON.parse(localStorage.getItem("todos") || "[{completed:false,content:'this is a test...'}]"),
+        todos: JSON.parse(localStorage.getItem("todos") || "[]"),
         showMode: localStorage.getItem("showMode")|| "showAll",
         valueCatch:""
       },
