@@ -205,7 +205,7 @@
       width: 110px;
     }
     button#clearBt:hover {
-      border: none;
+      outline:none;
       text-decoration: underline;
     }
     .unlock+span.icon-close {
@@ -314,7 +314,7 @@
     var app = new Vue({
       el: "#centerBox",
       data: {
-        todos: JSON.parse(localStorage.getItem("todos") || "[{completed:false,content:'this is a test...'},]"),
+        todos: JSON.parse(localStorage.getItem("todos") || "[{completed:false,content:'this is a test...'}]"),
         showMode: localStorage.getItem("showMode")|| "showAll"
       },
       methods: {
