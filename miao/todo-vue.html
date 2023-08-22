@@ -12,11 +12,6 @@
       background-color: #fff;
     }
 
-    footer {
-      background-color: transparent;
-
-    }
-
     footer * {
       background-color: transparent;
     }
@@ -97,32 +92,22 @@
       background-color: #FEFEFE;
     }
 
-    /*li的类别*/
-    /*已完成*/
     li input {
       padding-left: 30px;
-
+       flex: 1;
     }
-
-    li input {
-      flex: 1;
-    }
-
-    li.finished button {
+    li button {
       color: #5DC2AF;
     }
-
-    li.finished button span {
+    /* li button span {
       visibility: none;
-    }
+    } */
 
-    li.finished>input {
+    li>input {
       text-decoration: line-through;
       color: #D9D9D9;
       padding-left: 30px;
-
     }
-
 
     #completion {
       width: 600px;
@@ -134,7 +119,6 @@
       padding: 10px;
       box-sizing: border-box;
       justify-content: space-between;
-
     }
 
 
@@ -142,7 +126,6 @@
     #completion button {
       color: black;
       width: 100px;
-      ;
     }
 
     #completion button:hover {
@@ -159,27 +142,19 @@
       line-height: 34px;
     }
 
-
-
-
     /*未完成*/
-    li.unfinished {}
-
     li.unfinished button {
       color: #D9D9D9;
     }
-
     li.unfinished button span {
       visibility: hidden;
     }
-
     li.unfinished>input {
       text-decoration: none;
       color: black;
       padding-left: 30px;
 
     }
-
     li>input.unlock.unlock {
       text-decoration: none;
       color: black;
@@ -216,36 +191,21 @@
     li:hover .icon-close {
       display: inline-block;
     }
-
     .icon-close:hover {
       color: #a96d6d;
-
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /*优先级问题*/
-    #completion.hidden {
-      display: none;
     }
 
     .thisMode {
       border: #cccccc77 solid 1px;
       border-radius: 5px;
     }
-
     button#clearBt {
       width: 150px;
-
     }
-
     button#clearBt:hover {
       border: none;
       text-decoration: underline;
     }
-
     .unlock+span.icon-close {
       display: none;
     }
@@ -260,28 +220,28 @@
         0px 10px 30px #e2e2e2;
     }
 
+
     div.showAll #showAllBt{
       border: #5DC2AF 1px solid;
-
-    }
-
-
-    div.showActive li.finished{
-      display: none;
     }
     div.showActive #showActiveBt{
       border: #5DC2AF 1px solid;
-
     }
-
     div.showCompleted #showCompletedBt{
       border: #5DC2AF 1px solid;
     }
-    div.showCompleted li.unfinished{
-      display: none;
-    }
+
+    /* 当vue第一次渲染未结束时 不显示带有该属性的标签 */
     div#centerBox[v-cloak]{
       display: none;
+    }
+
+    /* 用来隐藏元素的类名 */
+    .vh{
+      visibility: hidden !important;
+    }
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
@@ -293,39 +253,39 @@
   <!-- v-cloak会在vue编译完成后自行删除 利用这一点让vue编译时元素不显示 -->
   <div id="centerBox" :class="showMode" v-cloak>
     <main>
-      <button id="showLists" @click="selectAll()" :style="todos.length?'':'visibility: hidden'">
+      <button id="showLists" @click="selectAll" :class="{vh:!Boolean(todos.length)}">
         <span class="iconfont icon-down"></span>
       </button>
-      <input type="text" placeholder="What needs to be done?" @keydown.enter="save($event)">
+      <input type="text" placeholder="What needs to be done?" @keydown.enter="save">
     </main>
     <ul id="tasksList" >
-      <li v-for="(todo,idx) in todos" :class="todo.completed?'finished':'unfinished'">
+      <li v-for="(todo,idx) in filteredTodos" :class="{'unfinished':!todo.completed}">
         <button class="isFinished" @click="todo.completed = !todo.completed">
           <span class="iconfont icon-check"></span>
         </button>
         <input readonly class="taskText"
-          :value=" todo.content "
-          @dblclick="edit($event)"
-          @keydown.enter="editOver($event)"
-          @blur="editOver($event)"
+          v-model="todo.content"
+          @dblclick="edit"
+          @keydown.enter="editOver"
+          @blur="editOver"
           >
         <span class="iconfont icon-close" @click="deleteOne(idx)"> </span>
       </li>
     </ul>
     <div id="completion" v-show="todos.length">
       <span>
-        <span id="leftNumber">{{ todos.filter(it=>!it.completed).length }}</span> <span id="item">item</span> left
+        <span id="leftNumber">{{  leftItem }}</span> <span id="item">item</span> left
       </span>
-      <button id="showAllBt" @click="showAll()">
+      <button id="showAllBt" @click="showAll">
         All
       </button>
-      <button id="showActiveBt" @click="showActive()">
+      <button id="showActiveBt" @click="showActive">
         Active
       </button>
-      <button id="showCompletedBt" @click="showCompleted()">
+      <button id="showCompletedBt" @click="showCompleted">
         Completed
       </button>
-      <button id="clearBt" @click="clearCompleted()" :style="todos.some(it=>it.completed)? '' :'visibility: hidden'">
+      <button id="clearBt" @click="clearCompleted" :class="{vh: !todosSome}">
         Clear completed
       </button>
     </div>
@@ -364,14 +324,11 @@
         edit(e) {
           e.target.readOnly = false
           e.target.classList.add("unlock")
-          debugger
           e.target.selectionStart = 9999
           e.target.selectionEnd = 9999
-
         },
         editOver(e) {
           e.target.readOnly = true
-          console.log(1)
           e.target.classList.remove("unlock")
         },
         selectAll(){
@@ -401,7 +358,30 @@
           this.todos = this.todos.filter(it=>!it.completed)
         }
       },
-      //深度绑定
+
+      //计算属性
+      computed:{
+        leftItem(){
+          return this.todos.filter(it=>!it.completed).length
+        },
+        todosSome(){
+          console.log( this.todos.some(it=>it.completed))
+          return this.todos.some(it=>it.completed)
+        },
+        filteredTodos(){
+          //如果模式为showAll
+          if(this.showMode == "showAll"){
+            return this.todos
+          }else if(this.showMode == "showActive"){
+            return this.todos.filter(it=>!it.completed)
+          }else if(this.showMode == "showCompleted"){
+            return this.todos.filter(it=>it.completed)
+          }
+        }
+      },
+
+
+      //深度监控
       watch: {
         todos: {
           handler(newVal, oldVal) {
