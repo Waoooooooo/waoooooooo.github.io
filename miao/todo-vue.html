@@ -274,7 +274,7 @@
     </ul>
     <div id="completion" v-show="todos.length">
       <span>
-        <span id="leftNumber">{{  leftItem }}</span> <span id="item">item</span> left
+        <span id="leftNumber">{{  leftItem }}</span> <span>{{ itemOritems }}</span> left
       </span>
       <button id="showAllBt" @click="showAll">
         All
@@ -377,7 +377,11 @@
           }else if(this.showMode == "showCompleted"){
             return this.todos.filter(it=>it.completed)
           }
+        },
+        itemOritems(){
+          return this.leftItem > 1 ? "item" : "items"
         }
+
       },
 
 
