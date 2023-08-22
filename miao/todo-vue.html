@@ -123,14 +123,20 @@
 
 
     /*最底部 显示选项*/
-    #completion button {
-      color: black;
-      width: 100px;
+    #buttonsBox{
+      display: flex;
+      flex: 1;
+      gap:20px;
+      justify-content: center;
     }
-
+    #completion button{
+      color: black;
+      border-radius: 10px;
+      width: 80px;
+    }
     #completion button:hover {
-      border: #cccccc77 solid 1px;
-      border-radius: 5px;
+      border-radius: 10px ;
+      outline: #5DC2AF solid 3px;
     }
 
     #completion span {
@@ -195,12 +201,8 @@
       color: #a96d6d;
     }
 
-    .thisMode {
-      border: #cccccc77 solid 1px;
-      border-radius: 5px;
-    }
     button#clearBt {
-      width: 150px;
+      width: 110px;
     }
     button#clearBt:hover {
       border: none;
@@ -222,13 +224,18 @@
 
 
     div.showAll #showAllBt{
-      border: #5DC2AF 1px solid;
+      background-color: #5DC2AF;
+      color:#ffffff;
     }
     div.showActive #showActiveBt{
-      border: #5DC2AF 1px solid;
+      background-color: #5DC2AF;
+      color:#ffffff;
+
     }
     div.showCompleted #showCompletedBt{
-      border: #5DC2AF 1px solid;
+      background-color: #5DC2AF;
+      color:#ffffff;
+
     }
 
     /* 当vue第一次渲染未结束时 不显示带有该属性的标签 */
@@ -276,15 +283,17 @@
       <span>
         <span id="leftNumber">{{  leftItem }}</span> <span>{{ itemOritems }}</span> left
       </span>
-      <button id="showAllBt" @click="showAll">
-        All
-      </button>
-      <button id="showActiveBt" @click="showActive">
-        Active
-      </button>
-      <button id="showCompletedBt" @click="showCompleted">
-        Completed
-      </button>
+      <span id="buttonsBox">
+        <button id="showAllBt" @click="showAll">
+          All
+        </button>
+        <button id="showActiveBt" @click="showActive">
+          Active
+        </button>
+        <button id="showCompletedBt" @click="showCompleted">
+          Completed
+        </button>
+      </span>
       <button id="clearBt" @click="clearCompleted" :class="{vh: !todosSome}">
         Clear completed
       </button>
@@ -380,8 +389,7 @@
         },
         itemOritems(){
           return this.leftItem > 1 ? "item" : "items"
-        }
-
+        },
       },
 
 
