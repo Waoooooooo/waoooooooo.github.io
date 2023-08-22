@@ -274,6 +274,7 @@
           @dblclick="edit"
           @keydown.enter="editOver"
           @blur="editOver"
+          @keydown.escape="restore($event,todo)"
           >
         <span class="iconfont icon-close" @click="deleteOne(idx)"> </span>
       </li>
@@ -314,7 +315,8 @@
       el: "#centerBox",
       data: {
         todos: JSON.parse(localStorage.getItem("todos") || "[{completed:false,content:'this is a test...'}]"),
-        showMode: localStorage.getItem("showMode")|| "showAll"
+        showMode: localStorage.getItem("showMode")|| "showAll",
+        valueCatch:""
       },
       methods: {
         save(e) {
@@ -334,10 +336,16 @@
           e.target.classList.add("unlock")
           e.target.selectionStart = 9999
           e.target.selectionEnd = 9999
+          //当开始编辑时将当前值保存在内存中
+          this.valueCatch = e.target.value
         },
         editOver(e) {
           e.target.readOnly = true
           e.target.classList.remove("unlock")
+        },
+        restore(e,tudo){
+          tudo.content = this.valueCatch
+          this.editOver(e)
         },
         selectAll(){
           if (this.todos.every(it=>it.completed)) {
