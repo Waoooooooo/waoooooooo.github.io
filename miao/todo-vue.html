@@ -276,7 +276,7 @@
           @blur="editOver"
           @keydown.escape="restore($event,todo)"
           >
-        <span class="iconfont icon-close" @click="deleteOne(idx)"> </span>
+        <span class="iconfont icon-close" @click="deleteOne(todo)"> </span>
       </li>
     </ul>
     <div id="completion" v-show="todos.length">
@@ -354,9 +354,10 @@
             this.todos.forEach(it => it.completed=true);
           }
         },
-        deleteOne(idx){
-          console.log(idx)
-          this.todos =  this.todos.filter((it,i)=>idx!=i)
+        deleteOne(todo){
+          //尽量不用 idx
+          console.log(todo)
+          this.todos =  this.todos.filter((it,i)=>todo!==it)
         },
         deleteCompleted(){
           this.todos =  this.todos.filter(it=>!it.completed)
